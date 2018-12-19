@@ -1,5 +1,24 @@
-#showPassword {
-	/*background-color: lightblue;
-	opacity: 0.9;*/
+body {
+	font-family: 'Roboto';
+}
+
+form {
+
+}
+
+form fieldset {
+	max-height: 40vh;
+}
+
+form fieldset p {
+	height: 2em;
+}
+
+form fieldset p button {
+	height: 1em;
+}
+
+form fieldset p button img {
+	height: 100%;
 }
 
