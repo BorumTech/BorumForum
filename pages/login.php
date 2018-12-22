@@ -8,7 +8,7 @@
 		</p>
 		<p>
 			<label>Password: </label>
-			<input type = "password" name = "pass1" size = "10" maxlength = "20" value = "<?php if (isset($_POST['pass'])) echo $_POST['pass']; ?>">
+			<input type = "password" name = "pass1" size = "10" maxlength = "20">
 		</p>
 	</fieldset>
 	<p>
