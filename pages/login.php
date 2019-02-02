@@ -1,4 +1,11 @@
-<h1>Login</h1>
+<?php 
+
+$page_title = 'Login';
+include('includes/header.html');
+
+?>
+
+
 <form action = "" method = "post">
 	<fieldset>
 		<legend>Login Details</legend>
@@ -12,7 +19,7 @@
 		</p>
 	</fieldset>
 	<p>
-		<input type = "submit" name = "submit" value = "Login">
+		<input type = "submit" name = "submit" value = "Log In">
 	</p>
 </form>
 
