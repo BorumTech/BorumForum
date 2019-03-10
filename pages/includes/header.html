@@ -6,8 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $page_title; ?></title>
-<link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel = "stylesheet" type = "text/css" integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin = "anonymous">
+<link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel = "stylesheet" type = "text/css" integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin = "anonymous" >
+<link href = "../css/style.css" rel = "stylesheet" type = "text/css">
 <link href = "../css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
+
 </head>
 <body>
 
@@ -31,10 +33,18 @@
 					echo '<a href = "' . $href . '">' . $show . '</a></li>';
 				}
 				
+				giveClassActive('index.php', null, 'Home'); 	
+				giveClassActive('register.php', null, 'Register'); 
+				giveClassActive('view_users.php', null, 'View Users');	
+
+				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
+					giveClassActive("profile.php", null, "My Profile");
+				}
+
 				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					echo '<li><a href = "/LarryUllman/Chapter%2012/logout.php">Logout</a></li>';
+					giveClassActive("logout.php", null, "Log Out");
 				} else {
-					echo '<li><a href = "/LarryUllman/Chapter%2012/login%20%232.php">Login</a></li>';
+					giveClassActive("login.php", null, "Log In");
 				}
 
 				?>

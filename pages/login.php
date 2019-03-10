@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		setcookie('last_name', $data['last_name']);
 
 		// Redirect:
-		redirect_user('loggedin.php');
+		redirect_user('welcome.php');
 
 	} else { // Unsuccessful!
 
