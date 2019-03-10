@@ -1,10 +1,48 @@
+<!-- Script 12.7 - header.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title><?php echo $page_title; ?></title>
-	<link href = "../css/style.css" rel = "stylesheet" type = "text/css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><?php echo $page_title; ?></title>
+<link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel = "stylesheet" type = "text/css" integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin = "anonymous">
+<link href = "../css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
 </head>
 <body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
+		<div class="navbar-header"><a class="navbar-brand" href="#">Borum</a></div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<?php
+				# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
+				function giveClassActive($file, $href, $show) {
+					if ($href == null)
+						$href = $file;
+					echo '<li class = "';
+					$filename = explode('/', $_SERVER['SCRIPT_NAME']);
+					$file_name = end($filename);
+					if ($file_name == $file) {
+						echo 'active';
+					}
+					echo '">';
+					echo '<a href = "' . $href . '">' . $show . '</a></li>';
+				}
+				
+				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
+					echo '<li><a href = "/LarryUllman/Chapter%2012/logout.php">Logout</a></li>';
+				} else {
+					echo '<li><a href = "/LarryUllman/Chapter%2012/login%20%232.php">Login</a></li>';
+				}
+
+				?>
+
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container">
 
