@@ -1,8 +1,6 @@
-<?php # Script 12.3 - login.php
-// This page processes the login form submission.
-// Upon successful login, the user is redirected.
-// Two included files are necessary.
-// Send NOTHING to the Web browser prior to the setcookie() lines!
+<?php # Script 12.5 - login.php #2
+# This page processes the login form submission.
+# The script now adds extra parameters to the setcookie() lines.
 
 // Check if the form has been submitted:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($check) { // OK!
 
 		// Set the cookies:
-		setcookie('id', $data['id']);
-		setcookie('first_name', $data['first_name']);
-		setcookie('last_name', $data['last_name']);
+		setcookie('id', $data['id'], time()+3600, '/', '', 0, 0);
+		setcookie('first_name', $data['first_name'], time()+3600, '/', '', 0, 0);
+		setcookie('last_name', $data['last_name'], time()+3600, '/', '', 0, 0);
 
 		// Redirect:
 		redirect_user('welcome.php');

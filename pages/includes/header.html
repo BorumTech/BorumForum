@@ -33,18 +33,18 @@
 					echo '<a href = "' . $href . '">' . $show . '</a></li>';
 				}
 				
-				giveClassActive('index.php', null, 'Home'); 	
-				giveClassActive('register.php', null, 'Register'); 
-				giveClassActive('view_users.php', null, 'View Users');	
+				giveClassActive('index.php', '/Borum/pages', 'Home'); 	
+				giveClassActive('register.php', '/Borum/pages/register.php', 'Register'); 
+				giveClassActive('view_users.php', '/Borum/pages/view_users.php', 'View Users');	
 
 				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
-					giveClassActive("profile.php", null, "My Profile");
+					giveClassActive("profile.php", "/Borum/users/{$_COOKIE['id']}", "My Profile");
 				}
 
 				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					giveClassActive("logout.php", null, "Log Out");
+					giveClassActive("logout.php", "/Borum/pages/logout.php", "Log Out");
 				} else {
-					giveClassActive("login.php", null, "Log In");
+					giveClassActive("login.php", "/Borum/pages/login.php", "Log In");
 				}
 
 				?>

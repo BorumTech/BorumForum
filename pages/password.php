@@ -62,7 +62,7 @@ include('includes/header.html');
 
 					// Print a message
 					echo '<h1>Thank you!</h1>
-					<p>Your password has been updated. In Chapter 12 you will actually be able to login in!</p><p><br></p>';
+					<p>Your password has been updated.</p><p><br></p>';
 
 				} else { // If it did not run OK.
 					// Public message

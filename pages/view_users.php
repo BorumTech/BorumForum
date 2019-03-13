@@ -69,6 +69,7 @@ echo '<table width = "60%">
 <tr>
 <th align = "left"><strong>Edit</strong></th>
 <th align = "left"><strong>Delete</strong></th>
+<th align = "left"><strong>User Profile</strong></th>
 <th align = "left"><strong><a href = "view_users.php?sort=ln">Last Name</a></strong></th>
 <th align = "left"><strong><a href = "view_users.php?sort=fn">First Name</a></strong></th>
 <th align = "left"><strong><a href = "view_users.php?sort=rd">Date Registered</a></strong></th>
@@ -88,6 +89,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	echo '<tr bgcolor = "' . $bg . '">
 	<td align = "left"><a href = "edit_user.php?id=' . $row['id'] . '">Edit</a></td>
 	<td align = "left"><a href = "delete_user.php?id=' . $row['id'] . '">Delete</a></td>
+	<td align = "left"><a href = "../users/' . $row['id'] . '">View Profile</a></td>
 	<td align = "left">' . $row['last_name'] . '</td>
 	<td align = "left">' . $row['first_name'] . '</td>
 	<td align = "left">' . $row['dr'] . '</td>
