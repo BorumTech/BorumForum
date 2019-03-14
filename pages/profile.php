@@ -1,8 +1,8 @@
 <?php
 
 include('../../../mysqli_connect.inc.php');
-if (!isset($_COOKIE['id'])) 
-	setcookie('id', 0);
+// Use my error handler
+set_error_handler(function() {});
 $id = $_GET['id'];
 $query = 'SELECT id, first_name, last_name FROM users WHERE id = ' . $id . ' LIMIT 1';
 $result = mysqli_query($dbc, $query);
@@ -80,7 +80,7 @@ function displayForm() {
 }
 
 
-$query2 = 'SELECT id, profile_picture, DATE_FORMAT(registration_date, "%M %D, %Y") as regisdate FROM users WHERE id=' . $id;
+$query2 = 'SELECT id, first_name, profile_picture, DATE_FORMAT(registration_date, "%M %D, %Y") as regisdate FROM users WHERE id=' . $id;
 $result2 = mysqli_query($dbc, $query2);
 $row2 = mysqli_fetch_array($result2); 
 if ($row2['profile_picture'] !== NULL) {
@@ -100,7 +100,7 @@ echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 
 echo "
 </div>
-<output rows='10' cols='50'>Hello my name is {$_COOKIE['first_name']}. I have been using Borum since {$row2['regisdate']}.</output>
+<output rows='10' cols='50'>Hello my name is {$row2['first_name']}. I have been using Borum since {$row2['regisdate']}.</output>
 <br>
 ";
 
@@ -108,6 +108,6 @@ mysqli_free_result ($result);
 mysqli_close($dbc);
 
 echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "/Borum/pages/settings.html">Settings</a>';
-include('includes/footer.html');
+include('includes/footer.html'); 
 ?>
 

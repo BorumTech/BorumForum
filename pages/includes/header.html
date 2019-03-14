@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $page_title; ?></title>
 <link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel = "stylesheet" type = "text/css" integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin = "anonymous" >
-<link href = "../css/style.css" rel = "stylesheet" type = "text/css">
-<link href = "../css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
+<link href = "/Borum/css/style.css" rel = "stylesheet" type = "text/css">
+<link href = "/Borum/css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
 
 </head>
 <body>
@@ -24,27 +24,25 @@
 					if ($href == null)
 						$href = $file;
 					echo '<li class = "';
-					$filename = explode('/', $_SERVER['SCRIPT_NAME']);
-					$file_name = end($filename);
-					if ($file_name == $file) {
+					if ($_SERVER['REQUEST_URI'] == $href) {
 						echo 'active';
 					}
 					echo '">';
 					echo '<a href = "' . $href . '">' . $show . '</a></li>';
 				}
 				
-				giveClassActive('index.php', '/Borum/pages', 'Home'); 	
-				giveClassActive('register.php', '/Borum/pages/register.php', 'Register'); 
-				giveClassActive('view_users.php', '/Borum/pages/view_users.php', 'View Users');	
+				giveClassActive('index.php', '/Borum/index', 'Home'); 	
+				giveClassActive('register.php', '/Borum/Register', 'Register'); 
+				giveClassActive('view_users.php', '/Borum/View_Users', 'View Users');	
 
 				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
 					giveClassActive("profile.php", "/Borum/users/{$_COOKIE['id']}", "My Profile");
 				}
 
 				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					giveClassActive("logout.php", "/Borum/pages/logout.php", "Log Out");
+					giveClassActive("logout.php", "/Borum/Logout", "Log Out");
 				} else {
-					giveClassActive("login.php", "/Borum/pages/login.php", "Log In");
+					giveClassActive("login.php", "/Borum/Login", "Log In");
 				}
 
 				?>

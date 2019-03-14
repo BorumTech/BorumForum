@@ -4,3 +4,7 @@ This project uses PHP, MySQL, and SQL to create a website that is not vulnerable
 
 To start contributing, head over to documents/CONTRIBUTING.md
 
+# Borum
+
+Borum is the extension to the above project. Now that I have extensive knowledge of PHP, I can create a secure website while accomplishing another task - in this case a forum. Borum is a forum for categories starting with Bor- or rhyming with bore, mainly on Boron. 
+

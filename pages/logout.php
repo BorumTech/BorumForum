@@ -6,7 +6,7 @@ $message = "";
 // If no cookie is present, redirect the user
 if (!isset($_COOKIE['id'])) {
 	// Need the functions
-	require('includes/login.php');
+	require('includes/login_functions.inc.php');
 	redirect_user();
 } else { // Delete the cookies
 	setcookie('id', '', time()-3600, '/', '', 0, 0);

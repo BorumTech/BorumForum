@@ -1,5 +1,5 @@
 <?php 
-# Script 10.5 - view_users.php #5
+# Script 10.5 - View_Users #5
 # This script retrieves all the records from the users table. The new version paginates the query results.
 
 $page_title = 'View the Current Users';
@@ -70,9 +70,9 @@ echo '<table width = "60%">
 <th align = "left"><strong>Edit</strong></th>
 <th align = "left"><strong>Delete</strong></th>
 <th align = "left"><strong>User Profile</strong></th>
-<th align = "left"><strong><a href = "view_users.php?sort=ln">Last Name</a></strong></th>
-<th align = "left"><strong><a href = "view_users.php?sort=fn">First Name</a></strong></th>
-<th align = "left"><strong><a href = "view_users.php?sort=rd">Date Registered</a></strong></th>
+<th align = "left"><strong><a href = "View_Users?sort=ln">Last Name</a></strong></th>
+<th align = "left"><strong><a href = "View_Users?sort=fn">First Name</a></strong></th>
+<th align = "left"><strong><a href = "View_Users?sort=rd">Date Registered</a></strong></th>
 </tr>
 </thead>
 <tbody>
@@ -89,7 +89,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	echo '<tr bgcolor = "' . $bg . '">
 	<td align = "left"><a href = "edit_user.php?id=' . $row['id'] . '">Edit</a></td>
 	<td align = "left"><a href = "delete_user.php?id=' . $row['id'] . '">Delete</a></td>
-	<td align = "left"><a href = "../users/' . $row['id'] . '">View Profile</a></td>
+	<td align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
 	<td align = "left">' . $row['last_name'] . '</td>
 	<td align = "left">' . $row['first_name'] . '</td>
 	<td align = "left">' . $row['dr'] . '</td>
@@ -113,13 +113,13 @@ if ($pages > 1) {
 
 	// If it's not the first page, make a Previous button
 	if($current_page != 1) {
-		echo '<a href = "view_users.php?s=' . ($start - DISPLAY) . '&p=' . $pages . '&sort=' .  $sort . '">Previous</a> ';
+		echo '<a href = "View_Users?s=' . ($start - DISPLAY) . '&p=' . $pages . '&sort=' .  $sort . '">Previous</a> ';
 	}
 
 	// Make all the numbered pages
 	for ($i = 1; $i <= $pages; $i++) {
 		if ($i != $current_page) {
-			echo '<a href = "view_users.php?s=' . (DISPLAY * ($i - 1)) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
+			echo '<a href = "View_Users?s=' . (DISPLAY * ($i - 1)) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
 		} else {
 			echo $i . ' ';
 		}
@@ -127,7 +127,7 @@ if ($pages > 1) {
 
 	// If i's not the last page, make a Next button
 	if ($current_page != $pages) {
-		echo '<a href = "view_users.php?s=' . ($start + DISPLAY) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
+		echo '<a href = "View_Users?s=' . ($start + DISPLAY) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
 	}
 
 	echo '</p>';

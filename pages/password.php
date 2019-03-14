@@ -76,7 +76,7 @@ include('includes/header.html');
 
 				mysqli_error($dbc); // Close the database connection
 
-				include('includes/footer.html'); // Include the footer
+				include('/Borum/pages/includes/footer.html'); // Include the footer
 				exit(); // Quit the script (to not show the form)
 			} else { // Report the errors 
 				echo '<h1>Error!</h1>

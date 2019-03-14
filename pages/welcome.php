@@ -15,7 +15,7 @@ include('includes/header.html');
 // Print the customized message
 echo "<h1>Logged In!</h1>
 <p>You are now logged in, {$_COOKIE['first_name']}!</p>
-<p><a href=\"logout.php\">Logout</a>
+<p><a href=\"Logout\">Logout</a>
 </p><p>
 <a href = \"/Borum/users/{$_COOKIE['id']}\">Profile</a>
 </p>";
