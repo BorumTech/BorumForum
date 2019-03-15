@@ -2,3 +2,21 @@ body {
 	font-family: 'Roboto';
 }
 
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px 20px;
+
+}
+table tr {
+	background-color: lightgrey;
+}
+
+td {
+	padding: 15px;
+}
+
+td a {
+	font-size: 2em;
+}
+

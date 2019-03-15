@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		mysqli_close($dbc); // Close the database connection
 
-		include('/Borum/pages/includes/footer.html'); // Include the footer
+		include('includes/footer.html'); // Include the footer
 		exit(); // Quit the script
 
 	} else { // Report the errors
