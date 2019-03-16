@@ -2,21 +2,21 @@ body {
 	font-family: 'Roboto';
 }
 
-table {
+table#latest-questions {
     width: 100%;
     border-collapse: separate;
     border-spacing: 10px 20px;
 
 }
-table tr {
+table#latest-questions tr {
 	background-color: lightgrey;
 }
 
-td {
+table#latest-questions tr td {
 	padding: 15px;
 }
 
-td a {
+table#latest-questions tr td a {
 	font-size: 2em;
 }
 

@@ -19,7 +19,7 @@ if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	$id = $_POST['id'];
 } else { // Invalid ID, kill the script
 	echo '<p class = "error">This page has been accessed in error.</p>';
-	include('/Borum/pages/includes/footer.html');
+	include('includes/footer.html');
 	exit();
 }
 
@@ -66,6 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 mysqli_close($dbc);
 
-include('/Borum/pages/includes/footer.html');
+include('includes/footer.html');
 ?>
 

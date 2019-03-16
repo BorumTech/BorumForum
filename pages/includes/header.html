@@ -23,7 +23,8 @@
 				function giveClassActive($file, $href, $show) {
 					if ($href == null)
 						$href = $file;
-					echo '<li class = "';
+					echo '
+					<li class = "';
 					if ($_SERVER['REQUEST_URI'] == $href) {
 						echo 'active';
 					}

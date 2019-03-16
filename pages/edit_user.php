@@ -19,7 +19,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$id = $_POST['id'];
 } else { // If no valid ID, kill the script
 	echo '<p class = "error">This page has been accessed by error';
-	include('/Borum/pages/includes/footer.html');
+	include('includes/footer.html');
 	exit();
 }
 
@@ -107,7 +107,7 @@ if (mysqli_num_rows($r) == 1) {
 }
 
 mysqli_close($dbc);
-include('/Borum/pages/includes/footer.html');
+include('includes/footer.html');
 
 ?>
 

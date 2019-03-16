@@ -87,8 +87,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	$bg = ($bg == '#eeeeee' ? '#ffffff' : '#eeeeee'); // Switch the background color every row
 
 	echo '<tr bgcolor = "' . $bg . '">
-	<td align = "left"><a href = "edit_user.php?id=' . $row['id'] . '">Edit</a></td>
-	<td align = "left"><a href = "delete_user.php?id=' . $row['id'] . '">Delete</a></td>
+	<td align = "left"><a href = "pages/edit_user.php/?id=' . $row['id'] . '">Edit</a></td>
+	<td align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>
 	<td align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
 	<td align = "left">' . $row['last_name'] . '</td>
 	<td align = "left">' . $row['first_name'] . '</td>
