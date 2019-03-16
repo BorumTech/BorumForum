@@ -8,30 +8,11 @@ include('includes/header.html');
 
 <h1>Registered Users</h1>
 
-<?php 
-require_once('../../../mysqli_connect.inc.php');
+<?php
 
-define('DISPLAY', 10); // Number of records to show per page
+require('includes/pagination_functions.inc.php'); // Get pagination functions
 
-// Determine number of pages there are
-if (isset($_GET['p']) && is_numeric($_GET['p'])) { // Already determined
-	$pages = $_GET['p'];
-} else { // Need to be determined
-
-	// Count the number of records
-	$query = "SELECT COUNT(id) FROM users";
-	$result = @mysqli_query($dbc, $query);
-	$row = @mysqli_fetch_array($result, MYSQLI_NUM);
-	$records = $row[0];
-
-	// Calculate the number of pages
-	if($records > DISPLAY) { // More than 1 Page
-		$pages = ceil($records / DISPLAY);
-	} else { // 1 Page
-		$pages = 1;
-	}
-
-}
+$pages = getPagesValue('users', 'id', 10);
 
 // Determine where in the database to start returning results
 if (isset($_GET['s']) && is_numeric($_GET['s'])) { // Set in the url
@@ -102,36 +83,7 @@ echo '</tbody></table>';
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-// Make the links to other pages, if necessary
-if ($pages > 1) {
-
-	// Add some spacing and start a paragraph
-	echo '<br><p>';
-
-	// Determine what page the script is on
-	$current_page = ($start / DISPLAY) + 1;
-
-	// If it's not the first page, make a Previous button
-	if($current_page != 1) {
-		echo '<a href = "View_Users?s=' . ($start - DISPLAY) . '&p=' . $pages . '&sort=' .  $sort . '">Previous</a> ';
-	}
-
-	// Make all the numbered pages
-	for ($i = 1; $i <= $pages; $i++) {
-		if ($i != $current_page) {
-			echo '<a href = "View_Users?s=' . (DISPLAY * ($i - 1)) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
-		} else {
-			echo $i . ' ';
-		}
-	}
-
-	// If i's not the last page, make a Next button
-	if ($current_page != $pages) {
-		echo '<a href = "View_Users?s=' . ($start + DISPLAY) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
-	}
-
-	echo '</p>';
-}
+setPreviousAndNextLinks();
 
 include('includes/footer.html');
 
