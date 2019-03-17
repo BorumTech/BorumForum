@@ -35,7 +35,8 @@
 				giveClassActive('index.php', '/Borum/index', 'Home'); 	
 				giveClassActive('register.php', '/Borum/Register', 'Register'); 
 				giveClassActive('view_users.php', '/Borum/View_Users', 'View Users');	
-				giveClassActive('questions.php', '/Borum/Questions', 'Latest Questions');	
+				giveClassActive('questions.php', '/Borum/Questions', 'Latest Questions');
+				giveClassActive('ask.php', '/Borum/Ask', 'Ask a Question');	
 
 				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
 					giveClassActive("profile.php", "/Borum/users/{$_COOKIE['id']}", "My Profile");

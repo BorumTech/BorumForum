@@ -11,10 +11,10 @@ require('includes/pagination_functions.inc.php');
 
 define('DISPLAY', 10); // Number of records to show per page
 
-$pages = getPagesValue('id', 'messages');
+$pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0');
 $start = getStartValue();
 
-$q = 'SELECT id, subject FROM messages';
+$q = 'SELECT id, subject FROM messages WHERE parent_id = 0';
 $result = performPaginationQuery($q, 'date_entered', $start, $dbc);
 
 echo "<table id = 'latest-questions'>";

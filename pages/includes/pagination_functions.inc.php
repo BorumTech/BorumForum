@@ -3,7 +3,7 @@
 require_once('../../../mysqli_connect.inc.php');
 
 
-function getPagesValue($columnname, $tablename) {
+function getPagesValue($columnname, $tablename, $where = '') {
 	global $dbc;
 
 
@@ -13,7 +13,7 @@ function getPagesValue($columnname, $tablename) {
 	} else { // Need to be determined
 
 		// Count the number of records
-		$query = "SELECT COUNT($columnname) FROM $tablename";
+		$query = "SELECT COUNT($columnname) FROM $tablename $where";
 		$result = mysqli_query($dbc, $query);
 		$row = mysqli_fetch_array($result, MYSQLI_NUM);
 		$records = $row[0];
