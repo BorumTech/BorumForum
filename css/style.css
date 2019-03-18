@@ -20,3 +20,9 @@ table#latest-questions tr td a {
 	font-size: 2em;
 }
 
+form input, form textarea {
+	text-align: left;
+	font-size: 13px;
+	padding: 10px;
+}
+

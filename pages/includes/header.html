@@ -25,7 +25,7 @@
 						$href = $file;
 					echo '
 					<li class = "';
-					if ($_SERVER['REQUEST_URI'] == $href) {
+					if (strpos($_SERVER['REQUEST_URI'], $href) !== false) {
 						echo 'active';
 					}
 					echo '">';
