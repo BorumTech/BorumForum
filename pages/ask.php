@@ -5,12 +5,26 @@ include('includes/header.html');
 require_once('../../../mysqli_connect.inc.php');
 require('includes/login_functions.inc.php');
 
+if (!isset($_COOKIE['id'])) {
+	redirect_user('register.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	
+	$sub = $_POST['subject'];
+	$bod = $_POST['body'];
+	$id = $_COOKIE['id'];
+	mysqli_query($dbc, "INSERT INTO messages (forum_id, user_id, subject, body, date_entered) VALUES (1, $id, $sub, $bod, NOW())");
+	echo mysqli_num_rows($result);
+	if ($result) {
+		$result = @mysqli_query($dbc, "SELECT id FROM messages ORDSER BY id DESC LIMIT 1");
+		$val = mysqli_fetch_array($result);
+	}
+
+	mysqli_close($dbc);
 }
 ?>
 
-<form action = "">
+<form action = "" method = "post">
 	<h1>Ask a Question</h1>
 	<p>
 		<label for = "subject">Question Title:</label> <br>

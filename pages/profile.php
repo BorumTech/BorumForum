@@ -1,6 +1,6 @@
 <?php
 
-include('../../../mysqli_connect.inc.php');
+require('../../../mysqli_connect.inc.php');
 // Use my error handler
 set_error_handler(function() {});
 $id = $_GET['id'];
