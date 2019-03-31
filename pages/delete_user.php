@@ -5,7 +5,10 @@
 
 $page_title = 'Delete a User';
 include('includes/header.html');
-
+require('includes/login_functions.inc.php');
+if ($_COOKIE['id'] != 6) {
+	redirect_user('../index');
+}
 ?>
 
 <h1>Delete a User</h1>

@@ -34,7 +34,7 @@
 				
 				giveClassActive('index.php', '/Borum/index', 'Home'); 	
 				giveClassActive('register.php', '/Borum/Register', 'Register'); 
-				giveClassActive('view_users.php', '/Borum/View_Users', 'View Users');	
+				giveClassActive('view_users.php', '/Borum/view_users', 'View Users');	
 				giveClassActive('questions.php', '/Borum/Questions', 'Latest Questions');
 				giveClassActive('ask.php', '/Borum/Ask', 'Ask a Question');	
 
@@ -43,7 +43,7 @@
 				}
 
 				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					giveClassActive("logout.php", "/Borum/Logout", "Log Out");
+					giveClassActive("logout.php", "/Borum/logout", "Log Out");
 				} else {
 					giveClassActive("login.php", "/Borum/Login", "Log In");
 				}

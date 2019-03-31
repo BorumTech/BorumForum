@@ -10,6 +10,7 @@ include('includes/header.html');
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 
+define('ISADMIN', $_COOKIE['id'] == 6);
 define('DISPLAY', 10); // Number of records to show per page
 
 $pages = getPagesValue('id', 'users');
@@ -19,11 +20,12 @@ list($sort, $order_by) = getSortValue();
 $result = performPaginationQuery('SELECT last_name, first_name, DATE_FORMAT(registration_date, \'%M %d, %Y\') AS dr, id FROM users', $order_by, $start, $dbc);
 
 // Table header
+$adminControls = ISADMIN ? '<th align = "left"><strong>Edit</strong></th>
+<th align = "left"><strong>Delete</strong></th>' : '';
 echo '<table width = "60%">
 <thead>
-<tr>
-<th align = "left"><strong>Edit</strong></th>
-<th align = "left"><strong>Delete</strong></th>
+<tr>'.
+$adminControls . '
 <th align = "left"><strong>User Profile</strong></th>
 <th align = "left"><strong><a href = "View_Users?sort=ln">Last Name</a></strong></th>
 <th align = "left"><strong><a href = "View_Users?sort=fn">First Name</a></strong></th>
@@ -40,10 +42,11 @@ $bg = '#eeeeee'; // Set the initial background color
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 
 	$bg = ($bg == '#eeeeee' ? '#ffffff' : '#eeeeee'); // Switch the background color every row
+	$adminControls = ISADMIN ? '<td align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
+	<td align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>' : '';
 
-	echo '<tr bgcolor = "' . $bg . '">
-	<td align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
-	<td align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>
+	echo '<tr bgcolor = "' . $bg . '">' . 
+	$adminControls . '
 	<td align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
 	<td align = "left">' . $row['last_name'] . '</td>
 	<td align = "left">' . $row['first_name'] . '</td>

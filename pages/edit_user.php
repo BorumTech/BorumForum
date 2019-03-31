@@ -5,6 +5,10 @@
 
 $page_title = 'Edit a User';
 include('includes/header.html');
+require('includes/login_functions.inc.php');
+if ($_COOKIE['id'] != 6) {
+	redirect_user('../index');
+}
 
 ?>
 
@@ -18,7 +22,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } elseif (isset($_POST['id']) && is_numeric($_POST['id'])) {
 	$id = $_POST['id'];
 } else { // If no valid ID, kill the script
-	echo '<p class = "error">This page has been accessed by error';
+	echo '<p class = "error">This page has been accessed by error</p>';
 	include('includes/footer.html');
 	exit();
 }
@@ -68,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				echo '<p>' . mysqli_error($dbc) . '<br>Query: ' . $q . '</p>'; // Debugging message
 			}
 		} else { // Already registered
-			echo '<p class = "error">The email address has alreadby been registered.</p>';
+			echo '<p class = "error">The email address has already been registered.</p>';
 		}
 	} else { // Report the errors
-		echo '< class = "error">The following error(s) occured:<br>';
+		echo '<p class = "error">The following error(s) occured:<br>';
 		foreach ($errors as $msg) { // Print each error
 			echo " - $msg<br>\n";
 		}
