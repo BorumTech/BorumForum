@@ -5,7 +5,6 @@
 $page_title = "Ask a Question";
 include('includes/header.html');
 
-
 require('includes/login_functions.inc.php');
 
 if (!isset($_COOKIE['id'])) {
@@ -26,11 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$id = $_COOKIE['id'];
 
 	// Check if its okay for the user to ask the question
-	mysqli_query($dbc, "INSERT INTO messages (forum_id, user_id, subject, body, date_entered) VALUES (1, $id, $sub, $bod, NOW())");
-	echo mysqli_num_rows($result);
-	if ($result) {
-		$result = @mysqli_query($dbc, "SELECT id FROM messages ORDSER BY id DESC LIMIT 1");
-		$val = mysqli_fetch_array($result);
+	$q = "SELECT id FROM messages WHERE subject = '$sub' OR body = '$bod'";
+	$r = @mysqli_query($dbc, $q);
+	$num = mysqli_num_rows($result);
+
+	if ($num == 0) { // No questions that match this one (no duplicates)
+		$q = "INSERT INTO messages (forum_id, user_id, subject, body, date_entered) VALUES (1, $id, '$sub', '$bod', NOW())";
+		$r = @mysqli_query($dbc, $q);
+
+		if ($r) { // If it ran OK
+			$r = @mysqli_query($dbc, "SELECT id FROM messages ORDER BY id DESC LIMIT 1");
+			$val = mysqli_fetch_array($r, MYSQLI_NUM);
+			redirect_user("../Questions/{$val[0]}");
+		}
 	}
 
 	mysqli_close($dbc);	

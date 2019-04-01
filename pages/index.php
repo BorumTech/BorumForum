@@ -3,16 +3,9 @@
 # 12/17/2018
 # This script is the template for the pages in Chapter 12
 
-// This function outputs theoretical HTML for adding ads to a web page
-function create_ad() {
-	echo '<div class = "alert alert-info" role = "alert"><p>This is an annoying ad! This is an annoying ad! This is an annoying ad! This is an annoying ad!</p></div>';
-} // End of the function definition
-
 $page_title = 'Welcome to this Site!';
 include('includes/header.html');
 
-// Call the function
-create_ad();
 ?>
 
 <!-- Script 3.7 - index.php -->
@@ -30,8 +23,6 @@ create_ad();
     };
 </script>
 <?php 
-// Call the function again
-create_ad();
 
 include('includes/footer.html');
 ?>
