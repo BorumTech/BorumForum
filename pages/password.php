@@ -10,7 +10,7 @@ include('includes/header.html');
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-		require('../../../mysqli_connect.inc.php'); // Connect to the database
+		require('../../mysqli_connect.inc.php'); // Connect to the database
 
 		$errors = []; // Initialize an error array
 

@@ -26,7 +26,7 @@ if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	exit();
 }
 
-require_once('../../../mysqli_connect.inc.php'); // Connect to the file that connects to the database
+require_once('../../mysqli_connect.inc.php'); // Connect to the file that connects to the database
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

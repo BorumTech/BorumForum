@@ -1,0 +1,4 @@
+RewriteEngine On    # Turn on the rewriting engine
+RewriteRule    ^users/([0-9]+)/?$    pages/profile.php?id=$1   [NC]    # Handle users
+RewriteRule    ^questions/([0-9]+)/?$    pages/question.php?id=$1   [NC]    # Handle questions
+RewriteRule    ^([A-Za-z_]+)/?$       pages/$1.php                    [NC]    # Handle pages

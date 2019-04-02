@@ -1,6 +1,6 @@
 <?php 
 
-require_once('../../../mysqli_connect.inc.php');
+require_once('../../mysqli_connect.inc.php');
 
 
 function getPagesValue($columnname, $tablename, $where = '') {

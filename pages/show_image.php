@@ -12,11 +12,11 @@ if (isset($_GET['image'])) {
 	if (in_array($ext, ['.jpg', '.jpeg', '.png'])) {
 
 		// Full image path
-		$image = "../../../uploads/{$_GET['image']} ";
+		$image = "../../uploads/{$_GET['image']} ";
 
 		// Check that the image exists and is a file
 		if (file_exists($image) && is_file($image)) {
-
+			echo "The file exists";
 			// Set the name as this image
 			$name = $_GET['image'];
 		}

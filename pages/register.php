@@ -11,7 +11,7 @@ include('includes/header.html');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	require('../../../mysqli_connect.inc.php');
+	require('../../mysqli_connect.inc.php');
 
 	$errors = []; // Initialize an error array
 

@@ -27,7 +27,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	exit();
 }
 
-require('../../../mysqli_connect.inc.php');
+require('../../mysqli_connect.inc.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errors = [];

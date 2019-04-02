@@ -1,6 +1,6 @@
 <?php
 
-require('../../../mysqli_connect.inc.php');
+require('../../mysqli_connect.inc.php');
 // Use my error handler
 set_error_handler(function() {});
 $id = $_GET['id'];
@@ -21,10 +21,11 @@ function handleImageUpload() {
 	if (isset($_FILES['upload']) && $_FILES['upload']['size'] < $_POST['MAX_FILE_SIZE']) {
 		$allowed = ['image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png'];
 		if (in_array($_FILES['upload']['type'], $allowed)) {
-			if (move_uploaded_file($_FILES['upload']['tmp_name'], "../../../uploads/{$_FILES['upload']['name']}")) {
-				echo '<img width = "300" src = "/Borum/pages/show_image.php?image=' . $_FILES['upload']['name'] . '">';
+			if (move_uploaded_file($_FILES['upload']['tmp_name'], "../../uploads/{$_FILES['upload']['name']}")) {
+				echo '<p><em>The file has been uploaded!</em></p>';
+				echo '<img width = "300" src = "show_image.php?image=' . $_FILES['upload']['name'] . '">';
 				$query1 = 'UPDATE users SET profile_picture = "' . $_FILES['upload']['name'] . '" WHERE id = ' . $id;
-				$result1 = @mysqli_query($dbc, $query1);
+				mysqli_query($dbc, $query1);
 			}
 		} else {
 			echo '<p class = "error">Please upload a JPEG or PNG image.</p>';
@@ -82,19 +83,21 @@ function displayForm() {
 
 $query2 = 'SELECT id, first_name, profile_picture, DATE_FORMAT(registration_date, "%M %D, %Y") as regisdate FROM users WHERE id=' . $id;
 $result2 = mysqli_query($dbc, $query2);
-$row2 = mysqli_fetch_array($result2); 
-if ($row2['profile_picture'] !== NULL) {
-	echo '<img width = "300" src = "/Borum/pages/show_image.php?image=' . $row2['profile_picture'] . '">';
-} else if ($_COOKIE['id'] === $_GET['id']) {
-	if (empty($_POST)) { // If the form is not submitted
-		displayForm();
-	}
+$row2 = mysqli_fetch_array($result2);
 
+// If the user already has a profile picture 
+if (isset($row2['profile_picture'])) {
+	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row2['profile_picture'] . '">'; // Show it
+} else if ($_COOKIE['id'] === $_GET['id']) { // If the user is logged in and viewing their own profile page
+	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		handleImageUpload();
+		handleImageUpload(); // 
 	}	
 }
 
+if ($_COOKIE['id'] == $_GET['id']) {
+	displayForm();
+}
 
 echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 
@@ -107,7 +110,7 @@ echo "
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "/Borum/pages/settings.html">Settings</a>';
+echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "settings.html">Settings</a>';
 include('includes/footer.html'); 
 ?>
 

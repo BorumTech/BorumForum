@@ -17,7 +17,7 @@ echo "<h1>Logged In!</h1>
 <p>You are now logged in, {$_COOKIE['first_name']}!</p>
 <p><a href=\"Logout\">Logout</a>
 </p><p>
-<a href = \"/Borum/users/{$_COOKIE['id']}\">Profile</a>
+<a href = \"users/{$_COOKIE['id']}\">Profile</a>
 </p>";
 
 include('includes/footer.html');
