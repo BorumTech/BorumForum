@@ -23,7 +23,7 @@ function handleImageUpload() {
 		if (in_array($_FILES['upload']['type'], $allowed)) {
 			if (move_uploaded_file($_FILES['upload']['tmp_name'], "../../uploads/{$_FILES['upload']['name']}")) {
 				echo '<p><em>The file has been uploaded!</em></p>';
-				echo '<img width = "300" src = "show_image.php?image=' . $_FILES['upload']['name'] . '">';
+				echo '<img width = "300" src = "../pages/show_image.php?image=' . $_FILES['upload']['name'] . '">';
 				$query1 = 'UPDATE users SET profile_picture = "' . $_FILES['upload']['name'] . '" WHERE id = ' . $id;
 				mysqli_query($dbc, $query1);
 			}
