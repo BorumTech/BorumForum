@@ -81,29 +81,30 @@ function displayForm() {
 }
 
 
-$query2 = 'SELECT id, first_name, profile_picture, DATE_FORMAT(registration_date, "%M %D, %Y") as regisdate FROM users WHERE id=' . $id;
-$result2 = mysqli_query($dbc, $query2);
-$row2 = mysqli_fetch_array($result2);
-
-// If the user already has a profile picture 
-if (isset($row2['profile_picture'])) {
-	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row2['profile_picture'] . '">'; // Show it
-} else if ($_COOKIE['id'] === $_GET['id']) { // If the user is logged in and viewing their own profile page
-	
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		handleImageUpload(); // 
-	}	
-}
+$query2 = 'SELECT id, profile_picture, bio FROM users WHERE id=' . $id;
+$result2 = @mysqli_query($dbc, $query2);
+$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 if ($_COOKIE['id'] == $_GET['id']) {
 	displayForm();
 }
 
+// If they submitted the form
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		handleImageUpload(); // 
+}	
+// If the user already has a profile picture 
+if (isset($row2['profile_picture'])) {
+	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row2['profile_picture'] . '">'; // Show it
+}
+
+
+
 echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 
 echo "
 </div>
-<output rows='10' cols='50'>Hello my name is {$row2['first_name']}. I have been using Borum since {$row2['regisdate']}.</output>
+<output rows='10' cols='50'>{$row2['bio']}</output>
 <br>
 ";
 

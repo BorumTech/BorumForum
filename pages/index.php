@@ -19,7 +19,7 @@ include('includes/header.html');
 
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
-        location.href = "register.php";
+        location.href = "../Register";
     };
 </script>
 <?php 

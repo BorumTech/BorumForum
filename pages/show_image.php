@@ -1,4 +1,5 @@
 <?php
+ob_start();
 # Script 11.5 - show_image.php
 # This page displays an image
 
@@ -8,7 +9,7 @@ $name = FALSE; // Flag variable
 if (isset($_GET['image'])) {
 
 	// Make sure it has an image's extension
-	$ext = strtolower(substr($_GET['image'], -4));
+	$ext = substr($_GET['image'], -4);
 	if (in_array($ext, ['.jpg', '.jpeg', '.png'])) {
 
 		// Full image path
@@ -16,7 +17,7 @@ if (isset($_GET['image'])) {
 
 		// Check that the image exists and is a file
 		if (file_exists($image) && is_file($image)) {
-			echo "The file exists";
+
 			// Set the name as this image
 			$name = $_GET['image'];
 		}
