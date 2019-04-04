@@ -25,7 +25,7 @@ if (isset($_GET['image'])) {
 }
 
 if (!$name) {
-	$image = 'images/unavailable.png';
+	$image = '../images/unavailable.png';
 	$name = 'unavailable.png';
 }
 
