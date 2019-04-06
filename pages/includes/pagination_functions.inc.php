@@ -41,27 +41,46 @@ function getStartValue() {
 
 }
 
+function getDirection() {
+	$direction = isset($_GET['dirtn']) ? $_GET['dirtn'] : 'up';
+
+	// Determine what the direction the results should be ordered
+	switch($direction) {
+		case 'up':
+			$order_in = 'ASC';
+			break;
+		case 'do':
+			$order_in = 'DESC';
+			break;
+		default:
+			$order_in = 'ASC';
+			break;
+	}
+
+	return [$direction, $order_in];
+}
+
 function getSortValue() {
 	$sort = isset($_GET['sort']) ? $_GET['sort'] : 'rd'; // Define a sort variable to determine how query results are to be ordered
+	list($direction, $order_in) = getDirection();
 
 	// Determine how the results should be ordered
 	switch ($sort) {
 		case 'ln':
-			$order_by = 'last_name ASC';
+			$order_by = 'last_name ' . $order_in;
 			break;
 		case 'fn':
-			$order_by = 'first_name ASC';
+			$order_by = 'first_name ' . $order_in;
 			break;
 		case 'rd':
-			$order_by = 'registration_date ASC';
+			$order_by = 'registration_date ' . $order_in;
 			break;
 		default: 
-			$order_by = 'registration_date ASC';
-			$sort = 'rd';
+			$order_by = 'registration_date '. $order_in;
 			break;
 	}
 
-	return [$sort, $order_by];
+	return [$sort, $order_by, $direction, $order_in];
 }
 
 function setPreviousAndNextLinks($pageName) {
