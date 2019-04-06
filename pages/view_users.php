@@ -27,9 +27,9 @@ echo '<table width = "60%">
 <tr>'.
 $adminControls . '
 <th align = "left"><strong>User Profile</strong></th>
-<th align = "left"><strong><a href = "View_Users?sort=ln">Last Name</a></strong></th>
-<th align = "left"><strong><a href = "View_Users?sort=fn">First Name</a></strong></th>
-<th align = "left"><strong><a href = "View_Users?sort=rd">Date Registered</a></strong></th>
+<th align = "left"><strong><a href = "view_users?sort=ln">Last Name</a></strong></th>
+<th align = "left"><strong><a href = "view_users?sort=fn">First Name</a></strong></th>
+<th align = "left"><strong><a href = "view_users?sort=rd">Date Registered</a></strong></th>
 </tr>
 </thead>
 <tbody>
