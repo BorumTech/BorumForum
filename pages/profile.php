@@ -4,7 +4,7 @@ require('../../mysqli_connect.inc.php');
 // Use my error handler
 set_error_handler(function() {});
 $id = $_GET['id'];
-$query = 'SELECT id, first_name, last_name FROM users WHERE id = ' . $id . ' LIMIT 1';
+$query = 'SELECT id, first_name, last_name, profile_picture, bio FROM users WHERE id = ' . $id . ' LIMIT 1';
 $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result);
 
@@ -12,9 +12,9 @@ $page_title = "{$row['first_name']}'s Profile";
 include('includes/header.html');
 ?>
 
-<div style = 'float:right'>
-
 <?php 
+echo "<output rows='10' cols='50'>{$row['bio']}</output></div><div class = 'col-sm-2'>";
+
 function handleImageUpload() {
 	global $id;
 	global $dbc;
@@ -76,14 +76,9 @@ function displayForm() {
 		<fieldset>
 			<p><strong>File:</strong><input type = "file" name = "upload"></p>
 		</fieldset>
-		<div align = "center"><input type = "submit" name = "submit" value = "Submit"></div>
+		<input type = "submit" name = "submit" value = "Submit">
 	</form>';
 }
-
-
-$query2 = 'SELECT id, profile_picture, bio FROM users WHERE id=' . $id;
-$result2 = @mysqli_query($dbc, $query2);
-$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 if ($_COOKIE['id'] == $_GET['id']) {
 	displayForm();
@@ -94,24 +89,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		handleImageUpload(); // 
 }	
 // If the user already has a profile picture 
-if (isset($row2['profile_picture'])) {
-	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row2['profile_picture'] . '">'; // Show it
+if (isset($row['profile_picture'])) {
+	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row['profile_picture'] . '">'; // Show it
 }
 
-
-
 echo "<p>{$row['first_name']} {$row['last_name']}</p>";
-
-echo "
-</div>
-<output rows='10' cols='50'>{$row2['bio']}</output>
-<br>
-";
 
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "settings.html">Settings</a>';
+echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "../Settings">Settings</a>';
 include('includes/footer.html'); 
 ?>
 

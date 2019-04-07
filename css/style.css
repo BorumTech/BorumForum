@@ -29,7 +29,7 @@ form input, form textarea {
 .container .row .col-sm-2 {
 
 }
-.container .row .col-sm-2 a {
+.container .row .col-sm-2:first-of-type a {
 	display: block;
 	color: grey;
 	padding: 15px;

@@ -4,6 +4,8 @@ $page_title = 'View the Current Users';
 include('includes/header.html');
 ?>
 
+</div>
+<div class = "col-sm-10">
 <h1>Registered Users</h1>
 
 <?php
