@@ -26,3 +26,14 @@ form input, form textarea {
 	padding: 10px;
 }
 
+.container .row .col-sm-2 {
+
+}
+.container .row .col-sm-2 a {
+	display: block;
+	color: grey;
+	padding: 15px;
+	margin: 10px 10px;
+	background-color: #e6e6e6;
+}
+

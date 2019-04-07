@@ -15,7 +15,7 @@ $pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0');
 $start = getStartValue();
 
 $q = 'SELECT id, subject FROM messages WHERE parent_id = 0';
-$result = performPaginationQuery($q, 'date_entered', $start, $dbc);
+$result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
 
 echo "<table id = 'latest-questions'>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
