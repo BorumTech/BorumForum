@@ -33,12 +33,13 @@
 				}
 				
 				giveClassActive('index.php', '/index', 'Home'); 	
-				giveClassActive('register.php', '/Register', 'Register'); 
-				giveClassActive('questions.php', '/Questions', 'Latest Questions');
 				giveClassActive('ask.php', '/Ask', 'Ask a Question');	
 
+				// If the an account is logged in
 				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
 					giveClassActive("profile.php", "/users/{$_COOKIE['id']}", "My Profile");
+				} else {
+					giveClassActive('register.php', '/Register', 'Register'); 
 				}
 
 				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
@@ -55,7 +56,11 @@
 <div class = "container">
 	<div class = "row">
 		<div class = "col-sm-2">
-			<a href = "../topics">Topics</a>
-			<a href = "../view_users">Users</a>
+			<div class = "fixed-sidebar">
+				<a href = "../">Home</a>
+				<a href = "../Questions">Latest Questions</a>
+				<a href = "../topics">Topics</a>
+				<a href = "../view_users">Users</a>
+			</div>
 		</div>
 		<div class = "col-sm-6">

@@ -30,6 +30,11 @@ form input, form textarea {
 	border-right: 0.5px solid lightgrey;
 	height: 100vh;
 }
+
+.container .row .col-sm-2:first-of-type .fixed-sidebar {
+	position: fixed;
+}
+
 .container .row .col-sm-2:first-of-type a {
 	display: block;
 	color: grey;

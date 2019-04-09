@@ -69,7 +69,7 @@ mysqli_free_result ($result);
 mysqli_close($dbc);
 
 // Make the links to other pages, if necessary
-setPreviousAndNextLinks('View_Users');
+setPreviousAndNextLinks('view_users');
 
 include('includes/footer.html');
 

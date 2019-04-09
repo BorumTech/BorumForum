@@ -62,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// Print a message 
 				echo '<h1>Thank you!</h1>
 				<p>You are now registered. In Chapter 12, you will actually be able to log in!</p><p><br></p>';
+				$msg = 'Hi ' . $fn . '\nThanks for registering on Borum!';
+				$msg = wordwrap($msg,70);
+				mail($e, 'Registration of Borum', $msg, 'From: wadmin@bforborum.com');
 			} else { // if it ran not OK
 				// Public message
 				echo '<h1>System Error</h1>
