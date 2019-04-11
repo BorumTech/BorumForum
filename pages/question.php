@@ -13,7 +13,11 @@ include('includes/header.html');
 echo "<h1>{$row['subject']}</h1>";
 echo "<p>{$row['body']}</p>";
 
-echo "Your Answer <br><textarea></textarea>"
+echo "Your Answer 
+<form action = ''>
+<br>
+<textarea></textarea>
+</form>";
 
 ?>
 
