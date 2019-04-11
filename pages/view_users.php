@@ -12,7 +12,7 @@ include('includes/header.html');
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 
-define('ISADMIN', $_COOKIE['id'] == 6);
+define('ISADMIN', isset($_COOKIE['id']) && $_COOKIE['id'] == 6);
 define('DISPLAY', 10); // Number of records to show per page
 
 $pages = getPagesValue('id', 'users');
@@ -21,9 +21,9 @@ list($sort, $order_by, $direction, $order_in) = getSortValue();
 define('UPARR', '<a href = "../view_users?sort='. $sort . '&dirtn=do">&#x25B2;</a>');
 define('DOWNARR', '<a href = "../view_users?sort=' . $sort . '&dirtn=up">&#x25BC;</a>');
 define('ARR', $direction == 'do' ? DOWNARR : UPARR);
-define('LNARR', $_GET['sort'] == 'ln' ? ARR : '');
-define('FNARR', $_GET['sort'] == 'fn' ? ARR : '');
-define('RDARR', $_GET['sort'] == 'rd' ? ARR : '');
+define('LNARR', isset($_GET['sort']) && $_GET['sort'] == 'ln' ? ARR : '');
+define('FNARR', isset($_GET['sort']) && $_GET['sort'] == 'fn' ? ARR : '');
+define('RDARR', isset($_GET['sort']) && $_GET['sort'] == 'rd' ? ARR : '');
 
 $result = performPaginationQuery('SELECT last_name, first_name, DATE_FORMAT(registration_date, \'%M %d, %Y\') AS dr, id FROM users', $order_by, $start, $dbc);
 
