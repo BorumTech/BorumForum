@@ -10,18 +10,25 @@ $page_title = $row['subject'];
 include('includes/header.html');
 ?>
 
+<h1><?php echo $row['subject']; ?></h1>
+
+<div class = "question">
+	<p><?php echo $row['ques_body'] ?></p>
+	<div style = 'float:right'>
+		<span><?php echo $row['ques_asker'] ?></span>
+		<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+	</div>
+</div>
+<div class = 'answers'>
+
 <?php 
-
-echo "<h1>{$row['subject']}</h1>";
-echo "<p>{$row['ques_body']}</p>";
-echo "<div style = 'float:right'><span>{$row['ques_asker']}</span><img height = '30' src = '../pages/show_image.php?image={$row['ques_profile_pic']}'></div>";
-
 // Generate query for answers' information
 $query2 = 'SELECT body FROM messages WHERE parent_id = ' . $_GET['id'];
 $result2 = mysqli_query($dbc, $query2);
 while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-	echo $row2['body'];
+	echo "<p>{$row2['body']}</p>";
 }
+echo "</div>";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Validate the form elements
