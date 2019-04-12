@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	require('includes/login_functions.inc.php');
 
 	// Need the database connection:
-	require('../../mysqli_connect.inc.php');
+	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 	// Check the login:
 	list($check, $data) = check_login($dbc, $_POST['email'], $_POST['pass']);
