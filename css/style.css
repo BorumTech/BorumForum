@@ -26,16 +26,16 @@ form input, form textarea {
 	padding: 10px;
 }
 
-.container .row .col-sm-2:first-of-type {
+.container > .row > .col-sm-2:first-of-type {
 	border-right: 0.5px solid lightgrey;
 	height: 100vh;
 }
 
-.container .row .col-sm-2:first-of-type .fixed-sidebar {
+.container > .row > .col-sm-2:first-of-type .fixed-sidebar {
 	position: fixed;
 }
 
-.container .row .col-sm-2:first-of-type a {
+.container > .row > .col-sm-2:first-of-type a {
 	display: block;
 	color: grey;
 	padding: 15px;

@@ -17,7 +17,7 @@ if (!isset($_COOKIE['id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	file_exiss('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 	// Validate the form elements
 	$sub = mysqli_real_escape_string($dbc, trim($_POST['subject']));

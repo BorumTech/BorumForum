@@ -87,6 +87,7 @@ function setPreviousAndNextLinks($pageName) {
 	global $pages;
 	global $start; 
 	global $sort;
+	global $direction;
 
 	// Make the links to other pages, if necessary
 	if ($pages > 1) {
@@ -99,13 +100,13 @@ function setPreviousAndNextLinks($pageName) {
 
 		// If it's not the first page, make a Previous button
 		if($current_page != 1) {
-			echo '<a href = "'. $pageName . '?s=' . ($start - DISPLAY) . '&p=' . $pages . '&sort=' .  $sort . '">Previous</a> ';
+			echo '<a href = "'. $pageName . '?s=' . ($start - DISPLAY) . '&p=' . $pages . '&sort=' .  $sort . '&dirtn=' . $direction . '">Previous</a> ';
 		}
 
 		// Make all the numbered pages
 		for ($i = 1; $i <= $pages; $i++) {
 			if ($i != $current_page) {
-				echo '<a href = "'. $pageName . '?s=' . (DISPLAY * ($i - 1)) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
+				echo '<a href = "'. $pageName . '?s=' . (DISPLAY * ($i - 1)) . '&p=' . $pages . '&sort=' . $sort . '&dirtn=' . $direction . '">' . $i . '</a> ';
 			} else {
 				echo $i . ' ';
 			}
@@ -113,7 +114,7 @@ function setPreviousAndNextLinks($pageName) {
 
 		// If i's not the last page, make a Next button
 		if ($current_page != $pages) {
-			echo '<a href = "' . $pageName . '?s=' . ($start + DISPLAY) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
+			echo '<a href = "' . $pageName . '?s=' . ($start + DISPLAY) . '&p=' . $pages . '&sort=' . $sort . '&dirtn=' . $direction . '">Next</a>';
 		}
 
 		echo '</p>';
