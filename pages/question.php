@@ -14,11 +14,13 @@
 	<h1><?php echo $row['subject']; ?></h1>
 
 	<div class = "vote col-sm-2">
-		<button onclick = "<?php mysqli_query($dbc, "UPDATE messages SET votes = votes + 1 WHERE id = {$_GET['id']}") ?>">Vote Up</button> <br>
-		<?php
-		echo $row['votes'] . '<br>';
+		<?php 
+			$cur_votes = $row['votes'];
+			$ques_id = $row['msg_id'];			
+			echo "<button type = 'button' onclick = 'loadXMLDoc(\"up\")'>Vote Up</button>";
+			echo "<br><span id = 'ques-vote-count'>$cur_votes</span>";
+			echo "<br><button type = 'button' onclick = 'loadXMLDoc(\"down\")'>Vote Down</button>";
 		?>
-		<button>Vote Down</button>	<br>
 	</div>
 	<div class = "posts col-sm-8">
 		<p><?php echo $row['ques_body'] ?></p>

@@ -7,5 +7,29 @@
 		<p class="text-muted"><p>Copyright &copy; 2019</p>
 	</div>
 </footer>
+<script>
+	console.log(new URLSearchParams(location.search).get('id'));
+	function loadXMLDoc(way) {
+		var xmlhttp;
+		if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
+		 xmlhttp=new XMLHttpRequest();
+		} else { // code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+		    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		        document.getElementById("ques-vote-count").innerHTML = xmlhttp.responseText;
+		    }
+	  	}
+	  	const urlParams = new URLSearchParams(window.location.search);
+		const myParam = urlParams.get('id');
+		console.log(myParam);
+		const page = "../vote" + way;
+		xmlhttp.open("GET", page + "?id=" + ID_PARAM,true);
+		xmlhttp.send();
+
+		return myParam;
+	}
+</script>
 </body>
 </html>
