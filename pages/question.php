@@ -1,5 +1,7 @@
 <?php
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+	include('includes/login_functions.inc.php');
+
 	// Generate query for question's information
 	$query = 'SELECT messages.votes AS votes, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker FROM messages JOIN users ON messages.user_id = users.id WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
@@ -52,7 +54,7 @@
 				$num = mysqli_num_rows($result);
 
 				if ($num == 0) { // No answers that match this one (no duplicates) on the current question
-					$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['id']}, $user_id, '$ans', NOW())";
+					$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['msg_id']}, $user_id, '$ans', NOW())";
 					$r = @mysqli_query($dbc, $q);
 				}
 
