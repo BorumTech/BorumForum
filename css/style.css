@@ -43,3 +43,15 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
+.posts p {
+	font-size: 20px;
+}
+
+.posts span, .posts img {
+	float: right;
+}
+
+.answer {
+	border-top: 1px solid black;
+}
+

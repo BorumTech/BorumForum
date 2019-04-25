@@ -8,8 +8,7 @@
 	</div>
 </footer>
 <script>
-	console.log(new URLSearchParams(location.search).get('id'));
-	function loadXMLDoc(way) {
+	function loadXMLDoc(way, msg_id, el) {
 		var xmlhttp;
 		if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
 		 xmlhttp=new XMLHttpRequest();
@@ -18,18 +17,14 @@
 		}
 		xmlhttp.onreadystatechange = function() {
 		    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-		        document.getElementById("ques-vote-count").innerHTML = xmlhttp.responseText;
+		        document.getElementById(el).innerHTML = xmlhttp.responseText;
 		    }
 	  	}
-	  	const urlParams = new URLSearchParams(window.location.search);
-		const myParam = urlParams.get('id');
-		console.log(myParam);
 		const page = "../vote" + way;
-		xmlhttp.open("GET", page + "?id=" + ID_PARAM,true);
+		xmlhttp.open("GET", page + "?id=" + msg_id,true);
 		xmlhttp.send();
-
-		return myParam;
 	}
 </script>
+<script src = "../scripts/script.js"></script>
 </body>
 </html>
