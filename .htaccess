@@ -1,7 +1,8 @@
 RewriteEngine On    # Turn on the rewriting engine
 Options -MultiViews
 RewriteRule ^$ /pages/index.php [L]
-RewriteRule    ^users/([0-9]+)$    pages/profile.php?id=$1   [NC]    # Handle users
+RewriteRule    ^users/([0-9]+)$    pages/profile.php?id=$1        [NC]    # Handle users
 RewriteRule    ^questions/([0-9]+)$    pages/question.php?id=$1   [NC]    # Handle questions
-RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                    [NC]    # Handle pages
-RewriteRule    ^([A-Za-z_]+)$       pages/$1.html                    [NC]    # Handle pages
+RewriteRule    ^Topics/([A-Za-z-]+)$ pages/topic.php?topic=$1      [NC]    # Handle topics
+RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Handle pages
+RewriteRule    ^([A-Za-z_]+)$       pages/$1.html                 [NC]    # Handle pages
