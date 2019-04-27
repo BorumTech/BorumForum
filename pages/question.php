@@ -12,50 +12,45 @@
 	$page_title = $row['subject'];
 	include('includes/header.html');
 ?>
-	</div>
-	<div class = "col-sm-10">
-	<h1><?php echo $row['subject']; ?></h1>
-
-	<div class = "vote col-sm-2">
-		<?php 
-			$ques_id = $row['msg_id'];			
-			echo "<button id = 'vote-up-btn' type = 'button' onclick = \"loadXMLDoc('up', $ques_id, 'ques-vote-count')\">Vote Up</button>\n";
-			echo "\t\t<br><span id = 'ques-vote-count'>{$row['votes']}</span>\n";
-			echo "\t\t<br><button id = 'vote-down-btn' type = 'button' onclick = \"loadXMLDoc('down', $ques_id, 'ques-vote-count')\">Vote Down</button>\n";
-
-			$counter = 1;
-			while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-				echo "\t\t<div class = 'answer'>\n";
-				echo "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Up</button>\n";
-				echo "<br><span id = 'ans-$counter-vote-count'>{$row2['votes']}</span>";
-				echo "<br><button type = 'button' onclick = \"loadXMLDoc('down', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Down</button>";
-				echo "</div>";
-				$counter++;
-			}
-
-			mysqli_data_seek($result2, 0);
-		?>
-	</div>
-	<div class = "posts col-sm-8">
-		<p><?php echo $row['ques_body'] ?></p>
-		<div class = "question-poster">
-			<span><?php echo $row['ques_asker'] ?></span>
-			<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
-		</div>
-		<div class = "answer-poster">
-			<?php 
-				// Generate query for answers' information
-				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-					echo "<div class = 'answer'>";
-					echo "<p>{$row2['msg_body']}</p>";
-					echo "<span>{$row2['fn']}</span>";
-					echo "<img height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>";
-					echo "</div>";
-				}
-			?>
-		</div>
-	</div>
 </div>
+	<h1><?php echo $row['subject']; ?></h1>
+	<div class = "col-sm-10">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+					<?php 
+						$ques_id = $row['msg_id'];			
+						echo "<button id = 'vote-up-btn' type = 'button' onclick = \"loadXMLDoc('up', $ques_id, 'ques-vote-count')\">Vote Up</button>\n";
+						echo "\t\t<br><span id = 'ques-vote-count'>{$row['votes']}</span>\n";
+						echo "\t\t<br><button id = 'vote-down-btn' type = 'button' onclick = \"loadXMLDoc('down', $ques_id, 'ques-vote-count')\">Vote Down</button>\n";
+
+					?>				
+					</td>
+					<td>
+						<p id = "ques-body"><?php echo $row['ques_body'] ?></p>
+						<div class = "question-poster">
+							<span><?php echo $row['ques_asker'] ?></span>
+							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+						</div>	
+					</td>
+				</tr>
+				<tr>
+					<?php 
+						echo "<td>";
+								$counter = 1;
+								while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+									echo "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Up</button>\n";
+									echo "\t\t<br><span id = 'ans-$counter-vote-count'>{$row2['votes']}</span>";
+									echo "\t\t<br><button type = 'button' onclick = \"loadXMLDoc('down', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Down</button>\n";
+									$counter++;
+								}
+						echo "</td>";
+					?>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 <div class = "col-sm-10">
 	<h2>Your Answer</h2>
 	<form action = "" method = "post">

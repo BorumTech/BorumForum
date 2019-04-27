@@ -43,15 +43,36 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
-.posts p {
+table {
+	padding: 50px;
+	width: 790px;
+}
+
+table tr + table tr {
+	border-spacing-top: 50px;
+}
+
+table tr {
+	border: 1px solid black;
+}
+
+td {
+	padding: 10px;
+}
+
+td button {
+	width: 100px;
+}
+
+div#body {
+
+}
+
+p#ques-body {
 	font-size: 20px;
 }
 
-.posts span, .posts img {
+.question-poster span, .question-poster img {
 	float: right;
-}
-
-.answer {
-	border-top: 1px solid black;
 }
 
