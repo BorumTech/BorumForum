@@ -72,7 +72,7 @@ p#ques-body {
 	font-size: 20px;
 }
 
-.question-poster span, .question-poster img {
+.question-poster span, .question-poster img, .poster-name, .poster-profile-pic {
 	float: right;
 }
 

@@ -35,19 +35,27 @@
 						</div>	
 					</td>
 				</tr>
-				<tr>
-					<?php 
+				<?php 
+
+					$counter = 1;
+					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+						echo "<tr>";
 						echo "<td>";
-								$counter = 1;
-								while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-									echo "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Up</button>\n";
-									echo "\t\t<br><span id = 'ans-$counter-vote-count'>{$row2['votes']}</span>";
-									echo "\t\t<br><button type = 'button' onclick = \"loadXMLDoc('down', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Down</button>\n";
-									$counter++;
-								}
+						echo "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Up</button>\n";
+						echo "\t\t<br><span id = 'ans-$counter-vote-count'>{$row2['votes']}</span>";
+						echo "\t\t<br><button type = 'button' onclick = \"loadXMLDoc('down', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Down</button>\n";
 						echo "</td>";
-					?>
-				</tr>
+						// Generate query for answers' information
+						echo "<td>";
+						echo "<p id = 'ans-$counter-body'>{$row2['msg_body']}</p>";
+						echo "<span class = 'poster-name'>{$row2['fn']}</span>";
+						echo "<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>";
+						echo "</td>";
+						echo "</tr>";
+						$counter++;
+					}
+
+				?>
 			</tbody>
 		</table>
 	</div>
