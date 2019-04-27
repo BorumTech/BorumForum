@@ -44,15 +44,13 @@ form input, form textarea {
 }
 
 table {
-	padding: 50px;
+	padding: 0px;
 	width: 790px;
+	border-collapse: separate;
+	border-spacing: 10px 50px;
 }
 
-table tr + table tr {
-	border-spacing-top: 50px;
-}
-
-table tr {
+td {
 	border: 1px solid black;
 }
 
@@ -68,7 +66,7 @@ div#body {
 
 }
 
-p#ques-body {
+p#ques-body, .ans-body {
 	font-size: 20px;
 }
 

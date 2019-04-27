@@ -12,8 +12,8 @@
 	$page_title = $row['subject'];
 	include('includes/header.html');
 ?>
-</div>
 	<h1><?php echo $row['subject']; ?></h1>
+</div>
 	<div class = "col-sm-10">
 		<table>
 			<tbody>
@@ -47,7 +47,7 @@
 						echo "</td>";
 						// Generate query for answers' information
 						echo "<td>";
-						echo "<p id = 'ans-$counter-body'>{$row2['msg_body']}</p>";
+						echo "<p class = 'ans-body'>{$row2['msg_body']}</p>";
 						echo "<span class = 'poster-name'>{$row2['fn']}</span>";
 						echo "<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>";
 						echo "</td>";
@@ -58,8 +58,6 @@
 				?>
 			</tbody>
 		</table>
-	</div>
-<div class = "col-sm-10">
 	<h2>Your Answer</h2>
 	<form action = "" method = "post">
 	<br>
