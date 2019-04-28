@@ -19,7 +19,7 @@
 		$pages = getPagesValue('id', 'messages', 'WHERE forum_id = ' . $row['id']);
 		$start = getStartValue();
 
-		$q = 'SELECT id, subject FROM messages WHERE forum_id = ' . $row['id'];
+		$q = 'SELECT id, subject FROM messages WHERE parent_id = 0 AND forum_id = ' . $row['id'];
 		$result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
 
 		echo "<table id = 'latest-questions'>";

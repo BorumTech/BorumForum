@@ -19,6 +19,9 @@
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<?php
+
+				file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+
 				# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
 				function giveClassActive($file, $href, $show) {
 					if ($href == null)
@@ -31,12 +34,14 @@
 					echo '">';
 					echo '<a href = "' . $href . '">' . $show . '</a></li>';
 				}
+
+				define('LOGGEDIN', isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']));
 				
 				giveClassActive('index.php', '/index', 'Home'); 	
 				giveClassActive('ask.php', '/Ask', 'Ask a Question');	
 
 				// If the an account is logged in
-				if (isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name'])) {
+				if (LOGGEDIN) {
 					giveClassActive("profile.php", "/users/{$_COOKIE['id']}", "My Profile");
 				} else {
 					giveClassActive('register.php', '/Register', 'Register'); 
@@ -50,6 +55,13 @@
 
 				?>		
 			</ul>
+			<?php 
+				$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
+				$r = mysqli_query($dbc, $q);
+				$ro = mysqli_fetch_array($r, MYSQLI_NUM);
+				$imgurl = '/show_image?image=' . $ro[1];
+				echo '<img style = "float: right" src = "' . $imgurl . '" height = "50">';
+			?>
 		</div>
 	</div>
 </nav>
