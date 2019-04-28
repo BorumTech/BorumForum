@@ -1,7 +1,5 @@
 <?php
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
-	include('includes/login_functions.inc.php');
-
 	// Generate query for question's information
 	$query = 'SELECT messages.id AS msg_id, messages.votes AS votes, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker FROM messages JOIN users ON messages.user_id = users.id WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
@@ -11,11 +9,14 @@
 
 	$page_title = $row['subject'];
 	include('includes/header.html');
+	include('includes/login_functions.inc.php');
+	
+	
 ?>
 	<h1><?php echo $row['subject']; ?></h1>
 </div>
 	<div class = "col-sm-10">
-		<table>
+		<table id = "question-page-table">
 			<tbody>
 				<tr>
 					<td>

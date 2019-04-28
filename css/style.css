@@ -43,22 +43,19 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
-table {
+table#question-page-table {
 	padding: 0px;
 	width: 790px;
 	border-collapse: separate;
 	border-spacing: 10px 50px;
 }
 
-td {
+#question-page-table td {
 	border: 1px solid black;
-}
-
-td {
 	padding: 10px;
 }
 
-td button {
+#question-page-table td button {
 	width: 100px;
 }
 
