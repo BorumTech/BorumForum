@@ -59,7 +59,7 @@
 				$r = mysqli_query($dbc, $q);
 				$ro = mysqli_fetch_array($r, MYSQLI_NUM);
 				$imgurl = '/show_image?image=' . $ro[1];
-				echo '<a href = "users/' . $_COOKIE['id'] . '"><img style = "float: right" src = "' . $imgurl . '" height = "50"></a>';
+				echo '<a href = "/users/' . $_COOKIE['id'] . '"><img style = "float: right" src = "' . $imgurl . '" height = "50"></a>';
 			}
 
 			?>
