@@ -41,9 +41,7 @@
 				giveClassActive('ask.php', '/Ask', 'Ask a Question');	
 
 				// If the an account is logged in
-				if (LOGGEDIN) {
-					giveClassActive("profile.php", "/users/{$_COOKIE['id']}", "My Profile");
-				} else {
+				if (!LOGGEDIN) {
 					giveClassActive('register.php', '/Register', 'Register'); 
 				}
 
@@ -56,11 +54,14 @@
 				?>		
 			</ul>
 			<?php 
+			if (LOGGEDIN) {
 				$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
 				$r = mysqli_query($dbc, $q);
 				$ro = mysqli_fetch_array($r, MYSQLI_NUM);
 				$imgurl = '/show_image?image=' . $ro[1];
-				echo '<img style = "float: right" src = "' . $imgurl . '" height = "50">';
+				echo '<a href = "users/' . $_COOKIE['id'] . '"><img style = "float: right" src = "' . $imgurl . '" height = "50"></a>';
+			}
+
 			?>
 		</div>
 	</div>
