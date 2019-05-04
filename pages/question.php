@@ -21,7 +21,7 @@
 				<tr>
 					<td>
 					<?php 
-						$ques_id = $row['msg_id'];			
+						$ques_id = $row['msg_id'];		
 						echo "<button id = 'vote-up-btn' type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">Vote Up</button>\n";
 						echo "\t\t<br><span id = 'ques-vote-count'>{$row['votes']}</span>\n";
 						echo "\t\t<br><button id = 'vote-down-btn' type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">Vote Down</button>\n";
