@@ -71,3 +71,7 @@ p#ques-body, .ans-body {
 	float: right;
 }
 
+button {
+	border: none;
+}
+
