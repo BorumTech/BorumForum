@@ -1,4 +1,13 @@
-path {
-	fill: white;
+#question-page-table button {
+	background-color: transparent;
+	border: none;
+}
+
+#question-page-table button > svg > path {
+	fill: rgb(221, 221, 221)
+}
+
+#question-page-table div {
+	text-align: center;
 }
 
