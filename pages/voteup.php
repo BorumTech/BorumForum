@@ -16,6 +16,7 @@
 	if (mysqli_num_rows($firstr) === 1) {
 		// If they already voted this question up
 		echo getVotes();
+		//echo "<input type = 'hidden'>";
 
 		// TODO: Implement undoing the vote up
 

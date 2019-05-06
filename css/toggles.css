@@ -1,3 +1,6 @@
+#question-page-table tr {
+	border: 1px solid black;
+}
 #question-page-table button {
 	background-color: transparent;
 	border: none;
@@ -9,5 +12,29 @@
 
 #question-page-table div {
 	text-align: center;
+}
+
+#question-page-table td:first-child {
+	width: 100px;
+}
+
+table#question-page-table tbody td {
+	border: none;
+}
+
+table#question-page-table {
+	padding: 0px;
+	width: 790px;
+	border-collapse: separate;
+	border-spacing: 10px 50px;
+}
+
+#question-page-table td {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+#question-page-table td button {
+	width: 100px;
 }
 

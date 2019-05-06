@@ -21,6 +21,7 @@
 				<tr>
 					<td>
 					<?php 
+						
 						$ques_id = $row['msg_id'];	
 						$uparrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>';
 						$downarrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>';
