@@ -29,11 +29,6 @@ table#question-page-table {
 	border-spacing: 10px 50px;
 }
 
-#question-page-table td {
-	border: 1px solid black;
-	padding: 10px;
-}
-
 #question-page-table td button {
 	width: 100px;
 }
