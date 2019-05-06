@@ -1,0 +1,35 @@
+table#question-page-table {
+	padding: 0px;
+	width: 790px;
+	border-collapse: separate;
+	border-spacing: 10px 50px;
+}
+
+table#question-page-table tr {
+	
+}
+
+table#question-page-table tr td {
+
+}
+
+table#question-page-table tr td:first-child {
+	width: 100px;
+}
+
+table#question-page-table tr td button {
+	background-color: transparent;
+	width: 100px;
+	border: none;
+}
+
+table#question-page-table tr td button > svg > path {
+	fill: rgb(221, 221, 221)
+}
+
+table#question-page-table tr td div {
+	text-align: center;
+}
+
+
+

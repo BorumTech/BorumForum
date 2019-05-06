@@ -21,10 +21,19 @@
 				<tr>
 					<td>
 					<?php 
-						$ques_id = $row['msg_id'];			
-						echo "<button id = 'vote-up-btn' type = 'button' onclick = \"loadXMLDoc('up', $ques_id, 'ques-vote-count')\">Vote Up</button>\n";
-						echo "\t\t<br><span id = 'ques-vote-count'>{$row['votes']}</span>\n";
-						echo "\t\t<br><button id = 'vote-down-btn' type = 'button' onclick = \"loadXMLDoc('down', $ques_id, 'ques-vote-count')\">Vote Down</button>\n";
+						
+						$ques_id = $row['msg_id'];	
+						$uparrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>';
+						$downarrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>';
+						$noAccountVoteUpBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$uparrow</button>\n";
+						$noAccountVoteDownBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$downarrow</button>\n";
+						
+						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+
+						echo $voteupbtn;
+						echo "\t\t<div id = 'ques-vote-count'>{$row['votes']}</div>\n";
+						echo $votedownbtn;
 
 					?>				
 					</td>
@@ -40,19 +49,21 @@
 
 					$counter = 1;
 					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<br><button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 						echo "<tr>";
 						echo "<td>";
-						echo "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Up</button>\n";
-						echo "\t\t<br><span id = 'ans-$counter-vote-count'>{$row2['votes']}</span>";
-						echo "\t\t<br><button type = 'button' onclick = \"loadXMLDoc('down', {$row2['msg_id']}, 'ans-$counter-vote-count')\">Vote Down</button>\n";
+						echo $voteupbtn;
+						echo "\t\t<br><div id = 'ans-$counter-vote-count'>{$row2['votes']}</div>";
+						echo $votedownbtn;
 						echo "</td>";
 						// Generate query for answers' information
 						echo "<td>";
-						echo "<p class = 'ans-body'>{$row2['msg_body']}</p>";
-						echo "<span class = 'poster-name'>{$row2['fn']}</span>";
-						echo "<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>";
+						echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
+						echo "\t\t<span class = 'poster-name'>{$row2['fn']}</span>\n";
+						echo "\t\t<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>\n";
 						echo "</td>";
-						echo "</tr>";
+						echo "</tr>\n";
 						$counter++;
 					}
 
