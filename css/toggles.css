@@ -1,27 +1,3 @@
-#question-page-table tr {
-	border: 1px solid black;
-}
-#question-page-table button {
-	background-color: transparent;
-	border: none;
-}
-
-#question-page-table button > svg > path {
-	fill: rgb(221, 221, 221)
-}
-
-#question-page-table div {
-	text-align: center;
-}
-
-#question-page-table td:first-child {
-	width: 100px;
-}
-
-table#question-page-table tbody td {
-	border: none;
-}
-
 table#question-page-table {
 	padding: 0px;
 	width: 790px;
@@ -29,7 +5,31 @@ table#question-page-table {
 	border-spacing: 10px 50px;
 }
 
-#question-page-table td button {
+table#question-page-table tr {
+	
+}
+
+table#question-page-table tr td {
+
+}
+
+table#question-page-table tr td:first-child {
 	width: 100px;
 }
+
+table#question-page-table tr td button {
+	background-color: transparent;
+	width: 100px;
+	border: none;
+}
+
+table#question-page-table tr td button > svg > path {
+	fill: rgb(221, 221, 221)
+}
+
+table#question-page-table tr td div {
+	text-align: center;
+}
+
+
 
