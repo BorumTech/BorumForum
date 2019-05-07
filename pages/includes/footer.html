@@ -25,6 +25,12 @@
 		const page = "../vote" + way;
 		xmlhttp.open("GET", page + "?user_id=" + user_id + "&message_id=" + msg_id,true);
 		xmlhttp.send();
+
+		Array.prototype.forEach.call(document.querySelectorAll("#question-page-table button"), function(node) {
+			node.addEventListener('click', function() {
+				this.firstChild.firstChild.style.fill = "red";
+			});
+		});
 	}
 
 	function answerQuestion() {
