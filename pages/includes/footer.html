@@ -26,16 +26,38 @@
 		xmlhttp.open("GET", page + "?user_id=" + user_id + "&message_id=" + msg_id,true);
 		xmlhttp.send();
 
-		Array.prototype.forEach.call(document.querySelectorAll("#question-page-table button"), function(node) {
-			node.addEventListener('click', function() {
-				this.firstChild.firstChild.style.fill = "red";
-			});
-		});
+
 	}
 
-	function answerQuestion() {
-		
-	}
+	const buttons = document.querySelectorAll("#question-page-table button");
+	let otherButtons;
+
+	Array.prototype.forEach.call(buttons, function(node) {
+		node.addEventListener('click', function() {
+			console.log('clicked');
+			this.firstChild.firstChild.style.fill = "lightgreen";
+			otherButtons = getAllSiblings(this);
+			otherButtons.map(function(el, ind, arr) {
+				return el.firstChild.firstChild;
+			});
+			otherButtons.forEach(function(el, ind, arr) {
+				el.style.fill = "rgb(221, 221, 221)";
+			});
+		});
+	});
+
+	function getAllSiblings(element) {
+        var result = [],
+    	node = element.parentNode.firstChild;
+
+		while ( node ) {
+    		if ( node !== element && node.nodeType === Node.ELEMENT_NODE ) 
+     			result.push( node );
+    		node = node.nextElementSibling || node.nextSibling;
+		}
+		// result will contain all type 1 siblings of "this"
+		return result;
+    }
 </script>
 <script src = "../scripts/script.js"></script>
 </body>
