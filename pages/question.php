@@ -24,16 +24,16 @@
 						function votedOnQuestion($msg_id, $vote) {
 							global $dbc;
 							if (isset($_COOKIE['id'])) {
-								$query = "SELECT id FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id AND vote = $vote";
+								$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 								$result = mysqli_query($dbc, $query);
-								return mysqli_num_rows($result) >= 1;								
+								return mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
 							}
 
 						}
 						$ques_id = $row['msg_id'];							
 						$fillColor = votedOnQuestion($row['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$uparrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 26h32L18 10z"></path></svg>';
-						$fillColor = votedOnQuestion($row['msg_id'], -1);
+						$fillColor = votedOnQuestion($row['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$downarrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
 						$noAccountVoteUpBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$uparrow</button>\n";
 						$noAccountVoteDownBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$downarrow</button>\n";

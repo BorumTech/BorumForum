@@ -42,6 +42,7 @@
 			});
 			otherButtons.forEach(function(el, ind, arr) {
 				el.style.fill = "rgb(221, 221, 221)";
+				console.log("hey!");
 			});
 		});
 	});
@@ -51,7 +52,7 @@
     	node = element.parentNode.firstChild;
 
 		while ( node ) {
-    		if ( node !== element && node.nodeType === Node.ELEMENT_NODE ) 
+    		if ( node !== element && node.nodeType === 'button' ) 
      			result.push( node );
     		node = node.nextElementSibling || node.nextSibling;
 		}
