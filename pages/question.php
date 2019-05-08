@@ -59,7 +59,7 @@
 
 					$counter = 1;
 					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-						$fillColor = votedOnQuestion($row2['usr_id'], $row2['msg_id']) ? 'red' : 'rgb(221, 221, 221)';
+						$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 						echo "<tr>";

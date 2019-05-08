@@ -32,12 +32,14 @@
 	const buttons = document.querySelectorAll("#question-page-table button");
 	let otherButtons;
 
-	Array.prototype.forEach.call(buttons, function(node) {
+	buttons.forEach(function(node) {
 		node.addEventListener('click', function() {
+			console.log(this);
 			console.log('clicked');
 			this.firstChild.firstChild.style.fill = "lightgreen";
 			otherButtons = getAllSiblings(this);
-			otherButtons.map(function(el, ind, arr) {
+			console.log(otherButtons);
+			otherButtons = otherButtons.map(function(el, ind, arr) {
 				return el.firstChild.firstChild;
 			});
 			otherButtons.forEach(function(el, ind, arr) {
@@ -52,7 +54,7 @@
     	node = element.parentNode.firstChild;
 
 		while ( node ) {
-    		if ( node !== element && node.nodeType === 'button' ) 
+    		if ( node !== element && node.nodeType === Node.ELEMENT_NODE && node.tagName === element.tagName ) 
      			result.push( node );
     		node = node.nextElementSibling || node.nextSibling;
 		}
