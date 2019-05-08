@@ -20,6 +20,7 @@
 		// TODO: Implement undoing the vote up
 
 	} else {
+		// Voted down and want to change to vote up
 		$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1";
 		$secondr = mysqli_query($dbc, $secondq);
 		$changedVote = mysqli_num_rows($secondr) >= 1;

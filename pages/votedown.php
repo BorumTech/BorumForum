@@ -20,10 +20,19 @@
 		// TODO: Implement undoing the vote up
 
 	} else {
+		// Voted uo and want to change to vote down
+		$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = 1";
+		$secondr = mysqli_query($dbc, $secondq);
+		$changedVote = mysqli_num_rows($secondr) >= 1;
+
 	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, -1)";
-	 	$r2 = mysqli_query($dbc, $q2);
+	 	$r2 = mysqli_query($dbc, $q2); // Insert into logs
 	 	$q3 = "UPDATE messages SET votes = votes - 1 WHERE id = {$_REQUEST['message_id']}";
-	 	$r3 = mysqli_query($dbc, $q3);
+	 	$r3 = mysqli_query($dbc, $q3); // Decrease vote count in messages table
+	 	if($changedVote) {
+	 		mysqli_query($dbc, $q3);
+	 		mysqli_query($dbc, $q2);
+	 	}
 	 	$result = getVotes();
 		
 	 	echo getVotes();
