@@ -11,7 +11,7 @@
 	}
 
 	// Check whether the user already voted on this message
-	$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1 ORDER BY id DESC LIMIT 1";
+	$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1 ORDER BY id";
 	$firstr = mysqli_query($dbc, $firstq);
 	if (mysqli_num_rows($firstr) >= 1) {
 		// If they already voted this question up
