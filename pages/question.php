@@ -1,21 +1,28 @@
 <?php
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+
 	// Generate query for question's information
-	$query = 'SELECT users.id AS usr_id, messages.id AS msg_id, messages.votes AS votes, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker FROM messages JOIN users ON messages.user_id = users.id WHERE messages.id = ' . $_GET['id'];
+	$query = 'SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker FROM messages JOIN users ON messages.user_id = users.id  WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	$query2 = 'SELECT messages.id AS msg_id, users.id AS usr_id, messages.votes AS votes, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn FROM messages JOIN users ON users.id = messages.user_id WHERE parent_id = ' . $_GET['id'];
+
+	$queryCorr = "SELECT id, SUM(vote) FROM `user-message-votes` WHERE message_id = {$_GET['id']}";
+	$resultCorr = mysqli_query($dbc, $queryCorr);
+	$rowCorr = mysqli_fetch_array($resultCorr, MYSQLI_NUM);
+
+	$query2 = 'SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn FROM messages JOIN users ON users.id = messages.user_id WHERE parent_id = ' . $_GET['id'];
 	$result2 = mysqli_query($dbc, $query2);
+	$query2Corr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE parent_id = {$_GET['id']} GROUP BY message_id";
+	$result2Corr = mysqli_query($dbc, $query2Corr);
+
+	define("NOVOTES", mysqli_num_rows($result2Corr) == 0);
 
 	$page_title = $row['subject'];
 	include('includes/header.html');
 	include('includes/login_functions.inc.php');
-	
-	
 ?>
-	<h1><?php echo $row['subject']; ?></h1>
-</div>
-	<div class = "col-sm-10">
+	<h1><?php echo $row['subject']; ?></h1>     </div>
+		<div class = "col-sm-10">
 		<table id = "question-page-table">
 			<tbody>
 				<tr>
@@ -59,7 +66,7 @@
 						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 						echo $voteupbtn;
-						echo "\t\t<div id = 'ques-vote-count'>{$row['votes']}</div>\n";
+						echo "\t\t<div id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 						echo $votedownbtn;
 
 					?>				
@@ -87,13 +94,15 @@
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
 						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						
-						
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+						
+						echo mysqli_num_rows($result2Corr);
+						$row2Corr = !NOVOTES ? mysqli_fetch_array($result2Corr, MYSQLI_NUM) : array(1, 0);
+						
 						echo "<tr>";
 						echo "<td>";
 						echo $voteupbtn;
-						echo "\t\t<br><div id = 'ans-$counter-vote-count'>{$row2['votes']}</div>";
+						echo "\t\t<br><div id = 'ans-$counter-vote-count'>{$row2Corr[1]}</div>";
 						echo $votedownbtn;
 						echo "</td>";
 						// Generate query for answers' information

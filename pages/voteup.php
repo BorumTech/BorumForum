@@ -5,7 +5,7 @@
 	// Find the current number of votes before any changes occur
 	function getVotes() { 
 		global $dbc;
-		$result = mysqli_query($dbc, "SELECT votes FROM messages WHERE id = {$_REQUEST['message_id']}"); 
+		$result = mysqli_query($dbc, "SELECT SUM(vote) FROM `user-message-votes` WHERE message_id = 7"); 
 		$rows = mysqli_fetch_array($result, MYSQLI_NUM);
 		return $rows[0];
 	}
