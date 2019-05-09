@@ -63,10 +63,11 @@
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 0, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 0, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 						$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
+
 						echo $voteupbtn;
 						echo "\t\t<div id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 						echo $votedownbtn;
@@ -95,7 +96,7 @@
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
 						
 						$row2Corr = !NOVOTES ? mysqli_fetch_array($result2Corr, MYSQLI_NUM) : array(NULL, 0);

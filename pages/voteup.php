@@ -5,7 +5,7 @@
 	// Find the current number of votes before any changes occur
 	function getVotes() { 
 		global $dbc;
-		$result = mysqli_query($dbc, "SELECT SUM(vote) FROM `user-message-votes` WHERE message_id = 7"); 
+		$result = mysqli_query($dbc, "SELECT SUM(vote) FROM `user-message-votes` WHERE message_id = {$_REQUEST['message_id']}"); 
 		$rows = mysqli_fetch_array($result, MYSQLI_NUM);
 		return $rows[0];
 	}
@@ -25,13 +25,13 @@
 		$secondr = mysqli_query($dbc, $secondq);
 		$changedVote = mysqli_num_rows($secondr) >= 1;
 
-	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, parent_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, 1)";
+	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, parent_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, {$_GET['parent_id']}, 1)";
 	 	$r2 = mysqli_query($dbc, $q2);
 	 	if($changedVote) {
 	 		mysqli_query($dbc, $q2);
 	 	}
 	 	$result = getVotes();
 		
-	 	echo getVotes();
+	 	echo $result;
 	}
 ?>
