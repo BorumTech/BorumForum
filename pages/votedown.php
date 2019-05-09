@@ -35,6 +35,6 @@
 	 	}
 	 	$result = getVotes();
 		
-	 	echo getVotes();
+	 	echo $result;
 	}
 ?>

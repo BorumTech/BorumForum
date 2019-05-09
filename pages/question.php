@@ -30,13 +30,30 @@
 							}
 
 						}
-						$ques_id = $row['msg_id'];							
+
+						function getUpArrow() {
+							global $fillColor;
+							return '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 26h32L18 10z"></path></svg>';
+						}
+
+						function getDownArrow() {
+							global $fillColor;
+							return '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
+						}
+
+						function getNoAccountButton($way) {
+							return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
+						}
+
+						$ques_id = $row['msg_id'];	
+
 						$fillColor = votedOnQuestion($row['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$uparrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 26h32L18 10z"></path></svg>';
+						$uparrow = getUpArrow();
+						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
+
 						$fillColor = votedOnQuestion($row['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$downarrow = '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
-						$noAccountVoteUpBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$uparrow</button>\n";
-						$noAccountVoteDownBtn = "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$downarrow</button>\n";
+						$downarrow = getDownArrow();
+						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
 						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
@@ -59,8 +76,19 @@
 
 					$counter = 1;
 					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+						$ans_id = $row2['msg_id'];
+
 						$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+						$uparrow = getUpArrow();
+						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
+
+						$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+						$downarrow = getDownArrow();
+						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
+
 						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						
+						
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 						echo "<tr>";
 						echo "<td>";
