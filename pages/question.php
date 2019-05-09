@@ -6,7 +6,7 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-	$queryCorr = "SELECT id, SUM(vote) FROM `user-message-votes` WHERE message_id = {$_GET['id']}";
+	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
 	$rowCorr = mysqli_fetch_array($resultCorr, MYSQLI_NUM);
 
@@ -15,6 +15,7 @@
 	$query2Corr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE parent_id = {$_GET['id']} GROUP BY message_id";
 	$result2Corr = mysqli_query($dbc, $query2Corr);
 
+	define("QUESNOVOTES", mysqli_num_rows($resultCorr) == 0);
 	define("NOVOTES", mysqli_num_rows($result2Corr) == 0);
 
 	$page_title = $row['subject'];
@@ -65,6 +66,9 @@
 						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
+						echo QUESNOVOTES;
+						$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(1, 0);
+
 						echo $voteupbtn;
 						echo "\t\t<div id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 						echo $votedownbtn;
@@ -96,7 +100,6 @@
 						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 						
-						echo mysqli_num_rows($result2Corr);
 						$row2Corr = !NOVOTES ? mysqli_fetch_array($result2Corr, MYSQLI_NUM) : array(1, 0);
 						
 						echo "<tr>";
