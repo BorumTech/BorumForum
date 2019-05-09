@@ -8,7 +8,7 @@
 	</div>
 </footer>
 <script>
-	function loadXMLDoc(way, user_id, msg_id, parent_id, el) {
+	function loadXMLDoc(way, user_id, msg_id, el) {
 		var xmlhttp;
 		if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
 		 xmlhttp=new XMLHttpRequest();
@@ -23,7 +23,7 @@
 		    }
 	  	}
 		const page = "../vote" + way;
-		xmlhttp.open("GET", page + "?user_id=" + user_id + "&message_id=" + msg_id + "&parent_id=" + parent_id,true);
+		xmlhttp.open("GET", page + "?user_id=" + user_id + "&message_id=" + msg_id,true);
 		xmlhttp.send();
 
 
