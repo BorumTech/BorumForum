@@ -95,11 +95,10 @@
 						$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
-						
+
 						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 						
-						echo NOVOTES;
 						$row2Corr = !NOVOTES ? mysqli_fetch_array($result2Corr, MYSQLI_NUM) : array(NULL, 0);
 						
 						echo "<tr>";
