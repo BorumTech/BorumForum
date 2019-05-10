@@ -106,7 +106,10 @@
 						echo "<tr>";
 						echo "<td>";
 						echo $voteupbtn;
-						echo "\t\t<br><div id = 'ans-$counter-vote-count'>{$row2['votes']}</div>";
+
+ 						$voteCount = $row2['votes'] == null ? 0 : $row2['votes'];
+
+						echo "\t\t<br><div id = 'ans-$counter-vote-count'>$voteCount</div>";
 						echo $votedownbtn;
 						echo "</td>";
 						// Generate query for answers' information
