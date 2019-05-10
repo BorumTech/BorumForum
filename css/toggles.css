@@ -24,12 +24,10 @@ table#question-page-table tr td button {
 }
 
 table#question-page-table tr td button > svg > path {
-	fill: rgb(221, 221, 221)
+	fill: rgb(221, 221, 221);
 }
 
 table#question-page-table tr td div {
 	text-align: center;
 }
-
-
 
