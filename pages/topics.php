@@ -7,7 +7,7 @@ file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect
 
 <?php 
 /* Here is where the fun begins */
-echo "<ul>";
+echo "<ul id = 'topic-list'>";
 $query = "SELECT id, name FROM topics";
 $result = mysqli_query($dbc, $query);
 while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
