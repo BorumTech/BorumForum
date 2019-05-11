@@ -1,10 +1,15 @@
+# Borum
+
+**Start Date for Project:** 
+November 13, 2018
+
 # Preventing SQL Injection to Secure Databases
 
 This project uses PHP, MySQL, and SQL to create a website that is not vulnerable to SQL Injection. The project uses functions such as `mysqli_real_escape_string()` and `urlencode()` to deal with hacking techniques designed to alter, destroy, expose, or exploit the database. 
 
-# Borum
+# bforborum
 
-Borum is the extension to the above project. Now that I have extensive knowledge of PHP, I can create a secure website while accomplishing another task - in this case a forum. Borum is a Q&A Community for categories starting with Bor- or rhyming with bore, mainly on Boron. The user can navigate Borum like it is a regular, professional website through the sitemap header at the top. The urls are user-friendly using the .htaccess file in the root directory. 
+Borum/bforborum is the extension to the above project. Now that I have extensive knowledge of PHP, I can create a secure website while accomplishing another task - in this case a forum. Borum is a Q&A Community for categories starting with Bor- or rhyming with bore, mainly on Boron. The user can navigate Borum like it is a regular, professional website through the sitemap header at the top. The urls are user-friendly using the .htaccess file in the root directory. 
 
 # Open Source
 
