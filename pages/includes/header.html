@@ -40,7 +40,10 @@
 					echo '<a href = "' . $href . '">' . $show . '</a></li>';
 				}
 
+				$mods = array(6);
+
 				define('LOGGEDIN', isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']));
+				define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 				
 				giveClassActive('index.php', '/index', 'Home'); 	
 				giveClassActive('ask.php', '/Ask', 'Ask a Question');	
@@ -50,7 +53,7 @@
 					giveClassActive('register.php', '/Register', 'Register'); 
 				}
 
-				if (isset($_COOKIE['id']) && basename($_SERVER['PHP_SELF']) != 'logout.php') {
+				if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
 					giveClassActive("logout.php", "/logout", "Log Out");
 				} else {
 					giveClassActive("login.php", "/Login", "Log In");

@@ -6,7 +6,7 @@
 $page_title = 'Delete a User';
 include('includes/header.html');
 require('includes/login_functions.inc.php');
-if ($_COOKIE['id'] != 6) {
+if (!ISADMIN) {
 	redirect_user('../index');
 }
 ?>
@@ -25,8 +25,6 @@ if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	include('includes/footer.html');
 	exit();
 }
-
-file_exiss('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php'); // Connect to the file that connects to the database
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

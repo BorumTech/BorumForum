@@ -12,7 +12,6 @@ include('includes/header.html');
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 
-define('ISADMIN', isset($_COOKIE['id']) && $_COOKIE['id'] == 6);
 define('DISPLAY', 10); // Number of records to show per page
 
 $pages = getPagesValue('id', 'users');

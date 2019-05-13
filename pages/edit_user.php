@@ -6,7 +6,7 @@
 $page_title = 'Edit a User';
 include('includes/header.html');
 require('includes/login_functions.inc.php');
-if ($_COOKIE['id'] != 6) {
+if (!ISADMIN) {
 	redirect_user('../index');
 }
 
@@ -26,8 +26,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	include('includes/footer.html');
 	exit();
 }
-
-require('../../mysqli_connect.inc.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errors = [];
