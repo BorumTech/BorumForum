@@ -2,6 +2,8 @@
 	// Connect to the db
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
+	$same_user = false;
+
 	// Find the current number of votes before any changes occur
 	function getVotes() { 
 		global $dbc;
@@ -14,32 +16,36 @@
 	$r = mysqli_query($dbc, $q);
 	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 	if ($_COOKIE['id'] == $row['user_id']) {
-		echo getVotes(); 
-		exit();
+		$same_user = true;
+		echo getVotes();
 	}
 
-	// Check whether the user already voted on this message
-	$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = 1 ORDER BY id";
-	$firstr = mysqli_query($dbc, $firstq);
-	if (mysqli_num_rows($firstr) >= 1) {
-		// If they just voted this question up and want to undo their vote
+	if (!$same_user) {
+		// Check whether the user already voted on this message
+		$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = 1 ORDER BY id";
+		$firstr = mysqli_query($dbc, $firstq);
+		if (mysqli_num_rows($firstr) >= 1) {
+			// If they just voted this question up and want to undo their vote
 
-		// Delete other rows
-		mysqli_query($dbc, "DELETE FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} ");
-		echo !empty(getVotes()) ? getVotes() : 0;
-	} else {
-		// Voted down and want to change to vote up
-		$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1";
-		$secondr = mysqli_query($dbc, $secondq);
-		$changedVote = mysqli_num_rows($secondr) >= 1;
+			// Delete other rows
+			mysqli_query($dbc, "DELETE FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} ");
+			echo !empty(getVotes()) ? getVotes() : 0;
+		} else {
+			// Voted down and want to change to vote up
+			$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1";
+			$secondr = mysqli_query($dbc, $secondq);
+			$changedVote = mysqli_num_rows($secondr) >= 1;
 
-	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, 1)";
-	 	$r2 = mysqli_query($dbc, $q2);
-	 	if($changedVote) {
-	 		mysqli_query($dbc, $q2);
-	 	}
-	 	$result = getVotes(); 
-		
-	 	echo $result;
+		 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, 1)";
+		 	$r2 = mysqli_query($dbc, $q2);
+		 	if($changedVote) {
+		 		mysqli_query($dbc, $q2);
+		 	}
+		 	$result = getVotes(); 
+			
+		 	echo $result;
+		}
 	}
+
+
 ?>
