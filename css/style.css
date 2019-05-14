@@ -59,3 +59,8 @@ p#ques-body, .ans-body {
 	font-size: 25px;
 }
 
+#topic-list li {
+	background-color: #E1ECF4;
+	color: #39739d;
+}
+
