@@ -10,6 +10,14 @@
 		return $rows[0];
 	}
 
+	$q = "SELECT user_id FROM messages WHERE id = {$_GET['message_id']}";
+	$r = mysqli_query($dbc, $q);
+	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+	if ($_COOKIE['id'] == $row['user_id']) {
+		echo getVotes(); 
+		exit();
+	}
+
 	// Check whether the user already voted on this message
 	$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = 1 ORDER BY id";
 	$firstr = mysqli_query($dbc, $firstq);
@@ -25,7 +33,7 @@
 		$secondr = mysqli_query($dbc, $secondq);
 		$changedVote = mysqli_num_rows($secondr) >= 1;
 
-	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, parent_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, {$_GET['parent_id']}, 1)";
+	 	$q2 = "INSERT INTO `user-message-votes` (user_id, message_id, vote) VALUES ({$_GET['user_id']}, {$_GET['message_id']}, 1)";
 	 	$r2 = mysqli_query($dbc, $q2);
 	 	if($changedVote) {
 	 		mysqli_query($dbc, $q2);
