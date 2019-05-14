@@ -3,7 +3,7 @@
 
 	// Generate query for question's information
 	$query = '
-	SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name 
+	SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name AS topic
 	FROM messages 
 	JOIN users 
 	ON messages.user_id = users.id 
@@ -74,8 +74,8 @@
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 0, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 0, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 						$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
 
@@ -93,7 +93,7 @@
 						</div>	
 					</td>
 					<td>
-						<a href = "<?php ?>"></a>
+						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
 					</td>
 				</tr>
 				<?php 
@@ -110,8 +110,8 @@
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, {$_GET['id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
+						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
 						
 						echo "<tr>";
 						echo "<td>";
