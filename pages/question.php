@@ -125,8 +125,10 @@
 						// Generate query for answers' information
 						echo "<td>";
 						echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
+						echo "\t\t<div class = 'ans-poster'>";
 						echo "\t\t<span class = 'poster-name'>{$row2['fn']}</span>\n";
 						echo "\t\t<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>\n";
+						echo "</div>";
 						echo "</td>";
 						echo "</tr>\n";
 						$counter++;

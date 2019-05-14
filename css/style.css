@@ -51,7 +51,15 @@ p#ques-body, .ans-body {
 	font-size: 20px;
 }
 
-.question-poster span, .question-poster img, .poster-name, .poster-profile-pic {
+.question-poster, .ans-poster {
+	background-color: #E1ECF4;
+	color: #39739d;
+	overflow: hidden;
+	float: right;
+	width: 100px;
+}
+
+.poster-name, .poster-profile-pic {
 	float: right;
 }
 
