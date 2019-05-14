@@ -2,7 +2,7 @@
 	// Connect to the db
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
-	$same_user = false;
+	$same_user = FALSE;
 
 	// Find the current number of votes before any changes occur
 	function getVotes() { 
@@ -15,9 +15,9 @@
 	$q = "SELECT user_id FROM messages WHERE id = {$_GET['message_id']}";
 	$r = mysqli_query($dbc, $q);
 	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
-	if ($_COOKIE['id'] == $row['user_id']) {
-		$same_user = true;
-		echo getVotes(); 
+	if ($_GET['user_id'] == $row['user_id']) {
+		$same_user = TRUE;
+		echo "You cannot vote for your own content"; 
 	}
 	
 	if (!$same_user) {
