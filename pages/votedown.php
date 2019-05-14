@@ -14,11 +14,11 @@
 	$firstq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1 ORDER BY id";
 	$firstr = mysqli_query($dbc, $firstq);
 	if (mysqli_num_rows($firstr) >= 1) {
-		// If they already voted this question up
-		echo getVotes();
+		// If they just voted this question up and want to undo their vote
 
-		// TODO: Implement undoing the vote up
-
+		// Delete other rows
+		mysqli_query($dbc, "DELETE FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} ");
+		echo !empty(getVotes()) ? getVotes() : 0;
 	} else {
 		// Voted uo and want to change to vote down
 		$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = 1";
