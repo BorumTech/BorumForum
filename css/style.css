@@ -43,10 +43,6 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
-div#body {
-
-}
-
 p#ques-body, .ans-body {
 	font-size: 20px;
 }
@@ -55,20 +51,15 @@ p#ques-body, .ans-body {
 	background-color: #E1ECF4;
 	color: #39739d;
 	overflow: hidden;
-	float: right;
 	width: 100px;
 }
 
-.poster-name, .poster-profile-pic {
-	float: right;
-}
-
-.question-tags {
+.question-tags, .answer-tags {
 	background-color: #E1ECF4;
 	color: #39739d;
+	overflow: hidden;
 	width: 65px;
 	height: 25px;
-	float: left;
 }
 
 #topic-list {

@@ -86,13 +86,15 @@
 					?>				
 					</td>
 					<td>
-						<p id = "ques-body"><?php echo $row['ques_body'] ?></p>
+						<p id = "ques-body"><?php echo $row['ques_body'] ?></p>						
+					</td>
+					<td>
 						<div class = "question-poster">
 							<span><?php echo $row['ques_asker'] ?></span>
 							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
 						</div>	
 					</td>
-					<td>
+					<td class = "question-tags">
 						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
 					</td>
 				</tr>

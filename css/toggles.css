@@ -6,7 +6,7 @@ table#question-page-table {
 }
 
 table#question-page-table tr {
-	
+	column-count: 3;
 }
 
 table#question-page-table tr td {
