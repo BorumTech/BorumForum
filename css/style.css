@@ -55,6 +55,14 @@ p#ques-body, .ans-body {
 	float: right;
 }
 
+.question-tags {
+	background-color: #E1ECF4;
+	color: #39739d;
+	width: 65px;
+	height: 25px;
+	float: left;
+}
+
 #topic-list {
 	font-size: 25px;
 }

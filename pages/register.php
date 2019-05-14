@@ -10,9 +10,6 @@ include('includes/header.html');
 <?php 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-	require('../../mysqli_connect.inc.php');
-
 	$errors = []; // Initialize an error array
 
 	// Check for a first name

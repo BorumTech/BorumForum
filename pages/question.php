@@ -2,7 +2,14 @@
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 	// Generate query for question's information
-	$query = 'SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker FROM messages JOIN users ON messages.user_id = users.id  WHERE messages.id = ' . $_GET['id'];
+	$query = '
+	SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name 
+	FROM messages 
+	JOIN users 
+	ON messages.user_id = users.id 
+	JOIN topics
+	ON messages.forum_id = topics.id
+	WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -30,7 +37,7 @@
 		<div class = "col-sm-10">
 		<table id = "question-page-table">
 			<tbody>
-				<tr>
+				<tr>					
 					<td>
 					<?php 
 						function votedOnQuestion($msg_id, $vote) {
@@ -84,6 +91,9 @@
 							<span><?php echo $row['ques_asker'] ?></span>
 							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
 						</div>	
+					</td>
+					<td>
+						<a href = "<?php ?>"></a>
 					</td>
 				</tr>
 				<?php 
