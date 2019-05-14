@@ -33,18 +33,19 @@
 
 	buttons.forEach(function(node) {
 		node.addEventListener('click', function() {
-			console.log(this);
-			console.log('clicked');
-			this.firstChild.firstChild.style.fill = "lightgreen";
-			otherButtons = getAllSiblings(this);
-			console.log(otherButtons);
-			otherButtons = otherButtons.map(function(el, ind, arr) {
-				return el.firstChild.firstChild;
-			});
-			otherButtons.forEach(function(el, ind, arr) {
-				el.style.fill = "rgb(221, 221, 221)";
-				console.log("hey!");
-			});
+			if (this.firstChild.firstChild.style.fill == "lightgreen") {
+				this.firstChild.firstChild.style.fill = "rgb(221, 221, 221)";
+			} else {
+				this.firstChild.firstChild.style.fill = "lightgreen";
+				otherButtons = getAllSiblings(this);
+				console.log(otherButtons);
+				otherButtons = otherButtons.map(function(el, ind, arr) {
+					return el.firstChild.firstChild;
+				});
+				otherButtons.forEach(function(el, ind, arr) { // Make the other button for that post unvoted color
+					el.style.fill = "rgb(221, 221, 221)";
+				});
+			}
 		});
 	});
 

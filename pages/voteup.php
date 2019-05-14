@@ -15,10 +15,10 @@
 	$firstr = mysqli_query($dbc, $firstq);
 	if (mysqli_num_rows($firstr) >= 1) {
 		// If they just voted this question up and want to undo their vote
-		echo getVotes();
 
-		// TODO: Implement undoing the vote up
-
+		// Delete other rows
+		mysqli_query($dbc, "DELETE FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} ");
+		echo !empty(getVotes()) ? getVotes() : 0;
 	} else {
 		// Voted down and want to change to vote up
 		$secondq = "SELECT id FROM `user-message-votes` WHERE user_id = {$_GET['user_id']} AND message_id = {$_GET['message_id']} AND vote = -1";
@@ -30,7 +30,7 @@
 	 	if($changedVote) {
 	 		mysqli_query($dbc, $q2);
 	 	}
-	 	$result = getVotes();
+	 	$result = getVotes(); 
 		
 	 	echo $result;
 	}
