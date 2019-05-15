@@ -43,23 +43,44 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
-p#ques-body, .ans-body {
+p#ques-body, p.ans-body {
 	font-size: 20px;
 }
 
-.question-poster, .ans-poster {
-	background-color: #E1ECF4;
-	color: #39739d;
-	overflow: hidden;
-	width: 100px;
+.user-profile-container {
+
 }
 
-.question-tags, .answer-tags {
+.question-poster, .ans-poster {
+	width: 200px;
+	height: 65px;
+	padding-left: 10px;
+}
+
+.question-poster img, .ans-poster img {
+	float: left;
+}
+
+.question-tags {
+	width: 105px;
+	height: 25px;
+}
+
+.question-poster {
+	padding: 5px 6px 7px 7px;
+}
+
+.question-poster, .question-tags {
 	background-color: #E1ECF4;
 	color: #39739d;
+}
+
+.question-tags, .answer-tags, .question-poster, .ans-poster {
+	display: block;
 	overflow: hidden;
-	width: 65px;
-	height: 25px;
+	font-size: 14px;
+	box-sizing: border-box;
+	margin-left: 0px;
 }
 
 #topic-list {

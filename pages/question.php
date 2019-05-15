@@ -35,10 +35,10 @@
 ?>
 	<h1><?php echo $row['subject']; ?></h1>     </div>
 		<div class = "col-sm-10">
-		<table id = "question-page-table">
+		<table border id = "question-page-table">
 			<tbody>
 				<tr>					
-					<td>
+					<td class = "vote-container">
 					<?php 
 						function votedOnQuestion($msg_id, $vote) {
 							global $dbc;
@@ -80,7 +80,7 @@
 						$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
 
 						echo $voteupbtn;
-						echo "\t\t<div id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
+						echo "\t\t<div class = 'vote-counter' id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 						echo $votedownbtn;
 
 					?>				
@@ -88,12 +88,16 @@
 					<td>
 						<p id = "ques-body"><?php echo $row['ques_body'] ?></p>						
 					</td>
-					<td>
-						<div class = "question-poster">
+				</tr>
+				<tr class = 'user-profile-container'>
+					<td colspan = "2" class = "question-poster">
+						<div>
 							<span><?php echo $row['ques_asker'] ?></span>
 							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
 						</div>	
 					</td>
+				</tr>
+				<tr>
 					<td class = "question-tags">
 						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
 					</td>
@@ -121,7 +125,7 @@
             
  						$voteCount = $row2['votes'] == null ? 0 : $row2['votes'];
             
-						echo "\t\t<br><div id = 'ans-$counter-vote-count'>$voteCount</div>";
+						echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
 						echo $votedownbtn;
 						echo "</td>";
 						// Generate query for answers' information
