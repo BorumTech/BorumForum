@@ -90,10 +90,12 @@
 					</td>
 				</tr>
 				<tr class = 'user-profile-container'>
-					<td class = "modify-links">
-						<a href = '<?php echo "{$_GET['id']}/Edit" ?>'>Edit</a>
-						<a>Delete</a>
-					</td>
+					<?php 
+					echo '<td class = "modify-links">';
+					echo "<a href = '<?php echo \"{$_GET['id']}/Edit\" ?>'>Edit</a> ";
+					echo '<a href = "">Delete</a>
+					</td>';
+					?>
 					<td colspan = "2" class = "question-poster">
 						<div>
 							<span><?php echo $row['ques_asker'] ?></span>
