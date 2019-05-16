@@ -66,11 +66,11 @@
 
 						$ques_id = $row['msg_id'];	
 
-						$fillColor = votedOnQuestion($row['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+						$fillColor = votedOnQuestion($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$uparrow = getUpArrow();
 						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-						$fillColor = votedOnQuestion($row['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+						$fillColor = votedOnQuestion($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 						$downarrow = getDownArrow();
 						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
@@ -91,10 +91,11 @@
 				</tr>
 				<tr class = 'user-profile-container'>
 					<?php 
+
+					$what_to_echo = $ques_id . '/Edit';
+
 					echo '<td class = "modify-links">';
-					echo "<a href = '<?php echo \"{$_GET['id']}/Edit\" ?>'>Edit</a> ";
-					echo '<a href = "">Delete</a>
-					</td>';
+					echo "<a href = '$what_to_echo'>Edit</a> ";
 					?>
 					<td colspan = "2" class = "question-poster">
 						<div>
