@@ -35,7 +35,7 @@
 ?>
 	<h1><?php echo $row['subject']; ?></h1>     </div>
 		<div class = "col-sm-10">
-		<table border id = "question-page-table">
+		<table id = "question-page-table">
 			<tbody>
 				<tr>					
 					<td class = "vote-container">
