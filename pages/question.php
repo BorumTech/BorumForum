@@ -96,6 +96,10 @@
 
 					echo '<td class = "modify-links">';
 					echo "<a href = '$what_to_echo'>Edit</a> ";
+
+					$what_to_echo = $ques_id . '/Delete';
+
+					echo "<a href = '$what_to_echo'>Delete</a>";
 					?>
 					<td colspan = "2" class = "question-poster">
 						<div>
