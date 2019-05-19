@@ -6,3 +6,4 @@ RewriteRule    ^questions/([0-9]+)$    pages/question.php?id=$1   [NC]    # Hand
 RewriteRule    ^Topics/([A-Za-z-]+)$ pages/topic.php?topic=$1      [NC]    # Handle topics
 RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Handle pages
 RewriteRule    ^([A-Za-z_]+)$       pages/$1.html                 [NC]    # Handle pages
+RewriteRule    ^Questions/([0-9]+)/Edit   pages/edit.php?id=$1    [NC]    # Handle question edit
