@@ -92,14 +92,17 @@
 				<tr class = 'user-profile-container'>
 					<?php 
 
-					$what_to_echo = $ques_id . '/Edit';
+					if ($_COOKIE['id'] === $row['usr_id']) {
+						$what_to_echo = $ques_id . '/Edit';
 
-					echo '<td class = "modify-links">';
-					echo "<a href = '$what_to_echo'>Edit</a> ";
+						echo '<td class = "modify-links">';
+						echo "<a href = '$what_to_echo'>Edit</a> ";
 
-					$what_to_echo = $ques_id . '/Delete';
+						$what_to_echo = $ques_id . '/Delete';
 
-					echo "<a href = '$what_to_echo'>Delete</a>";
+						echo "<a href = '$what_to_echo'>Delete</a>";
+						echo "</td>";
+					}
 					?>
 					<td colspan = "2" class = "question-poster">
 						<div>
