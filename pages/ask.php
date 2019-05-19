@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$sub = mysqli_real_escape_string($dbc, trim($_POST['subject']));
 	$bod = mysqli_real_escape_string($dbc, trim($_POST['body']));
 	$tag = mysqli_real_escape_string($dbc, trim($_POST['tag']));
-
 	$id = $_COOKIE['id'];
 
 	// Check if its okay for the user to ask the question
@@ -30,14 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$num = mysqli_num_rows($r);
 
 	if ($num == 0) { // No questions that match this one (no duplicates)
-		$q = "INSERT INTO messages (forum_id, user_id, subject, body, date_entered) VALUES ($tag, $id, '$sub', '$bod', NOW())";
+		$q = "SELECT id, name FROM topics WHERE name = '$tag'";
+		$r = mysqli_query($dbc, $q);
+		$val = mysqli_fetch_array($r, MYSQLI_NUM)[0];
+
+		$q = "INSERT INTO messages (parent_id, forum_id, user_id, subject, body, date_entered) VALUES (0, $val, $id, '$sub', '$bod', NOW())";
 		$r = @mysqli_query($dbc, $q);
 
 		if ($r) { // If it ran OK
 			$r = @mysqli_query($dbc, "SELECT id FROM messages ORDER BY id DESC LIMIT 1");
 			$val = mysqli_fetch_array($r, MYSQLI_NUM);
 			redirect_user("../Questions/{$val[0]}");
+		} else {
+			echo "A system error occured. We apologized for the inconvenience. ";
+			echo mysqli_error($dbc);
 		}
+	} else {
+		echo "There was a duplicate. Question not asked";
 	}
 
 	mysqli_close($dbc);	
