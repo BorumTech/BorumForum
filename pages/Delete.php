@@ -1,11 +1,23 @@
 <?php 
 
+$page_title = "Delete a Question";
 require('includes/header.html');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$confirmation = $_POST['confirm'];
+	if ($confirmation == "no") {
+		echo "The question was <em>not</em> deleted. Redirecting you now...";
+		redirect_user("/Questions");
+	}
+	$q = "DELETE FROM messages WHERE id = {$_GET['id']}";
+	$r = mysqli_query($dbc, $q);
+	if (mysqli_affected_rows($dbc) == 1) {
+		echo "The question was successfully deleted. Redirecting you now...";
+	} else {
+		echo "The deletion was not successful.";
+	}
 } else {
-	echo "<form method = 'post' action = '/Questions'>";
+	echo "<form onsubmit = 'deleteSubmission()' method = 'post' action = ''>";
 	?>
 
 	<p>
