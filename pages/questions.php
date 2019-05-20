@@ -24,11 +24,17 @@ $result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
 
 echo "<table id = 'latest-questions'>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
+	$timeelapsed = $row['date_posted'] . " days ago";
 
+	if ($row['date_posted'] == 0) {
+		$timeelapsed = "today";
+	} else if ($row['date_posted'] == 1) {
+		$timeelapsed = "yesterday";
+	}
 	echo "
 	<tr>
 	<td align = \"left\"><a href = \"Questions/{$row['id']}\">{$row['subject']}</a></td>
-	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>{$row['date_posted']} days ago</td>
+	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>
 	";
 
