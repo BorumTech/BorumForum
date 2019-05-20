@@ -1,0 +1,13 @@
+li.search-bar#head-search-bar-li {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    width: 300px;
+    margin-right: 20px;
+}
+
+li.search-bar#head-search-bar-li input#head-search-bar {
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+}

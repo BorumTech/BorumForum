@@ -22,6 +22,11 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+div.navbar-header img {
+  float: left;
+  margin-right: 15px;
+}
+
 body > .container {
   padding: 60px 15px 0;
 }
