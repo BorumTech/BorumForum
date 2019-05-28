@@ -92,7 +92,7 @@
 				<tr class = 'user-profile-container'>
 					<?php 
 
-					if ($_COOKIE['id'] === $row['usr_id']) {
+					if (LOGGEDIN && $_COOKIE['id'] === $row['usr_id']) {
 						$what_to_echo = $ques_id . '/Edit';
 
 						echo '<td class = "modify-links">';
@@ -164,26 +164,40 @@
 	<textarea name = "answer" cols = '125' rows = '20'></textarea>
 	</p>
 	<input type = 'submit' value = 'Post your Answer'>
+	<input type = "hidden" name = "action" value = "answer-question">
 	</form>
 	<?php
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			// Validate the form elements
-			$ans = mysqli_real_escape_string($dbc, trim($_POST['answer']));
-			// Check if its okay for the user to answer the question
-			if (isset($_COOKIE['id'])) {
-				$user_id = $_COOKIE['id'];
-				$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
-				$r = mysqli_query($dbc, $q);
-				$num = mysqli_num_rows($r);
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Handle all form submissions
+			switch ($_POST['action']) {
+				case "answer-question":
+					// Validate the form elements
+					$ans = mysqli_real_escape_string($dbc, trim($_POST['answer']));
+					// Check if its okay for the user to answer the question
+					if (isset($_COOKIE['id'])) {
+						$user_id = $_COOKIE['id'];
+						$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
+						$r = mysqli_query($dbc, $q);
+						$num = mysqli_num_rows($r);
 
-				if ($num == 0) { // No answers that match this one (no duplicates) on the current question
-					$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['msg_id']}, $user_id, '$ans', NOW())";
-					mysqli_query($dbc, $q);
-				}
+						if ($num == 0) { // No answers that match this one (no duplicates) on the current question
+							$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['msg_id']}, $user_id, '$ans', NOW())";
+							mysqli_query($dbc, $q);
+						}
+					} else {
+						redirect_user('../Login');
+					}
+					break;
+				case "edit-question":
+					if (isset($_POST['subject'])) {
+						$sub = mysqli_real_escape_string($dbc, trim($_POST['subject']));
+					}
+					if (isset($_POST['body'])) {
+						$body = mysqli_real_escape_string($dbc, trim($_POST['body']));
+					}
 
+					$query = "UPDATE messages SET subject = $sub AND body = $body WHERE id = {$_GET['id']}";
 
-			} else {
-				redirect_user('../Login');
+					break;
 			}
 		}
 

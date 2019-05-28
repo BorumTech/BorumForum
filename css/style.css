@@ -96,3 +96,7 @@ p#ques-body, p.ans-body {
 	color: #39739d;
 }
 
+#edit-body {
+	resize: vertical;
+}
+
