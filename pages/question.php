@@ -194,9 +194,10 @@
 					if (isset($_POST['body'])) {
 						$body = mysqli_real_escape_string($dbc, trim($_POST['body']));
 					}
+					$id = $_POST['id'];
 
-					$query = "UPDATE messages SET subject = $sub AND body = $body WHERE id = {$_GET['id']}";
-
+					$query = "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id";
+					mysqli_query($dbc, $query);
 					break;
 			}
 		}
