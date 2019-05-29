@@ -60,6 +60,7 @@
 				}
 
 				if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
+					giveClassActive('profile.php', "/users/{$_COOKIE['id']}", "My Profile");
 					giveClassActive("logout.php", "/logout", "Log Out");
 				} else {
 					giveClassActive("login.php", "/Login", "Log In");

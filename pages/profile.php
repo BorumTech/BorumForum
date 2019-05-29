@@ -14,6 +14,7 @@ include('includes/header.html');
 
 <?php 
 echo "<output rows='10' cols='50'>{$row['bio']}</output></div><div class = 'col-sm-2'>";
+echo "<div><ul></ul></div>";
 
 function handleImageUpload() {
 	global $id;
@@ -80,6 +81,7 @@ function displayForm() {
 	</form>';
 }
 
+// If the user is viewing his or her own profile
 if ($_COOKIE['id'] == $_GET['id']) {
 	displayForm();
 }
