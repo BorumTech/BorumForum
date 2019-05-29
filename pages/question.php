@@ -39,6 +39,7 @@
 			<tbody>
 				<tr>					
 					<td class = "vote-container">
+					<!-- PHP Functions -->
 					<?php 
 						function votedOnQuestion($msg_id, $vote) {
 							global $dbc;
@@ -63,6 +64,8 @@
 						function getNoAccountButton($way) {
 							return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
 						}
+					?>
+					<?php
 
 						$ques_id = $row['msg_id'];	
 
@@ -106,14 +109,20 @@
 					?>
 					<td colspan = "2" class = "question-poster">
 						<div>
-							<span><?php echo $row['ques_asker'] ?></span>
-							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+							<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
+								<span><?php echo $row['ques_asker'] ?></span>
+							</a>
+							<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
+								<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+							</a>
 						</div>	
 					</td>
 				</tr>
 				<tr>
 					<td class = "question-tags">
-						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
+						<div>
+							<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
+						</div>
 					</td>
 				</tr>
 				<?php 
