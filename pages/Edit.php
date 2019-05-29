@@ -1,6 +1,6 @@
 <?php 
 
-$page_title = "Edit a Question";
+$page_title = "Edit a Post";
 include('includes/header.html');
 include('includes/login_functions.inc.php');
 

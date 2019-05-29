@@ -154,12 +154,36 @@
 						// Generate query for answers' information
 						echo "<td>";
 						echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
-						echo "\t\t<div class = 'ans-poster'>";
-						echo "\t\t<span class = 'poster-name'>{$row2['fn']}</span>\n";
-						echo "\t\t<img class = 'poster-profile-pic' height = '30' src = '../pages/show_image.php?image={$row2['profile']}'>\n";
-						echo "</div>";
 						echo "</td>";
 						echo "</tr>\n";
+						?>
+						<tr class = 'user-profile-container'>
+						<?php 
+
+							if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
+								$what_to_echo = $row2['msg_id'] . '/Edit';
+
+								echo '<td class = "modify-links">';
+								echo "<a href = '$what_to_echo'>Edit</a> ";
+
+								$what_to_echo = $row2['msg_id'] . '/Delete';
+
+								echo "<a href = '$what_to_echo'>Delete</a>";
+								echo "</td>";
+							}
+						?>
+							<td colspan = "2" class = "question-poster">
+								<div>
+									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
+										<span><?php echo $row2['fn'] ?></span>
+									</a>
+									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
+										<img height = '30' src = '../pages/show_image.php?image=<?php echo $row2['profile']?>'>
+									</a>
+								</div>	
+							</td>
+						</tr>
+						<?php 
 						$counter++;
 					}
 
