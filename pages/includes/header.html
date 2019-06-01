@@ -60,7 +60,6 @@
 				}
 
 				if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					giveClassActive('profile.php', "/users/{$_COOKIE['id']}", "My Profile");
 					giveClassActive("logout.php", "/logout", "Log Out");
 				} else {
 					giveClassActive("login.php", "/Login", "Log In");
@@ -69,7 +68,7 @@
 				?>		
 			</ul>
 			<?php 
-			if (LOGGEDIN) {
+			if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
 				$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
 				$r = mysqli_query($dbc, $q);
 				$ro = mysqli_fetch_array($r, MYSQLI_NUM);
