@@ -14,11 +14,10 @@ include('includes/header.html');
 
 <?php 
 
-echo "<output id = 'bio'>{$row['bio']}</output>";
+echo "<output name = 'bio' id = 'bio'>{$row['bio']}</output>";
 if ($_COOKIE['id'] == $id) {
 	echo "<button id = 'edit-bio-btn' onclick = 'editBio($id)'>Edit Bio</button>";
 }
-
 
 $query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
 $result1 = mysqli_query($dbc, $query1);
