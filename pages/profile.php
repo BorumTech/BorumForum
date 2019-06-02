@@ -14,9 +14,13 @@ include('includes/header.html');
 
 <?php 
 
-echo "<output rows='10' cols='50'>{$row['bio']}</output>";
+echo "<output id = 'bio'>{$row['bio']}</output>";
+if ($_COOKIE['id'] == $id) {
+	echo "<button id = 'edit-bio-btn' onclick = 'editBio($id)'>Edit Bio</button>";
+}
 
-$query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = {$_GET['id']}"; // Get questions
+
+$query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
 $result1 = mysqli_query($dbc, $query1);
 echo '<h2>Questions</h2><ul>';
 while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
@@ -24,7 +28,7 @@ while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 }
 echo '</ul>';
 
-$query1 = "SELECT answers.user_id, questions.subject, questions.id, answers.parent_id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = {$_GET['id']}";
+$query1 = "SELECT answers.user_id, questions.subject, questions.id, answers.parent_id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = $id";
 $result1 = mysqli_query($dbc, $query1);
 echo '<h2>Answers</h2><ul>';
 while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {

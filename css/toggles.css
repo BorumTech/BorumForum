@@ -23,3 +23,24 @@ table#question-page-table tr td div {
 	text-align: center;
 }
 
+#bio {
+	margin-bottom: 1em;
+	width: 80%;
+	font-size: 1em;
+	height: 9em;
+
+}
+
+textarea#bio {
+	display: block;
+	resize: none;
+}
+
+output#bio {
+	display: block;
+}
+
+#bio + button {
+	display: block;
+}
+
