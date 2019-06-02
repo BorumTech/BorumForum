@@ -24,7 +24,8 @@ while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 }
 echo '</ul>';
 
-$query1 = "SELECT answers.user_id, questions.subject, questions.id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = {$_GET['id']}";
+$query1 = "SELECT answers.user_id, questions.subject, questions.id, answers.parent_id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = {$_GET['id']}";
+$result1 = mysqli_query($dbc, $query1);
 echo '<h2>Answers</h2><ul>';
 while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 	echo "<li><a href = '/Questions/{$row1['parent_id']}'>{$row1['subject']}</a></li>"; // Show answers
