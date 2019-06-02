@@ -16,24 +16,28 @@ include('includes/header.html');
 
 echo "<output name = 'bio' id = 'bio'>{$row['bio']}</output>";
 if ($_COOKIE['id'] == $id) {
-	echo "<button id = 'edit-bio-btn' onclick = 'editBio($id)'>Edit Bio</button>";
+	echo "<input type = 'submit' id = 'edit-bio-btn' onclick = 'editBio($id)' value = 'Edit Bio'>";
 }
 
 $query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
 $result1 = mysqli_query($dbc, $query1);
-echo '<h2>Questions</h2><ul>';
+echo "<h2>Questions</h2>
+<ul>\n";
 while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
-	echo "<li><a href = '/Questions/{$row1['id']}'>{$row1['subject']}</a></li>"; // Show questions
+	echo "\t<li><a href = '/Questions/{$row1['id']}'>{$row1['subject']}</a></li>\n"; // Show questions
 }
-echo '</ul>';
+echo "</ul>\n";
 
 $query1 = "SELECT answers.user_id, questions.subject, questions.id, answers.parent_id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = $id";
 $result1 = mysqli_query($dbc, $query1);
-echo '<h2>Answers</h2><ul>';
+echo "<h2>Answers</h2>
+<ul>\n";
 while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
-	echo "<li><a href = '/Questions/{$row1['parent_id']}'>{$row1['subject']}</a></li>"; // Show answers
+	echo "\t<li><a href = '/Questions/{$row1['parent_id']}'>{$row1['subject']}</a></li>\n"; // Show answers
 }
-echo '</div><div class = "col-sm-2">';
+echo '</ul>
+</div>
+<div class = "col-sm-2">';
 
 function handleImageUpload() {
 	global $id;

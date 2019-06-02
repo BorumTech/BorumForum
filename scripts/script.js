@@ -28,11 +28,11 @@ function editBio(id) {
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {	
+			bioEl.nextElementSibling.value = isOutput ? "Save" : "Edit Bio";	
+
 			const outputN = `<output id="bio">${xhr.responseText}</output>`;
 			const textareaN = `<textarea id="bio">${xhr.responseText}</textarea>`;
-
-			bioEl.nextElementSibling.innerHTML = isOutput ? "Save" : "Edit Bio";	
-
+			
 			bioEl.outerHTML = isTextarea ? outputN : textareaN;
 		}
 	}
