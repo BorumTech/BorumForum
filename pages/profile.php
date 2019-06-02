@@ -13,8 +13,23 @@ include('includes/header.html');
 ?>
 
 <?php 
-echo "<output rows='10' cols='50'>{$row['bio']}</output></div><div class = 'col-sm-2'>";
-echo "<div><ul></ul></div>";
+
+echo "<output rows='10' cols='50'>{$row['bio']}</output>";
+
+$query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = {$_GET['id']}"; // Get questions
+$result1 = mysqli_query($dbc, $query1);
+echo '<h2>Questions</h2><ul>';
+while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+	echo "<li><a href = '/Questions/{$row1['id']}'>{$row1['subject']}</a></li>"; // Show questions
+}
+echo '</ul>';
+
+$query1 = "SELECT answers.user_id, questions.subject, questions.id FROM messages AS answers JOIN messages AS questions ON questions.id = answers.parent_id HAVING answers.user_id = {$_GET['id']}";
+echo '<h2>Answers</h2><ul>';
+while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+	echo "<li><a href = '/Questions/{$row1['parent_id']}'>{$row1['subject']}</a></li>"; // Show answers
+}
+echo '</div><div class = "col-sm-2">';
 
 function handleImageUpload() {
 	global $id;
@@ -26,7 +41,7 @@ function handleImageUpload() {
 				echo '<p><em>The file has been uploaded!</em></p>';
 				echo '<img width = "300" src = "../pages/show_image.php?image=' . $_FILES['upload']['name'] . '">';
 				$query1 = 'UPDATE users SET profile_picture = "' . $_FILES['upload']['name'] . '" WHERE id = ' . $id;
-				mysqli_query($dbc, $query1);
+				$result1 = mysqli_query($dbc, $query1);
 			}
 		} else {
 			echo '<p class = "error">Please upload a JPEG or PNG image.</p>';
@@ -82,13 +97,13 @@ function displayForm() {
 }
 
 // If the user is viewing his or her own profile
-if ($_COOKIE['id'] == $_GET['id']) {
+if ($_COOKIE['id'] == $id) {
 	displayForm();
 }
 
 // If they submitted the form
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		handleImageUpload(); // 
+	handleImageUpload(); // 
 }	
 // If the user already has a profile picture 
 if (isset($row['profile_picture'])) {
