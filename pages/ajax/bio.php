@@ -10,7 +10,6 @@ switch ($_GET['func']) {
 		echo $row['bio'];	
 		break;
 	case "update":
-		$query = "UPDATE bio FROM users SET bio = WHERE id = {$_GET['id']} LIMIT 1";
 		$query = "SELECT bio FROM users WHERE id = {$_GET['id']} LIMIT 1";
 		$result = mysqli_query($dbc, $query);
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
@@ -19,5 +18,7 @@ switch ($_GET['func']) {
 	default:
 		break;
 }
+
+mysqli_close($dbc);
 
 ?>
