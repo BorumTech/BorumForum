@@ -16,7 +16,7 @@ include('includes/header.html');
 
 echo "<output name = 'bio' id = 'bio'>{$row['bio']}</output>";
 if ($_COOKIE['id'] == $id) {
-	echo "<input type = 'submit' id = 'edit-bio-btn' onclick = 'editBio($id)' value = 'Edit Bio'>";
+	echo "<input type = 'button' id = 'edit-bio-btn' onclick = 'editBio($id)' value = 'Edit Bio'>";
 }
 
 $query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
