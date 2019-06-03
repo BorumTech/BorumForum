@@ -2,7 +2,7 @@ function deleteSubmission() {
 	
 }
 
-function editBio(id) {
+function editBio(id, bio) {
 	/*
 	This function accomplishes two tasks
 		* Outputs the current bio in a textarea through asynchronous programming
@@ -25,10 +25,13 @@ function editBio(id) {
 	}
 
 	const url = '/pages/ajax/bio.php';
-	const params = `id=${id}&func=${func}`;
+	const params = `id=${id}&func=${func}&bio=${bio}`;
 	xhr.open("POST", url, true);
 
-	xhr.onreadystatechange = function() {
+	// Send the proper header information along with the request
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	xhr.onreadystatechange = function() { // Call a function when the state changes.
 		if (xhr.readyState == 4 && xhr.status == 200) {	
 			bioEl.nextElementSibling.value = isOutput ? "Save" : "Edit Bio";	
 
@@ -39,8 +42,7 @@ function editBio(id) {
 		}
 	}
 
-
-	xhr.send();
+	xhr.send(params);
 
 }
 

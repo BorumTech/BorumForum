@@ -10,6 +10,7 @@ switch ($_REQUEST['func']) {
 		echo $row['bio'];	
 		break;
 	case "update":
+		$query = "UPDATE bio FROM users SET bio = {$_REQUEST['bio']} WHERE id = {$_REQUEST['id']} LIMIT 1";
 		$query = "SELECT bio FROM users WHERE id = {$_REQUEST['id']} LIMIT 1";
 		$result = mysqli_query($dbc, $query);
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 

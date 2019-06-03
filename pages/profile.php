@@ -6,7 +6,9 @@ set_error_handler(function() {});
 $id = $_GET['id'];
 $query = 'SELECT id, first_name, last_name, profile_picture, bio FROM users WHERE id = ' . $id . ' LIMIT 1';
 $result = mysqli_query($dbc, $query);
-$row = mysqli_fetch_array($result);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$bio = $row['bio'];
+
 
 $page_title = "{$row['first_name']}'s Profile";
 include('includes/header.html');
@@ -14,9 +16,11 @@ include('includes/header.html');
 
 <?php 
 
-echo "<output name = 'bio' id = 'bio'>{$row['bio']}</output>";
+echo "<output name = 'bio' id = 'bio'>$bio</output>";
 if ($_COOKIE['id'] == $id) {
-	echo "<input type = 'button' id = 'edit-bio-btn' onclick = 'editBio($id)' value = 'Edit Bio'>";
+	$bio = mysqli_real_escape_string($dbc, trim($bio));
+
+	echo "<input type = 'button' id = 'edit-bio-btn' onclick = `editBio($id, \"$bio\")` value = 'Edit Bio'>";
 }
 
 $query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
