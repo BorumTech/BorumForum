@@ -14,7 +14,7 @@ switch ($_REQUEST['func']) {
 		$bio = mysqli_real_escape_string($dbc, trim($_REQUEST['bio']));
 		$query = "UPDATE users SET bio = '$bio' WHERE id = '{$_REQUEST['id']}' LIMIT 1";
 		mysqli_query($dbc, $query);
-		echo 'mysqli_affected_rows: ' . mysqli_affected_rows($dbc);
+
 		if (mysqli_affected_rows($dbc) == 1) {
 			$query = "SELECT bio FROM users WHERE id = {$_REQUEST['id']} LIMIT 1";
 			$result = mysqli_query($dbc, $query);
