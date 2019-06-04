@@ -18,8 +18,7 @@ include('includes/header.html');
 
 echo "<output name = 'bio' id = 'bio'>$bio</output>";
 if ($_COOKIE['id'] == $id) {
-	$bio = mysqli_real_escape_string($dbc, trim($bio));
-	$onclickFunc = "editBio($id, '$bio')";
+	$onclickFunc = "editBio($id)";
 	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";
 }
 
