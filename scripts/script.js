@@ -2,7 +2,7 @@ function deleteSubmission() {
 	
 }
 
-function editBio(id, bio) {
+function editBio(id) {
 	/*
 	This function accomplishes two tasks
 		* Outputs the current bio in a textarea through asynchronous programming
@@ -25,7 +25,7 @@ function editBio(id, bio) {
 	}
 
 	const url = '/pages/ajax/bio.php';
-	const params = `id=${id}&func=${func}&bio=${bio}`;
+	const params = `id=${id}&func=${func}&bio=${bioEl.value}`;
 	xhr.open("POST", url, true);
 
 	// Send the proper header information along with the request
