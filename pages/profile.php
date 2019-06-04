@@ -19,8 +19,8 @@ include('includes/header.html');
 echo "<output name = 'bio' id = 'bio'>$bio</output>";
 if ($_COOKIE['id'] == $id) {
 	$bio = mysqli_real_escape_string($dbc, trim($bio));
-
-	echo "<input type = 'button' id = 'edit-bio-btn' onclick = `editBio($id, \"$bio\")` value = 'Edit Bio'>";
+	$onclickFunc = "editBio($id, '$bio')";
+	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";
 }
 
 $query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
