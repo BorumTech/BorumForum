@@ -21,7 +21,15 @@ JOIN topics
 ON messages.forum_id = topics.id
 WHERE parent_id = 0';
 $result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
+?>
 
+<div class = "sorting" style = "float:right">
+	<a href = "/Questions?sort=top">Top</a>
+	<a href = "/Questions?sort=new">New</a>
+	<a href = "/Questions?sort=active">Active</a>
+</div>
+
+<?php
 echo "<table id = 'latest-questions'>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 	$timeelapsed = $row['date_posted'] . " days ago";
