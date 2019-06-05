@@ -6,7 +6,6 @@ table#latest-questions {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0px 20px;
-
 }
 table#latest-questions tr {
 	background-color: lightgrey;
@@ -31,7 +30,6 @@ form input, form textarea {
 }
 
 .container > .row > .col-sm-2:first-of-type {
-	border-right: 0.5px solid lightgrey;
 	height: 100vh;
 }
 
@@ -45,6 +43,15 @@ form input, form textarea {
 	padding: 15px;
 	margin: 10px 10px;
 	background-color: #e6e6e6;
+}
+
+div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty) {
+	margin-top: 0;
+	border-left: 0.5px solid lightgrey;
+}
+
+div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+	border-left: 0.5px solid lightgrey;
 }
 
 p#ques-body, p.ans-body {

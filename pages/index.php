@@ -3,7 +3,7 @@
 # 12/17/2018
 # This script is the template for the pages in Chapter 12
 
-$page_title = 'Welcome to this Site!';
+$page_title = 'Borum';
 include('includes/header.html');
 
 ?>
