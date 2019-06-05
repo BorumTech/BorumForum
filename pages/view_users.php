@@ -12,7 +12,7 @@ include('includes/header.html');
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 
-define('DISPLAY', 10); // Number of records to show per page
+define('DISPLAY', 20); // Number of records to show per page
 
 $pages = getPagesValue('id', 'users');
 $start = getStartValue();
