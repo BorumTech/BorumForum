@@ -46,7 +46,6 @@ form input, form textarea {
 }
 
 div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty) {
-	margin-top: 0;
 	border-left: 0.5px solid lightgrey;
 }
 
