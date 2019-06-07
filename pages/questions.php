@@ -19,20 +19,20 @@ $start = getStartValue();
 list($sort, $order_by) = getSortValue('messages');
 
 $q = '
-SELECT SUM(`user-message-votes`.vote), messages.id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
+SELECT `user-message-votes`.id, SUM(`user-message-votes`.vote) AS votes, messages.id AS msg_id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
 FROM messages 
 JOIN topics
 ON messages.forum_id = topics.id
 LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id';
-$where = 'messages.parent_id = 0';
-$result = performPaginationQuery($q, $order_by, $start, $where, $dbc);
+$where = 'messages.parent_id = 0 GROUP BY messages.id';
+$result = performPaginationQuery($dbc, $q, $order_by, $start, $where);
 
 ?>
 
 <div class = "sorting" style = "float:right">
-	<a href = "/Questions?sort=top">Top</a>
-	<a href = "/Questions?sort=new">New</a>
-	<a href = "/Questions?sort=active">Active</a>
+	<a class = "<?php echo $sort == 'top' ? 'active': ''; ?>" href = "/Questions?sort=top">Top</a>
+	<a class = "<?php echo $sort == 'new' ? 'active': ''; ?>" href = "/Questions?sort=new">New</a>
+	<a class = "<?php echo $sort == 'active' ? 'active': ''; ?>"href = "/Questions?sort=active">Active</a>
 </div>
 
 <?php
@@ -47,7 +47,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	}
 	echo "
 	<tr>
-	<td align = \"left\"><a href = \"Questions/{$row['id']}\">{$row['subject']}</a></td>
+	<td align = \"left\"><a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a></td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>
 	";

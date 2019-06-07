@@ -25,7 +25,7 @@ define('FNARR', isset($_GET['sort']) && $_GET['sort'] == 'fn' ? ARR : '');
 define('RDARR', isset($_GET['sort']) && $_GET['sort'] == 'rd' ? ARR : '');
 
 $q = 'SELECT last_name, first_name, DATE_FORMAT(registration_date, \'%M %d, %Y\') AS dr, id FROM users';
-$result = performPaginationQuery($q, $order_by, $start, $dbc);
+$result = performPaginationQuery($dbc, $q, $order_by, $start);
 
 // Table header
 $adminControls = ISADMIN ? '<th align = "left"><strong>Edit</strong></th>

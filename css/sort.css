@@ -15,5 +15,5 @@
 }
 
 .sorting a.active {
-	background-color: grey;
+	background-color: hsl(168, 100%, 90%);
 }

@@ -88,7 +88,7 @@ function getSortValue($table) {
 		// Determine how the results should be ordered
 		switch ($sort) {
 			case 'top':
-				$order_by = '';
+				$order_by = 'SUM(`user-message-votes`.vote) DESC';
 				break;
 			case 'new':
 				$order_by = 'date_entered DESC';
@@ -145,7 +145,7 @@ function setPreviousAndNextLinks($pageName) {
 	}
 }
 
-function performPaginationQuery($query, $order_by, $start, $where, $dbc) {
+function performPaginationQuery($dbc, $query, $order_by, $start, $where = '1=1') {
 
 	// Define the query
 	$query = "$query WHERE $where ORDER BY $order_by LIMIT $start, " . DISPLAY;
