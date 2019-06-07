@@ -2,11 +2,13 @@
 
 $page_title = "Questions";
 include('includes/header.html');
-?>
+?></div>
+<div class = "col-sm-10">
 
 <h1>Recent Questions</h1>
 
 <?php 
+
 require('includes/pagination_functions.inc.php');
 
 define('DISPLAY', 10); // Number of records to show per page
@@ -14,13 +16,17 @@ define('DISPLAY', 10); // Number of records to show per page
 $pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0');
 $start = getStartValue();
 
+list($sort, $order_by) = getSortValue('messages');
+
 $q = '
-SELECT messages.id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
+SELECT SUM(`user-message-votes`.vote), messages.id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
 FROM messages 
 JOIN topics
 ON messages.forum_id = topics.id
-WHERE parent_id = 0';
-$result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
+LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id';
+$where = 'messages.parent_id = 0';
+$result = performPaginationQuery($q, $order_by, $start, $where, $dbc);
+
 ?>
 
 <div class = "sorting" style = "float:right">

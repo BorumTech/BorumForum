@@ -1,9 +1,17 @@
+.sorting {
+	display: flex;
+}
+
 .sorting a {
+	display: inline-block;
 	border: 1px solid lightgrey;
-	border-collapse: collapse;
 	padding: 10px;
 	margin-left: 0;
 	margin-right: 0;
+}
+
+.sorting a:not(:last-child) {
+	border-right: 0;
 }
 
 .sorting a.active {
