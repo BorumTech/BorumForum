@@ -38,6 +38,8 @@ $result = performPaginationQuery($dbc, $q, $order_by, $start, $where);
 <?php
 echo "<table id = 'latest-questions'>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
+	$votes = isset($row['votes']) ? $row['votes'] : 0;
+	$answers = isset($rowCorr['answers']) ? $rowCorr['answers'] : 0;
 	$timeelapsed = $row['date_posted'] . " days ago";
 
 	if ($row['date_posted'] == 0) {
@@ -47,6 +49,8 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	}
 	echo "
 	<tr>
+	<td><div class = 'numbers'>Votes<span>$votes</span></div></td>
+	<td><div class = 'numbers'>Answers<span>$answers</span></div></td>
 	<td align = \"left\"><a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a></td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>

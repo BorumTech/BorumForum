@@ -17,3 +17,14 @@
 .sorting a.active {
 	background-color: hsl(168, 100%, 90%);
 }
+
+.numbers {
+	border: 1px solid orange;
+	padding: 5px;
+	font-size: 15px;
+}
+
+.numbers span {
+	display: block;
+	text-align: center;
+}
