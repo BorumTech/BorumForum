@@ -20,7 +20,7 @@ list($sort, $order_by) = getSortValue('messages');
 
 $q = '
 SELECT
-    *
+    T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, T2.answers AS answers
 FROM
     (
     SELECT
@@ -39,8 +39,7 @@ FROM
     GROUP BY
         messages.id
     ORDER BY
-        date_entered
-    DESC
+        ' . $order_by . '
 LIMIT ' . $start . ', ' . DISPLAY . ') T1
     LEFT OUTER JOIN(
         SELECT
@@ -71,7 +70,7 @@ $result = mysqli_query($dbc, $q);
 echo "<table id = 'latest-questions'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 	$votes = isset($row['votes']) ? $row['votes'] : 0;
-	$answers = isset($row['T2.answers']) ? $row['T2.answers'] : 0;
+	$answers = isset($row['answers']) ? $row['answers'] : 0;
 	$timeelapsed = $row['date_posted'] . " days ago";
 
 	if ($row['date_posted'] == 0) {
