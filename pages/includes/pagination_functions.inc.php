@@ -88,13 +88,16 @@ function getSortValue($table) {
 		// Determine how the results should be ordered
 		switch ($sort) {
 			case 'top':
-				$order_by = 'SUM(`user-message-votes`.vote) DESC';
+				$order_by = 'T1.votes DESC';
 				break;
 			case 'new':
-				$order_by = 'date_entered DESC';
+				$order_by = 'T1.date_posted';
+				break;
+			case 'active':
+				$order_by = 'T2.answers DESC';
 				break;
 			default:
-				$order_by = 'date_entered DESC';
+				$order_by = 'T1.date_posted';
 				echo "This sorting category is not supported or implemented.";
 				break; 
 		}

@@ -38,8 +38,6 @@ FROM
         messages.parent_id = 0
     GROUP BY
         messages.id
-    ORDER BY
-        ' . $order_by . '
 LIMIT ' . $start . ', ' . DISPLAY . ') T1
     LEFT OUTER JOIN(
         SELECT
@@ -54,7 +52,9 @@ LIMIT ' . $start . ', ' . DISPLAY . ') T1
             parent_id
     ) T2
 ON
-    T1.msg_id = T2.parent_id';
+    T1.msg_id = T2.parent_id
+ORDER BY
+        ' . $order_by;
 $result = mysqli_query($dbc, $q);
 
 ?>
