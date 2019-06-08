@@ -71,9 +71,15 @@ p#ques-body, p.ans-body {
 	float: left;
 }
 
-.question-tags {
+div.question-tags {
 	width: 105px;
 	height: 25px;
+}
+
+a.question-tags {
+	display: block;
+	text-align: center;
+	width: 200px;
 }
 
 .question-poster {

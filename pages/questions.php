@@ -38,7 +38,7 @@ FROM
         messages.parent_id = 0
     GROUP BY
         messages.id
-LIMIT ' . $start . ', ' . DISPLAY . ') T1
+) T1
     LEFT OUTER JOIN(
         SELECT
             id,
@@ -53,8 +53,9 @@ LIMIT ' . $start . ', ' . DISPLAY . ') T1
     ) T2
 ON
     T1.msg_id = T2.parent_id
+
 ORDER BY
-        ' . $order_by;
+        ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
 $result = mysqli_query($dbc, $q);
 
 ?>
@@ -82,7 +83,10 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 	<tr>
 	<td><div class = 'numbers'>Votes<span>$votes</span></div></td>
 	<td><div class = 'numbers'>Answers<span>$answers</span></div></td>
-	<td align = \"left\"><a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a></td>
+	<td align = \"left\">
+		<a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
+		<a class = \"question-tags\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
+	</td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>
 	";
