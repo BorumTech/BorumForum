@@ -18,44 +18,86 @@ $start = getStartValue();
 
 list($sort, $order_by) = getSortValue('messages');
 
-$q = '
-SELECT
-    T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, T2.answers AS answers
-FROM
-    (
+if ($order_by != 'unanswered') {
+    $q = '
     SELECT
-        `user-message-votes`.id,
-        SUM(`user-message-votes`.vote) AS votes,
-        messages.id AS msg_id,
-        messages.subject,
-        DATEDIFF(NOW(), messages.date_entered) AS date_posted,
-        topics.name
+        T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
     FROM
-        messages
-    JOIN topics ON messages.forum_id = topics.id
-    LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
-    WHERE
-        messages.parent_id = 0
-    GROUP BY
-        messages.id
-) T1
-    LEFT OUTER JOIN(
+        (
         SELECT
-            id,
-            parent_id,
-            COUNT(*) AS answers
+            `user-message-votes`.id,
+            IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
+            messages.id AS msg_id,
+            messages.subject,
+            DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
+            topics.name
         FROM
             messages
+        JOIN topics ON messages.forum_id = topics.id
+        LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
         WHERE
-            parent_id != 0
+            messages.parent_id = 0
         GROUP BY
-            parent_id
-    ) T2
-ON
-    T1.msg_id = T2.parent_id
+            messages.id
+    ) T1
+        LEFT OUTER JOIN(
+            SELECT
+                id,
+                parent_id,
+                COUNT(id) AS answers
+            FROM
+                messages
+            WHERE
+                parent_id != 0
+            GROUP BY
+                parent_id
+        ) T2
+    ON
+        T1.msg_id = T2.parent_id
+    ORDER BY
+            ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
 
-ORDER BY
-        ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
+} else {
+    $q = '
+    SELECT
+        T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
+    FROM
+        (
+        SELECT
+            `user-message-votes`.id,
+            IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
+            messages.id AS msg_id,
+            messages.subject,
+            DATEDIFF(NOW(), messages.date_entered) AS date_posted,
+            topics.name
+        FROM
+            messages
+        JOIN topics ON messages.forum_id = topics.id
+        LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
+        WHERE
+            messages.parent_id = 0
+        GROUP BY
+            messages.id
+    ) T1
+        LEFT OUTER JOIN(
+            SELECT
+                id,
+                parent_id,
+                COUNT(id) AS answers
+            FROM
+                messages
+            WHERE
+                parent_id != 0
+            GROUP BY
+                parent_id
+        ) T2
+    ON
+        T1.msg_id = T2.parent_id
+    WHERE T2.answers IS NULL
+    ORDER BY T1.votes DESC
+    LIMIT ' . $start . ', ' . DISPLAY;   
+}
+
 $result = mysqli_query($dbc, $q);
 
 ?>
@@ -70,8 +112,6 @@ $result = mysqli_query($dbc, $q);
 <?php
 echo "<table id = 'latest-questions'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
-	$votes = isset($row['votes']) ? $row['votes'] : 0;
-	$answers = isset($row['answers']) ? $row['answers'] : 0;
 	$timeelapsed = $row['date_posted'] . " days ago";
 
 	if ($row['date_posted'] == 0) {
@@ -81,8 +121,8 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 	}
 	echo "
 	<tr>
-	<td><div class = 'numbers'>Votes<span>$votes</span></div></td>
-	<td><div class = 'numbers'>Answers<span>$answers</span></div></td>
+	<td><div class = 'numbers'>Votes<span>{$row['votes']}</span></div></td>
+	<td><div class = 'numbers'>Answers<span>{$row['answers']}</span></div></td>
 	<td align = \"left\">
 		<a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
 		<a class = \"question-tags\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>

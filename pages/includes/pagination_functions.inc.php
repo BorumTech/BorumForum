@@ -91,13 +91,16 @@ function getSortValue($table) {
 				$order_by = 'T1.votes DESC';
 				break;
 			case 'new':
-				$order_by = 'T1.date_posted';
+				$order_by = 'de DESC';
 				break;
 			case 'active':
 				$order_by = 'T2.answers DESC';
 				break;
+			case 'unanswered':
+				$order_by = 'unanswered';
+				break;
 			default:
-				$order_by = 'T1.date_posted';
+				$order_by = 'de DESC';
 				echo "This sorting category is not supported or implemented.";
 				break; 
 		}
