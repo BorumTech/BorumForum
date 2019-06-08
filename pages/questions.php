@@ -19,13 +19,44 @@ $start = getStartValue();
 list($sort, $order_by) = getSortValue('messages');
 
 $q = '
-SELECT `user-message-votes`.id, SUM(`user-message-votes`.vote) AS votes, messages.id AS msg_id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
-FROM messages 
-JOIN topics
-ON messages.forum_id = topics.id
-LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id';
-$where = 'messages.parent_id = 0 GROUP BY messages.id';
-$result = performPaginationQuery($dbc, $q, $order_by, $start, $where);
+SELECT
+    *
+FROM
+    (
+    SELECT
+        `user-message-votes`.id,
+        SUM(`user-message-votes`.vote) AS votes,
+        messages.id AS msg_id,
+        messages.subject,
+        DATEDIFF(NOW(), messages.date_entered) AS date_posted,
+        topics.name
+    FROM
+        messages
+    JOIN topics ON messages.forum_id = topics.id
+    LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
+    WHERE
+        messages.parent_id = 0
+    GROUP BY
+        messages.id
+    ORDER BY
+        date_entered
+    DESC
+LIMIT ' . $start . ', ' . DISPLAY . ') T1
+    LEFT OUTER JOIN(
+        SELECT
+            id,
+            parent_id,
+            COUNT(*) AS answers
+        FROM
+            messages
+        WHERE
+            parent_id != 0
+        GROUP BY
+            parent_id
+    ) T2
+ON
+    T1.msg_id = T2.parent_id';
+$result = mysqli_query($dbc, $q);
 
 ?>
 
@@ -33,13 +64,14 @@ $result = performPaginationQuery($dbc, $q, $order_by, $start, $where);
 	<a class = "<?php echo $sort == 'top' ? 'active': ''; ?>" href = "/Questions?sort=top">Top</a>
 	<a class = "<?php echo $sort == 'new' ? 'active': ''; ?>" href = "/Questions?sort=new">New</a>
 	<a class = "<?php echo $sort == 'active' ? 'active': ''; ?>"href = "/Questions?sort=active">Active</a>
+	<a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions?sort=unanswered">Unanswered</a>
 </div>
 
 <?php
 echo "<table id = 'latest-questions'>";
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
+while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 	$votes = isset($row['votes']) ? $row['votes'] : 0;
-	$answers = isset($rowCorr['answers']) ? $rowCorr['answers'] : 0;
+	$answers = isset($row['T2.answers']) ? $row['T2.answers'] : 0;
 	$timeelapsed = $row['date_posted'] . " days ago";
 
 	if ($row['date_posted'] == 0) {
@@ -59,7 +91,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 }
 echo "</table>";
 
-mysqli_free_result($result);
+@mysqli_free_result($result);
 mysqli_close($dbc);
 
 setPreviousAndNextLinks('Questions');

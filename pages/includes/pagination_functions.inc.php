@@ -93,10 +93,9 @@ function getSortValue($table) {
 			case 'new':
 				$order_by = 'date_entered DESC';
 				break;
-			case 'active':
-				$order_by = '';
-				break;
 			default:
+				$order_by = 'date_entered DESC';
+				echo "This sorting category is not supported or implemented.";
 				break; 
 		}
 
@@ -149,7 +148,7 @@ function performPaginationQuery($dbc, $query, $order_by, $start, $where = '1=1')
 
 	// Define the query
 	$query = "$query WHERE $where ORDER BY $order_by LIMIT $start, " . DISPLAY;
-	$result = mysqli_query($dbc, $query);
+	$result = @mysqli_query($dbc, $query);
 
 	return $result;
 }
