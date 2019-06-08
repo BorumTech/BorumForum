@@ -24,7 +24,7 @@
 	LEFT OUTER JOIN `user-message-votes` 
 	ON messages.id = `user-message-votes`.`message_id` 
 	WHERE messages.parent_id = ' . $_GET['id'] . '
-	GROUP BY messages.id';
+	GROUP BY messages.id ORDER BY SUM(`user-message-votes`.vote) DESC';
 	$result2 = mysqli_query($dbc, $query2);
 
 	define("QUESNOVOTES", mysqli_num_rows($resultCorr) == 0);
@@ -119,8 +119,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td class = "question-tags">
-						<div>
+					<td>
+						<div class = "question-tags">
 							<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
 						</div>
 					</td>

@@ -60,27 +60,53 @@ function getDirection() {
 	return [$direction, $order_in];
 }
 
-function getSortValue() {
-	$sort = isset($_GET['sort']) ? $_GET['sort'] : 'rd'; // Define a sort variable to determine how query results are to be ordered
-	list($direction, $order_in) = getDirection();
+function getSortValue($table) {
+	if ($table == 'users') {
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : 'rd'; // Define a sort variable to determine how query results are to be ordered
+		list($direction, $order_in) = getDirection();
 
-	// Determine how the results should be ordered
-	switch ($sort) {
-		case 'ln':
-			$order_by = 'last_name ' . $order_in;
-			break;
-		case 'fn':
-			$order_by = 'first_name ' . $order_in;
-			break;
-		case 'rd':
-			$order_by = 'registration_date ' . $order_in;
-			break;
-		default: 
-			$order_by = 'registration_date '. $order_in;
-			break;
+		// Determine how the results should be ordered
+		switch ($sort) {
+			case 'ln':
+				$order_by = 'last_name ' . $order_in;
+				break;
+			case 'fn':
+				$order_by = 'first_name ' . $order_in;
+				break;
+			case 'rd':
+				$order_by = 'registration_date ' . $order_in;
+				break;
+			default: 
+				$order_by = 'registration_date '. $order_in;
+				break;
+		}
+
+		return [$sort, $order_by, $direction, $order_in];
+	} else if ($table == 'messages') {
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : 'new';
+
+		// Determine how the results should be ordered
+		switch ($sort) {
+			case 'top':
+				$order_by = 'T1.votes DESC';
+				break;
+			case 'new':
+				$order_by = 'T1.date_posted';
+				break;
+			case 'active':
+				$order_by = 'T2.answers DESC';
+				break;
+			default:
+				$order_by = 'T1.date_posted';
+				echo "This sorting category is not supported or implemented.";
+				break; 
+		}
+
+		return [$sort, $order_by];
+	} else {
+
 	}
-
-	return [$sort, $order_by, $direction, $order_in];
+	
 }
 
 function setPreviousAndNextLinks($pageName) {
@@ -121,11 +147,11 @@ function setPreviousAndNextLinks($pageName) {
 	}
 }
 
-function performPaginationQuery($query, $order_by, $start, $dbc) {
+function performPaginationQuery($dbc, $query, $order_by, $start, $where = '1=1') {
 
 	// Define the query
-	$query = "$query ORDER BY $order_by LIMIT $start, " . DISPLAY;
-	$result = mysqli_query($dbc, $query);
+	$query = "$query WHERE $where ORDER BY $order_by LIMIT $start, " . DISPLAY;
+	$result = @mysqli_query($dbc, $query);
 
 	return $result;
 }

@@ -2,11 +2,13 @@
 
 $page_title = "Questions";
 include('includes/header.html');
-?>
+?></div>
+<div class = "col-sm-10">
 
 <h1>Recent Questions</h1>
 
 <?php 
+
 require('includes/pagination_functions.inc.php');
 
 define('DISPLAY', 10); // Number of records to show per page
@@ -14,24 +16,62 @@ define('DISPLAY', 10); // Number of records to show per page
 $pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0');
 $start = getStartValue();
 
+list($sort, $order_by) = getSortValue('messages');
+
 $q = '
-SELECT messages.id, messages.subject, DATEDIFF(NOW(), messages.date_entered) AS date_posted, topics.name 
-FROM messages 
-JOIN topics
-ON messages.forum_id = topics.id
-WHERE parent_id = 0';
-$result = performPaginationQuery($q, 'date_entered DESC', $start, $dbc);
+SELECT
+    T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, T2.answers AS answers
+FROM
+    (
+    SELECT
+        `user-message-votes`.id,
+        SUM(`user-message-votes`.vote) AS votes,
+        messages.id AS msg_id,
+        messages.subject,
+        DATEDIFF(NOW(), messages.date_entered) AS date_posted,
+        topics.name
+    FROM
+        messages
+    JOIN topics ON messages.forum_id = topics.id
+    LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
+    WHERE
+        messages.parent_id = 0
+    GROUP BY
+        messages.id
+) T1
+    LEFT OUTER JOIN(
+        SELECT
+            id,
+            parent_id,
+            COUNT(*) AS answers
+        FROM
+            messages
+        WHERE
+            parent_id != 0
+        GROUP BY
+            parent_id
+    ) T2
+ON
+    T1.msg_id = T2.parent_id
+
+ORDER BY
+        ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
+$result = mysqli_query($dbc, $q);
+
 ?>
 
 <div class = "sorting" style = "float:right">
-	<a href = "/Questions?sort=top">Top</a>
-	<a href = "/Questions?sort=new">New</a>
-	<a href = "/Questions?sort=active">Active</a>
+	<a class = "<?php echo $sort == 'top' ? 'active': ''; ?>" href = "/Questions?sort=top">Top</a>
+	<a class = "<?php echo $sort == 'new' ? 'active': ''; ?>" href = "/Questions?sort=new">New</a>
+	<a class = "<?php echo $sort == 'active' ? 'active': ''; ?>"href = "/Questions?sort=active">Active</a>
+	<a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions?sort=unanswered">Unanswered</a>
 </div>
 
 <?php
 echo "<table id = 'latest-questions'>";
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
+while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
+	$votes = isset($row['votes']) ? $row['votes'] : 0;
+	$answers = isset($row['answers']) ? $row['answers'] : 0;
 	$timeelapsed = $row['date_posted'] . " days ago";
 
 	if ($row['date_posted'] == 0) {
@@ -41,7 +81,12 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 	}
 	echo "
 	<tr>
-	<td align = \"left\"><a href = \"Questions/{$row['id']}\">{$row['subject']}</a></td>
+	<td><div class = 'numbers'>Votes<span>$votes</span></div></td>
+	<td><div class = 'numbers'>Answers<span>$answers</span></div></td>
+	<td align = \"left\">
+		<a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
+		<a class = \"question-tags\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
+	</td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>
 	";
@@ -49,7 +94,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the r
 }
 echo "</table>";
 
-mysqli_free_result($result);
+@mysqli_free_result($result);
 mysqli_close($dbc);
 
 setPreviousAndNextLinks('Questions');

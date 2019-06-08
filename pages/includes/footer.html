@@ -23,7 +23,7 @@
 		        console.log(document.getElementById(el));
 		    }
 	  	}
-		const page = "../ajax/vote" + way;
+		const page = "/pages/ajax/vote" + way + ".php";
 		xmlhttp.open("GET", page + "?user_id=" + user_id + "&message_id=" + msg_id, true);
 		xmlhttp.send();
 
