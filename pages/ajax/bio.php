@@ -8,20 +8,18 @@ switch ($_REQUEST['func']) {
 		$result = mysqli_query($dbc, $query);
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 		echo $row['bio'];	
-		mysqli_free_result($result);
+		@mysqli_free_result($result);
 		break;
 	case "update":
 		$bio = mysqli_real_escape_string($dbc, trim($_REQUEST['bio']));
 		$query = "UPDATE users SET bio = '$bio' WHERE id = '{$_REQUEST['id']}' LIMIT 1";
 		mysqli_query($dbc, $query);
 
-		if (mysqli_affected_rows($dbc) == 1) {
-			$query = "SELECT bio FROM users WHERE id = {$_REQUEST['id']} LIMIT 1";
-			$result = mysqli_query($dbc, $query);
-			$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-			echo $row['bio'];		
-		}
-	
+		$query = "SELECT bio FROM users WHERE id = {$_REQUEST['id']} LIMIT 1";
+		$result = mysqli_query($dbc, $query);
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+		echo $row['bio'];		
+		@mysqli_free_result($result);
 		break;
 	default:
 		break;

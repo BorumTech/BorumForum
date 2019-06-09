@@ -76,7 +76,7 @@ include('includes/header.html');
 
 				mysqli_error($dbc); // Close the database connection
 
-				include('/Borum/pages/includes/footer.html'); // Include the footer
+				include('/pages/includes/footer.html'); // Include the footer
 				exit(); // Quit the script (to not show the form)
 			} else { // Report the errors 
 				echo '<h1>Error!</h1>
@@ -112,7 +112,7 @@ include('includes/header.html');
 	</p>
 	<p>
 		<label>Confirm New Password: </label>
-		<input type = "password" name = "pass2" size = "10" maxlength = "20" value = "<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" >
+		<input type = "password" name = "pass2" size = "10" maxlength = "20">
 	</p>
 	<p>
 		<input type = "submit" name = "submit" value = "Change Password">

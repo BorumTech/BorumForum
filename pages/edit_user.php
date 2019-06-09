@@ -6,7 +6,7 @@
 $page_title = 'Edit a User';
 include('includes/header.html');
 require('includes/login_functions.inc.php');
-if (!ISADMIN) {
+if (!ISADMIN && !(isset($_COOKIE['id']) && isset($_GET['id']) && $_COOKIE['id'] == $_GET['id'])) {
 	redirect_user('../index');
 }
 

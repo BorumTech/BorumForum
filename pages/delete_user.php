@@ -6,14 +6,15 @@
 $page_title = 'Delete a User';
 include('includes/header.html');
 require('includes/login_functions.inc.php');
-if (!ISADMIN) {
+if (!ISADMIN && !(isset($_COOKIE['id']) && isset($_GET['id']) && $_COOKIE['id'] == $_GET['id'])) {
 	redirect_user('../index');
 }
-?>
 
-<h1>Delete a User</h1>
+define('ISUSER', $_COOKIE['id'] == $_GET['id']);
 
-<?php 
+
+echo ISUSER ? '<h1 style = "color: red">Delete Your Account</h1>' : '<h1>Delete a User</h1>';
+
 
 // Check for a valid user ID through GET or POST
 if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
@@ -46,14 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } else { // Show the form
 	// Retrieve the user's information
-	$q = "SELECT CONCAT(LAST_name, ', ', first_name) FROM users WHERE id=$id";
+	$q = "SELECT CONCAT(last_name, ', ', first_name) FROM users WHERE id=$id";
 	$r = @mysqli_query($dbc, $q);
 
 	if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form
 		$row = mysqli_fetch_array($r, MYSQLI_NUM);
-		echo "<h3>Name: $row[0]</h3>
-		Are you sure you want to delete this user?";
-		echo '<form action = "delete_user.php" method = "post">
+		echo "<h3>Name: $row[0]</h3>";
+		echo ISUSER ? '<p style = "color:red"><strong>Are you sure you would like to permanently delete your account? If you confirm deletion, there is no going back. All data is deleted permanently</strong></p>' : '<p>Are you sure you want to delete this user?</p>';
+		echo '<form action = "" method = "post">
 		<input type = "radio" name = "sure" value = "Yes"> Yes
 		<input type = "radio" name = "sure" value = "No" checked="checked"> No
 		<input type = "submit" name = "submit" value = "Submit">
