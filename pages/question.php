@@ -209,15 +209,15 @@
 					if (isset($_COOKIE['id'])) {
 						$user_id = $_COOKIE['id'];
 						$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
-						$r = mysqli_query($dbc, $q);
+						$r = @mysqli_query($dbc, $q);
 						$num = mysqli_num_rows($r);
 
 						if ($num == 0) { // No answers that match this one (no duplicates) on the current question
 							$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['msg_id']}, $user_id, '$ans', NOW())";
-							mysqli_query($dbc, $q);
+							@mysqli_query($dbc, $q);
 						}
 					} else {
-						redirect_user('../Login');
+						echo "<script>alert(\"The question could not be added because you are not logged in.\");</script>";
 					}
 					break;
 				case "edit-question":
