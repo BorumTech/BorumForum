@@ -11,10 +11,11 @@
 			text-decoration: none;
 			margin-bottom: 30px;
 			padding: 5px;
+			color: rgb(15, 160, 255);
 		}
 
 		a:visited {
-			color: blue;
+			color: rgb(15, 168, 255);
 		}
 
 		.switch {
@@ -116,6 +117,8 @@
 		</label>
 		<span id = "text">Dark mode</span>
 	</div>
+	<a href = "/">Home</a>
+	<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
 	<script>
 		function getCookie(cname) {
 		  var name = cname + "=";
