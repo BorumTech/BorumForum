@@ -86,7 +86,7 @@
 	<link href = "../css/settings.css" rel = "stylesheet" type = "text/css">
 	<title>Settings</title>
 </head>
-<body class = "t--light">
+<body class = "<?php echo isset($_COOKIE['dark']) ? 't--dark' : 't--light'; ?>">
 	<h1>Settings</h1>
 	<a href = "password">Change password</a>
 	<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
@@ -94,7 +94,8 @@
 	<!-- Rectangular switch -->
 	<div class = "dark-mode">
 		<label class="switch">
-	  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item">
+	  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
+	  		<?php echo isset($_COOKIE['dark']) ? 'checked' : '' ?> >
 	  		<span class="slider"></span>
 		</label>
 		<span id = "text">Dark mode</span>
@@ -102,5 +103,26 @@
 	<a href = "/">Home</a>
 	<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
 	<script src = "../scripts/settings.js"></script>
+	<script>
+		document
+		  .querySelector('.js-change-theme')
+		  .addEventListener('click', () => {
+		    const body = document.querySelector('body');
+		  
+		    if (body.classList.contains('t--light')) {
+		      body.classList.remove('t--light');
+		      body.classList.add('t--dark');
+		      console.log('dark');
+		      <?php setcookie('dark', 'true', time() + 3600, '/', '', 0, 0); ?>
+		    }
+		    else {
+		      body.classList.remove('t--dark');
+		      body.classList.add('t--light');
+		      console.log('not dark');
+		      <?php // setcookie('dark', '', time() - 3600, '/', '', 0, 0); ?>
+		    }
+		  })
+		;
+	</script>
 </body>
 </html>
