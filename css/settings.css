@@ -1,0 +1,17 @@
+/* Dark and light mode*/
+/* light theme */
+.t--light {
+  background-color: hsl(0, 0%, 99.99%);
+  color: hsl(0, 0%, 5%);
+}
+
+/* dark theme */
+.t--dark {
+  background-color: hsl(0, 0%, 15%);
+  color: hsl(0, 0%, 95%);
+  
+  /* font hack for dark themes */
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  -webkit-text-stroke: 1px transparent;
+}

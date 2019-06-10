@@ -82,26 +82,8 @@
 		#text {
 			font-family: sans-serif;
 		}
-
-		/* Dark and light mode*/
-		/* light theme */
-		.t--light {
-		  background-color: hsl(0, 0%, 99.99%);
-		  color: hsl(0, 0%, 5%);
-		}
-
-		/* dark theme */
-		.t--dark {
-		  background-color: hsl(0, 0%, 15%);
-		  color: hsl(0, 0%, 95%);
-		  
-		  /* font hack for dark themes */
-		  -webkit-font-smoothing: antialiased !important;
-		  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-		  -webkit-text-stroke: 1px transparent;
-		}
-
 	</style>
+	<link href = "../css/settings.css" rel = "stylesheet" type = "text/css">
 	<title>Settings</title>
 </head>
 <body class = "t--light">
@@ -119,40 +101,6 @@
 	</div>
 	<a href = "/">Home</a>
 	<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
-	<script>
-		function getCookie(cname) {
-		  var name = cname + "=";
-		  var decodedCookie = decodeURIComponent(document.cookie);
-		  var ca = decodedCookie.split(';');
-		  for(var i = 0; i <ca.length; i++) {
-		    var c = ca[i];
-		    while (c.charAt(0) == ' ') {
-		      c = c.substring(1);
-		    }
-		    if (c.indexOf(name) == 0) {
-		      return c.substring(name.length, c.length);
-		    }
-		  }
-		  return "";
-		}
-
-		document
-		  .querySelector('.js-change-theme')
-		  .addEventListener('click', () => {
-		    const body = document.querySelector('body');
-		  
-		    if (body.classList.contains('t--light')) {
-		      body.classList.remove('t--light');
-		      body.classList.add('t--dark');
-		    }
-		    else {
-		      body.classList.remove('t--dark');
-		      body.classList.add('t--light');
-		    }
-		  })
-		;
-
-
-	</script>
+	<script src = "../scripts/settings.js"></script>
 </body>
 </html>
