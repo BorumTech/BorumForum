@@ -82,12 +82,28 @@
 			font-family: sans-serif;
 		}
 
-		/* */
+		/* Dark and light mode*/
+		/* light theme */
+		.t--light {
+		  background-color: hsl(0, 0%, 99.99%);
+		  color: hsl(0, 0%, 5%);
+		}
+
+		/* dark theme */
+		.t--dark {
+		  background-color: hsl(0, 0%, 15%);
+		  color: hsl(0, 0%, 95%);
+		  
+		  /* font hack for dark themes */
+		  -webkit-font-smoothing: antialiased !important;
+		  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+		  -webkit-text-stroke: 1px transparent;
+		}
 
 	</style>
 	<title>Settings</title>
 </head>
-<body>
+<body class = "t--light">
 	<h1>Settings</h1>
 	<a href = "password">Change password</a>
 	<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
@@ -95,7 +111,7 @@
 	<!-- Rectangular switch -->
 	<div class = "dark-mode">
 		<label class="switch">
-	  		<input type="checkbox">
+	  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item">
 	  		<span class="slider"></span>
 		</label>
 		<span id = "text">Dark mode</span>
@@ -116,6 +132,23 @@
 		  }
 		  return "";
 		}
+
+		document
+		  .querySelector('.js-change-theme')
+		  .addEventListener('click', () => {
+		    const body = document.querySelector('body');
+		  
+		    if (body.classList.contains('t--light')) {
+		      body.classList.remove('t--light');
+		      body.classList.add('t--dark');
+		    }
+		    else {
+		      body.classList.remove('t--dark');
+		      body.classList.add('t--light');
+		    }
+		  })
+		;
+
 
 	</script>
 </body>
