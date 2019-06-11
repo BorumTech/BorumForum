@@ -109,18 +109,19 @@
 		  .addEventListener('click', () => {
 		    const body = document.querySelector('body');
 		  
-		    if (body.classList.contains('t--light')) {
+		    if (body.classList.contains('t--light')) { // When they turn dark mode on
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
 		      console.log('dark');
-		      <?php setcookie('dark', 'true', time() + 3600, '/', '', 0, 0); ?>
+		      document.cookie = "dark=; path=/";
 		    }
-		    else {
+		    else { // When they turn dark mode off
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
 		      console.log('not dark');
-		      <?php // setcookie('dark', '', time() - 3600, '/', '', 0, 0); ?>
+		      document.cookie = "dark=true; path=/";
 		    }
+
 		  })
 		;
 	</script>
