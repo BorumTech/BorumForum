@@ -13,3 +13,7 @@ function getCookie(cname) {
   }
   return "";
 }
+
+function inDarkMode() {
+  return getCookie('dark');
+}

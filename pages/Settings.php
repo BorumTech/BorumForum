@@ -109,21 +109,29 @@
 		  .addEventListener('click', () => {
 		    const body = document.querySelector('body');
 		  
-		    if (body.classList.contains('t--light')) { // When they turn dark mode on
+		    if (body.classList.contains('t--light')) { // When they turn dark mode oFF
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
 		      console.log('dark');
-		      document.cookie = "dark=; path=/";
+		      document.cookie = "dark=true; path=/";
 		    }
-		    else { // When they turn dark mode off
+		    else { // When they turn dark mode oN
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
 		      console.log('not dark');
-		      document.cookie = "dark=true; path=/";
+			  document.cookie = "dark=; path=/";
 		    }
 
 		  })
 		;
+
+		document.querySelector('body').className = inDarkMode() ? 't--dark' : 't--light';
+		if (inDarkMode()) {
+			document.querySelector('div.dark-mode label.switch input.js-change-theme').setAttribute('checked', 'true');		
+		} else {
+			document.querySelector('div.dark-mode label.switch input.js-change-theme').removeAttribute('checked');
+		}
+
 	</script>
 </body>
 </html>

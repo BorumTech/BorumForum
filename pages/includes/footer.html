@@ -67,22 +67,12 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-<?php 
-	if (isset($_COOKIE['dark'])) {
-		echo "
-		<script>
-			document.querySelector('body').classList.remove('t--light');
-			document.querySelector('body').classList.add('t--dark');
-		</script>
-		";
-	} else {
-		echo "
-		<script>
-		document.querySelector('body').classList.remove('t--dark');
-		document.querySelector('body').classList.add('t--light');
-		</script>
-		";
+<script src = "../scripts/settings.js"></script>
+<script>
+	if (inDarkMode()) {
+		document.querySelector('body').className = 't--dark';
 	}
-?>
+</script>
+
 </body>
 </html>
