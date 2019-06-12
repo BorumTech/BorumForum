@@ -16,7 +16,7 @@ include('includes/header.html');
 
 <?php 
 
-echo "<output name = 'bio' id = 'bio'>$bio</output>";
+echo "<div class = 'col-sm-6'><output name = 'bio' id = 'bio'>$bio</output>";
 if ($_COOKIE['id'] == $id) {
 	$onclickFunc = "editBio($id)";
 	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";

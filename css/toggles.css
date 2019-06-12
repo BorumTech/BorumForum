@@ -56,12 +56,13 @@ output#bio {
 }
 
 .home-page button {
-	margin-top: 5%;
+	margin-top: 2.5%;
 	font-size: 5em;
 	padding: 5% 10%;
 	border-width: 4px;
 	border-style: solid;
 	text-transform: uppercase;
+	margin-bottom: 2.5%;
 }
 
 .t--light .home-page button {
