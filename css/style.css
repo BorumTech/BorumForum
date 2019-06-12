@@ -31,7 +31,6 @@ form input, form textarea {
 }
 
 .container > .row > .col-sm-2:first-of-type .fixed-sidebar {
-	margin-top: 10px;
 	position: fixed;
 }
 

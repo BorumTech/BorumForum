@@ -17,7 +17,7 @@ include('includes/header.html');
 
 <p>Borum is an interactive community where users from all over the world can ask questions about categories that start with or rhyme with 'bor-'.</p>
 
-<button id="myButton" class="float-left submit-button" >Sign Up</button>
+<button id="myButton" class="float-left submit-button">Sign Up</button>
 </div>
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {

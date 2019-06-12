@@ -17,3 +17,8 @@ function getCookie(cname) {
 function inDarkMode() {
   return getCookie('dark');
 }
+
+if (inDarkMode()) {
+  document.querySelector('body').className = 't--dark';
+}
+
