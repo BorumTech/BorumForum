@@ -2,7 +2,7 @@
 
 $page_title = "Questions";
 include('includes/header.html');
-?></div>
+?>
 <div class = "col-sm-10">
 
 <h1>Recent Questions</h1>

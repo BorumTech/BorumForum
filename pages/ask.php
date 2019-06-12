@@ -12,7 +12,7 @@ if (!isset($_COOKIE['id'])) {
 }
 
 ?>
-
+<div class = "col-sm-6">
 <?php 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

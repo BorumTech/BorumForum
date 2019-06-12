@@ -43,3 +43,29 @@ output#bio {
 	display: block;
 }
 
+.home-page {
+	text-align: center;
+}
+
+.home-page h1 {
+	font-size: 6em;
+}
+
+.home-page p {
+	font-size: 1.5em;
+}
+
+.home-page button {
+	font-size: 4em;
+	border-width: 4px;
+	border-style: solid;
+}
+
+.t--light .home-page button {
+
+}
+
+.t--dark .home-page button {
+	background-color: hsl(0, 0%, 15%);
+}
+
