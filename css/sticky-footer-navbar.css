@@ -15,7 +15,6 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-
 }
 
 .t--light .footer {
@@ -47,19 +46,19 @@ div.navbar-header img {
 body > .container {
   padding: 60px 15px 0;
 }
-.container .text-muted {
-  margin: 20px 0;
+
+.footer ul {
+  display: flex;
+  list-style: none;
+  line-height: 60px;
+  margin-bottom: 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.footer ul li {
+  margin-right: 15px;
 }
 
 code {
   font-size: 80%;
 }
 
-li {
-  display: block;
-}
