@@ -32,9 +32,10 @@
 	$page_title = $row['subject'];
 	include('includes/header.html');
 	include('includes/login_functions.inc.php');
-?>
-	<h1><?php echo $row['subject']; ?></h1>     </div>
-		<div class = "col-sm-10">
+?>	
+	<div class = "col-sm-10">
+	<h1><?php echo $row['subject']; ?></h1>
+
 		<table id = "question-page-table">
 			<tbody>
 				<tr>					
