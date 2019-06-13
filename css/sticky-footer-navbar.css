@@ -8,7 +8,13 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+ 
+} 
+
+li {
+  list-style: none;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -49,7 +55,6 @@ body > .container {
 
 .footer ul {
   display: flex;
-  list-style: none;
   line-height: 60px;
   margin-bottom: 0;
 }

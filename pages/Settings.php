@@ -100,8 +100,10 @@
 		</label>
 		<span id = "text">Dark mode</span>
 	</div>
+	<a href = "/Settings/tag-notifications">Tag Watching and Ignoring</a>
 	<a href = "/">Home</a>
 	<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
+
 	<script src = "../scripts/settings.js"></script>
 	<script>
 		document
