@@ -13,9 +13,21 @@ require_once('../includes/header.html');
 <div class = "col-sm-6">
 	<h2>Tags Following</h2>
 	<?php 
-	$q = "SELECT `ignored-topics`.id, topics.name FROM  "
+	$q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.id = {$_COOKIE['id']}";
+	$r = mysqli_query($dbc, $q);
+	while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		echo "<p><a>{$row['name']}</a></p>";
+	}
+
 	?>
 	<h2>Tags Ignoring</h2>
+	<?php 
+	$q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.id = {$_COOKIE['id']}";
+	$r = mysqli_query($dbc, $q);
+	while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		echo "<p><a>{$row['name']}</a></p>";
+	}
+	?>
 
 <?php
 require_once('../includes/footer.html');

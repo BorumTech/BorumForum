@@ -10,8 +10,15 @@
 	$page_title = $row['name'];
 	include('includes/header.html');
 ?>
+<div class = "col-sm-6">
 	<h1><?php echo $row['name']; ?></h1>
 	<?php
+
+		if (isset($_COOKIE['id'])) {
+			echo "<button class = 'topic-notif'>Follow Topic</button>";
+			echo "<button class = 'topic-notif'>Ignore Topic</button>";
+		}
+
 		require('includes/pagination_functions.inc.php');
 
 		define('DISPLAY', 10); // Number of records to show per page
