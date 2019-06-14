@@ -1,0 +1,7 @@
+function followTopic() {
+
+}
+
+function ignoreTopic() {
+	
+}
