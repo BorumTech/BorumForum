@@ -27,11 +27,10 @@ form input, form textarea {
 
 .container > .row > .col-sm-2:first-of-type {
 	height: 90%;
-	width: 15%;
 }
 
-.fixed-sidebar {
-	
+.fixed-sidebar a {
+	width: 100%;
 }
 
 .container {

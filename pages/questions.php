@@ -3,7 +3,7 @@
 $page_title = "Questions";
 include('includes/header.html');
 ?>
-<div class = "col-sm-10">
+<div class = "col-sm-8">
 
 <h1>Recent Questions</h1>
 
@@ -108,7 +108,6 @@ $result = mysqli_query($dbc, $q);
 	<a class = "<?php echo $sort == 'active' ? 'active': ''; ?>"href = "/Questions?sort=active">Active</a>
 	<a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions?sort=unanswered">Unanswered</a>
 </div>
-
 <?php
 echo "<table id = 'latest-questions'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
@@ -134,11 +133,19 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 }
 echo "</table>";
 
-@mysqli_free_result($result);
-mysqli_close($dbc);
-
 setPreviousAndNextLinks('Questions');
 
 ?>
-
-<?php include('includes/footer.html'); ?>
+</div>
+<div class = "col-sm-2">
+    <fieldset>
+        <legend>Tags you are Following</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Tags you are Ignoring</legend>
+    </fieldset>
+<?php
+    @mysqli_free_result($result);
+    mysqli_close($dbc);
+    include('includes/footer.html');
+?>
