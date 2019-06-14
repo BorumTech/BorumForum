@@ -28,7 +28,7 @@
 			<ul class="nav navbar-nav">
 				<?php
 
-				file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+				@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 				# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
 				function giveClassActive($file, $href, $show) {
