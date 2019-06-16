@@ -4,6 +4,8 @@ $page_title = "Edit a Post";
 include('includes/header.html');
 include('includes/login_functions.inc.php');
 
+echo "<div class = 'col-sm-6'>";
+
 $query = "SELECT subject, body, user_id FROM messages WHERE id = {$_GET['id']}";
 $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
