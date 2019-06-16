@@ -1,5 +1,5 @@
 function setTopic(user_id, topic_id, action) {
-	const buttonEl = document.getElementById('follow-btn');
+	const buttonEl = document.getElementById(action + '-btn');
 	let url = '';
 
 	let xhr;
