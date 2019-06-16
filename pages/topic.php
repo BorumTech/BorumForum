@@ -16,7 +16,7 @@
 
 		if (isset($_COOKIE['id'])) {
 			echo "<button id = 'follow-btn' class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'follow')\">Follow Topic</button>";
-			echo "<button class = 'topic-notif' onclick = 'ignoreTopic()'>Ignore Topic</button>";
+			echo "<button class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'ignore')\">Ignore Topic</button>";
 		}
 
 		require('includes/pagination_functions.inc.php');

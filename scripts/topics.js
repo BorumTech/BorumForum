@@ -11,6 +11,8 @@ function setTopic(user_id, topic_id, action) {
 
 	if (action == 'follow') {
 		url = '/pages/ajax/followtopic.php';
+	} else if (action == 'ignore') {
+		url = '/pages/ajax/ignoretopic.php';
 	}
 
 	const params = `?user_id=${user_id}&topic_id=${topic_id}`;
