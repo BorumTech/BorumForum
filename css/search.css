@@ -12,7 +12,7 @@ li.search-bar#head-search-bar-li input#head-search-bar {
 	padding-right: 10px;
 }
 
-.topic-notif {
+button.topic-notif {
 	font-size: 2em;
-	
+	margin-right: 1em;
 }

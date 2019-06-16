@@ -13,18 +13,15 @@ function setTopic(user_id, topic_id, action) {
 		url = '/pages/ajax/followtopic.php';
 	}
 
-	const params = `user_id=${user_id}&topic_id=${topic_id}`;
-	xhr.open("POST", url, true);
-
-	// Send the proper header information along with the request
-	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	const params = `?user_id=${user_id}&topic_id=${topic_id}`;
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
 		if (xhr.readyState == 4 && xhr.status == 200) {	
-
+			buttonEl.innerHTML = xhr.responseText;
 		}
 	}
 
-	xhr.send(params);	
+	xhr.open("GET", url + params, true);
+	xhr.send();	
 }
 
