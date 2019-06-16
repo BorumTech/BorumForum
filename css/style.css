@@ -33,6 +33,10 @@ form input, form textarea {
 	width: 100%;
 }
 
+.fixed-sidebar {
+	position: fixed;
+}
+
 .container {
 	margin-left: 0%;
 }
