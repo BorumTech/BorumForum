@@ -159,8 +159,7 @@ echo"    </fieldset>
             }
        echo "</fieldset>";
 }
-?>
-<?php
+
     @mysqli_free_result($result);
     mysqli_close($dbc);
     include('includes/footer.html');

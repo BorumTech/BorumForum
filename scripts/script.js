@@ -1,7 +1,3 @@
-function deleteSubmission() {
-	
-}
-
 function editBio(id) {
 	/*
 	This function accomplishes two tasks

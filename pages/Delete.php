@@ -2,31 +2,39 @@
 
 $page_title = "Delete a Post";
 require('includes/header.html');
+
+echo "<div class = 'col-sm-6'>";
+
 require('includes/login_functions.inc.php');
 
 $query = "SELECT subject, body, user_id FROM messages WHERE id = {$_GET['id']}";
 $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-if (!LOGGEDIN || $row['user_id'] !== $_GET['id']) { // Make sure user is author of the question by redirecting everyone else
+if (!LOGGEDIN || $row['user_id'] !== $_COOKIE['id']) { // Make sure user is author of the question by redirecting everyone else
 	redirect_user();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$confirmation = $_POST['confirm'];
-	if ($confirmation == "no") {
+	if ($confirmation == "no") { // If the user cancels the deletion
 		echo "The post was <em>not</em> deleted. Redirecting you now...";
-		redirect_user("/Questions");
+		echo "<script>	setTimeout(function() {
+		console.log(\"Hello, Hello\");
+		window.location.href = \"/Questions\";
+	}, 1000);</script>";
+	} else { // If the user confirms deletion
+		$q = "DELETE FROM messages WHERE id = {$_GET['id']}";
+		$r = mysqli_query($dbc, $q);
+		if (mysqli_affected_rows($dbc) == 1) { // If the deletion was successful
+			echo "The post was successfully deleted. Redirecting you now...";
+		} else {
+			echo "The deletion was not successful.";
+		}		
 	}
-	$q = "DELETE FROM messages WHERE id = {$_GET['id']}";
-	$r = mysqli_query($dbc, $q);
-	if (mysqli_affected_rows($dbc) == 1) {
-		echo "The post was successfully deleted. Redirecting you now...";
-	} else {
-		echo "The deletion was not successful.";
-	}
+
 } else {
-	echo "<form onsubmit = 'deleteSubmission()' method = 'post' action = ''>";
+	echo "<form id = 'delete-post' method = 'post' action = ''>";
 	?>
 
 	<p>
