@@ -3,6 +3,8 @@ file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_c
 $q = "SELECT id FROM `followed-topics` WHERE user_id = {$_GET['user_id']} AND topic_id = {$_GET['topic_id']}";
 $r = mysqli_query($dbc, $q);
 if (mysqli_num_rows($r) != 1) {
+	$q = "DELETE FROM `followed-topics` WHERE user_id = {$_GET['user_id']} AND topic_id = {$_GET['topic_id']}";
+	mysqli_query($dbc, $q);
 	$q = "INSERT INTO `followed-topics` (user_id, topic_id) VALUES ({$_GET['user_id']}, {$_GET['topic_id']})";
 	mysqli_query($dbc, $q);
 	echo "Unfollow";

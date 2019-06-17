@@ -43,6 +43,17 @@ form input, form textarea {
   }
 }
 
+@media only screen and (min-width: 801px) {
+	.fixed-sidebar {
+		width: 14%;
+		
+	}
+
+	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+
+	}
+}
+
 .container {
 	margin-left: 0%;
 }
@@ -55,11 +66,7 @@ form input, form textarea {
 	background-color: #e6e6e6;
 }
 
-div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty) {
-	border-left: 0.5px solid lightgrey;
-}
-
-div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
 	border-left: 0.5px solid lightgrey;
 }
 

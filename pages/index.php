@@ -8,7 +8,7 @@ include('includes/header.html');
 
 ?>
 
-<div class = "col-sm-10">
+<div class = "col-sm-9">
 	<div class = "home-page">
 <!-- Script 3.7 - index.php -->
 
