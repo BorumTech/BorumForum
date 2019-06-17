@@ -28,6 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$r = mysqli_query($dbc, $q);
 		if (mysqli_affected_rows($dbc) == 1) { // If the deletion was successful
 			echo "The post was successfully deleted. Redirecting you now...";
+			echo "<script>	setTimeout(function() {
+			console.log(\"Hello, Hello\");
+			window.location.href = \"/Questions\";
+			}, 1000);</script>";
 		} else {
 			echo "The deletion was not successful.";
 		}		
