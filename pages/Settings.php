@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href = "../images/icon.ico" rel = "image icon" type = "image/x-icon">
 	<style>
 		a, .dark-mode {
 			display: block;
