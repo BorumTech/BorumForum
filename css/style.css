@@ -25,8 +25,46 @@ form input, form textarea {
 	padding: 10px;
 }
 
+.container {
+	margin-left: 0%;
+}
+
 .container > .row > .col-sm-2:first-of-type {
-	height: 90%;
+	height: 100%;
+	width: 200px;
+	position: fixed;
+	z-index: 1; /* Stay on top */
+	top: 60px; /* Stay at the top */
+	left: 0;
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
+}
+
+div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+	margin-left: 200px;
+	border-left: 0.5px solid lightgrey;
+}
+
+@media only screen and (max-width: 800px) {
+	.container > .row > .col-sm-2:first-of-type {
+		height: 20%;
+		width: 100%;
+		position: static;
+	}
+
+	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+		margin-left: 0;
+	}
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .container > .row > .col-sm-2:first-of-type {padding-top: 15px;}
+  .fixed-sidebar a {font-size: 18px;}
+ div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+ 	position: sticky;
+ 	margin-left: 0;
+ }
 }
 
 .fixed-sidebar a {
@@ -34,20 +72,15 @@ form input, form textarea {
 	display: block;
 	color: grey;
 	padding: 15px;
-	margin: 10px 10px;
+	margin: 10px;
 	background-color: #e6e6e6;
+	text-decoration: none;
+	color: #818181;
+	display: block;
 }
 
-.fixed-sidebar {
-	position: sticky;
-}
-
-.container {
-	margin-left: 0%;
-}
-
-div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
-	border-left: 0.5px solid lightgrey;
+.fixed-sidebar a:hover {
+	color: #a4b7f7;
 }
 
 p#ques-body, p.ans-body {
