@@ -31,39 +31,19 @@ form input, form textarea {
 
 .fixed-sidebar a {
 	width: 100%;
-}
-
-.fixed-sidebar {
-	position: fixed;
-}
-
-@media only screen and (max-width: 800px) {
-  .fixed-sidebar {
-  	position: sticky;
-  }
-}
-
-@media only screen and (min-width: 801px) {
-	.fixed-sidebar {
-		width: 14%;
-		
-	}
-
-	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
-
-	}
-}
-
-.container {
-	margin-left: 0%;
-}
-
-.container > .row > .col-sm-2:first-of-type a {
 	display: block;
 	color: grey;
 	padding: 15px;
 	margin: 10px 10px;
 	background-color: #e6e6e6;
+}
+
+.fixed-sidebar {
+	position: sticky;
+}
+
+.container {
+	margin-left: 0%;
 }
 
 div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
