@@ -37,7 +37,8 @@ fieldset.topic-notif {
 }
 
 .topic-notif-container {
-    width: 200px;
+    margin-top: 30px;
+    width: 15%;
     border: 1px solid blue;
     border-radius: 10px;
 }

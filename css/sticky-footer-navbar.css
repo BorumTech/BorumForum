@@ -3,12 +3,12 @@
 html {
   position: relative;
   min-height: 100%;
-
 }
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-} 
+  padding-right: 0;
+}
 
 li {
   list-style: none;
@@ -65,6 +65,7 @@ div.navbar-profile img {
 }
 
 body > .container {
+  margin-right: 0;
   padding: 60px 15px 0 15px;
 }
 
