@@ -13,9 +13,9 @@ $page_title = 'Logged In! ';
 include('includes/header.html');
 
 // Print the customized message
-echo "<h1>Logged In!</h1>
+echo "<div class = 'col-sm-6'><h1>Logged In!</h1>
 <p>You are now logged in, {$_COOKIE['first_name']}!</p>
-<p><a href=\"Logout\">Logout</a>
+<p><a href=\"logout\">Logout</a>
 </p><p>
 <a href = \"users/{$_COOKIE['id']}\">Profile</a>
 </p>";

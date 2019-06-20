@@ -7,15 +7,27 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+	$followq = 'SELECT topic_id, user_id FROM `followed-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
+	$followr = mysqli_query($dbc, $followq);
+	$following = mysqli_num_rows($followr) == 1;
+
+	$ignoreq = 'SELECT topic_id, user_id FROM `ignored-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
+	$ignorer = mysqli_query($dbc, $ignoreq);
+	$ignoring = mysqli_num_rows($ignorer) == 1;
+
 	$page_title = $row['name'];
 	include('includes/header.html');
 ?>
+<div class = "col-sm-6">
 	<h1><?php echo $row['name']; ?></h1>
 	<?php
 
 		if (isset($_COOKIE['id'])) {
-			echo "<button class = 'topic-notif' onclick = 'followTopic()'>Follow Topic</button>";
-			echo "<button class = 'topic-notif' onclick = 'ignoreTopic()'>Ignore Topic</button>";
+			define('FOLLOWTEXT', $following ? "Unfollow" : "Follow Topic");
+			define('IGNORETEXT', $ignoring ? "Unignore" : "Ignore Topic");
+
+			echo "<button id = 'follow-btn' class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'follow')\">" . FOLLOWTEXT . "</button>";
+			echo "<button id = 'ignore-btn' class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'ignore')\">" . IGNORETEXT . "</button>";
 		}
 
 		require('includes/pagination_functions.inc.php');
@@ -41,7 +53,6 @@
 		@mysqli_free_result($result);
 
 		setPreviousAndNextLinks('../Topics/' . $_GET['topic']);
-
 
 		mysqli_close($dbc);	
 		include('includes/footer.html');

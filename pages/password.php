@@ -5,7 +5,7 @@
 $page_title = 'Change Your Password';
 include('includes/header.html');
 ?>
-
+<div class = "col-sm-6">
 <?php 
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {

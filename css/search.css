@@ -1,13 +1,30 @@
 li.search-bar#head-search-bar-li {
-	padding-top: 10px;
+    line-height: 30px;
+    padding-top: 10px;
     padding-bottom: 10px;
-    line-height: 20px;
-    width: 300px;
+    width: 40vw;
     margin-right: 20px;
 }
 
 li.search-bar#head-search-bar-li input#head-search-bar {
+    display: inline;
+    vertical-align: baseline;
 	width: 100%;
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+button.topic-notif {
+	font-size: 2em;
+	margin-right: 1em;
+}
+
+fieldset.topic-notif {
+    margin: 0;
+    width: 100%;
+}
+
+.topic-notif-container {
+    width: 200px;
+}
+

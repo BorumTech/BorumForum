@@ -32,69 +32,67 @@
 	$page_title = $row['subject'];
 	include('includes/header.html');
 	include('includes/login_functions.inc.php');
-?>
-	<h1><?php echo $row['subject']; ?></h1>     </div>
-		<div class = "col-sm-10">
-		<table id = "question-page-table">
-			<tbody>
-				<tr>					
-					<td class = "vote-container">
-					<!-- PHP Functions -->
-					<?php 
-						function votedOnQuestion($msg_id, $vote) {
-							global $dbc;
-							if (isset($_COOKIE['id'])) {
-								$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
-								$result = mysqli_query($dbc, $query);
-								return mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
-							}
+?>	
+	<div class = "col-sm-10">
+	<h1><?php echo $row['subject']; ?></h1>
 
+	<table id = "question-page-table">
+		<tbody>
+			<tr>					
+				<td class = "vote-container">
+				<!-- PHP Functions -->
+				<?php 
+					function votedOnQuestion($msg_id, $vote) {
+						global $dbc;
+						if (isset($_COOKIE['id'])) {
+							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
+							$result = mysqli_query($dbc, $query);
+							return mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
 						}
 
-						function getUpArrow() {
-							global $fillColor;
-							return '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 26h32L18 10z"></path></svg>';
-						}
+					}
 
-						function getDownArrow() {
-							global $fillColor;
-							return '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
-						}
+					function getUpArrow() {
+						global $fillColor;
+						return '<svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 26h32L18 10z"></path></svg>';
+					}
 
-						function getNoAccountButton($way) {
+					function getDownArrow() {
+						global $fillColor;
+						return '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
+					}
+
+					function getNoAccountButton($way) {
 							return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
-						}
-					?>
-					<?php
+					}
+				?>
+				<?php
 
-						$ques_id = $row['msg_id'];	
+					$ques_id = $row['msg_id'];	
 
-						$fillColor = votedOnQuestion($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$uparrow = getUpArrow();
-						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
+					$fillColor = votedOnQuestion($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$uparrow = getUpArrow();
+					$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-						$fillColor = votedOnQuestion($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$downarrow = getDownArrow();
-						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
+					$fillColor = votedOnQuestion($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$downarrow = getDownArrow();
+					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
+					$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+					$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
-						$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+					$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
+					echo $voteupbtn;
+					echo "\t\t<div class = 'vote-counter' id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
+					echo $votedownbtn;
 
-						$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
-
-						echo $voteupbtn;
-						echo "\t\t<div class = 'vote-counter' id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
-						echo $votedownbtn;
-
-					?>				
-					</td>
-					<td>
-						<p id = "ques-body"><?php echo $row['ques_body'] ?></p>						
-					</td>
-				</tr>
-				<tr class = 'user-profile-container'>
-					<?php 
-
+				?>				
+				</td>
+				<td>
+					<p id = "ques-body"><?php echo $row['ques_body'] ?></p>						
+				</td>
+			</tr>
+			<tr class = 'user-profile-container'>
+				<?php 
 					if (LOGGEDIN && $_COOKIE['id'] === $row['usr_id']) {
 						$what_to_echo = $ques_id . '/Edit';
 
@@ -106,33 +104,31 @@
 						echo "<a href = '$what_to_echo'>Delete</a>";
 						echo "</td>";
 					}
-					?>
-					<td colspan = "2" class = "question-poster">
-						<div>
-							<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
-								<span><?php echo $row['ques_asker'] ?></span>
-							</a>
-							<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
-								<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
-							</a>
-						</div>	
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class = "question-tags">
-							<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
-						</div>
-					</td>
-				</tr>
-				<?php 
-
+				?>
+				<td colspan = "2" class = "question-poster">
+					<div>
+						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
+							<span><?php echo $row['ques_asker'] ?></span>
+						</a>
+						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
+							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+						</a>
+					</div>	
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class = "question-tags">
+						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
+					</div>
+				</td>
+			</tr>
+			<?php 
 					$counter = 1;
-					while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-						$ans_id = $row2['msg_id'];
-
-						$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$uparrow = getUpArrow();
+				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+					$ans_id = $row2['msg_id'];
+					$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$uparrow = getUpArrow();
 						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
 						$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
@@ -189,7 +185,7 @@
 
 				?>
 			</tbody>
-		</table>
+	</table>
 	<h2>Your Answer</h2>
 	<form action = "" method = "post">
 	<br>
@@ -238,3 +234,4 @@
 		mysqli_close($dbc);	
 		include('includes/footer.html');
 	?>
+

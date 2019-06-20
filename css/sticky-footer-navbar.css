@@ -3,18 +3,31 @@
 html {
   position: relative;
   min-height: 100%;
+
 }
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+} 
+
+li {
+  list-style: none;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
+}
+
+.t--light .footer {
   background-color: #f5f5f5;
+}
+
+.t--dark .footer, .t--dark .navbar {
+  background-color: #0A0A0A;
 }
 
 
@@ -22,27 +35,35 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+nav {
+  padding: 10px;
+}
+
+nav + * {
+  margin-top: 20px;
+}
+
 div.navbar-header img {
   float: left;
   margin-right: 15px;
 }
 
 body > .container {
-  padding: 60px 15px 0;
-}
-.container .text-muted {
-  margin: 20px 0;
+  padding: 60px 0 0 15px;
+  margin-right: 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.footer ul {
+  display: flex;
+  line-height: 60px;
+  margin-bottom: 0;
+}
+
+.footer ul li {
+  margin-right: 15px;
 }
 
 code {
   font-size: 80%;
 }
 
-li {
-  display: block;
-}

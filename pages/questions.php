@@ -2,8 +2,8 @@
 
 $page_title = "Questions";
 include('includes/header.html');
-?></div>
-<div class = "col-sm-10">
+?>
+<div class = "col-sm-7">
 
 <h1>Recent Questions</h1>
 
@@ -108,7 +108,6 @@ $result = mysqli_query($dbc, $q);
 	<a class = "<?php echo $sort == 'active' ? 'active': ''; ?>"href = "/Questions?sort=active">Active</a>
 	<a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions?sort=unanswered">Unanswered</a>
 </div>
-
 <?php
 echo "<table id = 'latest-questions'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
@@ -134,37 +133,36 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 }
 echo "</table>";
 
-@mysqli_free_result($result);
-mysqli_close($dbc);
-
 setPreviousAndNextLinks('Questions');
 
 ?>
 </div>
-<div class = "col-sm-2">
-    <fieldset>
-        <legend>Tags you are Following</legend>
-            <?php 
-            $q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.id = {$_COOKIE['id']}";
+<?php if (isset($_COOKIE['id'])) {
+
+echo "<div class = \"col-sm-3 topic-notif-container\">
+    <fieldset class = \"topic-notif\">
+        <legend>Tags you are Following</legend>";
+  
+            $q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_COOKIE['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-                echo "<p><a>{$row['name']}</a></p>";
+                echo "<p><a href = \"Topics/{$row['name']}\">{$row['name']}</a></p>";
             } 
-            ?>
-        </fieldset>
-        <fieldset>
-            <legend>Tags you are Ignoring</legend>
-            <?php 
-            $q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.id = {$_COOKIE['id']}";
+echo"    </fieldset>
+    <fieldset class = \"topic-notif\">
+        <legend>Tags you are Ignoring</legend>
+     "; 
+            $q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_COOKIE['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-                echo "<p><a>{$row['name']}</a></p>";
+                echo "<p><a href = \"Topics/{$row['name']}\">{$row['name']}</a></p>";
             }
-            ?>
-        </fieldset>
-<?php
+       echo "</fieldset>";
+}
+
     @mysqli_free_result($result);
     mysqli_close($dbc);
     include('includes/footer.html');
+
 ?>
 
