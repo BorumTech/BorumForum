@@ -1,9 +1,12 @@
+.nav > li {
+    float: left;
+}
+
 li.search-bar#head-search-bar-li {
     line-height: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 40vw;
-    margin-right: 20px;
 }
 
 li.search-bar#head-search-bar-li input#head-search-bar {
@@ -15,18 +18,17 @@ li.search-bar#head-search-bar-li input#head-search-bar {
 li.search-bar#head-search-bar-li img {
     z-index: 20;
     height: 30px;
-    display: inline-block;
 }
 
-@media only screen and (min-width: 812px) and (max-width: 991px) {
+@media only screen and (max-width: 991px) {
     li.search-bar#head-search-bar-li input#head-search-bar {
-        
+        display: none;
     }
 }
 
 button.topic-notif {
 	font-size: 2em;
-	margin-right: 1em;
+	margin-right: 1em; 
 }
 
 fieldset.topic-notif {
@@ -36,5 +38,7 @@ fieldset.topic-notif {
 
 .topic-notif-container {
     width: 200px;
+    border: 1px solid blue;
+    border-radius: 10px;
 }
 

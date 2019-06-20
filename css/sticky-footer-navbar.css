@@ -43,14 +43,30 @@ nav + * {
   margin-top: 20px;
 }
 
+div.navbar-header {
+  width: 20%;
+}
+
 div.navbar-header img {
   float: left;
   margin-right: 15px;
 }
 
+ul.nav.navbar-nav {
+  width: 80%;
+}
+
+div.navbar-profile {
+  float: right;
+}
+
+div.navbar-profile img {
+  height: 50px;
+  width: 50px;
+}
+
 body > .container {
   padding: 60px 15px 0 15px;
-  margin-right: 0;
 }
 
 .footer ul {
