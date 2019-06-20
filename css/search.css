@@ -20,6 +20,10 @@ li.search-bar#head-search-bar-li img {
     li.search-bar#head-search-bar-li input#head-search-bar {
         display: none;
     }
+
+    li.search-bar#head-search-bar-li {
+        width: 10vw;
+    }
 }
 
 button.topic-notif {
