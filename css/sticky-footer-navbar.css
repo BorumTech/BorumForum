@@ -44,7 +44,9 @@ nav + * {
 }
 
 div.navbar-header {
-  width: 20%;
+  display: inline-block;
+  width: 225px;
+  margin-right: 15px;
 }
 
 div.navbar-header img {
@@ -52,12 +54,9 @@ div.navbar-header img {
   margin-right: 15px;
 }
 
-ul.nav.navbar-nav {
-  width: 80%;
-}
-
 div.navbar-profile {
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 div.navbar-profile img {
