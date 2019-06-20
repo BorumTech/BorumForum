@@ -7,11 +7,21 @@ li.search-bar#head-search-bar-li {
 }
 
 li.search-bar#head-search-bar-li input#head-search-bar {
-    display: inline;
-    vertical-align: baseline;
-	width: 100%;
+	width: 90%;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+li.search-bar#head-search-bar-li img {
+    z-index: 20;
+    height: 30px;
+    display: inline-block;
+}
+
+@media only screen and (min-width: 812px) and (max-width: 991px) {
+    li.search-bar#head-search-bar-li input#head-search-bar {
+        
+    }
 }
 
 button.topic-notif {
