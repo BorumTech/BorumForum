@@ -38,11 +38,18 @@ form input, form textarea {
 	left: 0;
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 20px;
+	border-right: 0.5px solid lightgrey;
 }
 
 div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
 	margin-left: 225px;
-	border-left: 0.5px solid lightgrey;
+	height: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+	.topic-notif-container {
+		margin-left: 225px;
+	}
 }
 
 @media only screen and (max-width: 700px) {
@@ -59,7 +66,6 @@ div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.contai
 
 	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
 		margin-left: 10px;
-		border-left: none;
 	}
 }
 
