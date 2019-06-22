@@ -52,6 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 	}
 
+	// Validate the username
+	if (empty($_POSt['username'])) {
+		$error[] = 'You forgot to enter your username.';
+	} else {
+		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+	}
+
 
 	// If there were no errors, check that the submitted email address is not aready in use
 	if (empty($errors)) {
@@ -60,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (mysqli_num_rows($r) == 0) { // If no other users have this email address, it is safe to perform the update
 
 			// Perform the update
-			$q = "UPDATE users SET first_name='$fn', last_name='$ln', email='$e' WHERE id=$id LIMIT 1";
+			$q = "UPDATE users SET first_name='$fn', last_name='$ln', email='$e', username = '$u' WHERE id=$id LIMIT 1";
 			$r = @mysqli_query($dbc, $q);
 
 			if (mysqli_affected_rows($dbc) == 1) { // If it ran OK
@@ -82,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 
-$q = "SELECT first_name, last_name, email FROM users WHERE id=$id";
+$q = "SELECT first_name, last_name, username, email FROM users WHERE id=$id";
 $r = @mysqli_query($dbc, $q);
 if (mysqli_num_rows($r) == 1) {
 	$row = mysqli_fetch_array($r, MYSQLI_NUM);

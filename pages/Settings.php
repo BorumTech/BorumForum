@@ -15,12 +15,29 @@
 			color: rgb(15, 160, 255);
 		}
 
+		.settings-links {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			width: 100%;
+		}
+
+		.settings-links > a, .dark-mode {
+			width: 200px;
+			padding: 0;
+			height: 50px;
+			line-height: 50px;
+			flex-basis: calc(25%-25px);
+			margin: 20px;
+		}
+
 		a:visited {
 			color: rgb(15, 168, 255);
 		}
 
 		.switch {
 		  position: relative;
+		  top: 5px;
 		  display: inline-block;
 		  width: 60px;
 		  height: 34px;
@@ -35,7 +52,7 @@
 		.slider {
 		  position: absolute;
 		  cursor: pointer;
-		  top: 0;
+		  top: 2px;
 		  left: 0;
 		  right: 0;
 		  bottom: 0;
@@ -89,21 +106,24 @@
 </head>
 <body class = "<?php echo isset($_COOKIE['dark']) ? 't--dark' : 't--light'; ?>">
 	<h1>Settings</h1>
-	<a href = "password">Change password</a>
-	<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
-	<a style = "color: red" href = "delete_user?id=<?php echo $_COOKIE['id']; ?>">Delete Account</a>
-	<!-- Rectangular switch -->
-	<div class = "dark-mode">
-		<label class="switch">
-	  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
-	  		<?php echo isset($_COOKIE['dark']) ? 'checked' : '' ?> >
-	  		<span class="slider"></span>
-		</label>
-		<span id = "text">Dark mode</span>
+	<div class = "settings-links">
+		<a href = "password">Change password</a>
+		<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
+		<a style = "color: red" href = "delete_user?id=<?php echo $_COOKIE['id']; ?>">Delete Account</a>
+		<!-- Rectangular switch -->
+		<div class = "dark-mode">
+			<label class="switch">
+		  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
+		  		<?php echo isset($_COOKIE['dark']) ? 'checked' : '' ?> >
+		  		<span class="slider"></span>
+			</label>
+			<span id = "text">Dark mode</span>
+		</div>
+		<a href = "/Settings/tag-notifications">Tag Watching and Ignoring</a>
+		<a href = "/Settings/Sign-In-Credentials">Sign In Credentials</a>
+		<a href = "/">Home</a>
+		<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
 	</div>
-	<a href = "/Settings/tag-notifications">Tag Watching and Ignoring</a>
-	<a href = "/">Home</a>
-	<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
 
 	<script src = "../scripts/settings.js"></script>
 	<script>
