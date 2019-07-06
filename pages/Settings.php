@@ -2,33 +2,27 @@
 <html>
 <head>
 	<link href = "../images/icon.ico" rel = "image icon" type = "image/x-icon">
-	<style>
-		a, .dark-mode {
-			display: block;
-			border: 10px double orange;
-			width: 200px;
-			text-align: center;
-			font-family: 'Roboto', sans-serif;
-			text-decoration: none;
-			margin-bottom: 30px;
-			padding: 5px;
-			color: rgb(15, 160, 255);
-		}
-
+	<style>	
 		.settings-links {
 			display: flex;
-			flex-direction: column;
-			flex-wrap: wrap;
 			width: 100%;
+			justify-content: center;
+			border: 1px solid black;
+			flex-wrap: wrap;
 		}
 
 		.settings-links > a, .dark-mode {
-			width: 200px;
-			padding: 0;
+			text-align: center;
+			display: inline-block;
+			border: 10px double orange;
+			margin: 20px;
+			padding: 5px;
 			height: 50px;
 			line-height: 50px;
-			flex-basis: calc(25%-25px);
-			margin: 20px;
+			font-family: 'Roboto', sans-serif;
+			text-decoration: none;
+			color: rgb(15, 160, 255);
+			flex: 1 1 200px;
 		}
 
 		a:visited {
