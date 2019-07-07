@@ -1,3 +1,9 @@
+<?php 
+require('includes/login_functions.inc.php');
+if (!ISLOGGEDIN) {
+	redirect_user();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
