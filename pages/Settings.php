@@ -12,8 +12,6 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 		.settings-links {
 			display: flex;
 			width: 100%;
-			justify-content: center;
-			border: 1px solid black;
 			flex-wrap: wrap;
 		}
 
@@ -28,7 +26,7 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 			font-family: 'Roboto', sans-serif;
 			text-decoration: none;
 			color: rgb(15, 160, 255);
-			flex: 1 1 200px;
+			flex: 1 0 200px;
 		}
 
 		a:visited {
