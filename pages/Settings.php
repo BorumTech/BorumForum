@@ -1,6 +1,6 @@
 <?php 
 require('includes/login_functions.inc.php');
-if (!ISLOGGEDIN) {
+if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']))) {
 	redirect_user();
 }
 ?>
