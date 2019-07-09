@@ -8,27 +8,8 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 <html>
 <head>
 	<link href = "../images/icon.ico" rel = "image icon" type = "image/x-icon">
+	<link href = "../css/flex.css" rel = "stylesheet" type = "text/css">
 	<style>	
-		.settings-links {
-			display: flex;
-			width: 100%;
-			flex-wrap: wrap;
-		}
-
-		.settings-links > a, .dark-mode {
-			text-align: center;
-			display: inline-block;
-			border: 10px double orange;
-			margin: 20px;
-			padding: 5px;
-			height: 50px;
-			line-height: 50px;
-			font-family: 'Roboto', sans-serif;
-			text-decoration: none;
-			color: rgb(15, 160, 255);
-			flex: 1 0 200px;
-		}
-
 		a:visited {
 			color: rgb(15, 168, 255);
 		}
@@ -100,11 +81,11 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 		}
 	</style>
 	<link href = "../css/settings.css" rel = "stylesheet" type = "text/css">
-	<title>Settings</title>
+	<title>Settings - Borum</title>
 </head>
 <body class = "<?php echo isset($_COOKIE['dark']) ? 't--dark' : 't--light'; ?>">
 	<h1>Settings</h1>
-	<div class = "settings-links">
+	<div class = "flex-box">
 		<a href = "password">Change password</a>
 		<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
 		<a style = "color: red" href = "delete_user?id=<?php echo $_COOKIE['id']; ?>">Delete Account</a>

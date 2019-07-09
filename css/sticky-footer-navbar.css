@@ -40,7 +40,7 @@ nav {
   padding: 10px;
 }
 
-nav + * {
+.row {
   margin-top: 20px;
 }
 
@@ -66,8 +66,7 @@ div.navbar-profile img {
 }
 
 body > .container {
-  margin-right: 0;
-  padding: 60px 15px 0 15px;
+  margin-top: 60px;
 }
 
 .footer ul {

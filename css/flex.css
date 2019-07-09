@@ -2,17 +2,32 @@
 	display: flex;
   width: 100%;
 	flex-wrap: wrap;
-  padding: 20px 0;
 }
 
-.flex-box .flex-item {
-  height: 100px;
+.flex-box#topic-list {
+  padding-top: 20px;
+}
+
+.flex-box > a, .flex-box > div.dark-mode { /* Settings.php */
+  border: 10px double orange;
+  margin: 20px;
+  padding: 5px;
+  height: 50px;
+  line-height: 50px;
+  color: rgb(15, 160, 255);
+  text-decoration: none;
+}
+
+.flex-box > li { /* Topics.php */
   margin: 5px;
   padding: 10px;
+  height: 75px;
+}
+
+.flex-box > * {
   text-align: center;
-  border: 1px solid grey;
-  display: inline-block;
   font-family: 'Roboto', sans-serif;
-  flex: 1 0 200px;
+  display: inline-block;
+  flex: 0 1 200px;
 }
 

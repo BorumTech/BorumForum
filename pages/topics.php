@@ -1,5 +1,5 @@
 <?php 
-$page_title = "Borum - Topics";
+$page_title = "Topics - Borum";
 include('includes/header.html');
 
 file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
@@ -23,7 +23,7 @@ echo "<div class = 'flex-box' id = 'topic-list'>";
 $query = "SELECT id, name FROM topics";
 $result = mysqli_query($dbc, $query);
 while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
-	echo "<li class = 'flex-item'><a href = '../Topics/$row[1]'>{$row[1]}</a></li>";
+	echo "<li><a href = '../Topics/$row[1]'>{$row[1]}</a></li>";
 }
 echo "</div>";
 
