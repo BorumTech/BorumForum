@@ -40,9 +40,15 @@ form input, form textarea {
 		padding-top: 20px;
 		padding-right: 20px;
 		border-right: 0.5px solid lightgrey;
-		width: 225px;
-		height: 100%;
     }
+
+    .sidebar-outer {
+    	width: 225px;
+    }
+
+    .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
+		
+	}
 }
 
 .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
@@ -67,11 +73,11 @@ form input, form textarea {
 
 .fixed-sidebar a {
 	width: 100%;
+	box-sizing: border-box;
 	display: block;
 	color: grey;
 	padding: 15px;
-	margin: 10px;
-	margin-left: 0;
+	margin: 10px 0;
 	background-color: #e6e6e6;
 	text-decoration: none;
 	color: #818181;
