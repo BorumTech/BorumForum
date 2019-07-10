@@ -22,65 +22,67 @@
 </head>
 <body class = "t--light">
 
+<?php 
+
+@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
+
+$mods = array(6);
+
+define('LOGGEDIN', isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']));
+define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
+
+?>
+
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<?php
+	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
+	<?php 
+		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
+			$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
+			$r = mysqli_query($dbc, $q);
+			$ro = mysqli_fetch_array($r, MYSQLI_NUM);
+			$imgurl = '/show_image?image=' . $ro[1];
+			echo '<div class = "navbar-profile"><a href = "/users/' . $_COOKIE['id'] . '"><img src = "' . $imgurl . '"></a></div>';
+		}
+	?>	
+	<div id="navbar" class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<?php
 
-				@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
-
-				# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
-				function giveClassActive($file, $href, $show) {
-					if ($href == null)
-						$href = $file;
-					echo '
-					<li class = "';
-					if (strpos($_SERVER['REQUEST_URI'], $href) !== false) {
-						echo 'active';
-					}
-					echo '">';
-					echo '<a href = "' . $href . '">' . $show . '</a></li>';
+			# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
+			function giveClassActive($file, $href, $show) {
+				if ($href == null)
+					$href = $file;
+				echo '
+				<li class = "';
+				if (strpos($_SERVER['REQUEST_URI'], $href) !== false) {
+					echo 'active';
 				}
+				echo '">';
+				echo '<a href = "' . $href . '">' . $show . '</a></li>';
+			}
+			
+			?>
 
-				$mods = array(6);
+			<li class = "search-bar" id = "head-search-bar-li"><img src = "../images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "" type = "text" placeholder = "Search..."></li>
 
-				define('LOGGEDIN', isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']));
-				define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
-				
-				?>
+			<?php
 
-				<li class = "search-bar" id = "head-search-bar-li"><img src = "../images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "" type = "text" placeholder = "Search..."></li>
+			giveClassActive('ask.php', '/Ask', 'Ask a Question');	
 
-				<?php
+			// If the an account is logged in
+			if (!LOGGEDIN) {
+				giveClassActive('register.php', '/Register', 'Register'); 
+			}
 
-				giveClassActive('ask.php', '/Ask', 'Ask a Question');	
+			if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
+				giveClassActive("logout.php", "/logout", "Log Out");
+			} else {
+				giveClassActive("login.php", "/Login", "Log In");
+			}
 
-				// If the an account is logged in
-				if (!LOGGEDIN) {
-					giveClassActive('register.php', '/Register', 'Register'); 
-				}
+			?>
 
-				if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-					giveClassActive("logout.php", "/logout", "Log Out");
-				} else {
-					giveClassActive("login.php", "/Login", "Log In");
-				}
-
-				?>
-				<?php 
-					if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
-						$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
-						$r = mysqli_query($dbc, $q);
-						$ro = mysqli_fetch_array($r, MYSQLI_NUM);
-						$imgurl = '/show_image?image=' . $ro[1];
-						echo '<div class = "navbar-profile"><a href = "/users/' . $_COOKIE['id'] . '"><img src = "' . $imgurl . '"></a></div>';
-					}
-
-				?>		
-			</ul>
-		</div>
+		</ul>			
 	</div>
 </nav>
 <div class = "container">

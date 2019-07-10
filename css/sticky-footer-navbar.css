@@ -58,6 +58,7 @@ div.navbar-header img {
 div.navbar-profile {
   position: absolute;
   right: 5%;
+  top: 15%;
 }
 
 div.navbar-profile img {
