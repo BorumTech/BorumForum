@@ -41,7 +41,9 @@ nav {
 }
 
 .row {
-  margin-top: 40px;
+  margin-top: 70px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 div.navbar-header {

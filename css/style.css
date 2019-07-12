@@ -47,7 +47,7 @@ form input, form textarea {
     }
 
     .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
-		
+		width: calc(100% - 225px);
 	}
 }
 
