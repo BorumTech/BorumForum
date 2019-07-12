@@ -16,13 +16,17 @@ li.search-bar#head-search-bar-li img {
     height: 30px;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     li.search-bar#head-search-bar-li input#head-search-bar {
         display: none;
     }
 
     li.search-bar#head-search-bar-li {
         width: 10vw;
+    }
+
+    .topic-notif-container {
+        
     }
 }
 
@@ -36,7 +40,7 @@ fieldset.topic-notif {
 }
 
 
-@media only screen and (max-width: 1360px) and (min-width: 1201px) {
+@media only screen and (max-width: 1360px) and (min-width: 992px) {
 
     .topic-notif-container {
         margin-top: 130px;

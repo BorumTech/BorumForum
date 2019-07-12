@@ -36,6 +36,12 @@ li {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+@media only screen and (max-width: 520px) {
+  .sidebar-outer {
+
+  }
+}
+
 nav {
   padding: 10px;
 }
@@ -48,7 +54,7 @@ nav {
 
 div.navbar-header {
   display: inline-block;
-  width: 225px;
+  width: 235px;
   margin-right: 15px;
 }
 

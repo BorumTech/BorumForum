@@ -48,18 +48,9 @@ form input, form textarea {
     }
 
     .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
-		width: calc(100% - 235px);
-	}
-}
-
-.sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
-	height: 100%;
-	padding-left: 30px;
-}
-
-@media only screen and (max-width: 1200px) {
-	.topic-notif-container {
-		margin-left: 225px;
+		width: calc(75% - 235px);
+		height: 100%;
+		padding-left: 30px;
 	}
 }
 
