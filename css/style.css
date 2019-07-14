@@ -135,3 +135,8 @@ a.question-tags {
 	resize: vertical;
 }
 
+td.block {
+  display: block;
+  
+}
+
