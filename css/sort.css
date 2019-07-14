@@ -18,9 +18,12 @@
 	background-color: hsl(168, 100%, 90%);
 }
 
+.block {
+	display: block;
+}
+
 .numbers {
 	padding: 5px;
-	display: block;
 }
 
 .numbers span {

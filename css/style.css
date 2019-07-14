@@ -43,20 +43,32 @@ form input, form textarea {
 		border-right: 0.5px solid lightgrey;
     }
 
-.fixed-sidebar a.active {
-	box-sizing: content-box;
-	margin-right: -20px;
-}
+	.fixed-sidebar a.active {
+		box-sizing: content-box;
+		margin-right: -20px;
+	}
 
-.sidebar-outer, .fixed-sidebar {
-	width: 235px;
-	height: 100%;
-}
+	.sidebar-outer, .fixed-sidebar {
+		width: 235px;
+		height: 100%;
+	}
 
     .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
 		width: calc(75% - 235px);
 		height: 100%;
 		padding-left: 30px;
+	}
+
+	.sidebar-outer + div.col-sm-10 {
+		width: calc(100% - 235px);
+	}
+
+	.sidebar-outer + div.col-sm-9 {
+		width: calc(91.66666666% - 235px);
+	}
+
+	.sidebar-outer + div.col-sm-8 {
+		
 	}
 }
 
@@ -143,6 +155,15 @@ a.question-tags {
 
 td.block {
   display: block;
-  
+}
+
+@keyframes example {
+	from {
+		margin-right: 0px;
+	}
+
+	to {
+		margin-right: -20px;
+	}
 }
 
