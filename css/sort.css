@@ -20,6 +20,7 @@
 
 .numbers {
 	padding: 5px;
+	display: block;
 }
 
 .numbers span {
