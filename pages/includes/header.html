@@ -29,7 +29,7 @@
 $mods = array(6);
 # giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
 function giveClassActive($file, $href, $show, $li = true) {
-  $shouldbeactive = strpos($_SERVER['REQUEST_URI'], $href) !== false;
+  $shouldbeactive = $_SERVER['REQUEST_URI'] == $href;
   if ($href == null)
     $href = $file;
   echo $li ? '<li class = "' : '';
@@ -88,12 +88,11 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 			<?php 
 
 			giveClassActive('index.php', '/', 'Home', false);
-
+			giveClassActive('questions.php', '/Questions', 'Questions', false);
+			giveClassActive('interesting.php', '/Questions/Interesting', 'Interesting', false);
+			giveClassActive('topics.php', '/Topics', 'Topics', false);
+			giveClassActive('view_users.php', '/view_users', 'Users', false);
 			?>
-			<a href = "/Questions">Latest Questions</a>
-			<a href = "/Questions/Interesting">Interesting Questions</a>
-			<a href = "/Topics">Topics</a>
-			<a href = "/view_users">Users</a>
 		</div>
 	</div>
 
