@@ -32,24 +32,23 @@
 				@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 				# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
-				function giveClassActive($file, $href, $show) {
+				function giveClassActive($file, $href, $show, $li = true) {
+					$shouldbeactive = strpos($_SERVER['REQUEST_URI'], $href) !== false;
 					if ($href == null)
 						$href = $file;
-					echo '
-					<li class = "';
-					if (strpos($_SERVER['REQUEST_URI'], $href) !== false) {
-						echo 'active';
-					}
-					echo '">';
-					echo '<a href = "' . $href . '">' . $show . '</a></li>';
+					echo $li ? '<li class = "' : '';
+					echo $shouldbeactive && $li ? 'active' : '';
+					echo $li ? '">' : '';
+					echo '<a href = "' . $href . '"';
+					echo $shouldbeactive && !$li ? ' class = "active"' : '';
+					echo '>'. $show . '</a>';
+					echo $li ? '</li>' : '';
 				}
 
 				$mods = array(6);
 
 				define('LOGGEDIN', isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']));
 				define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
-				
-				?>
 
 				<li class = "search-bar" id = "head-search-bar-li"><img src = "../images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "" type = "text" placeholder = "Search..."></li>
 
@@ -83,14 +82,18 @@
 		</div>
 	</div>
 </nav>
-<div class = "container">
-	<div class = "row">
-		<div class = "col-sm-2 sidebar-outer">
-			<div class = "fixed-sidebar">
-				<a href = "/">Home</a>
-				<a href = "/Questions">Latest Questions</a>
-				<a href = "/Questions/Interesting">Interesting Questions</a>
-				<a href = "/Topics">Topics</a>
-				<a href = "/view_users">Users</a>
-			</div>
+<div class = "row">
+	<div class = "col-sm-2 sidebar-outer">
+		<div class = "fixed-sidebar">
+			<?php 
+
+			giveClassActive('index.php', '/', 'Home', false);
+
+			?>
+			<a href = "/Questions">Latest Questions</a>
+			<a href = "/Questions/Interesting">Interesting Questions</a>
+			<a href = "/Topics">Topics</a>
+			<a href = "/view_users">Users</a>
 		</div>
+	</div>
+	

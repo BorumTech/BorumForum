@@ -31,6 +31,7 @@ form input, form textarea {
 
 @media (min-width: 768px) {
     .fixed-sidebar {
+    	width: auto;
         position: fixed;
         z-index: 1; /* Stay on top */
 		top: 60px; /* Stay at the top */
@@ -44,7 +45,13 @@ form input, form textarea {
     }
 }
 
-.sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
+.fixed-sidebar a.active {
+	box-sizing: content-box;
+	margin-right: -20px;
+}
+
+.sidebar-outer, .fixed-sidebar {
+	width: 235px;
 	height: 100%;
 }
 
