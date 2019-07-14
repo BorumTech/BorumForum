@@ -36,14 +36,12 @@ form input, form textarea {
         z-index: 1; /* Stay on top */
 		top: 60px; /* Stay at the top */
 		left: 0;
+		margin-left: 15px;
 		overflow-x: hidden; /* Disable horizontal scroll */
 		padding-top: 20px;
 		padding-right: 20px;
 		border-right: 0.5px solid lightgrey;
-		width: 225px;
-		height: 100%;
     }
-}
 
 .fixed-sidebar a.active {
 	box-sizing: content-box;
@@ -55,9 +53,10 @@ form input, form textarea {
 	height: 100%;
 }
 
-@media only screen and (max-width: 1200px) {
-	.topic-notif-container {
-		margin-left: 225px;
+    .sidebar-outer + *:not(:empty), .sidebar-outer + *:empty + * {
+		width: calc(75% - 235px);
+		height: 100%;
+		padding-left: 30px;
 	}
 }
 
@@ -73,11 +72,11 @@ form input, form textarea {
 
 .fixed-sidebar a {
 	width: 100%;
+	box-sizing: border-box;
 	display: block;
 	color: grey;
 	padding: 15px;
-	margin: 10px;
-	margin-left: 0;
+	margin: 10px 0;
 	background-color: #e6e6e6;
 	text-decoration: none;
 	color: #818181;
@@ -140,5 +139,10 @@ a.question-tags {
 
 #edit-body {
 	resize: vertical;
+}
+
+td.block {
+  display: block;
+  
 }
 

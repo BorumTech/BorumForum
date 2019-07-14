@@ -36,17 +36,25 @@ li {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+@media only screen and (max-width: 520px) {
+  .sidebar-outer {
+
+  }
+}
+
 nav {
   padding: 10px;
 }
 
 .row {
-  margin-top: 20px;
+  margin-top: 70px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 div.navbar-header {
   display: inline-block;
-  width: 225px;
+  width: 235px;
   margin-right: 15px;
 }
 
@@ -58,6 +66,7 @@ div.navbar-header img {
 div.navbar-profile {
   position: absolute;
   right: 5%;
+  top: 15%;
 }
 
 div.navbar-profile img {

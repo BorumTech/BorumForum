@@ -19,8 +19,8 @@
 }
 
 .numbers {
-	border: 1px solid orange;
 	padding: 5px;
+	display: block;
 }
 
 .numbers span {
