@@ -98,7 +98,7 @@ function handleImageUpload() {
 
 function displayForm() {
 	echo '
-	<form id = "profile_pic" enctype = "multipart/form-data" action = "" method = "post">
+	<form id = "profile-pic" enctype = "multipart/form-data" action = "" method = "post">
 		<input type = "hidden" name = "MAX_FILE_SIZE" value = "524288">
 		<fieldset>
 			<p><strong>File:</strong><input type = "file" name = "upload"></p>
