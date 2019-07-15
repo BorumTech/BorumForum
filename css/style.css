@@ -46,7 +46,7 @@ form input, form textarea {
 		width: auto;
 		animation-name: pull-out;
 		animation-fill-mode: forwards;
-		animation-duration: 0.3s;
+		animation-duration: 0.5s;
 	}
 
 	@keyframes pull-out {
