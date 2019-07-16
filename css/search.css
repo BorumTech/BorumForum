@@ -16,17 +16,13 @@ li.search-bar#head-search-bar-li img {
     height: 30px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1155px) {
+@media only screen and (min-width: 768px) and (max-width: 1182px) {
     li.search-bar#head-search-bar-li input#head-search-bar {
         display: none;
     }
 
     li.search-bar#head-search-bar-li {
         width: 9vw;
-    }
-
-    .topic-notif-container {
-        
     }
 }
 
@@ -39,6 +35,11 @@ fieldset.topic-notif {
     width: 100%;
 }
 
+@media only screen and (max-width: 914px) and (min-width: 768px) {
+    .topic-notif-container {
+        margin-left: 250px;
+    }
+}
 
 @media only screen and (max-width: 1360px) and (min-width: 915px) {
 

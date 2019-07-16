@@ -68,7 +68,7 @@ div.navbar-profile {
 }
 
 div.navbar-profile > a {
-  padding: 20px;
+  padding: 20px 10px;
   text-decoration: none;
 }
 
@@ -76,7 +76,7 @@ div.navbar-profile > a:hover {
   background-color: lightgrey;
 }
 
-div.navbar-profile img {
+div.navbar-profile > a > img {
   height: 30px;
   width: 30px;
 }
