@@ -66,12 +66,25 @@ div.navbar-header img {
 div.navbar-profile {
   position: absolute;
   right: 5%;
-  top: 15%;
+  padding: 10px 0;
+}
+
+div.navbar-profile > a {
+  padding: 20px;
+  text-decoration: none;
+}
+
+div.navbar-profile > a:hover {
+  background-color: lightgrey;
 }
 
 div.navbar-profile img {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
+}
+
+div.navbar-profile > img {
+  margin-right: 20px;
 }
 
 body > .container {
