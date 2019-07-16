@@ -60,9 +60,12 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 			$ro = mysqli_fetch_array($r, MYSQLI_NUM);
 			$imgurl = '/show_image?image=' . $ro[1];
 			echo '
-				<a href = "#">
+				<a id = "notification-bell" href = "#">
 					<img src = "../images/notification-bell-pngrepo-com.png">
 				</a>
+				<div style = "display: none" id = "notifications">';
+					
+				echo '</div>
 				<a href = "/users/' . $_COOKIE['id'] . '">
 					<img src = "' . $imgurl . '">
 				</a>';
