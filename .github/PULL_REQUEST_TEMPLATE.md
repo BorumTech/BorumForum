@@ -30,10 +30,10 @@ If you don't believe this PR needs to be mentioned in the release notes, write "
 
 Some examples of changelog entries from earlier releases:
 
-  - Adds support for Python 3 in GitHub Desktop CLI for macOS users
-  - Fixes problem with commit being reset when switching between History and Changes tabs
-  - Fixes caret in co-author selector, which is hidden when dark theme is enabled
-  - Improves status parsing performance when handling thousands of changed files
+  - Made Borum fully mobile compatible
+  - You can follow and ignore topics
+  - Edit any of your posts
+  - Delete any of your posts
 
 -->
 
