@@ -90,7 +90,10 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 
 			giveClassActive('index.php', '/', 'Home', false);
 			giveClassActive('questions.php', '/Questions', 'Questions', false);
-			giveClassActive('interesting.php', '/Questions/Interesting', 'Interesting', false);
+			if (LOGGEDIN) {
+				giveClassActive('interesting.php', '/Questions/Interesting', 'Interesting', false);
+			}
+			
 			giveClassActive('topics.php', '/Topics', 'Topics', false);
 			giveClassActive('view_users.php', '/view_users', 'Users', false);
 			?>

@@ -39,6 +39,10 @@ fieldset.topic-notif {
     width: 100%;
 }
 
+.row > div:not(.sidebar-outer) > *:first-child {
+    margin-top: 20px;
+}
+
 
 @media only screen and (max-width: 1360px) and (min-width: 915px) {
 
