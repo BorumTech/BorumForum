@@ -63,14 +63,14 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 				<a id = "notification-bell" href = "#">
 					<img src = "../images/notification-bell-pngrepo-com.png">
 				</a>
-				<div style = "display: none" id = "notifications">';
-					
-				echo '</div>
 				<a href = "/users/' . $_COOKIE['id'] . '">
 					<img src = "' . $imgurl . '">
-				</a>';
+				</a>
+				<div id = "notifications" style = "display:none">';
+				echo '</div>';
 		}
-	echo '</div>';
+
+		echo '</div>';
 	?>	
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">

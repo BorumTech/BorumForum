@@ -4,11 +4,13 @@ const notificationsEl = document.getElementById("notifications");
 const handleBellClick = () => {
 	if (notificationsEl.style.display == 'none') {
 		notificationsEl.style.display = "block";
+		notificationBellEl.style.backgroundColor = "lightgrey";
 	} else if (notificationsEl.style.display == 'block') {
 		notificationsEl.style.display = "none";
 	}
 
 };
 
-notificationBellEl.addEventListener('click', handleBellClick);
+if (notificationBellEl && notificationsEl)
+	notificationBellEl.addEventListener('click', handleBellClick);
 
