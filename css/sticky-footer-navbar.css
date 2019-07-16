@@ -36,12 +36,6 @@ li {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-@media only screen and (max-width: 520px) {
-  .sidebar-outer {
-
-  }
-}
-
 nav {
   padding: 10px;
 }
@@ -52,20 +46,24 @@ nav {
   margin-right: 0;
 }
 
-div.navbar-header {
-  display: inline-block;
-  width: 235px;
-  margin-right: 15px;
+.navbar-header:after {
+  clear: none;
 }
+
+@media only screen and (min-width: 768px) {
+ div.navbar-header {
+    width: 235px;
+    margin-right: 15px;
+  } 
+}
+
 
 div.navbar-header img {
   float: left;
-  margin-right: 15px;
 }
 
 div.navbar-profile {
-  position: absolute;
-  right: 5%;
+  float: right;
   padding: 10px 0;
 }
 
@@ -81,10 +79,6 @@ div.navbar-profile > a:hover {
 div.navbar-profile img {
   height: 30px;
   width: 30px;
-}
-
-div.navbar-profile > img {
-  margin-right: 20px;
 }
 
 body > .container {
