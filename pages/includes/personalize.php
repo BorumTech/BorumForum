@@ -34,6 +34,7 @@
 		<div>
 			<a href = '/Questions/{$row5['parent_id']}'>
 				<img src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
+				<span>{$row5['first_name']} answered</span>
 				<p>{$row5['body']}<p>
 			</a>
 		</div>
