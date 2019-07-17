@@ -1,6 +1,6 @@
 #notifications {
 	border: 1px double grey;
-	height: 200px;
+	height: 400px;
 	width: 300px;
 	position: absolute;
 	right: 60px;
@@ -13,7 +13,7 @@
 #notifications > div {
 	font-size: 85%;
 	border-bottom: 1px solid grey;
-	height: 75px;
+	height: 150px;
 	overflow: hidden;
 }
 
@@ -22,6 +22,10 @@
 	display: block;
 	text-decoration: none;
 	color: black;
+}
+
+#notifications > div > a > img {
+
 }
 
 #notifications > div > a > p {

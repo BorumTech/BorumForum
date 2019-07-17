@@ -25,16 +25,15 @@
 		$questionIds[] = $row4['id'];
 	}
 
-	mysqli_data_seek($r4, 0);
-
 	$questionIds = implode("', '", $questionIds);
-	$q5 = "SELECT id, parent_id, body FROM messages WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
+	$q5 = "SELECT messages.id, messages.user_id, messages.parent_id, messages.body, users.first_name, users.profile_picture FROM messages JOIN users ON users.id = messages.user_id WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
 	$r5 = mysqli_query($dbc, $q5);
 
 	while ($row5 = mysqli_fetch_array($r5, MYSQLI_ASSOC)) {
 		echo "
 		<div>
 			<a href = '/Questions/{$row5['parent_id']}'>
+				<img src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
 				<p>{$row5['body']}<p>
 			</a>
 		</div>
