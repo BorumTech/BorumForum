@@ -73,7 +73,7 @@ div.navbar-profile > a {
   text-decoration: none;
 }
 
-div.navbar-profile > a:hover {
+div.navbar-profile > a:hover, #notifications > div > a:hover {
   background-color: lightgrey;
 }
 

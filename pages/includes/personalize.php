@@ -24,12 +24,17 @@
 	mysqli_data_seek($r, 0);
 
 	$questionIds = implode("', '", $questionIds);
-	echo "('$questionIds')";
-	$q = "SELECT id, body FROM messages WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
+	$q = "SELECT id, parent_id, body FROM messages WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
 	$r = mysqli_query($dbc, $q);
 
 	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-		echo "<div><p>{$row['body']}<p></div>";
+		echo "
+		<div>
+			<a href = '/Questions/{$row['parent_id']}'>
+				<p>{$row['body']}<p>
+			</a>
+		</div>
+		";
 	} 
 
 	echo '</div>';

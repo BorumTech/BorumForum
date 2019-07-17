@@ -55,8 +55,7 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 					<img src = "../images/question.png">
 				</a>';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
-			include('./personalize.php');
-			
+			include('includes/personalize.php');
 		}
 
 		echo '</div>';

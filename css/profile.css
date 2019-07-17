@@ -12,13 +12,19 @@
 
 #notifications > div {
 	font-size: 85%;
-	padding: 10px;
 	border-bottom: 1px solid grey;
 	height: 75px;
 	overflow: hidden;
 }
 
-#notifications > div > p {
+#notifications > div > a {
+	padding: 10px;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+#notifications > div > a > p {
 
 }
 
