@@ -11,6 +11,7 @@ if (!ISADMIN) {
 
 ?>
 
+<div class = "col-sm-5">
 <h1>Create a New Topic</h1>
 
 <?php

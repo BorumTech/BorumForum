@@ -118,6 +118,13 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 	} else if ($row['date_posted'] == 1) {
 		$timeelapsed = "yesterday";
 	}
+
+    if ($row['date_posted'] >= 30) {
+        $timeelapsed = ceil($row['date_posted'] / 30) . " months ago";
+    } else if ($row['date_posted'] >= 7) {
+        $timeelapsed = ceil($row['date_posted'] / 7) . " weeks ago";
+    }
+
 	echo "
 	<tr>
 	<td class = 'block'><div class = 'numbers'><span>Votes</span><span>{$row['votes']}</span></div></td>
