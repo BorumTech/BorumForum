@@ -55,19 +55,8 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 					<img src = "../images/question.png">
 				</a>';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
-			$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
-			$r = mysqli_query($dbc, $q);
-			$ro = mysqli_fetch_array($r, MYSQLI_NUM);
-			$imgurl = '/show_image?image=' . $ro[1];
-			echo '
-				<a id = "notification-bell" href = "#">
-					<img src = "../images/notification-bell-pngrepo-com.png">
-				</a>
-				<a href = "/users/' . $_COOKIE['id'] . '">
-					<img src = "' . $imgurl . '">
-				</a>
-				<div id = "notifications" style = "display:none">';
-				echo '</div>';
+			include('./personalize.php');
+			
 		}
 
 		echo '</div>';

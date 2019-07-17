@@ -7,6 +7,7 @@ const handleBellClick = () => {
 		notificationBellEl.style.backgroundColor = "lightgrey";
 	} else if (notificationsEl.style.display == 'block') {
 		notificationsEl.style.display = "none";
+		notificationBellEl.style.backgroundColor = "";
 	}
 
 };

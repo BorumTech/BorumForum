@@ -1,10 +1,24 @@
 #notifications {
-	border: 1px solid black;
+	border: 1px double grey;
 	height: 200px;
 	width: 300px;
 	position: absolute;
 	right: 60px;
 	margin-top: 12px;
 	clear: both;
+	background-color: white;
+	overflow: auto;
+}
+
+#notifications > div {
+	font-size: 85%;
+	padding: 10px;
+	border-bottom: 1px solid grey;
+	height: 75px;
+	overflow: hidden;
+}
+
+#notifications > div > p {
+
 }
 
