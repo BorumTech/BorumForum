@@ -13,7 +13,7 @@
 #notifications > div {
 	font-size: 85%;
 	border-bottom: 1px solid grey;
-	height: 150px;
+	height: 130px;
 	overflow: hidden;
 }
 
@@ -22,6 +22,7 @@
 	display: block;
 	text-decoration: none;
 	color: black;
+	height: 100%;
 }
 
 #notifications > div > a > img {
