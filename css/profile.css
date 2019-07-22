@@ -25,11 +25,16 @@
 	height: 100%;
 }
 
-#notifications > div > a > img {
+#notifications > div > a > div.info > span.date {
+	float: right;
+}
 
+#notifications > div > a > div.info > .answerer-profile {
+	float: left;
 }
 
 #notifications > div > a > p {
-
+	clear: both;
+	margin-top: 0;
 }
 

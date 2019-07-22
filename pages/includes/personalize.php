@@ -26,15 +26,18 @@
 	}
 
 	$questionIds = implode("', '", $questionIds);
-	$q5 = "SELECT messages.id, messages.user_id, messages.parent_id, messages.body, users.first_name, users.profile_picture FROM messages JOIN users ON users.id = messages.user_id WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
+	$q5 = "SELECT messages.id, messages.user_id, messages.parent_id, CONCAT(left(messages.body, 200), '...') AS body, users.first_name, users.profile_picture, DATE_FORMAT(messages.date_entered, '%b %e %Y %T') AS date_posted FROM messages JOIN users ON users.id = messages.user_id WHERE parent_id IN ('$questionIds') ORDER BY date_entered DESC";
 	$r5 = mysqli_query($dbc, $q5);
 
 	while ($row5 = mysqli_fetch_array($r5, MYSQLI_ASSOC)) {
 		echo "
 		<div>
 			<a href = '/Questions/{$row5['parent_id']}'>
-				<img src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
-				<span>{$row5['first_name']} answered</span>
+				<div class = 'info'>
+					<span class = 'date'>{$row5['date_posted']}</span>
+					<img class = 'answerer-profile' src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
+					<span class = 'answerer-profile'>{$row5['first_name']} answered</span>
+				</div>	
 				<p>{$row5['body']}<p>
 			</a>
 		</div>
