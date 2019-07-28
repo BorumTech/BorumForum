@@ -34,9 +34,9 @@
 		<div>
 			<a href = '/Questions/{$row5['parent_id']}'>
 				<div class = 'info'>
-					<span class = 'date'>{$row5['date_posted']}</span>
 					<img class = 'answerer-profile' src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
 					<span class = 'answerer-profile'>{$row5['first_name']} answered</span>
+					<span class = 'date'>{$row5['date_posted']}</span>
 				</div>	
 				<p>{$row5['body']}<p>
 			</a>

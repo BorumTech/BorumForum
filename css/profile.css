@@ -25,12 +25,8 @@
 	height: 100%;
 }
 
-#notifications > div > a > div.info > span.date {
-	float: right;
-}
-
-#notifications > div > a > div.info > .answerer-profile {
-	float: left;
+#notifications > div > a > div > span.date {
+	margin-left: 20px;
 }
 
 #notifications > div > a > p {
