@@ -50,13 +50,15 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
 	<?php 
+		echo '<div class = "navbar-profile">';
+		echo '<a href = "#">
+					<img src = "../images/question.png">
+				</a>';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
-			$q = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
-			$r = mysqli_query($dbc, $q);
-			$ro = mysqli_fetch_array($r, MYSQLI_NUM);
-			$imgurl = '/show_image?image=' . $ro[1];
-			echo '<div class = "navbar-profile"><a href = "/users/' . $_COOKIE['id'] . '"><img src = "' . $imgurl . '"></a></div>';
+			include('includes/personalize.php');
 		}
+
+		echo '</div>';
 	?>	
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
@@ -72,10 +74,10 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 				giveClassActive('register.php', '/Register', 'Register'); 
 			}
 
-			if (LOGGEDIN && basename($_SERVER['PHP_SELF']) != 'logout.php') {
-				giveClassActive("logout.php", "/logout", "Log Out");
-			} else {
+			if (!LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php') {
 				giveClassActive("login.php", "/Login", "Log In");
+			} else {
+				giveClassActive("logout.php", "/logout", "Log Out");
 			}
 
 			?>
