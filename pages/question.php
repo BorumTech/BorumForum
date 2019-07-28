@@ -1,9 +1,9 @@
 <?php
 	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
-
+	
 	// Generate query for question's information
 	$query = '
-	SELECT users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name AS topic
+	SELECT messages.parent_id, users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name AS topic
 	FROM messages 
 	JOIN users 
 	ON messages.user_id = users.id 
@@ -12,6 +12,8 @@
 	WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+	define('ISQUESTION', $row['parent_id'] == 0);
 
 	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
@@ -47,7 +49,7 @@
 						if (isset($_COOKIE['id'])) {
 							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 							$result = mysqli_query($dbc, $query);
-							return mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
+							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
 						}
 
 					}
@@ -80,7 +82,7 @@
 					$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 					$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
-					$rowCorr = !QUESNOVOTES ? mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
+					$rowCorr = !QUESNOVOTES ? @mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
 					echo $voteupbtn;
 					echo "\t\t<div class = 'vote-counter' id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 					echo $votedownbtn;
@@ -124,35 +126,35 @@
 				</td>
 			</tr>
 			<?php 
-					$counter = 1;
+				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 					$ans_id = $row2['msg_id'];
 					$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$uparrow = getUpArrow();
-						$noAccountVoteUpBtn = getNoAccountButton($uparrow);
+					$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-						$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-						$downarrow = getDownArrow();
-						$noAccountVoteDownBtn = getNoAccountButton($downarrow);
+					$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$downarrow = getDownArrow();
+					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-						$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-						$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
-						
-						echo "<tr>";
-						echo "<td>";
-						echo $voteupbtn;
-            
- 						$voteCount = $row2['votes'] == null ? 0 : $row2['votes'];
-            
-						echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
-						echo $votedownbtn;
-						echo "</td>";
-						// Generate query for answers' information
-						echo "<td>";
-						echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
-						echo "</td>";
-						echo "</tr>\n";
-						?>
+					$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+					$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
+					
+					echo "<tr>";
+					echo "<td>";
+					echo $voteupbtn;
+        
+						$voteCount = $row2['votes'] == null ? 0 : $row2['votes'];
+        
+					echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
+					echo $votedownbtn;
+					echo "</td>";
+					// Generate query for answers' information
+					echo "<td>";
+					echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
+					echo "</td>";
+					echo "</tr>\n";
+					?>
 						<tr class = 'user-profile-container'>
 						<?php 
 
@@ -225,7 +227,7 @@
 					}
 					$id = $_POST['id'];
 
-					$query = "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id";
+					$query = ISQUESTION ? "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id" : "UPDATE messages SET body = '$body' WHERE id = $id";
 					mysqli_query($dbc, $query);
 					break;
 			}

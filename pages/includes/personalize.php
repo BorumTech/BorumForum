@@ -9,7 +9,7 @@
 	// Display Help, Notification bar, and Profile
 	echo '
 		<a id = "notification-bell" href = "#">
-			<img src = "../images/notification-bell-pngrepo-com.png">
+			<img src = "/images/notification-bell-pngrepo-com.png">
 		</a>
 		<a href = "/users/' . $_COOKIE['id'] . '">
 			<img src = "' . $imgurl . '">

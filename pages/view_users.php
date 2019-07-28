@@ -30,7 +30,7 @@ $result = performPaginationQuery($dbc, $q, $order_by, $start);
 // Table header
 $adminControls = ISADMIN ? '<th align = "left"><strong>Edit</strong></th>
 <th align = "left"><strong>Delete</strong></th>' : '';
-echo '<table width = "60%">
+echo '<table id = "users-table" width = "60%">
 <thead>
 <tr>'.
 $adminControls . '
@@ -50,15 +50,16 @@ $bg = '#eeeeee'; // Set the initial background color
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 
 	$bg = ($bg == '#eeeeee' ? '#ffffff' : '#eeeeee'); // Switch the background color every row
-	$adminControls = ISADMIN ? '<td align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
-	<td align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>' : '';
+	$adminControls = ISADMIN ? '
+	<td class = "links" align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
+	<td class = "links" align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>' : '';
 
 	echo '<tr bgcolor = "' . $bg . '">' . 
 	$adminControls . '
-	<td align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
-	<td align = "left">' . $row['last_name'] . '</td>
-	<td align = "left">' . $row['first_name'] . '</td>
-	<td align = "left">' . $row['dr'] . '</td>
+	<td class = "links" align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
+	<td class = "output" align = "left">' . $row['last_name'] . '</td>
+	<td class = "output" align = "left">' . $row['first_name'] . '</td>
+	<td class = "output" align = "left">' . $row['dr'] . '</td>
 	</tr>
 	';
 
