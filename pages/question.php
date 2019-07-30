@@ -151,7 +151,7 @@
 					echo "</td>";
 					// Generate query for answers' information
 					echo "<td>";
-					echo "\t\t<p class = 'ans-body'>{$row2['msg_body']}</p>\n";
+					echo "\t\t<p id = \"{$row2['msg_id']}\" class = 'ans-body'>{$row2['msg_body']}</p>\n";
 					echo "</td>";
 					echo "</tr>\n";
 					?>
@@ -189,35 +189,14 @@
 			</tbody>
 	</table>
 	<h2>Your Answer</h2>
-	<form action = "" method = "post">
-	<br>
 	<p>
-	<textarea name = "answer" cols = '125' rows = '20'></textarea>
+		<textarea id = 'your-answer-ta' name = "answer" cols = '125' rows = '20'></textarea>
 	</p>
-	<input type = 'submit' value = 'Post your Answer'>
-	<input type = "hidden" name = "action" value = "answer-question">
+	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").innerHTML)'>
 	</form>
 	<?php
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Handle all form submissions
 			switch ($_POST['action']) {
-				case "answer-question":
-					// Validate the form elements
-					$ans = mysqli_real_escape_string($dbc, trim($_POST['answer']));
-					// Check if its okay for the user to answer the question
-					if (isset($_COOKIE['id'])) {
-						$user_id = $_COOKIE['id'];
-						$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
-						$r = @mysqli_query($dbc, $q);
-						$num = mysqli_num_rows($r);
-
-						if ($num == 0) { // No answers that match this one (no duplicates) on the current question
-							$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ({$row['msg_id']}, $user_id, '$ans', NOW())";
-							@mysqli_query($dbc, $q);
-						}
-					} else {
-						echo "<script>alert(\"The question could not be added because you are not logged in.\");</script>";
-					}
-					break;
 				case "edit-question":
 					if (isset($_POST['subject'])) {
 						$sub = mysqli_real_escape_string($dbc, trim($_POST['subject']));
