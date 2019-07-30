@@ -74,3 +74,7 @@ output#bio {
 	background-color: hsl(0, 0%, 15%);
 }
 
+.t--dark table#users-table > tbody > tr > td.output {
+	color: hsl(0, 0%, 15%);
+}
+

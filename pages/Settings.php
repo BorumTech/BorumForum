@@ -92,8 +92,8 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 		<!-- Rectangular switch -->
 		<div class = "dark-mode">
 			<label class="switch">
-		  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
-		  		<?php echo isset($_COOKIE['dark']) ? 'checked' : '' ?> >
+		  		<input onclick = 'changeTheme(<?php echo $_COOKIE['id']; ?>)' type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
+		  		<?php echo $_COOKIE['dark'] == '1' ? 'checked' : '' ?> >
 		  		<span class="slider"></span>
 			</label>
 			<span id = "text">Dark mode</span>
@@ -115,13 +115,13 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
 		      console.log('dark');
-		      document.cookie = "dark=true; path=/";
+		      document.cookie = "dark=1; path=/";
 		    }
 		    else { // When they turn dark mode oN
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
 		      console.log('not dark');
-			  document.cookie = "dark=; path=/";
+			  document.cookie = "dark=0; path=/";
 		    }
 
 		  })

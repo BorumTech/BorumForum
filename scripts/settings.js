@@ -15,7 +15,19 @@ function getCookie(cname) {
 }
 
 function inDarkMode() {
-  return getCookie('dark');
+  return getCookie('dark') == '1';
+}
+
+function changeTheme(id) {
+  var xmlhttp;
+  if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
+   xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  const page = "/pages/ajax/dark.php";
+  xmlhttp.open("GET", page + "?id=" + id, true);
+  xmlhttp.send();
 }
 
 if (inDarkMode()) {

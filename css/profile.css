@@ -1,0 +1,36 @@
+#notifications {
+	border: 1px double grey;
+	height: 400px;
+	width: 300px;
+	position: absolute;
+	right: 60px;
+	margin-top: 12px;
+	clear: both;
+	background-color: white;
+	overflow: auto;
+}
+
+#notifications > div {
+	font-size: 85%;
+	border-bottom: 1px solid grey;
+	height: 130px;
+	overflow: hidden;
+}
+
+#notifications > div > a {
+	padding: 10px;
+	display: block;
+	text-decoration: none;
+	color: black;
+	height: 100%;
+}
+
+#notifications > div > a > div > span.date {
+	margin-left: 20px;
+}
+
+#notifications > div > a > p {
+	clear: both;
+	margin-top: 0;
+}
+
