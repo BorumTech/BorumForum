@@ -30,7 +30,7 @@ $result = performPaginationQuery($dbc, $q, $order_by, $start);
 // Table header
 $adminControls = ISADMIN ? '<th align = "left"><strong>Edit</strong></th>
 <th align = "left"><strong>Delete</strong></th>' : '';
-echo '<table id = "users-table" width = "60%">
+echo '<table id = "users-table" width = "100%">
 <thead>
 <tr>'.
 $adminControls . '
