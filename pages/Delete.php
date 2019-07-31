@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			echo "The post was successfully deleted. Redirecting you now...";
 			redirectTimeout();
 		} else {
-			echo "The deletion was not successful.";
+			echo "The deletion was not successful. A server error occured or this post never existed.";
+			redirectTimeout();
 		}		
 	}
 
