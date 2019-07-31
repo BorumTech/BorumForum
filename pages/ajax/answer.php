@@ -6,19 +6,18 @@ file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_c
 $ans = $_POST['answer'];
 $ques_id = $_POST['ques_id'];
 // Check if its okay for the user to answer the question
-if (isset($_COOKIE['id'])) {
-	$user_id = $_COOKIE['id'];
-	$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
-	$r = @mysqli_query($dbc, $q);
-	$num = mysqli_num_rows($r);
+$user_id = $_COOKIE['id'];
+$q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
+$r = @mysqli_query($dbc, $q);
+$num = mysqli_num_rows($r);
 
-	if ($num == 0) { // No answers that match this one (no duplicates) on the current question
-		$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, $user_id, '$ans', NOW())";
-		@mysqli_query($dbc, $q);
-	}
-} else {
-	echo "!--ERROR: Not logged in";
+if ($num == 0) { // No answers that match this one (no duplicates) on the current question
+	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, $user_id, '$ans', NOW())";
+	@mysqli_query($dbc, $q);
 }
+
+// Return the answer to the question that has just been posted
+echo "<tr><td>$ans</td></tr>";
 
 ?>
 

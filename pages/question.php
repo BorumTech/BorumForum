@@ -13,8 +13,6 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-	define('ISQUESTION', $row['parent_id'] == 0);
-
 	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
 
@@ -192,7 +190,7 @@
 	<p>
 		<textarea id = 'your-answer-ta' name = "answer" cols = '125' rows = '20'></textarea>
 	</p>
-	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").innerHTML)'>
+	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").value)'>
 	</form>
 	<?php
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Handle all form submissions
@@ -206,7 +204,7 @@
 					}
 					$id = $_POST['id'];
 
-					$query = ISQUESTION ? "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id" : "UPDATE messages SET body = '$body' WHERE id = $id";
+					$query = isset($sub) ? "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id" : "UPDATE messages SET body = '$body' WHERE id = $id";
 					mysqli_query($dbc, $query);
 					break;
 			}
