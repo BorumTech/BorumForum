@@ -55,9 +55,8 @@ function answerQuestion(ques_id, answer) {
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
 		if (xhr.readyState == 4 && xhr.status == 200) {	
-			if (xhr.responseText == '!--ERROR: Not logged in') {
-				console.log("a");
-				document.body.innerHTML += "<script></script>";
+			if (!getCookie('id')) { // If the user is not logged in
+				alert('You cannot post an answer because you are not logged in.');
 			} else {
 				document.getElementById('question-page-table').querySelector('tbody').innerHTML += xhr.responseText;
 			}

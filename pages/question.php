@@ -13,8 +13,6 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-	define('ISQUESTION', $row['parent_id'] == 0);
-
 	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
 
@@ -125,6 +123,7 @@
 					</div>
 				</td>
 			</tr>
+
 			<?php 
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
@@ -154,34 +153,29 @@
 					echo "\t\t<p id = \"{$row2['msg_id']}\" class = 'ans-body'>{$row2['msg_body']}</p>\n";
 					echo "</td>";
 					echo "</tr>\n";
-					?>
-						<tr class = 'user-profile-container'>
-						<?php 
+					echo "<tr class = 'user-profile-container'>";
+						if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
+							$what_to_echo = $row2['msg_id'] . '/Edit';
 
-							if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
-								$what_to_echo = $row2['msg_id'] . '/Edit';
+							echo '<td class = "modify-links">';
+							echo "<a href = '$what_to_echo'>Edit</a> ";
 
-								echo '<td class = "modify-links">';
-								echo "<a href = '$what_to_echo'>Edit</a> ";
+							$what_to_echo = $row2['msg_id'] . '/Delete';
 
-								$what_to_echo = $row2['msg_id'] . '/Delete';
-
-								echo "<a href = '$what_to_echo'>Delete</a>";
-								echo "</td>";
-							}
-						?>
-							<td colspan = "2" class = "question-poster">
+							echo "<a href = '$what_to_echo'>Delete</a>";
+							echo "</td>";
+						}
+						echo "<td colspan = \"2\" class = \"question-poster\">
 								<div>
-									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
-										<span><?php echo $row2['fn'] ?></span>
+									<a href = '/Users/{$row2['usr_id']}'>
+										<span>{$row2['fn']}</span>
 									</a>
-									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
-										<img height = '30' src = '../pages/show_image.php?image=<?php echo $row2['profile']?>'>
+									<a href = '/Users/{$row2['usr_id']}'>
+										<img height = '30' src = \"../pages/show_image.php?image={row2['profile']}\">
 									</a>
 								</div>	
 							</td>
-						</tr>
-						<?php 
+						</tr>";
 						$counter++;
 					}
 
@@ -192,7 +186,7 @@
 	<p>
 		<textarea id = 'your-answer-ta' name = "answer" cols = '125' rows = '20'></textarea>
 	</p>
-	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").innerHTML)'>
+	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").value)'>
 	</form>
 	<?php
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Handle all form submissions
@@ -206,7 +200,7 @@
 					}
 					$id = $_POST['id'];
 
-					$query = ISQUESTION ? "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id" : "UPDATE messages SET body = '$body' WHERE id = $id";
+					$query = isset($sub) ? "UPDATE messages SET subject = '$sub', body = '$body' WHERE id = $id" : "UPDATE messages SET body = '$body' WHERE id = $id";
 					mysqli_query($dbc, $query);
 					break;
 			}
