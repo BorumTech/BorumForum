@@ -4,7 +4,7 @@
  * The function takes one argument: the page to be redirected to.
  * The argument defaults to index.php.
  */
-function redirect_user($page = '../index', $absolute = FALSE) {
+function redirect_user($page = '../', $absolute = FALSE) {
 	// Start defining the URL...
 	// URL is http:// plus the host name plus the current directory:
 	$url = '';

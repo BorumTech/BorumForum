@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
 
 		// Redirect:
-		redirect_user('../Welcome');
+		redirect_user();
 
 	} else { // Unsuccessful!
 
