@@ -123,6 +123,7 @@
 					</div>
 				</td>
 			</tr>
+
 			<?php 
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
@@ -152,34 +153,29 @@
 					echo "\t\t<p id = \"{$row2['msg_id']}\" class = 'ans-body'>{$row2['msg_body']}</p>\n";
 					echo "</td>";
 					echo "</tr>\n";
-					?>
-						<tr class = 'user-profile-container'>
-						<?php 
+					echo "<tr class = 'user-profile-container'>";
+						if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
+							$what_to_echo = $row2['msg_id'] . '/Edit';
 
-							if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
-								$what_to_echo = $row2['msg_id'] . '/Edit';
+							echo '<td class = "modify-links">';
+							echo "<a href = '$what_to_echo'>Edit</a> ";
 
-								echo '<td class = "modify-links">';
-								echo "<a href = '$what_to_echo'>Edit</a> ";
+							$what_to_echo = $row2['msg_id'] . '/Delete';
 
-								$what_to_echo = $row2['msg_id'] . '/Delete';
-
-								echo "<a href = '$what_to_echo'>Delete</a>";
-								echo "</td>";
-							}
-						?>
-							<td colspan = "2" class = "question-poster">
+							echo "<a href = '$what_to_echo'>Delete</a>";
+							echo "</td>";
+						}
+						echo "<td colspan = \"2\" class = \"question-poster\">
 								<div>
-									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
-										<span><?php echo $row2['fn'] ?></span>
+									<a href = '/Users/{$row2['usr_id']}'>
+										<span>{$row2['fn']}</span>
 									</a>
-									<a href = '<?php echo "/Users/{$row2['usr_id']}"; ?>'>
-										<img height = '30' src = '../pages/show_image.php?image=<?php echo $row2['profile']?>'>
+									<a href = '/Users/{$row2['usr_id']}'>
+										<img height = '30' src = \"../pages/show_image.php?image={row2['profile']}\">
 									</a>
 								</div>	
 							</td>
-						</tr>
-						<?php 
+						</tr>";
 						$counter++;
 					}
 
