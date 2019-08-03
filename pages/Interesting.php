@@ -10,11 +10,21 @@ $page_title = "Interesting Questions";
 
 <?php 
 
+define('DISPLAY', 10);
+
 require('includes/pagination_functions.inc.php');
+
+$start = getStartValue();
+list($sort, $order_by) = getSortValue('messages');
+$q = "SELECT topic_id FROM `followed-topics` WHERE user_id = {$_COOKIE['id']}";
+$r = mysqli_query($dbc, $q);
+$followrow = mysqli_fetch_array($r, MYSQLI_NUM);
+$following = $followrow;
+$following = join("','", $following); 
 
 $q = '
 SELECT
-    T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
+    T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.topic_id, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
 FROM
     (
     SELECT
@@ -23,7 +33,8 @@ FROM
         messages.id AS msg_id,
         messages.subject,
         DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
-        topics.name
+        topics.name,
+        topics.id AS topic_id
     FROM
         messages
     JOIN topics ON messages.forum_id = topics.id
@@ -47,9 +58,11 @@ FROM
     ) T2
 ON
     T1.msg_id = T2.parent_id
-WHERE T1.msg_id = 
+WHERE T1.topic_id IN ("' . $following . '")
 ORDER BY
         ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
+        echo $q;
+$result = mysqli_query($dbc, $q);
 
 echo "<table class = 'question-list'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
@@ -73,7 +86,7 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 	<td class = 'block'><div class = 'numbers'><span>Answers</span><span>{$row['answers']}</span></div></td>
 	<td align = \"left\">
 		<a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
-		<a class = \"question-tags\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
+		<a class = \"question-tags\" href = \"/Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
 	</td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>
