@@ -61,7 +61,7 @@ ON
 WHERE T1.topic_id IN ("' . $following . '")
 ORDER BY
         ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
-        echo $q;
+
 $result = mysqli_query($dbc, $q);
 
 echo "<table class = 'question-list'>";
