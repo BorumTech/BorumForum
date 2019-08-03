@@ -1,21 +1,21 @@
-table#latest-questions {
+table.question-list {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0px 20px;
 }
-table#latest-questions tr {
-	background-color: lightgrey;
+table.question-list tr {
+	background-color: rgba(124, 150, 124, 0.2);
 }
 
-table#latest-questions tr td {
+table.question-list tr td {
 	padding: 15px;
 }
 
-table#latest-questions tr td a {
+table.question-list tr td a {
 	font-size: 18px;
 }
 
-table#latest-questions tr td.date-diff {
+table.question-list tr td.date-diff {
 	width: 200px;
 }
 
