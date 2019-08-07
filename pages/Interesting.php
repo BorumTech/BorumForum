@@ -23,9 +23,11 @@ $start = getStartValue();
 list($sort, $order_by) = getSortValue('messages');
 $q = "SELECT topic_id FROM `followed-topics` WHERE user_id = {$_COOKIE['id']}";
 $r = mysqli_query($dbc, $q);
-$followrow = mysqli_fetch_array($r, MYSQLI_NUM);
-$following = $followrow;
-$following = join("','", $following); 
+$followedtopics = [];
+while ($followrow = mysqli_fetch_array($r, MYSQLI_NUM)) 
+    $followedtopics[] = $followrow[0];
+
+$following = join("\",\"", $followedtopics);
 
 $q = '
 SELECT
