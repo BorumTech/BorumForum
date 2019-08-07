@@ -1,7 +1,7 @@
 <?php 
 
 	// Find url of logged in user's profile picture
-	$q3 = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
+	$q3 = "SELECT id, profile_picture FROM users WHERE id = {$_SESSION['id']}";
 	$r3 = mysqli_query($dbc, $q3);
 	$row3 = mysqli_fetch_array($r3, MYSQLI_NUM);
 	$imgurl = '/show_image?image=' . $row3[1];
@@ -11,14 +11,14 @@
 		<a id = "notification-bell" href = "#">
 			<img src = "/images/notification-bell-pngrepo-com.png">
 		</a>
-		<a href = "/users/' . $_COOKIE['id'] . '">
+		<a href = "/users/' . $_SESSION['id'] . '">
 			<img src = "' . $imgurl . '">
 		</a>
 		<div id = "notifications" style = "display:none">';
 
 	// Create notification center
 	$questionIds = array();
-	$q4 = "SELECT id, subject FROM messages WHERE user_id = {$_COOKIE['id']} AND parent_id = 0 ORDER BY date_entered DESC";
+	$q4 = "SELECT id, subject FROM messages WHERE user_id = {$_SESSION['id']} AND parent_id = 0 ORDER BY date_entered DESC";
 	$r4 = mysqli_query($dbc, $q4);
 
 	while ($row4 = mysqli_fetch_array($r4, MYSQLI_ASSOC)) {

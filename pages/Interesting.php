@@ -1,6 +1,6 @@
 <?php 
 
-if (!isset($_COOKIE['id'])) {
+if (!isset($_SESSION['id'])) {
     include('includes/login_functions.inc.php');
     redirect_user();
 }
@@ -21,7 +21,7 @@ require('includes/pagination_functions.inc.php');
 
 $start = getStartValue();
 list($sort, $order_by) = getSortValue('messages');
-$q = "SELECT topic_id FROM `followed-topics` WHERE user_id = {$_COOKIE['id']}";
+$q = "SELECT topic_id FROM `followed-topics` WHERE user_id = {$_SESSION['id']}";
 $r = mysqli_query($dbc, $q);
 $followedtopics = [];
 while ($followrow = mysqli_fetch_array($r, MYSQLI_NUM)) 

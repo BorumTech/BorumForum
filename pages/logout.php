@@ -4,7 +4,7 @@
 $message = "";
 
 // If no cookie is present, redirect the user
-if (!isset($_COOKIE['id'])) {
+if (!isset($_SESSION['id'])) {
 	// Need the functions
 	require('includes/login_functions.inc.php');
 	redirect_user();
@@ -21,6 +21,6 @@ include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 // Print the customized message
 echo "<h1>Logged Out!</h1>
-<p>You are now logged out, {$_COOKIE['first_name']}!</p>";
+<p>You are now logged out, {$_SESSION['first_name']}!</p>";
 
 include('includes/footer.html');

@@ -1,6 +1,6 @@
 <?php 
 require('includes/login_functions.inc.php');
-if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['last_name']))) {
+if (!(isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']))) {
 	redirect_user();
 }
 ?>
@@ -87,12 +87,12 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 	<h1>Settings</h1>
 	<div class = "flex-box">
 		<a href = "password">Change password</a>
-		<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
-		<a style = "color: red" href = "delete_user?id=<?php echo $_COOKIE['id']; ?>">Delete Account</a>
+		<a href = "edit_user?id=<?php echo $_SESSION['id']; ?>">Edit Information</a>
+		<a style = "color: red" href = "delete_user?id=<?php echo $_SESSION['id']; ?>">Delete Account</a>
 		<!-- Rectangular switch -->
 		<div class = "dark-mode">
 			<label class="switch">
-		  		<input onclick = 'changeTheme(<?php echo $_COOKIE['id']; ?>)' type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
+		  		<input onclick = 'changeTheme(<?php echo $_SESSION['id']; ?>)' type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
 		  		<?php echo $_COOKIE['dark'] == '1' ? 'checked' : '' ?> >
 		  		<span class="slider"></span>
 			</label>
@@ -101,7 +101,7 @@ if (!(isset($_COOKIE['id']) && isset($_COOKIE['first_name']) && isset($_COOKIE['
 		<a href = "/Settings/tag-notifications">Tag Watching and Ignoring</a>
 		<a href = "/Settings/Sign-In-Credentials">Sign In Credentials</a>
 		<a href = "/">Home</a>
-		<a href = "/Users/<?php echo $_COOKIE['id']; ?>">Back to my profile</a>
+		<a href = "/Users/<?php echo $_SESSION['id']; ?>">Back to my profile</a>
 	</div>
 
 	<script src = "../scripts/settings.js"></script>

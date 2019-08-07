@@ -7,7 +7,7 @@ $page_title = 'Edit a User';
 include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 require('includes/login_functions.inc.php');
-if (!ISADMIN && !(isset($_COOKIE['id']) && isset($_GET['id']) && $_COOKIE['id'] == $_GET['id'])) {
+if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'] == $_GET['id'])) {
 	redirect_user('../index');
 }
 

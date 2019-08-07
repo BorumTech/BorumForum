@@ -6,7 +6,7 @@ file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_c
 $ans = $_POST['answer'];
 $ques_id = $_POST['ques_id'];
 // Check if its okay for the user to answer the question
-$user_id = $_COOKIE['id'];
+$user_id = $_SESSION['id'];
 $q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
 $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
@@ -43,8 +43,8 @@ $fillColor = votedOnQuestion($ansrow['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 2
 $downarrow = getDownArrow();
 $noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
+$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
 
 echo "<tr>";
 echo "<td>";
@@ -61,7 +61,7 @@ echo "\t\t<p id = \"{$ansrow['msg_id']}\" class = 'ans-body'>{$ansrow['msg_body'
 echo "</td>";
 echo "</tr>\n";
 echo "<tr class = 'user-profile-container'>";
-	if (LOGGEDIN && $_COOKIE['id'] === $ansrow['usr_id']) {
+	if (LOGGEDIN && $_SESSION['id'] === $ansrow['usr_id']) {
 		$what_to_echo = $ansrow['msg_id'] . '/Edit';
 
 		echo '<td class = "modify-links">';

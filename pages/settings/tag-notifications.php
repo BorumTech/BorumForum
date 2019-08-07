@@ -1,6 +1,6 @@
 <?php 
 
-if (!isset($_COOKIE['id'])) {
+if (!isset($_SESSION['id'])) {
 	include('../includes/login_functions.inc.php');
 	redirect_user('', true);
 }
@@ -13,7 +13,7 @@ require_once('../includes/header.html');
 <div class = "col-sm-6">
 	<h2>Tags Following</h2>
 	<?php 
-	$q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_COOKIE['id']}";
+	$q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_SESSION['id']}";
 	$r = mysqli_query($dbc, $q);
 	while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		echo "<p><a href = \"/Topics/{$row['name']}\">{$row['name']}</a></p>";
@@ -22,7 +22,7 @@ require_once('../includes/header.html');
 	?>
 	<h2>Tags Ignoring</h2>
 	<?php 
-	$q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_COOKIE['id']}";
+	$q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_SESSION['id']}";
 	$r = mysqli_query($dbc, $q);
 	while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		echo "<p><a href = \"/Topics/{$row['name']}\">{$row['name']}</a></p>";

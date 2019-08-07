@@ -17,7 +17,7 @@ include('includes/header.html');
 <?php 
 
 echo "<div class = 'col-sm-6'><output name = 'bio' id = 'bio'>$bio</output>";
-if ($_COOKIE['id'] == $id) {
+if ($_SESSION['id'] == $id) {
 	$onclickFunc = "editBio($id)";
 	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";
 }
@@ -108,7 +108,7 @@ function displayForm() {
 }
 
 // If the user is viewing his or her own profile
-if ($_COOKIE['id'] == $id) {
+if ($_SESSION['id'] == $id) {
 	displayForm();
 }
 
@@ -126,7 +126,7 @@ echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-echo $_COOKIE['id'] !== $_GET['id'] ? '' : '<a href = "../Settings">Settings</a>';
+echo $_SESSION['id'] !== $_GET['id'] ? '' : '<a href = "../Settings">Settings</a>';
 include('includes/footer.html'); 
 ?>
 

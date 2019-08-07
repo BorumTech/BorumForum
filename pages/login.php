@@ -17,9 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($check) { // OK!
 
 		// Set the cookies:
-		setcookie('id', $data['id'], time()+3600, '/', '', 0, 0);
-		setcookie('first_name', $data['first_name'], time()+3600, '/', '', 0, 0);
-		setcookie('last_name', $data['last_name'], time()+3600, '/', '', 0, 0);
+		session_start();
+		$_SESSION['id'] = $data['id'];
+		$_SESSION['first_name'] = $data['first_name'];
+		$_SESSION['last_name'] = $data['last_name'];
 		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
 
 		// Redirect:
