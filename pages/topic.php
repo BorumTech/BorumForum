@@ -7,8 +7,6 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-	
-
 	$page_title = $row['name'];
 	include('includes/header.html');
 ?>
