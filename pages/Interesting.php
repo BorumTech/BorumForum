@@ -1,5 +1,10 @@
 <?php 
 
+if (!isset($_COOKIE['id'])) {
+    include('includes/login_functions.inc.php');
+    redirect_user();
+}
+
 $page_title = "Interesting Questions";
 @require_once('includes/header.html');
 
@@ -62,6 +67,7 @@ WHERE T1.topic_id IN ("' . $following . '")
 ORDER BY
         ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
 
+echo $q;
 $result = mysqli_query($dbc, $q);
 
 echo "<table class = 'question-list'>";
