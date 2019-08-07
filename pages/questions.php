@@ -5,7 +5,7 @@ include('includes/header.html');
 ?>
 <div class = "col-sm-7">
 
-<h1>Recent Questions</h1>
+<h1>All Questions</h1>
 
 <?php 
 
