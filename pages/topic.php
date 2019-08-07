@@ -7,13 +7,7 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-	$followq = 'SELECT topic_id, user_id FROM `followed-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
-	$followr = mysqli_query($dbc, $followq);
-	$following = mysqli_num_rows($followr) == 1;
-
-	$ignoreq = 'SELECT topic_id, user_id FROM `ignored-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
-	$ignorer = mysqli_query($dbc, $ignoreq);
-	$ignoring = mysqli_num_rows($ignorer) == 1;
+	
 
 	$page_title = $row['name'];
 	include('includes/header.html');
@@ -23,6 +17,13 @@
 	<?php
 
 		if (isset($_COOKIE['id'])) {
+			$followq = 'SELECT topic_id, user_id FROM `followed-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
+			$followr = mysqli_query($dbc, $followq);
+			$following = mysqli_num_rows($followr) == 1;
+
+			$ignoreq = 'SELECT topic_id, user_id FROM `ignored-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
+			$ignorer = mysqli_query($dbc, $ignoreq);
+			$ignoring = mysqli_num_rows($ignorer) == 1;
 			define('FOLLOWTEXT', $following ? "Unfollow" : "Follow Topic");
 			define('IGNORETEXT', $ignoring ? "Unignore" : "Ignore Topic");
 
