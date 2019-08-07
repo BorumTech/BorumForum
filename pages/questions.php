@@ -5,15 +5,17 @@ include('includes/header.html');
 ?>
 <div class = "col-sm-7">
 
-<h1>Recent Questions</h1>
+<h1>All Questions</h1>
 
 <?php 
 
 require('includes/pagination_functions.inc.php');
 
 define('DISPLAY', 10); // Number of records to show per page
+define('SHOWINGUNANSWERED', isset($_GET['sort']) && $_GET['sort'] == 'unanswered');
+define('UNANSWEREDQUERY', SHOWINGUNANSWERED ? ' HAVING COUNT(id) IS NULL' : '');
 
-$pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0');
+$pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0' . UNANSWEREDQUERY);
 $start = getStartValue();
 
 list($sort, $order_by) = getSortValue('messages');
@@ -109,7 +111,7 @@ $result = mysqli_query($dbc, $q);
 	<a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions?sort=unanswered">Unanswered</a>
 </div>
 <?php
-echo "<table id = 'latest-questions'>";
+echo "<table class = 'question-list'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 	$timeelapsed = $row['date_posted'] . " days ago";
 

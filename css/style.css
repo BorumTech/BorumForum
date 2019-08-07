@@ -1,24 +1,3 @@
-table#latest-questions {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0px 20px;
-}
-table#latest-questions tr {
-	background-color: lightgrey;
-}
-
-table#latest-questions tr td {
-	padding: 15px;
-}
-
-table#latest-questions tr td a {
-	font-size: 18px;
-}
-
-table#latest-questions tr td.date-diff {
-	width: 200px;
-}
-
 form input, form textarea {
 	text-align: left;
 	font-size: 13px;
