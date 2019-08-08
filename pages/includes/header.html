@@ -1,7 +1,6 @@
 <?php
-
-	session_start();
-
+	if (session_id() == "")
+  		session_start();
 ?>
 <!-- Script 12.7 - header.html -->
 <!DOCTYPE html>
@@ -56,6 +55,10 @@ define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
 	<?php 
 		echo '<div class = "navbar-profile">';
+		echo LOGGEDIN ? 
+			'
+			<a href = "/Settings"><img src = "/images/setting-gear.png"></a>
+			' : '';
 		echo '<a href = "#">
 					<img src = "/images/question.png">
 				</a>';

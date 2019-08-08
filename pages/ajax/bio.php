@@ -2,6 +2,8 @@
 
 file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../Users/VSpoe/mysqli_connect.inc.php');
 
+session_start();
+
 switch ($_REQUEST['func']) {
 	case "select":
 		$query = "SELECT bio FROM users WHERE id = {$_REQUEST['id']} LIMIT 1";

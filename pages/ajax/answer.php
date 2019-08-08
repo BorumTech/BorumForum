@@ -2,6 +2,8 @@
 
 file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../Users/VSpoe/mysqli_connect.inc.php');
 
+session_start();
+
 // Validate the form elements
 $ans = $_POST['answer'];
 $ques_id = $_POST['ques_id'];
@@ -50,7 +52,7 @@ echo "<tr>";
 echo "<td>";
 echo $voteupbtn;
 
-	$voteCount = $ansrow['votes'] == null ? 0 : $ansrow['votes'];
+$voteCount = $ansrow['votes'] == null ? 0 : $ansrow['votes'];
 
 echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
 echo $votedownbtn;

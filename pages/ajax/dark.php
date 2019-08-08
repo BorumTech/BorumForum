@@ -1,5 +1,8 @@
 <?php 
+
 file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../Users/VSpoe/mysqli_connect.inc.php');
+
+session_start();
 
 $q = "UPDATE users SET dark = {$_COOKIE['dark']} WHERE id = {$_GET['id']}";
 mysqli_query($dbc, $q);
