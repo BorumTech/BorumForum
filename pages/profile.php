@@ -126,7 +126,6 @@ echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-echo $_SESSION['id'] !== $_GET['id'] ? '' : '<a href = "../Settings">Settings</a>';
 include('includes/footer.html'); 
 ?>
 
