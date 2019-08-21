@@ -1,5 +1,9 @@
-<?php # Script 12.6 - logout.php
+<?php 
+
+# Script 12.6 - logout.php
 # The user is redirected here from login.php
+
+session_start();
 
 $message = "";
 
@@ -9,10 +13,10 @@ if (!isset($_SESSION['id'])) {
 	require('includes/login_functions.inc.php');
 	redirect_user();
 } else { // Delete the cookies
-	setcookie('id', '', time()-3600, '/', '', 0, 0);
-	setcookie('first_name', '', time()-3600, '/', '', 0, 0);
-	setcookie('last_name', '', time()-3600, '/', '', 0, 0);
-	setcookie('dark', '', time()-3600, '/', '', 0, 0);
+	$_SESSION = []; // Erase data from text file of sessions on server
+	session_destroy(); // Remove the session data from the server
+	setcookie('PHPSESSID', '', time()-3600, '/', '', 0, 0); // Destroy the session cookie in the browser
+	setcookie('dark', '', time()-3600, '/', '', 0, 0); // Remove dark cookie to set back to default theme for guest user
 }
 
 // Set the page title and include the HTML header
@@ -21,6 +25,6 @@ include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 // Print the customized message
 echo "<h1>Logged Out!</h1>
-<p>You are now logged out, {$_SESSION['first_name']}!</p>";
+<p>You are now logged out!</p>";
 
 include('includes/footer.html');

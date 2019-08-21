@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 if (!isset($_SESSION['id'])) {
     include('includes/login_functions.inc.php');
     redirect_user();

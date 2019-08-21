@@ -3,7 +3,7 @@
 # This page is for editing a user record, accessed through view_users.php
 # Made by Varun Singh, adapted from Larry Ullman, 1/3/2019
 
-$page_title = 'Edit a User';
+$page_title = 'Edit Credentials';
 include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 require('includes/login_functions.inc.php');
