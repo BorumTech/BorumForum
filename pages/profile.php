@@ -101,7 +101,11 @@ function displayForm() {
 	<form id = "profile-pic" enctype = "multipart/form-data" action = "" method = "post">
 		<input type = "hidden" name = "MAX_FILE_SIZE" value = "524288">
 		<fieldset>
-			<p><strong>File:</strong><input type = "file" name = "upload"></p>
+			<p>
+				<strong>File:</strong>
+				<input type = "file" name = "uploads" id = "uploads" style = "display:none;">
+				<label for = "uploads" class = "button">Select a file</label>
+			</p>
 		</fieldset>
 		<input type = "submit" name = "submit" value = "Submit">
 	</form>';
