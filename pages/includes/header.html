@@ -32,19 +32,8 @@
 @file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
 $mods = array(6);
-# giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show. 
-function giveClassActive($file, $href, $show, $li = true) {
-  $shouldbeactive = $_SERVER['REQUEST_URI'] == $href;
-  if ($href == null)
-    $href = $file;
-  echo $li ? '<li class = "' : '';
-  echo $shouldbeactive && $li ? 'active' : '';
-  echo $li ? '">' : '';
-  echo '<a href = "' . $href . '"';
-  echo $shouldbeactive && !$li ? ' class = "active"' : '';
-  echo '>'. $show . '</a>';
-  echo $li ? '</li>' : '';
-}
+
+require('includes/helpers.php');
 
 define('LOGGEDIN', isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
 define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
@@ -71,7 +60,7 @@ define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
 
-			<li class = "search-bar" id = "head-search-bar-li"><img src = "/images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "" type = "text" placeholder = "Search..."></li>
+			<li class = "search-bar" id = "head-search-bar-li"><img src = "/images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "loadSearchMessages(this.value)" type = "text" placeholder = "Search..."></li>
 
 			<?php
 
