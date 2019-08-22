@@ -3,7 +3,7 @@
 // Connect to the db
 file_exists('../../../../mysqli_connect.inc.php') ? require_once('../../../../mysqli_connect.inc.php') : require_once('../../../../Users/VSpoe/mysqli_connect.inc.php');
 
-$searchq = "SELECT * FROM messages WHERE MATCH (subject, body) AGAINST (\"bork\")";
+$searchq = "SELECT * FROM messages WHERE MATCH (subject, body) AGAINST (\"{$_POST['q']}\")";
 $searchr = mysqli_query($dbc, $searchq);
 
 while ($searchrow = mysqli_fetch_array($searchr, MYSQLI_ASSOC)) {

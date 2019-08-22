@@ -52,7 +52,7 @@ define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
 
-			<li class = "search-bar" id = "head-search-bar-li"><img src = "/images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "" type = "text" placeholder = "Search..."></li>
+			<li class = "search-bar" id = "head-search-bar-li"><img src = "/images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "loadSearchMessages()" type = "text" placeholder = "Search..."></li>
 
 			<?php
 
