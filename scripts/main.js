@@ -19,7 +19,7 @@ function loadXMLDoc(way, user_id, msg_id, el) {
 
 }
 
-function loadSearchMessages() {
+function loadSearchMessages(q) {
 	/*
 	This function
 		* 
@@ -27,7 +27,6 @@ function loadSearchMessages() {
 		* q (string), the search query the user currently has, typed into the searchbar
 	*/
 
-	const searchBarEl = document.getElementById('head-search-bar');
 	const page = document.querySelector('div.sidebar-outer + div');
 
 	let xhr;
@@ -38,7 +37,8 @@ function loadSearchMessages() {
 	}
 
 	const url = '/pages/ajax/searches/searchmessages.php';
-	const params = `q=${searchBarEl.textContent}`;
+	const params = `q=${q}`;
+	console.log(q);
 	xhr.open("POST", url, true);
 
 	// Send the proper header information along with the request
