@@ -5,11 +5,8 @@ file_exists('../../../../mysqli_connect.inc.php') ? require_once('../../../../my
 
 $searchq = "SELECT * FROM messages WHERE MATCH (subject, body) AGAINST (\"{$_POST['q']}\")";
 $searchr = mysqli_query($dbc, $searchq);
-
-while ($searchrow = mysqli_fetch_array($searchr, MYSQLI_ASSOC)) {
-	echo "<h3>{$searchrow['subject']}</h3>";
-	echo "<p>{$searchrow['body']}</p>";
-}
+$searchrows = mysqli_fetch_all($searchr);
+echo $searchrows;
 
 ?>
 

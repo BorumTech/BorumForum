@@ -14,9 +14,5 @@ function giveClassActive($file, $href, $show, $li = true) {
   echo $li ? '</li>' : '';
 }
 
-function performTopSearchBarQuery() {
-  
-}
-
 ?>
 
