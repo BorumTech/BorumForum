@@ -20,7 +20,7 @@
 	color: hsl(0, 0%, 66%); /*  .t--light is hsl(0, 0%, 33%) */
 }
 
-.t--dark input {
+.t--dark input, .t--dark textarea {
 	color: black;
 }
 

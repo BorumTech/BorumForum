@@ -44,13 +44,14 @@ define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
 	<?php 
 		echo '<div class = "navbar-profile">';
+
+		echo '<a href = "#">
+					<img src = "/images/question.png">
+				</a>';
 		echo LOGGEDIN ? 
 			'
 			<a href = "/Settings"><img src = "/images/settings-icon.png"></a>
 			' : '';
-		echo '<a href = "#">
-					<img src = "/images/question.png">
-				</a>';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
 			include('includes/personalize.php');
 		}
