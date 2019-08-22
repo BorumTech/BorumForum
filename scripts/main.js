@@ -38,7 +38,7 @@ function loadSearchMessages(q) {
 
 	const url = '/pages/ajax/searches/searchmessages.php';
 	const params = `q=${q}`;
-	console.log(q);
+
 	xhr.open("POST", url, true);
 
 	// Send the proper header information along with the request
