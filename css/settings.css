@@ -21,6 +21,10 @@
 }
 
 .t--dark input, .t--dark textarea {
-	color: black;
+	background: transparent;
+}
+
+.t--dark legend {
+  color: hsl(0, 0%, 80%); /* .t--light is hsl(0, 0%, 20%) */
 }
 
