@@ -13,7 +13,7 @@ if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'
 
 ?>
 
-<h1>Edit a User</h1>
+<h1>Edit your Credentials</h1>
 
 <?php 
 
@@ -53,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	// Validate the username
-	if (empty($_POSt['username'])) {
+	if (empty($_POST['username'])) {
 		$error[] = 'You forgot to enter your username.';
 	} else {
-		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+		$u = mysqli_real_escape_string($dbc, trim($_POST['email']));
 	}
 
 
@@ -67,15 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (mysqli_num_rows($r) == 0) { // If no other users have this email address, it is safe to perform the update
 
 			// Perform the update
-			$q = "UPDATE users SET first_name='$fn', last_name='$ln', email='$e', username = '$u' WHERE id=$id LIMIT 1";
+			$q = "UPDATE users SET first_name='$fn', last_name='$ln', email='$e' WHERE id=$id LIMIT 1";
 			$r = @mysqli_query($dbc, $q);
 
 			if (mysqli_affected_rows($dbc) == 1) { // If it ran OK
 				echo '<p>The user has been edited.</p>';
 			} else { // If it did not run OK
-				echo '<p class = "error">The user could not be edited due to a system error. We apologize for any inconvenience.</p>'; // Public message
-
-				echo '<p>' . mysqli_error($dbc) . '<br>Query: ' . $q . '</p>'; // Debugging message
+				// Public message
+				echo '<p class = "error">The user could not be edited due to a system error. We apologize for any inconvenience.</p>'; 
 			}
 		} else { // Already registered
 			echo '<p class = "error">The email address has already been registered.</p>';
@@ -93,7 +92,7 @@ $q = "SELECT first_name, last_name, username, email FROM users WHERE id=$id";
 $r = @mysqli_query($dbc, $q);
 if (mysqli_num_rows($r) == 1) {
 	$row = mysqli_fetch_array($r, MYSQLI_NUM);
-	echo '<form action = "edit_user.php" method = "post">
+	echo '<form action = "" method = "post">
 		<p>
 			<label for = "first_name">First Name: </label>
 			<input type = "text" name = "first_name" size = "15" maxlength = "15" value = "' . $row[0] . '">
@@ -104,7 +103,7 @@ if (mysqli_num_rows($r) == 1) {
 		</p>
 		<p>
 			<label for = "email">Email Address: </label>
-			<input type = "email" name = "email" size = "20" maxlength = "60" value = "' . $row[2] . '">
+			<input type = "email" name = "email" size = "20" maxlength = "60" value = "' . $row[3] . '">
 		</p>
 		<p>
 			<input type = "submit" name = "submit" value = "Submit">
