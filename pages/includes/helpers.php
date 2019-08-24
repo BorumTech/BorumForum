@@ -14,5 +14,9 @@ function giveClassActive($file, $href, $show, $li = true) {
   echo $li ? '</li>' : '';
 }
 
+$mods = array(6);
+define('LOGGEDIN', isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
+define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
+
 ?>
 

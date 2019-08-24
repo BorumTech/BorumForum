@@ -16,12 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if ($check) { // OK!
 
+		ini_set('session.gc_maxlifetime', 3600);
+
 		// Set the cookies:
 		session_start();
 		$_SESSION['id'] = $data['id'];
 		$_SESSION['first_name'] = $data['first_name'];
 		$_SESSION['last_name'] = $data['last_name'];
 		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
+		session_regenerate_id();
 
 		// Redirect:
 		redirect_user();

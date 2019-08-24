@@ -2,14 +2,17 @@
 # This script lets a logged in user ask a question on the site
 # Varun Singh, 3/30/2019
 
-$page_title = "Ask a Question";
-include('includes/header.html');
+session_start();
 
 require('includes/login_functions.inc.php');
 
 if (!isset($_SESSION['id'])) {
+
 	redirect_user('../Login');
 }
+
+$page_title = "Ask a Question";
+include('includes/header.html');
 
 ?>
 <div class = "col-sm-6">

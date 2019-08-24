@@ -31,12 +31,7 @@
 
 @file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
 
-$mods = array(6);
-
-require('includes/helpers.php');
-
-define('LOGGEDIN', isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
-define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
+require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 ?>
 
@@ -53,7 +48,7 @@ define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
 			<a href = "/Settings"><img src = "/images/settings-icon.png"></a>
 			' : '';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
-			include('includes/personalize.php');
+			require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/personalize.php');
 		}
 
 		echo '</div>';
