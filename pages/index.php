@@ -15,7 +15,7 @@ include('includes/header.html');
 <div class = "page-header"><h1>Welcome to Borum</h1></div>
 <p> <em>Empowering the world since 2019</em> </p>
 
-<p>Borum is an interactive community where users from all over the world can ask questions about categories that start with or rhyme with 'bor-'.</p>
+<p>Borum is an interactive community where users from all over the world can ask questions and get answers.</p>
 
 <button id="myButton" class="float-left submit-button">Sign Up</button>
 </div>
