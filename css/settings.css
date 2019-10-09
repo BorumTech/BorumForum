@@ -28,3 +28,7 @@
   color: hsl(0, 0%, 80%); /* .t--light is hsl(0, 0%, 20%) */
 }
 
+.t--dark button.topic-notif {
+  color: hsl(0, 0%, 5%); /* .t--light is hsl(0, 0%, 95%) */
+}
+

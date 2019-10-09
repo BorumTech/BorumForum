@@ -51,3 +51,7 @@ fieldset.topic-notif {
         border-radius: 10px;
     }
 }
+
+a:hover, a:active {
+    text-decoration: none;
+}
