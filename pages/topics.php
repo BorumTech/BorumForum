@@ -2,7 +2,7 @@
 $page_title = "Topics - Borum";
 include('includes/header.html');
 
-file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 ?>
 
 <div class = 'col-sm-10'>

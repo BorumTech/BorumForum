@@ -29,7 +29,7 @@
 
 <?php 
 
-@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
+file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 

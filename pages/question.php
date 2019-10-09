@@ -1,5 +1,5 @@
 <?php
-	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../Users/VSpoe/mysqli_connect.inc.php');
+	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 	
 	// Generate query for question's information
 	$query = '
@@ -111,7 +111,7 @@
 							<span><?php echo $row['ques_asker'] ?></span>
 						</a>
 						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
-							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
+							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']; ?>'>
 						</a>
 					</div>	
 				</td>
@@ -171,7 +171,7 @@
 										<span>{$row2['fn']}</span>
 									</a>
 									<a href = '/Users/{$row2['usr_id']}'>
-										<img height = '30' src = \"../pages/show_image.php?image={row2['profile']}\">
+										<img height = '30' src = \"../pages/show_image.php?image={$row2['profile']}\">
 									</a>
 								</div>	
 							</td>
