@@ -11,12 +11,6 @@ if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'
 	redirect_user('../index');
 }
 
-define('ISUSER', $_SESSION['id'] == $_GET['id']);
-
-
-echo ISUSER ? '<h1 style = "color: red">Delete Your Account</h1>' : '<h1>Delete a User</h1>';
-
-
 // Check for a valid user ID through GET or POST
 if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	$id = $_GET['id'];
@@ -27,6 +21,9 @@ if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	include('includes/footer.html');
 	exit();
 }
+
+define('ISUSER', $_SESSION['id'] == $_GET['id']);
+echo ISUSER ? '<h1 style = "color: red">Delete Your Account</h1>' : '<h1>Delete a User</h1>';
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -58,7 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo '<form action = "" method = "post">
 		<input type = "radio" name = "sure" value = "Yes"> Yes
 		<input type = "radio" name = "sure" value = "No" checked="checked"> No
-		<input type = "submit" name = "submit" value = "Submit">
+		<div>
+			<input type = "submit" name = "submit" value = "Delete account">
+		</div>
 		<input type = "hidden" name = "id" value="' . $id . '">
 		</form>';
 
