@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			// Move the file over.
 			if (move_uploaded_file ($_FILES['upload']['tmp_name'], "../../uploads/{$_FILES['upload']['name']}")) {
-				echo '<p><em>The file has been uploaded!</em></p>';
 				$query1 = 'UPDATE users SET profile_picture = "' . $_FILES['upload']['name'] . '" WHERE id = ' . $id;
 				mysqli_query($dbc, $query1);
 			} // End of move... IF.

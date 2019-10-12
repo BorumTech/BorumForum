@@ -52,13 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		if ($num == 0) {
 
+			
+
 			$query = "INSERT INTO users (first_name, last_name, email, pass, registration_date) VALUES ('$fn', '$ln', '$e', SHA2('$p', 512), NOW() )";
 			$result = @mysqli_query($dbc, $query); // Register the user into the database
 
 			if ($result) { // If it ran OK
 				// Print a message 
 				echo '<h1>Thank you!</h1>
-				<p>You are now registered. In Chapter 12, you will actually be able to log in!</p><p><br></p>';
+				<p>You are now registered.</p><p><br></p>';
 				$msg = 'Hi ' . $fn . '\nThanks for registering on Borum!';
 				$msg = wordwrap($msg,70);
 				mail($e, 'Registration of Borum', $msg, 'From: admin@bforborum.com');
