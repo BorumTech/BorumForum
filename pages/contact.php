@@ -45,12 +45,12 @@ function sendEmail($subject, $body, $email) {
 
 	    //Recipients
 	    $mail->setFrom('VSpoet49@gmail.com', 'Varun Singh');
-	    $mail->addAddress($email);     // Add a recipient
+	    $mail->addAddress("VSpoet49@gmail.com");     // Add a recipient
 
 	    // Content
 	    $mail->isHTML(true);                                  // Set email format to HTML
 	    $mail->Subject = $subject;
-	    $mail->Body    = $body;
+	    $mail->Body    = $email . "<br>" . $body;
 	    $mail->AltBody = strip_tags($body);
 	    $mail->send();
 	    echo "<h3>Thanks for contacting us! We will respond within the next 3 days.</h3>";
