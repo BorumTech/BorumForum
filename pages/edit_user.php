@@ -5,8 +5,11 @@
 
 $page_title = 'Edit Credentials';
 include('includes/header.html');
+
 echo "<div class = 'col-sm-6'>";
-require('includes/login_functions.inc.php');
+
+@require('includes/login_functions.inc.php');
+
 if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'] == $_GET['id'])) {
 	redirect_user();
 }
@@ -72,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			if (mysqli_affected_rows($dbc) == 1) { // If it ran OK
 				echo '<p>The user has been edited.</p>';
+				redirect_js('/');
 			} else { // If it did not run OK
 				// Public message
 				echo '<p class = "error">The user could not be edited due to a system error. We apologize for any inconvenience.</p>'; 

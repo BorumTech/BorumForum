@@ -16,34 +16,20 @@ if (!LOGGEDIN || $row['user_id'] !== $_SESSION['id']) { // Make sure user is aut
 	redirect_user();
 }
 
-function redirectTimeout() {
-	global $row;
-
-	echo "
-	<script>	
-		setTimeout(
-			function() {
-				console.log(\"Redirection timer on\");";
-	echo ISQUESTION ? "window.location.href = \"/Questions\"" : "window.location.href = \"/Questions/{$row['parent_id']}\"";
-	echo "	}
-		, 1000);
-	</script>";	
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$confirmation = $_POST['confirm'];
 	if ($confirmation == "no") { // If the user cancels the deletio
 		echo "The post was <em>not</em> deleted. Redirecting you now...";
-		redirectTimeout();
+		redirect_js(ISQUESTION ? "/Questions" : "/Questions/{$row['parent_id']}", 1000);
 	} else { // If the user confirms deletion
 		$q = "DELETE FROM messages WHERE id = {$_GET['id']}";
 		$r = mysqli_query($dbc, $q);
 		if (mysqli_affected_rows($dbc) == 1) { // If the deletion was successful
 			echo "The post was successfully deleted. Redirecting you now...";
-			redirectTimeout();
+			redirect_js(ISQUESTION ? "/Questions" : "/Questions/{$row['parent_id']}", 1000);
 		} else {
 			echo "The deletion was not successful. A server error occured or this post never existed.";
-			redirectTimeout();
+			redirect_js(ISQUESTION ? "/Questions" : "/Questions/{$row['parent_id']}", 1000);
 		}		
 	}
 
