@@ -9,6 +9,12 @@ include('includes/header.html');
 <div class = "col-sm-6">
 <?php 
 
+// Import PHPMailer classes into the global namespace
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errors = []; // Initialize an error array
 
@@ -51,26 +57,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$num = mysqli_num_rows($ceResult);
 
 		if ($num == 0) {
+			$qv = "SELECT SHA2('$p', 512)";
+			$qr = mysqli_fetch_array(mysqli_query($dbc, $qv), MYSQLI_BOTH);
+			$v = $qr[0];
 
-			
-
-			$query = "INSERT INTO users (first_name, last_name, email, pass, registration_date) VALUES ('$fn', '$ln', '$e', SHA2('$p', 512), NOW() )";
-			$result = @mysqli_query($dbc, $query); // Register the user into the database
-
-			if ($result) { // If it ran OK
-				// Print a message 
-				echo '<h1>Thank you!</h1>
-				<p>You are now registered.</p><p><br></p>';
-				$msg = 'Hi ' . $fn . '\nThanks for registering on Borum!';
-				$msg = wordwrap($msg,70);
-				mail($e, 'Registration of Borum', $msg, 'From: admin@bforborum.com');
+			if ($qr) { // If it ran OK
+				// Print a message
+				mysqli_query($dbc, "INSERT INTO verifying VALUES('$v', '$fn', '$ln', '$e')");
+				$verifylink = "www.bforborum.com/pages/verify.php?v=" . $v;
+				$message = "
+				Thank you " . $fn . " for registering for Borum! Click the link below to activate your account<br>
+				<a href = '$verifylink'>Verify your Account</a><p>If this was not you, do not click the link.</p>
+				</form>
+				"; 
+				echo '<h1>Thank you!</h1>';
+				sendEmail("Account Verification", 
+					wordwrap($message
+						, 70)
+					, $e);
+				echo '<p>An email was sent to you. Click the link to verify your email in order to activate your account.</p>';				
 			} else { // if it ran not OK
 				// Public message
 				echo '<h1>System Error</h1>
 				<p class = "error">You could not be registered due to a system error. We apologize for any inconvenience.</p>';
-
-				// Debugging message
-				echo '<p>' . mysqli_error($dbc) . '<br><br>Query: ' . $query . '</p>';
 			}
 
 		} else {
