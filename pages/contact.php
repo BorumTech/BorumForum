@@ -1,48 +1,29 @@
 <?php 
 
-if (!isset($_SESSION['id'])) {
-	
-}
-
+$page_title = "Contact Us";
+require("includes/header.html");
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<style>
-		form {
-			font-family: sans-serif;
-		}
-
-		form input, textarea {
-			display: block;
-			line-height: 1.7em;
-		}
-	</style>
-	<link href = "../images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
-	<title>Contact Us</title>
-</head>
-<body>
+<div class = "col-sm-7">
 	<h1>Contact Us</h1>
-	<form action method = "post">
+	<button style = "display: <?php echo !LOGGEDIN ? 'block' : 'none' ?>" type = "button" onclick = "window.location.href = '/Login';">Log In</button>
+	<form style = "display: <?php echo LOGGEDIN ? 'block' : 'none' ?>" action method = "post">
 		<p>
 			<label for = "subject">Subject: </label>
-			<input type = "text" id = "subject" name = "subject" size = "100">
+			<input required type = "text" id = "subject" name = "subject" size = "100">
 		</p>
 		<p>
 			<label for = "body">Details</label>
-			<textarea name = "body" id = "body" cols = "50"></textarea>
+			<textarea required name = "body" id = "body" cols = "50"></textarea>
 		</p>
 		<input type = "submit" value = "Send message">
 	</form>
-</body>
-</html>
 <?php
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function sendEmail() {
+function sendEmail($subject, $body, $email) {
 
 
 	// Load Composer's autoloader
@@ -53,7 +34,7 @@ function sendEmail() {
 
 	try {
 	    //Server settings
-	    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+	    $mail->SMTPDebug = 0;                      // Disable verbose debug output
 	    $mail->isSMTP();                                            // Send using SMTP
 	    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
 	    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -71,18 +52,27 @@ function sendEmail() {
 	    $mail->Subject = $subject;
 	    $mail->Body    = $body;
 	    $mail->AltBody = strip_tags($body);
-
 	    $mail->send();
-	    echo 'Message has been sent';
+	    echo "<h3>Thanks for contacting us! We will respond within the next 3 days.</h3>";
 	} catch (Exception $e) {
 	    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 	}	
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['subject'])) {
-		$subject = "";
-	}
-	//sendEmail();
+	$subject = trim($_POST['subject']);
+	$body = trim($_POST['body']);
+
+	// Fetch email from database
+	$q = "SELECT id, email FROM users WHERE id = {$_SESSION['id']}";
+	$r = mysqli_query($dbc, $q);
+	$row = mysqli_fetch_array($r, MYSQLI_NUM);
+	$email = $row[1];
+
+	sendEmail($subject, $body, $email);
 }
+
+include('includes/footer.html'); 
+
+?>
 

@@ -157,3 +157,12 @@ td.block {
 	}
 }
 
+form {
+	font-family: sans-serif;
+}
+
+form input, textarea {
+	display: block;
+	line-height: 1.7em;
+}
+
