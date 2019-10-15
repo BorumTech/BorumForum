@@ -34,17 +34,17 @@ function sendEmail($subject, $body, $email = 'VSpoet49@gmail.com', $aftermessage
 
   try {
       //Server settings
-      $mail->SMTPDebug = 0;                      // Disable verbose debug output
+      $mail->SMTPDebug = 4;                      // Enable verbose debug output
       $mail->isSMTP();                                            // Send using SMTP
       $mail->Host       = 'localhost';                    // Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-      $mail->Username   = 'VSpoet49@gmail.com';                     // SMTP username
-      $mail->Password   = 'Pr0gram$';                               // SMTP password
+      $mail->SMTPAuth   = false;                                   // Enable SMTP authentication
+      $mail->Username   = 'varunsingh87@yahoo.com';                     // SMTP username
+      $mail->Password   = '';                               // SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
       $mail->Port       = 25;                                    // TCP port to connect to
 
       //Recipients
-      $mail->setFrom('VSpoet49@gmail.com', 'Varun Singh');
+      $mail->setFrom('varunsingh87@yahoo.com', 'Varun Singh');
       $mail->addAddress($email);     // Add a recipient
 
       // Content
