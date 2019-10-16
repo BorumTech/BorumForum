@@ -45,21 +45,21 @@ $adminControls . '
 
 // Fetch and print all the records
 
-$bg = '#eeeeee'; // Set the initial background color
+$bg = 'one'; // Set the initial background color
 
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 
-	$bg = ($bg == '#eeeeee' ? '#ffffff' : '#eeeeee'); // Switch the background color every row
+	$bg = ($bg == 'one' ? 'two' : 'one'); // Switch the background color every row
 	$adminControls = ISADMIN ? '
-	<td class = "links" align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
-	<td class = "links" align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>' : '';
+	<td class = "links ' . $bg . '" align = "left"><a href = "pages/edit_user.php?id=' . $row['id'] . '">Edit</a></td>
+	<td class = "links ' . $bg . '" align = "left"><a href = "pages/delete_user.php?id=' . $row['id'] . '">Delete</a></td>' : '';
 
-	echo '<tr bgcolor = "' . $bg . '">' . 
+	echo '<tr>' . 
 	$adminControls . '
-	<td class = "links" align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
-	<td class = "output" align = "left">' . $row['last_name'] . '</td>
-	<td class = "output" align = "left">' . $row['first_name'] . '</td>
-	<td class = "output" align = "left">' . $row['dr'] . '</td>
+	<td class = "links ' . $bg . '" align = "left"><a href = "users/' . $row['id'] . '">View Profile</a></td>
+	<td class = "output ' . $bg . '" align = "left">' . $row['last_name'] . '</td>
+	<td class = "output ' . $bg . '" align = "left">' . $row['first_name'] . '</td>
+	<td class = "output ' . $bg . '" align = "left">' . $row['dr'] . '</td>
 	</tr>
 	';
 

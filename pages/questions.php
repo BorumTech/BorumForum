@@ -132,8 +132,8 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 	<td class = 'block'><div class = 'numbers'><span>Votes</span><span>{$row['votes']}</span></div></td>
 	<td class = 'block'><div class = 'numbers'><span>Answers</span><span>{$row['answers']}</span></div></td>
 	<td align = \"left\">
-		<a href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
-		<a class = \"question-tags\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
+		<a style = \"background: none\"class = \"rectangular-box\" href = \"Questions/{$row['msg_id']}\">{$row['subject']}</a>
+		<a class = \"question-tags rectangular-box\" href = \"Topics/{$row['topic_name']}\">{$row['topic_name']}</a>
 	</td>
 	<td align = \"right\" class = 'date-diff' style = 'font-style: italic'>Asked $timeelapsed</td>
 	</tr>

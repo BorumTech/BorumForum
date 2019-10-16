@@ -1,9 +1,3 @@
-form input, form textarea {
-	text-align: left;
-	font-size: 13px;
-	padding: 10px;
-}
-
 .sidebar-outer {
 	position: relative;	
 }
@@ -84,7 +78,7 @@ form input, form textarea {
 	color: #818181;
 }
 
-.fixed-sidebar a:hover {
+a.rectangular-box:hover {
 	color: #a4b7f7;
 }
 
@@ -161,8 +155,18 @@ form {
 	font-family: sans-serif;
 }
 
-form input, textarea {
-	display: block;
+form input, form textarea {
+	text-align: left;
+	font-size: 13px;
+	padding: 10px;
 	line-height: 1.7em;
+}
+
+form label {
+	display: block;
+}
+
+form input:focus {
+	outline-color: blue;
 }
 

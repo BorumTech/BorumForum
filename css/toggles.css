@@ -66,15 +66,7 @@ output#bio {
 	margin-bottom: 2.5%;
 }
 
-.t--light .home-page button {
-
-}
-
-.t--dark .home-page button {
-	background-color: hsl(0, 0%, 15%);
-}
-
-.t--dark table#users-table > tbody > tr > td.output {
+td.output {
 	color: hsl(0, 0%, 15%);
 }
 

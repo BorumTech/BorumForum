@@ -49,3 +49,23 @@
   -webkit-appearance: button;
 }
 
+input[type="submit"] {
+	width: 14.75em;
+	text-align: center;
+	font-family: 'Orbitron', sans-serif;
+	border: none;
+}
+
+div#reset-password-body {
+	text-align: center;
+	width: 100%;
+}
+
+#users-table .one {
+	background-color: #ffffff;
+}
+
+#users-table .two {
+	background-color: #eeeeee;
+}
+
