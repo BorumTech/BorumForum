@@ -23,7 +23,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function sendEmail($subject, $body, $email = 'VSpoet49@gmail.com', $aftermessage = '') {
+function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessage = '') {
 
 
   // Load Composer's autoloader
@@ -35,16 +35,11 @@ function sendEmail($subject, $body, $email = 'VSpoet49@gmail.com', $aftermessage
   try {
       //Server settings
       $mail->SMTPDebug = 4;                      // Enable verbose debug output
-      $mail->isSMTP();                                            // Send using SMTP
-      $mail->Host       = 'localhost';                    // Set the SMTP server to send through
-      $mail->SMTPAuth   = false;                                   // Enable SMTP authentication
-      $mail->Username   = 'varunsingh87@yahoo.com';                     // SMTP username
-      $mail->Password   = '';                               // SMTP password
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+      $mail->isMail();                                            // Send using SMTP
       $mail->Port       = 25;                                    // TCP port to connect to
 
       //Recipients
-      $mail->setFrom('varunsingh87@yahoo.com', 'Varun Singh');
+      $mail->setFrom('admin@bforborum.com', 'Borum CEO Varun Singh');
       $mail->addAddress($email);     // Add a recipient
 
       // Content
