@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!(isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']))) {
+if (!(isset($_SESSION['id']))) {
 	require('includes/login_functions.inc.php');
 	redirect_user();
 }

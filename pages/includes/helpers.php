@@ -1,5 +1,13 @@
 <?php 
 
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 2400)) {
+    // last request was more than 30 minutes ago
+    session_unset();     // unset $_SESSION variable for the run-time 
+    session_destroy();   // destroy session data in storage
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+echo "<h1>" . $_SESSION['LAST_ACTIVITY'] . "</h1>";
+
 # giveClassActive() is a function that highlights the header name of the current page. The $file is what is used to determine whether to give it the element a class active. The $href determines the location. There can be different when dealing with special symbols. The $show is the text to show.
 function giveClassActive($file, $href, $show, $li = true) {
   $shouldbeactive = $_SERVER['REQUEST_URI'] == $href;
@@ -50,7 +58,7 @@ function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessag
       $mail->send();
       echo $aftermessage;
   } catch (Exception $e) {
-      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      echo "Message could not be sent. A mailing error occured. ";
   } 
 }
 
