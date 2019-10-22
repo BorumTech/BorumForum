@@ -1,7 +1,4 @@
 <?php 
-# Script 10.3 - edit_user.php
-# This page is for editing a user record, accessed through view_users.php
-# Made by Varun Singh, adapted from Larry Ullman, 1/3/2019
 
 $page_title = 'Edit Credentials';
 include('includes/header.html');

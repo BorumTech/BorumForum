@@ -8,8 +8,10 @@ if (!isset($_SESSION['id'])) {
 }
 
 $page_title = "Tag Notifications";
-file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../Users/VSpoe/mysqli_connect.inc.php');
+
+file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../../mysqli_connect.inc.php');
 require_once('../includes/header.html');
+
 ?>
 
 <div class = "col-sm-6">
