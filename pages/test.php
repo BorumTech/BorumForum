@@ -1,5 +1,5 @@
 <?php 
-
+$page_title = "TEST!";
 include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 if (!LOGGEDIN) {
