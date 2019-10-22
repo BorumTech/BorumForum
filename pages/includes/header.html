@@ -26,12 +26,17 @@
 <link href = "/css/settings.css" rel = "stylesheet" type = "text/css">
 <link href = "/css/flex.css" rel = "stylesheet" type = "text/css">
 <link href = "/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
+<script>
+	if (inDarkMode()) {
+		document.querySelector('body').className = 't--dark';
+	}
+</script>
 </head>
 <body class = "t--light">
 
 <?php 
 
-file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../../mysqli_connect.inc.php');
 
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
