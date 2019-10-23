@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 $page_title = "Reset your Password - Borum";
 include('includes/header.html');
 
@@ -9,6 +9,8 @@ if (LOGGEDIN) {
 	@require('includes/login_functions.inc.php');
 	redirect_user();
 }
+
+ob_flush();
 
 ?>
 

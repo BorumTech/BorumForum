@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 $page_title = 'Edit Credentials';
 include('includes/header.html');
 
@@ -10,6 +10,8 @@ echo "<div class = 'col-sm-6'>";
 if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'] == $_GET['id'])) {
 	redirect_user();
 }
+
+ob_flush();
 
 ?>
 
