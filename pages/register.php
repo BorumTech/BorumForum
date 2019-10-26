@@ -57,13 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$num = mysqli_num_rows($ceResult);
 
 		if ($num == 0) {
-			$qv = "SELECT SHA2('$p', 512)";
+			$qv = "SELECT SHA2(rand(0,5000), 512)";
 			$qr = mysqli_fetch_array(mysqli_query($dbc, $qv), MYSQLI_BOTH);
 			$v = $qr[0];
 
 			if ($qr) { // If it ran OK
 				// Print a message
-				mysqli_query($dbc, "INSERT INTO verifying VALUES('$v', '$fn', '$ln', '$e')");
+				mysqli_query($dbc, "INSERT INTO verifying (code, password, first_name, last_name, email) VALUES('$v', \"SHA2('$p', 512)\", '$fn', '$ln', '$e')");
 				$verifylink = "www.bforborum.com/pages/verify.php?v=" . $v;
 				$message = "
 				Thank you " . $fn . " for registering for Borum! Click the link below to activate your account<br>
