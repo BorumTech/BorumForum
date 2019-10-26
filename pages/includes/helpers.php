@@ -46,7 +46,7 @@ function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessag
 
   try {
       //Server settings
-      $mail->SMTPDebug = 4;                      // Enable verbose debug output
+      $mail->SMTPDebug = 1;                      // Verbose debug output: 1 for no 2,3,4 for yes
       $mail->isMail();                                            // Send using SMTP
       $mail->Port       = 25;                                    // TCP port to connect to
 

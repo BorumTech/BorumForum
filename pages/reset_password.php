@@ -1,6 +1,23 @@
 <?php 
-ob_start();
 $page_title = "Reset your Password - Borum";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	require('../../mysqli_connect.inc.php');
+	if (isset($_POST['email'])) {
+		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+	} else {
+		$errors[] = "No email";
+	}
+
+	if (empty($errors)) {
+		include('includes/header.html');
+		echo '<div class = "col-sm-10" id = "reset-password-body">';		
+		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. ', $e, 'An email was sent to you. Click the link in the email to reset your password.');
+		exit();
+	}
+
+}
+
+ob_start();
 include('includes/header.html');
 
 echo '<div class = "col-sm-10" id = "reset-password-body">';
@@ -15,19 +32,6 @@ ob_flush();
 ?>
 
 <h1>Reset your Borum Password</h1>
-
-<?php 
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['email'])) {
-		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
-	}
-
-	sendEmail('Reset your Password', 'Click the link below to reset your Borum password. ');
-}
-
-?>
-
 <form method = "post" action = "" id = 'reset-form' name = 'reset-form' onsubmit = 'return validateForm()'>
 	<p>
 		<label for = 'email'>Enter the email associated with your account</label>

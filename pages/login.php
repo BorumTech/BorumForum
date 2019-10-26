@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if ($check) { // OK!
 
-		ini_set('session.gc_maxlifetime', 3600);
-
 		// Set the cookies:
 		session_start();
 		$_SESSION['id'] = $data['id'];

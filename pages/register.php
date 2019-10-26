@@ -67,8 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$verifylink = "www.bforborum.com/pages/verify.php?v=" . $v;
 				$message = "
 				Thank you " . $fn . " for registering for Borum! Click the link below to activate your account<br>
-				<a href = '$verifylink'>Verify your Account</a><p>If this was not you, do not click the link.</p>
-				</form>
+				<a href = '$verifylink'>Verify your Account</a>
+				<p>If this was not you, do not click the link.</p>
+				<p>If the link does not work for you, copy and paste the following into your browser: <br> $verifylink</p>
 				"; 
 				echo '<h1>Thank you!</h1>';
 				sendEmail("Account Verification", 
