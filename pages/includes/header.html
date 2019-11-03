@@ -1,6 +1,10 @@
 <?php
 	if (session_id() == "")
   		session_start();
+  	if (isset($_SESSION['id']) && $_SESSION['id'] == '16') {
+  		echo "<div align = 'center'>Happy Birthday Paul! Get 50% off all non-refundable purchases. </div>";
+  		exit();
+  	}
 ?>
 <!-- Script 12.7 - header.html -->
 <!DOCTYPE html>

@@ -56,9 +56,8 @@ input[type="submit"] {
 	border: none;
 }
 
-div#reset-password-body {
+div.page-with-form-body {
 	text-align: center;
-	width: 100%;
 }
 
 #users-table .one {

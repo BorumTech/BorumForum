@@ -4,7 +4,7 @@
 // Include the header:
 $page_title = 'Login';
 include('includes/header.html');
-echo "<div class = 'col-sm-6'>";
+echo "<div class = 'col-sm-6 page-with-form-body'>";
 // Print any error messages, if they exist:
 if (isset($errors) && !empty($errors)) {
 	echo '<h1>Error!</h1>
