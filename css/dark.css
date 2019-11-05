@@ -53,6 +53,22 @@
   color: #a4b7f7;
 }
 
+.t--dark .question-tags {
+  color: rgb(255, 100, 100);
+}
+
+.t--dark .question-name {
+  color: #2151f3;
+}
+
+.t--dark .question-name:hover {
+  color: #a4b7f7;
+}
+
+.t--dark .flourescent-hover:hover {
+  color: #a4b7f7;
+}
+
 .t--dark #users-table td.one {
   background-color: #000000;
   color: white;

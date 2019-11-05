@@ -56,8 +56,12 @@ input[type="submit"] {
 	border: none;
 }
 
-div.page-with-form-body {
+div.page-with-form-body > h1, div.page-with-form-body > form > p:not(.form-inputs) {
 	text-align: center;
+}
+
+div.page-with-form-body > form > p.form-inputs {
+	margin-left: 34%;
 }
 
 #users-table .one {

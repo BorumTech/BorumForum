@@ -15,10 +15,11 @@ if (isset($errors) && !empty($errors)) {
 	echo '</p><p>Please try again.</p>';
 }
 // Display the form:
-?><h1>Login</h1>
+?>
+<h1>Login</h1>
 <form id = 'login-form' action="" method="post">
-	<p>Email Address: <input type="email" name="email" size="20" maxlength="60"> </p>
-	<p>Password: <input type="password" name="pass" size="20" maxlength="20"></p>
+	<p class = "form-inputs">Email Address: <input type="email" name="email" size="20" maxlength="60"> </p>
+	<p class = "form-inputs">Password: <input type="password" name="pass" size="20" maxlength="20"></p>
 	<p><a href = "reset_password">Forgot Password?</a></p>
 	<p><input type="submit" name="submit" value="Login"></p>
 </form>

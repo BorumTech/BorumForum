@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ob_start();
 include('includes/header.html');
 
-echo '<div class = "col-sm-10 page-with-form-body">';
+echo '<div class = "col-sm-6 page-with-form-body">';
 
 if (LOGGEDIN) {
 	@require('includes/login_functions.inc.php');
@@ -39,15 +39,17 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
 
 	<h1>Reset your Borum Password</h1>
 	<form>
-		<p>
+		<p class = "form-inputs">
 			<label for = 'new-password'>Enter your new password</label>
 			<span>New Password: </span><input name = "new-password" id = "new-password" type = "password">
 		</p>
-		<p>
+		<p class = "form-inputs">
 			<label for = 'confirm-new-password'>Confirm your new password</label>
 			<span>Confirm Password: </span><input name = "confirm-new-password" id = "confirm-new-password" type = "password">
 		</p>
-		<input type = "submit" value = "Reset my Password">
+		<p>
+			<input type = "submit" value = "Reset my Password">
+		</p>
 	</form>
 
 	<?php
@@ -59,11 +61,13 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
 
 <h1>Reset your Borum Password</h1>
 <form method = "post" action = "" id = 'reset-form' name = 'reset-form' onsubmit = 'return validateForm()'>
-	<p>
+	<p class = "form-inputs">
 		<label for = 'email'>Enter the email associated with your account</label>
 		<span>Email: </span><input name = 'email' id = 'email' type = "email">
 	</p>
-	<input type = "submit" value = "Submit">
+	<p>
+		<input type = "submit" value = "Submit">
+	</p>
 </form>
 
 <script type="text/javascript" charset="utf-8">
