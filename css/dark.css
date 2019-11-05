@@ -58,11 +58,11 @@
 }
 
 .t--dark .question-name {
-  color: #2151f3;
+  color: #b7d1ff;
 }
 
 .t--dark .question-name:hover {
-  color: #a4b7f7;
+  color: white;
 }
 
 .t--dark .flourescent-hover:hover {
