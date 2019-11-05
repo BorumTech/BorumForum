@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $page_title = "Reset your Password - Borum";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -9,6 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$errors[] = "No email";
 	}
 
+	$q = "SELECT email FROM users WHERE email = '$e'";
+	$r = mysqli_query($dbc, $q);
+	if (mysqli_num_rows($r) == 0) {
+		$errors[] = "That is not a registered email. ";
+	}
+
 	if (empty($errors)) {
 		include('includes/header.html');
 		echo '<div class = "col-sm-10" id = "reset-password-body">';	
@@ -16,6 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. ', $e, 'An email was sent to you. Click the link in the email to reset your password.');
 		include('includes/footer.html');
 		exit();
+	} else {
+		echo '<h1>Error!</h1>
+		<p class="error">The following error(s) occurred:<br>';
+		foreach ($errors as $msg) {
+			echo " - $msg<br>\n";
+		}
+		echo '</p><p>Please try again.</p>';
 	}
 
 }
@@ -32,13 +46,13 @@ if (LOGGEDIN) {
 
 ob_flush();
 
-if (isset($_GET['code']) && isset($_GET['email'])) {
+if (isset($_GET['code']) && isset($_GET['email'])) { // If the email has been identified
 	ob_start(); // Displays the below HTML code if the conditional above is true
 
 	?>
 
 	<h1>Reset your Borum Password</h1>
-	<form>
+	<form action = "../" method = "post">
 		<p class = "form-inputs">
 			<label for = 'new-password'>Enter your new password</label>
 			<span>New Password: </span><input name = "new-password" id = "new-password" type = "password">
@@ -59,6 +73,7 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
 
 ?>
 
+<!-- If the email has not been identified -->
 <h1>Reset your Borum Password</h1>
 <form method = "post" action = "" id = 'reset-form' name = 'reset-form' onsubmit = 'return validateForm()'>
 	<p class = "form-inputs">
