@@ -65,7 +65,7 @@ function check_login($dbc, $email = '', $pass = '') {
 * $loc is the url that the user is redirected to
 * $tim is the time in milliseconds the message is displayed for
 */
-function redirect_js($loc, $tim) {
+function redirect_js($loc, $tim = 1000) {
 	echo "
 	<script>	
 		setTimeout(
@@ -73,6 +73,6 @@ function redirect_js($loc, $tim) {
 				console.log(\"Redirection timer on\");";
 	echo "window.location.href = '" . $loc . "';";
 	echo "	}
-		, 1000);
+		, $tim);
 	</script>";	
 }
