@@ -6,10 +6,6 @@
 $page_title = 'Borum';
 include('includes/header.html');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	
-}
-
 ?>
 
 <div class = "col-sm-9">
