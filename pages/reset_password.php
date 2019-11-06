@@ -1,9 +1,12 @@
 <?php 
-session_start();
 $page_title = "Reset your Password - Borum";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	require('../../mysqli_connect.inc.php');
+
+	include('includes/header.html');
+	echo '<div class = "col-sm-6">';
+
 	if (isset($_POST['email'])) {
 		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 	} else {
@@ -16,11 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$errors[] = "That is not a registered email. ";
 	}
 
+
 	if (empty($errors)) {
-		include('includes/header.html');
-		echo '<div class = "col-sm-10" id = "reset-password-body">';	
-		echo '<div>An email was sent to your account</div>';	
-		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. ', $e, 'An email was sent to you. Click the link in the email to reset your password.');
+		
+		echo '<div class = "col-sm-10" id = "reset-password-body">';
+		$q = "SELECT SHA2(rand(5000), 512)";
+		$r = mysqli_query($dbc, $q);
+		$row = mysqli_fetch_array($r, MYSQLI_NUM);
+		$q = "INSERT INTO `password-resets` (code, email) VALUES ('{$row[0]}', '$e')";
+		$r = mysqli_query($dbc, $q);
+		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. <br><a href = "http://www.bforborum.com/pages/change_password.php?code=' . $row[0] . '&email=' . $e, $e, 'An email was sent to you. Click the link in the email to reset your password.');
 		include('includes/footer.html');
 		exit();
 	} else {
@@ -30,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo " - $msg<br>\n";
 		}
 		echo '</p><p>Please try again.</p>';
+		include('includes/footer.html');
+		exit();
 	}
 
 }
@@ -45,31 +55,6 @@ if (LOGGEDIN) {
 }
 
 ob_flush();
-
-if (isset($_GET['code']) && isset($_GET['email'])) { // If the email has been identified
-	ob_start(); // Displays the below HTML code if the conditional above is true
-
-	?>
-
-	<h1>Reset your Borum Password</h1>
-	<form action = "../" method = "post">
-		<p class = "form-inputs">
-			<label for = 'new-password'>Enter your new password</label>
-			<span>New Password: </span><input name = "new-password" id = "new-password" type = "password">
-		</p>
-		<p class = "form-inputs">
-			<label for = 'confirm-new-password'>Confirm your new password</label>
-			<span>Confirm Password: </span><input name = "confirm-new-password" id = "confirm-new-password" type = "password">
-		</p>
-		<p>
-			<input type = "submit" value = "Reset my Password">
-		</p>
-	</form>
-
-	<?php
-	echo ob_get_clean();
-	exit();
-}
 
 ?>
 
