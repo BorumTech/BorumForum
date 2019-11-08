@@ -79,3 +79,12 @@
   color: hsl(0, 0%, 75%);
 }
 
+.t--dark .search-container {
+  background-color: none;
+  color: white;
+}
+
+.t--dark .search-container button {
+  color: black;
+}
+

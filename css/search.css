@@ -55,3 +55,21 @@ fieldset.topic-notif {
 a:hover, a:active {
     text-decoration: none;
 }
+
+.search-container {
+    margin: 2em 0;
+}
+
+table#users-table {
+    margin-bottom: 3em;
+}
+
+table#users-table th {
+    text-align: center;
+}
+
+table#users-table td {
+    padding: 10px;
+    text-align: center;
+}
+

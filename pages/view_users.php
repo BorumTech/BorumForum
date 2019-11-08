@@ -11,6 +11,13 @@ include('includes/header.html');
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 
+echo "<div class = 'search-container'>";
+echo "<input placeholder = \"Search...\" type=\"search\" id=\"site-search\" name=\"q\"
+       aria-label=\"Search through site content\" onkeydown = \"loadUserSearch(this.value)\">";
+// echo "<button onclick = \"appendViewUsersQuery()\" type=\"submit\">Search</button>";
+echo "<button onclick = \"window.location.reload()\">X</button>";
+echo "</div>";
+
 define('DISPLAY', 20); // Number of records to show per page
 
 $pages = getPagesValue('id', 'users');
@@ -40,7 +47,7 @@ $adminControls . '
 <th align = "left"><strong><a href = "view_users?sort=rd">Date Registered</a>'.RDARR.'</strong></th>
 </tr>
 </thead>
-<tbody>
+<tbody id = "users-body">
 ';
 
 // Fetch and print all the records
