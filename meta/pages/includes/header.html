@@ -36,16 +36,13 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 ?>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum</a></div>
+	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Meta Borum</a></div>
 	<?php 
 		echo '<div class = "navbar-profile">';
 
-		echo '<a href = "/Help/index">
-					<img src = "/images/question.png">
-				</a>';
 		echo LOGGEDIN ? 
 			'
-			<a href = "/Settings"><img src = "/images/settings-icon.png"></a>
+			<a href = "/Settings"><img src = "../images/settings-icon.png"></a>
 			' : '';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
 			require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/personalize.php');
@@ -64,7 +61,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 			// If the an account is logged in
 			if (!LOGGEDIN) {
-				giveClassActive('register.php', '/Register', 'Register'); 
+				giveClassActive('register.php', 'bforborum.com/Register', 'Register'); 
 			}
 
 			if (!LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php') {

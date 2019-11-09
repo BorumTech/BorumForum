@@ -1,0 +1,90 @@
+/* Dark and light mode*/
+/* light theme */
+.t--light {
+  background-color: hsl(0, 0%, 99.99%);
+  color: hsl(0, 0%, 5%);
+}
+
+/* dark theme */
+.t--dark {
+  background-color: hsl(0, 0%, 15%);
+  color: hsl(0, 0%, 95%);
+  
+  /* font hack for dark themes */
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  -webkit-text-stroke: 1px transparent;
+}
+
+.t--dark output {
+	color: hsl(0, 0%, 66%); /*  .t--light is hsl(0, 0%, 33%) */
+}
+
+.t--dark input, .t--dark textarea {
+	background: transparent;
+}
+
+.t--dark legend {
+  color: hsl(0, 0%, 80%); /* .t--light is hsl(0, 0%, 20%) */
+}
+
+.t--dark button.topic-notif {
+  color: hsl(0, 0%, 5%); /* .t--light is hsl(0, 0%, 95%) */
+}
+
+.t--dark .home-page button {
+  background-color: hsl(0, 0%, 15%);
+}
+
+.t--light #topic-list li {
+  background-color: #E1ECF4;
+  color: #39739d;
+}
+
+.t--dark .rectangular-box, #topic-list li {
+  background-color: rgba(51, 122, 183, 0.3);
+}
+
+.t--dark #topic-list li a {
+  color: #818181;
+}
+
+.t--dark #topic-list li a:hover {
+  color: #a4b7f7;
+}
+
+.t--dark .question-tags {
+  color: rgb(255, 100, 100);
+}
+
+.t--dark .question-name {
+  color: #b7d1ff;
+}
+
+.t--dark .question-name:hover {
+  color: white;
+}
+
+.t--dark .flourescent-hover:hover {
+  color: #a4b7f7;
+}
+
+.t--dark #users-table td.one {
+  background-color: #000000;
+  color: white;
+}
+
+.t--dark #users-table td.two {
+  background-color: hsl(0, 0%, 10%);
+  color: hsl(0, 0%, 75%);
+}
+
+.t--dark .search-container {
+  background-color: none;
+  color: white;
+}
+
+.t--dark .search-container button {
+  color: black;
+}
+

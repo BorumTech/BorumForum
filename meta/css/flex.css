@@ -1,0 +1,33 @@
+.flex-box {
+	display: flex;
+  width: 100%;
+	flex-wrap: wrap;
+}
+
+.flex-box#topic-list {
+  padding-top: 20px;
+}
+
+.flex-box > a, .flex-box > div.dark-mode { /* Settings.php */
+  border: 10px double orange;
+  margin: 20px;
+  padding: 5px;
+  height: 75px;
+  line-height: 50px;
+  color: rgb(15, 160, 255);
+  text-decoration: none;
+}
+
+.flex-box > li { /* Topics.php */
+  margin: 5px;
+  padding: 10px;
+  height: 75px;
+}
+
+.flex-box > * {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  flex: 0 1 200px;
+}
+
