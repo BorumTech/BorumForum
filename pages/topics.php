@@ -9,6 +9,15 @@ file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect
 <h1>Topics</h1>
 <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.</p>
 
+<?php 
+echo "<div class = 'search-container'>";
+echo "<input placeholder = \"Search...\" type=\"search\" id=\"site-search\" name=\"q\"
+       aria-label=\"Search through site content\" onkeydown = \"loadTopicSearch(this.value)\">";
+// echo "<button onclick = \"appendViewUsersQuery()\" type=\"submit\">Search</button>";
+echo "<button onclick = \"window.location.reload()\">X</button>";
+echo "</div>";
+?>
+
 <script>
 	let flex = document.createElement("link");
 	flex.type = "text/css";
