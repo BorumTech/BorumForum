@@ -8,10 +8,11 @@ const createVenueHTML = (name, location, iconSource) => {
 }
 
 const createWeatherHTML = (currentDay) => {
-  const degreesUnit = "&#0176 F";
-  return `<h2> High: ${currentDay.day.maxtemp_f}${degreesUnit}</h2>
-    <h2> Low: ${currentDay.day.mintemp_f}${degreesUnit}</h2>
-		<h2> Average: ${currentDay.day.avgtemp_f}${degreesUnit}</h2>
-    <img src="https://${currentDay.day.condition.icon}" class="weathericon" />
-    <h2>${weekDays[(new Date(currentDay.date)).getDay()]}</h2>`;
+  let degreesUnit = "&#0176 F";
+  degreesUnit = " K";
+  return `<h2> High: ${currentDay.main.temp_max}${degreesUnit}</h2>
+    <h2> Low: ${currentDay.main.temp_min}${degreesUnit}</h2>
+		<h2> Avg: ${currentDay.main.temp}${degreesUnit}</h2>
+    <img src="http://openweathermap.org/img/wn/${currentDay.weather[0].icon}@2x.png" class="weathericon" />
+    <h2>Today</h2>`;
 }

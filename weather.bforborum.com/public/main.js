@@ -3,9 +3,9 @@ const clientId = 'E4DM1T0X3YRGEHQMO0U315TRRMJIHOQQ5D2FU1MB0GMSREYC';
 const clientSecret = '540ZH0DIQ1EE1414WCTQHWNCAHA0TFAO5IYK15E4GJTJG5L2';
 const url = 'https://api.foursquare.com/v2/venues/explore?near=';
 
-// APIXU Info
-const apiKey = '92cda43241944fb088f144928182408';
-const forecastUrl = `https://api.apixu.com/v1/forecast.json?key=`;
+// Open Weather Map Info
+const apiKey = '4036aad2c2e2a6944a03bde314e5fb59';
+const forecastUrl = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
 // Page Elements
 const $input = $('#city');
@@ -34,14 +34,14 @@ const getVenues = async () => {
 }
 
 const getForecast = async () => {
-  const urlToFetch = forecastUrl + apiKey + "&q=" + $input.val() + "&days=6&hour=11";
+  const urlToFetch = forecastUrl + $input.val() + "&appid=" + apiKey;
+  console.log(urlToFetch);
 	try {
     const response = await fetch(urlToFetch);
     if(response.ok) {
       const jsonResponse = await response.json();
-      const days = jsonResponse.forecast.forecastday;
       console.log(jsonResponse);
-      return days;
+      return jsonResponse;
     }
   } catch (error) {
     console.log(error);
@@ -63,13 +63,9 @@ const renderVenues = (venues) => {
   $destination.append(`<h2>${venues[0].location.city}</h2>`);
 }
 
-const renderForecast = (days) => {
-  $weatherDivs.forEach(($day, index) => {
-    // Add your code here:
-		const currentDay = days[index];
-    let weatherContent = createWeatherHTML(currentDay);
-    $day.append(weatherContent);
-  });
+const renderForecast = (day) => {
+    let weatherContent = createWeatherHTML(day);
+    $weatherDivs[0].append(weatherContent);
 }
 
 const executeSearch = () => {
