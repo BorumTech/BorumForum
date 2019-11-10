@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Borum Weather</title>
     <link href = "http://www.bforborum.com/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
-    <link rel="stylesheet" type="text/css" href="public/reset.css" />
     <link rel="stylesheet" type="text/css" href="public/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Work+Sans" rel="stylesheet">

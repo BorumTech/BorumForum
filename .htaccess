@@ -8,7 +8,7 @@ RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Hand
 RewriteRule    ^Settings/([A-Za-z-]+)$   pages/settings/$1.php    [NC] # Handle settings pages
 RewriteRule    ^Questions/([0-9]+)/Edit   pages/Edit.php?id=$1    [NC]    # Handle question edit
 RewriteRule    ^Questions/([0-9]+)/Delete   pages/Delete.php?id=$1    [NC]    # Handle question delete
-RewriteRule    Help                     pages/Help/index.html     [NC]       # Handle help pages
+RewriteRule    ^Help$                     pages/Help/index.html     [NC]       # Handle help pages
 RewriteRule    Attributions               documents/Attributions.html   [NC] 
 RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]   
 php_value output_buffering Off
