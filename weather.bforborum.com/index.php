@@ -2,17 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Wanderlust</title>
+    <title>Borum Weather</title>
+    <link href = "http://www.bforborum.com/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
     <link rel="stylesheet" type="text/css" href="public/reset.css" />
     <link rel="stylesheet" type="text/css" href="public/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Work+Sans" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <img class="logo" src="https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/logo.svg" alt="logo" />
-    </header>
+    
     <main>
+      <header>
+        <img class="logo" src="http://www.bforborum.com/images/icon.png" alt="logo" height="100"/>
+        <span>orum Weather</span>
+      </header>
       <h1>Where do you want to land?</h1>
       <form autocomplete="off">
         <input type="text" id="city">

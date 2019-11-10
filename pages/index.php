@@ -16,7 +16,9 @@ include('includes/header.html');
 <p> <em>Empowering the world since 2019</em> </p>
 
 <p>Borum is an interactive community where users from all over the world can ask questions and get answers.</p>
-
+<ul>
+	<li><a href = "http://weather.bforborum.com">Borum Weather</a></li>
+</ul>
 <button id="myButton" class="float-left submit-button">Sign Up</button>
 </div>
 <script type="text/javascript">
