@@ -1,0 +1,3 @@
+[submodule "feasts.bforborum.com"]
+	path = feasts.bforborum.com
+	url = git://github.com/Borumer/order.js.git

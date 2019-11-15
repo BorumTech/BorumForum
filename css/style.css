@@ -170,3 +170,7 @@ form input:focus {
 	outline-color: blue;
 }
 
+#products > ul {
+	padding-right: 40px;
+}
+
