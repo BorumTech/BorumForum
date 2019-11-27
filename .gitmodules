@@ -1,6 +1,3 @@
-[submodule "restaurants.bforborum.com"]
-	path = restaurants.bforborum.com
-	url = git://github.com/Borumer/Ravenous.git
 [submodule "feasts.bforborum.com"]
 	path = feasts.bforborum.com
 	url = https://github.com/Borumer/order.js
