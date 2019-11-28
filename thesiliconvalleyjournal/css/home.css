@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow|Open+Sans&display=swap');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+div.header {
+	
+}
+
+div.header h1 {
+	text-align: center;
+	font-family: 'Jacques Francois Shadow', cursive;
+}
+
+div.header nav {
+	background-color: black;
+}
+
+div.header nav a {
+	color: white;
+	text-decoration: none;
+	padding: 0 2em;
+}
+
+div.header nav a:hover {
+	background-color: blue;
+}
+
+div.main-content {
+
+}
+

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^$  pages/index.html [L]
+RewriteRule    ^([A-Za-z_]+)$       pages/$1.html                  [NC]    # Handle pages
