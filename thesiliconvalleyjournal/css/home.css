@@ -2,6 +2,7 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	background: lightgrey;
 }
 
 div.header {
@@ -29,5 +30,49 @@ div.header nav a:hover {
 
 div.main-content {
 
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
+
+footer > ul.social-media {
+	text-align: center;
+}
+
+ul.social-media > li {
+	display: inline-block;
+	list-style-type: none;
+	-webkit-user-select:none;
+  	-moz-user-select:none;
+}
+
+li > a.social-media-links {
+	border-bottom: none;
+}
+
+a.social-media-links img {
+	width: 40px;
+	height: 40px;
+	margin-right: 20px;
+}
+
+ul.social-media > li > a > img:hover {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul.social-media a.twitter img:hover {
+  background: url(../images/Twitter_Social_Icon_Circle_Color.png) no-repeat;
+  background-size: 40px 40px;
+  padding-right: 40px; /* Equal to width of new image */
+}
+
+ul.social-media a.youtube img:hover {
+	background: url(../images/youtube_social_circle_red.png) no-repeat;
+	background-size: 40px 40px;
+	padding-right: 40px;
 }
 
