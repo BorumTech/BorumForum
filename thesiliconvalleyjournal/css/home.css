@@ -39,6 +39,7 @@ footer {
 
 footer > ul.social-media {
 	text-align: center;
+	float: right;
 }
 
 ul.social-media > li {
