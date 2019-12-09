@@ -6,4 +6,4 @@
 	url = https://github.com/Borumer/Ravenous
 [submodule "BorumPaint"]
 	path = BorumPaint
-	url = https://github.com/Borumer/paint-a-picture-backup.git
+	url = https://github.com/Borumer/paint-a-picture-backup
