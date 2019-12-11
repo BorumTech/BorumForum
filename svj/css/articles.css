@@ -1,0 +1,13 @@
+div.article {
+	margin: 20px 5em;
+	font-family: 'Times New Roman';
+	font-size: 1.25rem;
+}
+div.article h1.article-title {
+
+}
+
+span.movie-name {
+	font-style: italic;
+}
+
