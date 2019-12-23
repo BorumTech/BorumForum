@@ -11,6 +11,10 @@ li.search-bar#head-search-bar-li input#head-search-bar {
 	padding-right: 10px;
 }
 
+#head-search-bar-li input {
+    float: left;
+}
+
 li.search-bar#head-search-bar-li img {
     z-index: 20;
     height: 30px;

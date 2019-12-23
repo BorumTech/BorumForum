@@ -39,7 +39,7 @@
 		$q = 'SELECT id, subject FROM messages';
 		$result = performPaginationQuery($dbc, $q, 'date_entered DESC', $start, 'parent_id = 0 AND forum_id = ' . $row['id']);
 
-		echo "<table id = 'latest-questions'>";
+		echo "<table class = 'question-list' id = 'latest-questions'>";
 		while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 
 			echo "

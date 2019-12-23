@@ -65,7 +65,12 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
 
-			<li class = "search-bar" id = "head-search-bar-li"><img src = "/images/search-bar-icon.png"><input id = "head-search-bar" onkeydown = "loadSearchMessages(this.value)" type = "text" placeholder = "Search..."></li>
+			<li class = "search-bar" id = "head-search-bar-li">
+				<button>
+					<img src = "/images/search-bar-icon.png">
+				</button>
+				<input id = "head-search-bar" onkeydown = "loadSearchMessages(this.value)" type = "text" placeholder = "Search...">
+			</li>
 
 			<?php
 
