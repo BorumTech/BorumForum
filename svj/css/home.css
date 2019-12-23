@@ -6,7 +6,7 @@ body {
 }
 
 div.header {
-	
+	border-bottom: 3px solid lightblue;
 }
 
 div.header h1 {

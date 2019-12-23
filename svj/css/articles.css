@@ -11,3 +11,16 @@ span.movie-name {
 	font-style: italic;
 }
 
+div.new-article {
+	width: 23rem;
+}
+
+div.new-article a {
+	text-decoration: none;
+	color: black;
+}
+
+div.article-body {
+	margin: 0 50px;
+}
+
