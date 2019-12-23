@@ -57,8 +57,8 @@ output#bio {
 }
 
 button#myButton {
-	margin-top: 5%;
-	font-size: 5em;
+	margin-top: 4%;
+	font-size: 4em;
 	padding: 5% 10%;
 	border-width: 4px;
 	border-style: solid;
@@ -70,10 +70,21 @@ button#products {
 	border-radius: 5px;
 	background: none;
 	border: none;
+	display: block;
+	margin: 1em auto;
+	padding: 0.5em;
 }
 
 button#products:hover {
 	background-color: lightgrey;
+}
+
+.t--dark button#products {
+	color: white;
+}
+
+.t--dark button#products:hover {
+	color: black;
 }
 
 td.output {
