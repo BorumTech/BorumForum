@@ -56,7 +56,7 @@ output#bio {
 	font-size: 1.5em;
 }
 
-.home-page button {
+button#myButton {
 	margin-top: 5%;
 	font-size: 5em;
 	padding: 5% 10%;
@@ -64,6 +64,16 @@ output#bio {
 	border-style: solid;
 	text-transform: uppercase;
 	margin-bottom: 2.5%;
+}
+
+button#products {
+	border-radius: 5px;
+	background: none;
+	border: none;
+}
+
+button#products:hover {
+	background-color: lightgrey;
 }
 
 td.output {

@@ -16,23 +16,8 @@ include('includes/header.html');
 <p> <em>Empowering the world since 2019</em> </p>
 
 <p>Borum is an interactive community where users from all over the world can ask questions and get answers. </p>
-<div id = "products">
-	<h2>Products</h2>
-	<ul>
-		<li><a href = "http://weather.bforborum.com">Borum Weather</a></li>
-		<li><a href = "http://feasts.bforborum.com">Borum Feasts</a></li>
-		<li><a href = "http://restaurants.bforborum.com">Borum Restaurants</a></li>
-		<li><a href = "http://news.bforborum.com">Borum News</a></li>
-		<li><a href = "http://documents.bforborum.com">Borum Documents</a></li>
-		<li><a href = "http://presentations.bforborum.com">Borum Presentation</a></li>
-		<li><a href = "http://spreadsheets.bforborum.com">Borum Spreadsheets</a></li>
-		<li><a href = "http://forms.bforborum.com">Borum Forms</a></li>
-		<li><a href = "http://drive.bforborum.com">Borum Drive</a></li>
-		<li><a href = "http://shows.bforborum.com">Borum Shows</a></li>
-	</ul>
-</div>
+<button id="products" onclick = "window.location.href = 'http://products.bforborum.com'">Products</button>
 <button id="myButton" class="float-left submit-button">Sign Up</button>
-</div>
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "../Register";
