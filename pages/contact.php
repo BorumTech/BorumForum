@@ -1,10 +1,6 @@
 <?php 
-
+session_start();
 $page_title = "Contact Us";
-require("includes/header.html");
-?>
-<div class = "col-sm-7">
-<?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$subject = trim($_POST['subject']);
@@ -16,10 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$row = mysqli_fetch_array($r, MYSQLI_NUM);
 	$email = $row[1];
 
+	include('includes/header.html');
+	echo "<div class = 'col-sm-7 page-with-form-body'>";
 	sendEmail($subject, $email . "<br>" . $body, "VSpoet49@gmail.com", "<h3>Thanks for contacting us! We will respond within the next 3 days.</h3>");
 	include('includes/footer.html');
 	exit();
 }
+
+include('includes/header.html');
+echo "<div class = 'col-sm-7 page-with-form-body'>";
 
 ?>
 
@@ -34,7 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<label for = "body">Details</label>
 		<textarea required name = "body" id = "body" cols = "50"></textarea>
 	</p>
-	<input type = "submit" value = "Send message">
+	<p>
+		<input type = "submit" value = "Send message">
+	</p>
 </form>
 
 <?php 
