@@ -51,7 +51,7 @@ function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessag
       $mail->Port       = 25;                                    // TCP port to connect to
 
       //Recipients
-      $mail->setFrom('admin@bforborum.com', 'Borum CEO Varun Singh');
+      $mail->setFrom('admin@bforborum.com', 'The Borum Team');
       $mail->addAddress($email);     // Add a recipient
 
       // Content
