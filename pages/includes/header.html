@@ -26,15 +26,8 @@
 <link href = "/css/settings.css" rel = "stylesheet" type = "text/css">
 <link href = "/css/flex.css" rel = "stylesheet" type = "text/css">
 <link href = "/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
-<script>
-	document.addEventListener("DOMContentLoaded", function() { 
-		if (inDarkMode()) {
-			document.querySelector('body').className = 't--dark';
-		}
-	});
-</script>
 </head>
-<body class = "t--light">
+<body class = "<?php echo $_COOKIE['dark'] == 1 ? 't--dark' : 't--light'; ?>">
 
 <?php 
 
