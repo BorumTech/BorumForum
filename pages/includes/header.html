@@ -9,8 +9,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A Q&A site for Bor- related questions">
-<meta name="keywords" content="Forum,Q&A,Boron,Borum">
+<meta name="description" content="A Q&A site for everyone to learn and share">
+<meta name="keywords" content="Forum,Q&A,Boron,Borum,Tech,Giant,Company,Corporation">
 <meta name="author" content="Varun Singh">
 </head>
 <title><?php echo $page_title; ?></title>
@@ -39,9 +39,18 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum&trade;</a></div>
+	<div class = "navicon" onclick = "toggleOpenMenu()">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<div style = 'display:none' class = "open-menu">
+		<ul>
+			<li>Settings>>></li>
+		</ul>
+	</div>
 	<?php 
 		echo '<div class = "navbar-profile">';
-
 		echo '<a href = "/Help">
 					<img src = "/images/question.png">
 				</a>';
@@ -85,6 +94,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 		</ul>			
 	</div>
 </nav>
+
 <div class = "row">
 	<div class = "col-sm-2 sidebar-outer">
 		<div class = "fixed-sidebar">
