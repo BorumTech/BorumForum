@@ -3,6 +3,10 @@
 }
 
 @media (min-width: 768px) {
+    #menu {
+    	display: none;
+    }
+
     .fixed-sidebar {
         position: fixed;
         z-index: 1; /* Stay on top */
@@ -56,14 +60,35 @@
 	}
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .container > .row > .col-sm-2:first-of-type {padding-top: 15px; width: 150px;}
-  .fixed-sidebar a {font-size: 10px; }
-  div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
-  	margin-left: 150px;
-  	font-size: 10px;
-  }
+/* Phone Interface */
+@media only screen and (max-width: 767px) {
+	.container > .row > .col-sm-2:first-of-type {padding-top: 15px; width: 150px;}
+	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+		margin-left: 150px;
+	}
+
+	div.navbar-profile {
+		display: none;
+	}
+
+	div.navicon {
+		float: right;
+	}
+
+	div.navicon div {
+		width: 35px;
+		height: 5px;
+		background-color: black;
+		margin: 6px 0;		
+	}
+
+	.open-menu {
+		display: block;
+	}
+
+	.t--dark div.navicon div {
+		background-color: white;
+	}
 }
 
 .fixed-sidebar a {
