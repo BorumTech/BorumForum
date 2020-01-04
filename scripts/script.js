@@ -43,10 +43,6 @@ function editBio(id) {
 }
 
 function toggleOpenMenu() {
-	if (document.getElementsByClassName('open-menu')[0].style.display == 'block') {
-		document.getElementsByClassName('open-menu')[0].style.display = 'none';
-	} else {
-		document.getElementsByClassName('open-menu')[0].style.display = 'block';
-	}
+	document.getElementsByClassName('open-menu')[0].classList.toggle('none');
 }
 

@@ -2,8 +2,12 @@
 	position: relative;	
 }
 
+.none {
+	display: none;
+}
+
 @media (min-width: 768px) {
-    #menu {
+    .open-menu, .navicon {
     	display: none;
     }
 
@@ -80,10 +84,6 @@
 		height: 5px;
 		background-color: black;
 		margin: 6px 0;		
-	}
-
-	.open-menu {
-		display: block;
 	}
 
 	.t--dark div.navicon div {
