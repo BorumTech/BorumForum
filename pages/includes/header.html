@@ -44,9 +44,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 		<div></div>
 		<div></div>
 	</div>
-	<div style = 'display:none' class = "open-menu">
+	<div class = "open-menu">
 		<ul>
-			<li>Settings>>></li>
+			<li><a href = "/Help">Help>>></a></li>
+			<?php echo LOGGEDIN ? '<li><a href = "/Settings">Settings>>></a></li>' : ''; ?>
+			<?php echo !LOGGEDIN ? '<li><a href = "/Login">Login>>></a></li>' : ''; ?>
 		</ul>
 	</div>
 	<?php 
