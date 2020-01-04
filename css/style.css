@@ -62,6 +62,18 @@
 	.sidebar-outer + div.col-sm-8 {
 		
 	}
+
+	.fixed-sidebar a {
+		width: 100%;
+		box-sizing: border-box;
+		display: block;
+		color: grey;
+		padding: 15px;
+		margin: 10px 0;
+		background-color: #e6e6e6;
+		text-decoration: none;
+		color: #818181;
+	}
 }
 
 /* Phone Interface */
@@ -71,12 +83,33 @@
 		margin-left: 150px;
 	}
 
+	.fixed-sidebar a {
+		display: none;
+	}
+
 	div.navbar-profile {
 		display: none;
 	}
 
 	div.navicon {
 		float: right;
+	}
+
+	div.open-menu {
+		background-color: #f8f8f8;
+		position: fixed;
+		right: 0;
+		top: 75px;
+	}
+
+	div.open-menu ul {
+		padding-left: 5px;
+	}
+
+	div.open-menu img {
+		width: 30px;
+		height: 30px;
+		margin-right: 1em;
 	}
 
 	div.navicon div {
@@ -89,18 +122,6 @@
 	.t--dark div.navicon div {
 		background-color: white;
 	}
-}
-
-.fixed-sidebar a {
-	width: 100%;
-	box-sizing: border-box;
-	display: block;
-	color: grey;
-	padding: 15px;
-	margin: 10px 0;
-	background-color: #e6e6e6;
-	text-decoration: none;
-	color: #818181;
 }
 
 a.rectangular-box:hover {

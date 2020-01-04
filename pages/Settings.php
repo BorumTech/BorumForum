@@ -60,5 +60,5 @@ include_once("includes/header.html");
 		}
 
 	</script>
-</body>
-</html>
+<?php 
+include('includes/footer.html'); ?>
