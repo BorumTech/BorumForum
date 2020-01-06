@@ -27,7 +27,7 @@
 <link href = "/css/flex.css" rel = "stylesheet" type = "text/css">
 <link href = "/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
 </head>
-<body class = "<?php echo $_COOKIE['dark'] == 1 ? 't--dark' : 't--light'; ?>">
+<body class = "<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == 1 ? 't--dark' : 't--light'; ?>">
 
 <?php 
 
@@ -46,17 +46,20 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 	</div>
 	<div class = "none open-menu">
 		<ul>
-			<li><img src = "/images/question.png"><a href = "/Help">Help</a></li>
+			<li><img src = "/images/extrainfo.png"><a href = "/Help">Help</a></li>
 			<?php echo LOGGEDIN ? '<li><img src = "/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
 			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>
 			<?php echo !LOGGEDIN ? '<li><a href = "/Register">Register</a></li>' : ''; ?>
+			<li><img src = "/images/question.png"><a href = "/Questions">Questions</a></li>
+			<li><img src = "/images/tag.png"><a href = "/Topics">Topics</a></li>
+			<li><img src = "/images/users.png"><a href = "/view_users">Users</a></li>
 		</ul>
 	</div>
 	<?php 
 		echo '<div class = "navbar-profile">';
 		echo '<a href = "/Help">
-					<img src = "/images/question.png">
+					<img src = "/images/extrainfo.png">
 				</a>';
 		echo LOGGEDIN ? 
 			'
