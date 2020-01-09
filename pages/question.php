@@ -47,7 +47,7 @@
 						if (isset($_SESSION['id'])) {
 							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 							$result = mysqli_query($dbc, $query);
-							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
+							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;						
 						}
 
 					}
@@ -63,7 +63,7 @@
 					}
 
 					function getNoAccountButton($way) {
-							return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
+						return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
 					}
 				?>
 				<?php
@@ -93,7 +93,7 @@
 			</tr>
 			<tr class = 'user-profile-container'>
 				<?php 
-					if (LOGGEDIN && $_SESSION['id'] === $row['usr_id']) {
+					if (ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id'])) {
 						$what_to_echo = $ques_id . '/Edit';
 
 						echo '<td class = "modify-links">';
