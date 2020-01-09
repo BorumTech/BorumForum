@@ -5,7 +5,7 @@
 	$query = '
 	SELECT messages.parent_id, users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name AS topic
 	FROM messages 
-	JOIN users 
+	LEFT JOIN users 
 	ON messages.user_id = users.id 
 	JOIN topics
 	ON messages.forum_id = topics.id

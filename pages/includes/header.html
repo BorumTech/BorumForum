@@ -46,7 +46,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 	</div>
 	<div class = "none open-menu">
 		<ul>
-			<li><img src = "/images/extrainfo.png"><a href = "/Help">Help</a></li>
+			<li><img src = "/images/extrainfo.png"><a href = "/Help/index.html">Help</a></li>
 			<?php echo LOGGEDIN ? '<li><img src = "/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
 			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>
@@ -58,7 +58,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 	</div>
 	<?php 
 		echo '<div class = "navbar-profile">';
-		echo '<a href = "/Help">
+		echo '<a href = "/Help/index.html">
 					<img src = "/images/extrainfo.png">
 				</a>';
 		echo LOGGEDIN ? 
