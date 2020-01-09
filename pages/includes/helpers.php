@@ -1,7 +1,7 @@
 <?php 
 define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
 
-if (LOGGEDIN && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 2400)) {
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     // last request was more than 30 minutes ago
     session_unset();     // unset $_SESSION variable for the run-time 
     session_destroy();   // destroy session data in storage

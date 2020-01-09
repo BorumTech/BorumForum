@@ -12,9 +12,13 @@ $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 define('ISQUESTION', $row['parent_id'] == 0);
 
+ob_start();
+
 if (!LOGGEDIN || $row['user_id'] !== $_SESSION['id']) { // Make sure user is author of the question by redirecting everyone else
 	redirect_user();
 }
+
+ob_flush();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$confirmation = $_POST['confirm'];
