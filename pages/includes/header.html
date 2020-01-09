@@ -1,6 +1,9 @@
 <?php
 	if (session_id() == "")
-  		session_start();
+  		session_start();	
+	file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../../mysqli_connect.inc.php');
+
+	require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 ?>
 <!-- Script 12.7 - header.html -->
 <!DOCTYPE html>
@@ -28,14 +31,6 @@
 <link href = "/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
 </head>
 <body class = "<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == 1 ? 't--dark' : 't--light'; ?>">
-
-<?php 
-
-file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../../mysqli_connect.inc.php');
-
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
-
-?>
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Borum&trade;</a></div>
