@@ -116,11 +116,6 @@ td.output {
 	}
 }
 
-footer.footer {
-	
-	flex-wrap: wrap;
-}
-
 @media only screen and (max-width: 569px) {
 	footer.footer > ul.social-media li img, footer.footer ul.footer-links li {
 		margin-right: 10px;
@@ -130,6 +125,12 @@ footer.footer {
 @media only screen and (max-width: 524px) {
 	footer.footer > ul.social-media li img, footer.footer ul.footer-links li {
 		margin-right: 5px;
+	}
+}
+
+@media only screen and (max-width: 424px) {
+	footer.footer {
+		height: 120px;
 	}
 }
 
