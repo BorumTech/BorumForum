@@ -91,7 +91,28 @@ td.output {
 	color: hsl(0, 0%, 15%);
 }
 
-footer.footer {
-	
+@media only screen and (max-width: 680px) {
+	footer.footer {
+		font-size: 12px;
+	}
+
+	footer.footer > ul.social-media li img {
+		width: 30px;
+		height: 30px;
+		margin-right: 20px;
+		vertical-align: baseline;
+	}
+
+	ul.social-media > li > a.twitter > img:hover {
+		background: url(../images/Twitter_Social_Icon_Circle_Color.svg) no-repeat;
+		background-size: 30px 30px;
+		padding-right: 30px;
+	}
+
+	ul.social-media > li > a.youtube > img:hover {
+		background: url(../images/youtube_social_circle_red.png) no-repeat;
+		background-size: 30px 30px;
+		padding-right: 30px;
+	}
 }
 
