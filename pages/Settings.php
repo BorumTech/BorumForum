@@ -35,16 +35,20 @@ include_once("includes/header.html");
 		  .querySelector('.js-change-theme')
 		  .addEventListener('click', () => {
 		    const body = document.querySelector('body');
-		  
+			const twitterImgEl = document.querySelector('ul.social-media a.twitter img');
+			
 		    if (body.classList.contains('t--light')) { // When they turn dark mode oFF
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
+		      twitterImgEl.src = '../images/Twitter_Social_Icon_Circle_Black.svg';
+		      console.log(document.querySelector('ul.social-media a.twitter img'));
 		      console.log('dark');
 		      document.cookie = "dark=1; path=/";
 		    }
 		    else { // When they turn dark mode oN
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
+		      twitterImgEl.src = '../images/Twitter_Social_Icon_Circle_White.svg';
 		      console.log('not dark');
 			  document.cookie = "dark=0; path=/";
 		    }
