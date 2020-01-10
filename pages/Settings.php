@@ -19,7 +19,7 @@ include_once("includes/header.html");
 		<div class = "dark-mode">
 			<label class="switch">
 		  		<input onclick = 'changeTheme(<?php echo $_SESSION['id']; ?>)' type="checkbox" class = "js-change-theme o-menu__item t-menu__item" 
-		  		<?php echo $_COOKIE['dark'] == '1' ? 'checked' : '' ?> >
+		  		<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == '1' ? 'checked' : '' ?> >
 		  		<span class="slider"></span>
 			</label>
 			<span id = "text">Dark mode</span>

@@ -90,6 +90,7 @@ body > .container {
   display: inline-flex;
   line-height: 60px;
   margin-bottom: 0;
+  padding-left: 10px;
 }
 
 .footer ul.footer-links li {
