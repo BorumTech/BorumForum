@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 
 $page_title = "Delete a Post";
 @require('includes/header.html');
@@ -11,8 +12,6 @@ $query = "SELECT subject, body, user_id, parent_id FROM messages WHERE id = {$_G
 $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 define('ISQUESTION', $row['parent_id'] == 0);
-
-ob_start();
 
 if (!LOGGEDIN || $row['user_id'] !== $_SESSION['id']) { // Make sure user is author of the question by redirecting everyone else
 	redirect_user();
