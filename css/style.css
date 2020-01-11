@@ -213,10 +213,6 @@ form input, form textarea {
 	line-height: 1.7em;
 }
 
-form label {
-	display: block;
-}
-
 form input:focus {
 	outline-color: blue;
 }

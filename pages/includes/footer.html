@@ -3,7 +3,7 @@
 </div>
 <footer class="footer">
 	<ul class = "footer-links">
-		<li><span class = "text-muted">Copyright &copy; 2019 Borum</span></li>
+		<li><span class = "text-muted">Copyright &copy; 2020 Borum Inc.</span></li>
 		<li><a href = "https://github.com/KnowledgeableKangaroo/Borum/releases">Releases</a></li>
 		<li><a href = "/Attributions">Attributions</a></li>
 		<li><a href = "/Contact">Contact</a></li>
@@ -13,7 +13,7 @@
 		<li><a href = "https://twitter.com/BorumInc" class = "twitter social-media-links">
 			<img 
 			src = "
-			<?php echo isset($_COOKIE['dark']) ? '../images/Twitter_Social_Icon_Circle_Black.svg' : '../images/Twitter_Social_Icon_Circle_White.svg'; ?>" 
+			<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == '1' ? '../images/Twitter_Social_Icon_Circle_Black.svg' : '../images/Twitter_Social_Icon_Circle_White.svg'; ?>" 
 			alt = "Twitter logo in white">
 		</a></li>
 		<li><a href = "https://www.youtube.com/channel/UCDDyVIflz8dUhHIb2YmA9hQ" class = "youtube social-media-links"><img src = "/images/youtube_social_circle_dark.png" alt = "Youtube Logo in black"></a></li>

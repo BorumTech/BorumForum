@@ -7,6 +7,10 @@
 	$result = mysqli_query($dbc, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+	if (mysqli_num_rows($result) == 0) {
+		redirect_user('Topics', TRUE);
+	}
+
 	$page_title = $row['name'];
 	include('includes/header.html');
 ?>
@@ -27,6 +31,16 @@
 
 			echo "<button id = 'follow-btn' class = 'topic-notif' onclick = \"setTopic({$_SESSION['id']}, {$row['id']}, 'follow')\">" . FOLLOWTEXT . "</button>";
 			echo "<button id = 'ignore-btn' class = 'topic-notif' onclick = \"setTopic({$_SESSION['id']}, {$row['id']}, 'ignore')\">" . IGNORETEXT . "</button>";
+			if (ISADMIN) {
+				echo "
+				<button id = 'delete-topic-btn' 
+				onclick = 
+				\"confirmDeletion()\">
+				Delete Topic
+				</button>";
+				$form = "<button onclick = 'deleteTopic({$row['id']})'>Confirm Deletion</button><button>No</button>";
+				echo "<div id = 'delete-confirmation' style = 'display:none; border: 1px solid black; position: absolute; background-color: white; top: 40px; width: 70vw; height: 40vh;'><span style = 'text-align:center; display: table-cell; vertical-align:middle;'>Are you sure you want to delete {$_GET['topic']}?</span><div>$form</div></div>";
+			}
 		}
 
 		require('includes/pagination_functions.inc.php');

@@ -27,6 +27,27 @@ function setTopic(user_id, topic_id, action) {
 	xhr.send();	
 }
 
+function confirmDeletion() {
+	document.getElementById('delete-confirmation').style.display = "table";
+}
+
+function deleteTopic(topic_id) {
+	fetch(`/pages/ajax/deletetopic.php?topic_id=${topic_id}`, {method: 'get'}).then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		document.getElementById('delete-topic-btn').style.display = 'none';
+		document.getElementById('delete-confirmation').innerHTML = response;
+		console.log(response);
+	}).then(response => {
+		setTimeout(function() {
+			console.log("Redirection timer on");
+			window.location.href = '/Topics';
+		}, 1000);
+	});
+}
+
 function answerQuestion(ques_id, answer) {
 	/*
 	This function
