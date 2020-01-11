@@ -91,6 +91,7 @@ body > .container {
   line-height: 60px;
   margin-bottom: 0;
   padding-left: 10px;
+  flex-wrap: wrap;
 }
 
 .footer ul.footer-links li {

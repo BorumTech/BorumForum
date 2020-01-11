@@ -116,21 +116,25 @@ td.output {
 	}
 }
 
-@media only screen and (max-width: 569px) {
+@media only screen and (max-width: 569px) and (min-width: 525px) {
 	footer.footer > ul.social-media li img, footer.footer ul.footer-links li {
 		margin-right: 10px;
 	}
 }
 
-@media only screen and (max-width: 524px) {
+@media only screen and (max-width: 524px) and (min-width: 490px) {
 	footer.footer > ul.social-media li img, footer.footer ul.footer-links li {
 		margin-right: 5px;
 	}
 }
 
-@media only screen and (max-width: 424px) {
+@media only screen and (max-width: 489px) {
 	footer.footer {
-		height: 120px;
+		height: auto;
+	}
+
+	button#myButton {
+		margin-bottom: 40%;
 	}
 }
 
