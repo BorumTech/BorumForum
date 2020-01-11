@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$num = mysqli_num_rows($ceResult);
 
 		if ($num == 0) {
-			$qv = "SELECT SHA2(rand(5000), 512)";
+			$qv = "SELECT TO_BASE64(RAND())";
 			$qr = mysqli_fetch_array(mysqli_query($dbc, $qv), MYSQLI_BOTH);
 			$v = $qr[0];
 
