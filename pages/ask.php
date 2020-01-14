@@ -47,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// Insert message
+		$q = "INSERT INTO questions (topic_id, user_id, subject, body, date_entered) VALUES ($val, $id, '$sub', $bod', NOW())";
+		$r = @mysqli_query($dbc, $q);
 		$q = "INSERT INTO messages (parent_id, forum_id, user_id, subject, body, date_entered) VALUES (0, $val, $id, '$sub', '$bod', NOW())";
 		$r = @mysqli_query($dbc, $q);
 
