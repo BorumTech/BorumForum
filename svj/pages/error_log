@@ -1,0 +1,15 @@
+[12-Jan-2020 22:06:49 UTC] PHP Notice:  Undefined variable: dbc in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 9
+[12-Jan-2020 22:06:49 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 9
+[12-Jan-2020 22:06:49 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 11
+[12-Jan-2020 22:07:32 UTC] PHP Notice:  Undefined variable: dbc in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 9
+[12-Jan-2020 22:07:32 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 9
+[12-Jan-2020 22:07:32 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/libuc6kfb0jg/public_html/svj/pages/index.php on line 11
+[12-Jan-2020 22:07:49 UTC] PHP Notice:  Undefined variable: dbc in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:07:49 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:07:49 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 4
+[12-Jan-2020 22:08:52 UTC] PHP Notice:  Undefined variable: dbc in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:08:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:08:52 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 4
+[12-Jan-2020 22:08:54 UTC] PHP Notice:  Undefined variable: dbc in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:08:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 3
+[12-Jan-2020 22:08:54 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/libuc6kfb0jg/public_html/svj/pages/article.php on line 4
