@@ -30,47 +30,86 @@ while ($followrow = mysqli_fetch_array($r, MYSQLI_NUM))
     $followedtopics[] = $followrow[0];
 
 $following = join("\",\"", $followedtopics);
-
-$q = '
-    SELECT
-        T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.topic_id, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
-    FROM
-        (
+if ($order_by != 'unanswered') {
+    $q = '
         SELECT
-            `user-message-votes`.id,
-            IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
-            messages.id AS msg_id,
-            messages.subject,
-            DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
-            topics.name,
-            topics.id AS topic_id
+            T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.topic_id, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
         FROM
-            messages
-        JOIN topics ON messages.forum_id = topics.id
-        LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
-        WHERE
-            messages.parent_id = 0
-        GROUP BY
-            messages.id
-    ) T1
-        LEFT OUTER JOIN(
+            (
             SELECT
-                id,
-                parent_id,
-                COUNT(id) AS answers
+                `user-message-votes`.id,
+                IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
+                messages.id AS msg_id,
+                messages.subject,
+                DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
+                topics.name,
+                topics.id AS topic_id
             FROM
                 messages
+            JOIN topics ON messages.forum_id = topics.id
+            LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
             WHERE
-                parent_id != 0
+                messages.parent_id = 0
             GROUP BY
-                parent_id
-        ) T2
-    ON
-        T1.msg_id = T2.parent_id
-    WHERE T1.topic_id IN ("' . $following . '")
-    ORDER BY
-            ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
-
+                messages.id
+        ) T1
+            LEFT OUTER JOIN(
+                SELECT
+                    id,
+                    parent_id,
+                    COUNT(id) AS answers
+                FROM
+                    messages
+                WHERE
+                    parent_id != 0
+                GROUP BY
+                    parent_id
+            ) T2
+        ON
+            T1.msg_id = T2.parent_id
+        WHERE T1.topic_id IN ("' . $following . '")
+        ORDER BY
+                ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
+} else {
+    $q = 'SELECT
+            T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.topic_id, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
+        FROM
+            (
+            SELECT
+                `user-message-votes`.id,
+                IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
+                messages.id AS msg_id,
+                messages.subject,
+                DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
+                topics.name,
+                topics.id AS topic_id
+            FROM
+                messages
+            JOIN topics ON messages.forum_id = topics.id
+            LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
+            WHERE
+                messages.parent_id = 0
+            GROUP BY
+                messages.id
+        ) T1
+            LEFT OUTER JOIN(
+                SELECT
+                    id,
+                    parent_id,
+                    COUNT(id) AS answers
+                FROM
+                    messages
+                WHERE
+                    parent_id != 0
+                GROUP BY
+                    parent_id
+            ) T2
+        ON
+            T1.msg_id = T2.parent_id
+        WHERE T1.topic_id IN ("' . $following . '") AND T2.answers IS NULL
+        ORDER BY date_posted LIMIT ' . $start . ', ' . DISPLAY;
+}
+echo $q;
 $result = mysqli_query($dbc, $q);
 ?>
 
@@ -112,6 +151,7 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the 
 
 }
 echo "</table>";
+setPreviousAndNextLinks('Questions/Interesting');
 
 ?>
 
