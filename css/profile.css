@@ -72,3 +72,6 @@ div.page-with-form-body > form > p.form-inputs {
 	background-color: #eeeeee;
 }
 
+#question-page-table div.comment-section {
+	text-align:left;
+}
