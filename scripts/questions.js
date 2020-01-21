@@ -18,13 +18,13 @@ function setTopic(user_id, topic_id, action) {
 	const params = `?user_id=${user_id}&topic_id=${topic_id}`;
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
-		if (xhr.readyState == 4 && xhr.status == 200) {	
+		if (xhr.readyState == 4 && xhr.status == 200) {
 			buttonEl.innerHTML = xhr.responseText;
 		}
 	}
 
 	xhr.open("GET", url + params, true);
-	xhr.send();	
+	xhr.send();
 }
 
 function confirmDeletion() {
@@ -48,7 +48,7 @@ function deleteTopic(topic_id) {
 	});
 }
 
-function answerQuestion(ques_id, answer) {
+function answerQuestion(ques_id, answer, counter) {
 	/*
 	This function
 		* Validates the content of the answer to prevent duplicates
@@ -58,8 +58,6 @@ function answerQuestion(ques_id, answer) {
 		* id (integer), the id of the user who is answering the question
 	*/
 
-	const ansBodyEl = document.getElementById('');
-
 	let xhr;
 	if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
 		xhr = new XMLHttpRequest();
@@ -68,18 +66,17 @@ function answerQuestion(ques_id, answer) {
 	}
 
 	const url = '/pages/ajax/answer.php';
-	const params = `ques_id=${ques_id}&answer=${answer}`;
+	const params = `ques_id=${ques_id}&answer=${answer}&counter=${counter}`;
 	xhr.open("POST", url, true);
 
 	// Send the proper header information along with the request
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
-		if (xhr.readyState == 4 && xhr.status == 200) {	
+		if (xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('question-page-table').querySelector('tbody').innerHTML += xhr.responseText;
 		}
 	}
 
 	xhr.send(params);
 }
-

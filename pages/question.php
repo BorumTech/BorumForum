@@ -127,7 +127,7 @@
 				<td colspan = "4">
 					<div class = "comment-section">
 						<input type = "text" size = "50">
-						<input type = "button" value = "Add Comment">
+						<input type = "button" onclick = "addComment(<?php echo $_SESSION['id']; ?>, <?php echo $_GET['id']; ?>)" value = "Add Comment">
 					</div>
 				</td>
 			</tr>
@@ -193,7 +193,7 @@
 	<p>
 		<textarea id = 'your-answer-ta' name = "answer" cols = '125' rows = '20'></textarea>
 	</p>
-	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").value)'>
+	<input type = 'button' value = 'Post your Answer' onclick = 'answerQuestion(<?php echo $_GET['id']; ?>, document.getElementById("your-answer-ta").value, <?php echo $counter; ?>)'>
 	</form>
 	<?php
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Handle all form submissions
