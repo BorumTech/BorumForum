@@ -91,6 +91,13 @@
 					<p id = "ques-body"><?php echo $row['ques_body'] ?></p>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<div class = "question-tags">
+						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
+					</div>
+				</td>
+			</tr>
 			<tr class = 'user-profile-container'>
 				<?php
 					if (ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id'])) {
@@ -113,13 +120,6 @@
 						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
 							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']; ?>'>
 						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class = "question-tags">
-						<a href = "../Topics/<?php echo $row['topic']; ?>"><?php echo $row['topic'] ?></a>
 					</div>
 				</td>
 			</tr>

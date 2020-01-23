@@ -1,7 +1,7 @@
 table#question-page-table {
 	padding: 0px;
-	width: 790px;
 	border-collapse: separate;
+	width: 100%;
 	border-spacing: 10px 50px;
 }
 
@@ -21,6 +21,10 @@ table#question-page-table tr td button > svg > path {
 
 table#question-page-table tr td div {
 	text-align: center;
+}
+
+#your-answer-ta {
+	width: 100%;
 }
 
 #bio {
@@ -137,4 +141,3 @@ td.output {
 		margin-bottom: 40%;
 	}
 }
-
