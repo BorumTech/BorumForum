@@ -123,9 +123,19 @@
 					</div>
 				</td>
 			</tr>
+			<?php
+						$q = "SELECT body, date_written, usr_id FROM comments WHERE msg_id = {$_GET['id']}";
+						$r = mysqli_query($dbc, $q);
+						if($r && mysqli_num_rows($r) > 0) {
+							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+								echo "<tr><td></td><td class = 'comments'>{$row['body']}</td></tr>";
+							}
+						}
+			?>
 			<tr>
-				<td colspan = "4">
-					<div class = "comment-section">
+				<td>
+				<td>
+					<div class = "new-comment">
 						<input type = "text" size = "50">
 						<input type = "button" onclick = "addComment(<?php echo $_SESSION['id']; ?>, <?php echo $_GET['id']; ?>)" value = "Add Comment">
 					</div>

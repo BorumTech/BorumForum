@@ -72,7 +72,12 @@ div.page-with-form-body > form > p.form-inputs {
 	background-color: #eeeeee;
 }
 
-#question-page-table div.comment-section {
-	margin-left: 10px;
+#question-page-table td.comments {
+	border-style: solid none solid none;
+	border-width: 1px;
+	padding: 2em 0;
+}
+
+#question-page-table div.new-comment {
 	text-align:left;
 }
