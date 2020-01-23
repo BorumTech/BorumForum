@@ -134,7 +134,7 @@
 			?>
 			<tr>
 				<td>
-				<td>
+				<td style = "display: none"> <!-- Remove until v1.1.0 -->
 					<div class = "new-comment">
 						<input type = "text" size = "50">
 						<input type = "button" onclick = "addComment(<?php echo $_SESSION['id']; ?>, <?php echo $_GET['id']; ?>)" value = "Add Comment">
