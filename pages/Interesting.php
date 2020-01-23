@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -15,7 +15,7 @@ $page_title = "Interesting Questions";
 <div class = "col-sm-10">
 <h1>Interesting Questions</h1>
 
-<?php 
+<?php
 
 define('DISPLAY', 10);
 
@@ -26,7 +26,7 @@ list($sort, $order_by) = getSortValue('messages');
 $q = "SELECT topic_id FROM `followed-topics` WHERE user_id = {$_SESSION['id']}";
 $r = mysqli_query($dbc, $q);
 $followedtopics = [];
-while ($followrow = mysqli_fetch_array($r, MYSQLI_NUM)) 
+while ($followrow = mysqli_fetch_array($r, MYSQLI_NUM))
     $followedtopics[] = $followrow[0];
 
 $following = join("\",\"", $followedtopics);
@@ -69,7 +69,7 @@ if ($order_by != 'unanswered') {
             T1.msg_id = T2.parent_id
         WHERE T1.topic_id IN ("' . $following . '")
         ORDER BY
-                ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
+                ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
 } else {
     $q = 'SELECT
             T1.votes AS votes, T1.msg_id AS msg_id, T1.subject AS subject, T1.date_posted AS date_posted, T1.topic_id, T1.name AS topic_name, IFNULL(T2.answers, 0) AS answers
@@ -109,7 +109,7 @@ if ($order_by != 'unanswered') {
         WHERE T1.topic_id IN ("' . $following . '") AND T2.answers IS NULL
         ORDER BY date_posted LIMIT ' . $start . ', ' . DISPLAY;
 }
-echo $q;
+
 $result = mysqli_query($dbc, $q);
 ?>
 
@@ -120,7 +120,7 @@ $result = mysqli_query($dbc, $q);
     <a class = "<?php echo $sort == 'unanswered' ? 'active': ''; ?>"href = "/Questions/Interesting?sort=unanswered">Unanswered</a>
 </div>
 
-<?php 
+<?php
 echo "<table class = 'question-list'>";
 while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)) { // Loop through the records in an associative array
 	$timeelapsed = $row['date_posted'] . " days ago";
@@ -159,4 +159,3 @@ setPreviousAndNextLinks('Questions/Interesting');
 
 @include_once('includes/footer.html');
 ?>
-
