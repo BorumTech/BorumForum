@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 file_exists('../../../mysqli_connect.inc.php') ? require_once('../../../mysqli_connect.inc.php') : require_once('../../../../mysqli_connect.inc.php');
-
 session_start();
+require('../includes/helpers.php');
 
-// Validate the form elements
+// Define the POST data
 $ans = $_POST['answer'];
 $ques_id = $_POST['ques_id'];
+$counter = $_POST['counter'];
 // Check if its okay for the user to answer the question
 $q = "SELECT id FROM messages WHERE parent_id = $ques_id AND body = '$ans'";
 $r = @mysqli_query($dbc, $q);
@@ -15,6 +16,21 @@ $num = mysqli_num_rows($r);
 if ($num == 0) { // No answers that match this one (no duplicates) on the current question
 	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, {$_SESSION['id']}, '$ans', NOW())";
 	@mysqli_query($dbc, $q);
+}
+
+
+function getNoAccountButton($way) {
+	return "\t<button type = 'button' onclick = \"window.location.href = '/Login'\">$way</button>\n";
+}
+
+function votedOnQuestion($msg_id, $vote) {
+	global $dbc;
+	if (isset($_SESSION['id'])) {
+		$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
+		$result = mysqli_query($dbc, $query);
+		return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;
+	}
+
 }
 
 // Return the answer to the question that has just been posted
@@ -30,9 +46,11 @@ function getDownArrow() {
 
 $ansquery = '
 SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn
-FROM messages 
-JOIN users 
-ON users.id = messages.user_id';
+FROM messages
+JOIN users
+ON users.id = messages.user_id
+ORDER BY date_entered DESC
+LIMIT 1';
 $ansresult = mysqli_query($dbc, $ansquery);
 $ansrow = mysqli_fetch_array($ansresult, MYSQLI_ASSOC);
 $ans_id = $ansrow['msg_id'];
@@ -45,15 +63,13 @@ $downarrow = getDownArrow();
 $noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
 $voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
+$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 echo "<tr>";
 echo "<td>";
 echo $voteupbtn;
 
-$voteCount = $ansrow['votes'] == null ? 0 : $ansrow['votes'];
-
-echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
+echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>0</div>";
 echo $votedownbtn;
 echo "</td>";
 // Generate query for answers' information
@@ -81,11 +97,10 @@ echo "<tr class = 'user-profile-container'>";
 				<a href = '/Users/{$ansrow['usr_id']}'>
 					<img height = '30' src = \"../pages/show_image.php?image={row2['profile']}\">
 				</a>
-			</div>	
+			</div>
 		</td>
 	</tr>";
 /*
 
 */
 ?>
-

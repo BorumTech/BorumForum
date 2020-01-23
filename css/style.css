@@ -1,5 +1,5 @@
 .sidebar-outer {
-	position: relative;	
+	position: relative;
 }
 
 .none {
@@ -60,7 +60,7 @@
 	}
 
 	.sidebar-outer + div.col-sm-8 {
-		
+
 	}
 
 	.fixed-sidebar a {
@@ -121,7 +121,7 @@
 		width: 35px;
 		height: 5px;
 		background-color: black;
-		margin: 6px 0;		
+		margin: 6px 0;
 	}
 
 	.t--dark div.navicon div {
@@ -160,6 +160,7 @@ a.question-tags {
 
 .question-poster {
 	padding: 5px 6px 7px 7px;
+	float: right;
 }
 
 .question-poster, .question-tags {
@@ -216,4 +217,3 @@ form input, form textarea {
 form input:focus {
 	outline-color: blue;
 }
-
