@@ -73,5 +73,6 @@ div.page-with-form-body > form > p.form-inputs {
 }
 
 #question-page-table div.comment-section {
+	margin-left: 10px;
 	text-align:left;
 }
