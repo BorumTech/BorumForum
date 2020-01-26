@@ -27,9 +27,9 @@
 </head>
 <body class = "t--light">
 
-<?php 
+<?php
 
-@file_exists('../../mysqli_connect.inc.php') ? @include_once('../../mysqli_connect.inc.php') : @include_once('../../Users/VSpoe/mysqli_connect.inc.php');
+include_once('../../../meta_connect.inc.php');
 
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
@@ -37,10 +37,10 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header"><img src = "/images/icon.png" height = "50"><a class="navbar-brand" href="/">Meta Borum</a></div>
-	<?php 
+	<?php
 		echo '<div class = "navbar-profile">';
 
-		echo LOGGEDIN ? 
+		echo LOGGEDIN ?
 			'
 			<a href = "/Settings"><img src = "../images/settings-icon.png"></a>
 			' : '';
@@ -49,7 +49,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 		}
 
 		echo '</div>';
-	?>	
+	?>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
 
@@ -57,11 +57,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 			<?php
 
-			giveClassActive('ask.php', '/Ask', 'Ask a Question');	
+			giveClassActive('ask.php', '/Ask', 'Ask a Question');
 
 			// If the an account is logged in
 			if (!LOGGEDIN) {
-				giveClassActive('register.php', 'bforborum.com/Register', 'Register'); 
+				giveClassActive('register.php', 'bforborum.com/Register', 'Register');
 			}
 
 			if (!LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php') {
@@ -72,22 +72,21 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 			?>
 
-		</ul>			
+		</ul>
 	</div>
 </nav>
 <div class = "row">
 	<div class = "col-sm-2 sidebar-outer">
 		<div class = "fixed-sidebar">
-			<?php 
+			<?php
 
 			giveClassActive('index.php', '/', 'Home', false);
 			giveClassActive('questions.php', '/Questions', 'Questions', false);
 			if (LOGGEDIN) {
 				giveClassActive('interesting.php', '/Questions/Interesting', 'Interesting', false);
 			}
-			
+
 			giveClassActive('topics.php', '/Topics', 'Topics', false);
 			?>
 		</div>
 	</div>
-

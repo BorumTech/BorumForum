@@ -1,28 +1,33 @@
 <?php
-	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
-	
+	include_once('../../../meta_connect.inc.php');
+
 	// Generate query for question's information
 	$query = '
-	SELECT messages.parent_id, users.id AS usr_id, messages.id AS msg_id, messages.subject AS subject, messages.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, messages.forum_id, topics.name AS topic
-	FROM messages 
-	JOIN users 
-	ON messages.user_id = users.id 
+	SELECT questions.parent_id, users.id AS usr_id, questions.id AS msg_id, questions.subject AS subject, questions.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, questions.topic_id, topics.name AS topic
+	FROM messages
+	JOIN users
+	ON questions.user_id = users.id
 	JOIN topics
-	ON messages.forum_id = topics.id
+	ON questions.topic_id = topics.id
 	WHERE messages.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	if($result) {
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	} else {
+		include('../404.shtml');
+		die();
+	}
 
 	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
 
 	$query2 = '
-	SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn, SUM(`user-message-votes`.vote) AS votes 
-	FROM messages 
-	JOIN users 
-	ON users.id = messages.user_id 
-	LEFT OUTER JOIN `user-message-votes` 
-	ON messages.id = `user-message-votes`.`message_id` 
+	SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn, SUM(`user-message-votes`.vote) AS votes
+	FROM messages
+	JOIN users
+	ON users.id = messages.user_id
+	LEFT OUTER JOIN `user-message-votes`
+	ON messages.id = `user-message-votes`.`message_id`
 	WHERE messages.parent_id = ' . $_GET['id'] . '
 	GROUP BY messages.id ORDER BY SUM(`user-message-votes`.vote) DESC';
 	$result2 = mysqli_query($dbc, $query2);
@@ -32,22 +37,22 @@
 	$page_title = $row['subject'];
 	include('includes/header.html');
 	include('includes/login_functions.inc.php');
-?>	
+?>
 	<div class = "col-sm-10">
 	<h1><?php echo $row['subject']; ?></h1>
 
 	<table id = "question-page-table">
 		<tbody>
-			<tr>					
+			<tr>
 				<td class = "vote-container">
 				<!-- PHP Functions -->
-				<?php 
+				<?php
 					function votedOnQuestion($msg_id, $vote) {
 						global $dbc;
 						if (isset($_SESSION['id'])) {
 							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 							$result = mysqli_query($dbc, $query);
-							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;							
+							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;
 						}
 
 					}
@@ -68,7 +73,7 @@
 				?>
 				<?php
 
-					$ques_id = $row['msg_id'];	
+					$ques_id = $row['msg_id'];
 
 					$fillColor = votedOnQuestion($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$uparrow = getUpArrow();
@@ -85,14 +90,14 @@
 					echo "\t\t<div class = 'vote-counter' id = 'ques-vote-count'>{$rowCorr[1]}</div>\n";
 					echo $votedownbtn;
 
-				?>				
+				?>
 				</td>
 				<td>
-					<p id = "ques-body"><?php echo $row['ques_body'] ?></p>						
+					<p id = "ques-body"><?php echo $row['ques_body'] ?></p>
 				</td>
 			</tr>
 			<tr class = 'user-profile-container'>
-				<?php 
+				<?php
 					if (LOGGEDIN && $_SESSION['id'] === $row['usr_id']) {
 						$what_to_echo = $ques_id . '/Edit';
 
@@ -113,7 +118,7 @@
 						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
 							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']?>'>
 						</a>
-					</div>	
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -124,7 +129,7 @@
 				</td>
 			</tr>
 
-			<?php 
+			<?php
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 					$ans_id = $row2['msg_id'];
@@ -137,14 +142,14 @@
 					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
 					$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-					$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn; 
-					
+					$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+
 					echo "<tr>";
 					echo "<td>";
 					echo $voteupbtn;
-        
+
 						$voteCount = $row2['votes'] == null ? 0 : $row2['votes'];
-        
+
 					echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>$voteCount</div>";
 					echo $votedownbtn;
 					echo "</td>";
@@ -173,7 +178,7 @@
 									<a href = '/Users/{$row2['usr_id']}'>
 										<img height = '30' src = \"../pages/show_image.php?image={row2['profile']}\">
 									</a>
-								</div>	
+								</div>
 							</td>
 						</tr>";
 						$counter++;
@@ -206,7 +211,6 @@
 			}
 		}
 
-		mysqli_close($dbc);	
+		mysqli_close($dbc);
 		include('includes/footer.html');
 	?>
-

@@ -1,7 +1,6 @@
-<?php 
+<?php
 
-file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
-
+include_once('../../../meta_connect.inc.php');
 
 function getPagesValue($columnname, $tablename, $where = '') {
 	global $dbc;
@@ -15,18 +14,20 @@ function getPagesValue($columnname, $tablename, $where = '') {
 		// Count the number of records
 		$query = "SELECT COUNT($columnname) FROM $tablename $where";
 		$result = mysqli_query($dbc, $query);
-		$row = mysqli_fetch_array($result, MYSQLI_NUM);
-		$records = $row[0];
-		// Calculate the number of pages
-		if($records > DISPLAY) { // More than 1 Page
-			$pages = ceil($records / DISPLAY);
-		} else { // 1 Page
-			$pages = 1;
+		if ($result) {
+			$row = mysqli_fetch_array($result, MYSQLI_NUM);
+			$records = $row[0];
+			// Calculate the number of pages
+			if($records > DISPLAY) { // More than 1 Page
+				$pages = ceil($records / DISPLAY);
+			} else { // 1 Page
+				$pages = 1;
+			}
+			return $pages;
 		}
-
 	}
-	return $pages;
 
+	return 1;
 }
 
 function getStartValue() {
@@ -76,7 +77,7 @@ function getSortValue($table) {
 			case 'rd':
 				$order_by = 'registration_date ' . $order_in;
 				break;
-			default: 
+			default:
 				$order_by = 'registration_date '. $order_in;
 				break;
 		}
@@ -102,19 +103,19 @@ function getSortValue($table) {
 			default:
 				$order_by = 'de DESC';
 				echo "This sorting category is not supported or implemented.";
-				break; 
+				break;
 		}
 
 		return [$sort, $order_by];
 	} else {
 
 	}
-	
+
 }
 
 function setPreviousAndNextLinks($pageName) {
 	global $pages;
-	global $start; 
+	global $start;
 	global $sort;
 	global $direction;
 
