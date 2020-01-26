@@ -100,16 +100,17 @@
 			</tr>
 			<tr class = 'user-profile-container'>
 				<?php
+				function visibilityProperty() {
+					define('SHOWMODIFYLINKS', ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id']));
+					return SHOWMODIFYLINKS ? 'visibility: visible' : 'visibility: hidden';
+				}
+				?>
+				<td class = "modify-links" style = "<?php echo visibilityProperty(); ?>">
+					<a href = "<?php echo $ques_id . '/Edit'; ?>">Edit</a>
+					<a href = "<?php echo $ques_id . '/Delete'; ?>">Delete</a>
+				</td>
+				<?php
 					if (ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id'])) {
-						$what_to_echo = $ques_id . '/Edit';
-
-						echo '<td class = "modify-links">';
-						echo "<a href = '$what_to_echo'>Edit</a> ";
-
-						$what_to_echo = $ques_id . '/Delete';
-
-						echo "<a href = '$what_to_echo'>Delete</a>";
-						echo "</td>";
 					}
 				?>
 				<td colspan = "2" class = "question-poster">
