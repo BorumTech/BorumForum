@@ -138,7 +138,6 @@ p#ques-body, p.ans-body {
 }
 
 .question-poster, .ans-poster {
-	width: 15%;
 	height: 65px;
 	padding-left: 10px;
 }
