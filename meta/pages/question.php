@@ -16,7 +16,6 @@
 	ON questions.topic_id = metaborum.topics.id
 	WHERE metaborum.questions.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
-	echo $query;
 	if($result) {
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	} else {
@@ -24,21 +23,28 @@
 		die();
 	}
 
-	$queryCorr = "SELECT id, SUM(vote), message_id FROM `user-message-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
+	$queryCorr = "SELECT id, SUM(vote), message_id FROM `question-votes` WHERE message_id = {$_GET['id']} GROUP BY message_id";
 	$resultCorr = mysqli_query($dbc, $queryCorr);
 
 	$query2 = '
-	SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn, SUM(`user-message-votes`.vote) AS votes
-	FROM messages
-	JOIN users
-	ON users.id = messages.user_id
-	LEFT OUTER JOIN `user-message-votes`
-	ON messages.id = `user-message-votes`.`message_id`
-	WHERE messages.parent_id = ' . $_GET['id'] . '
-	GROUP BY messages.id ORDER BY SUM(`user-message-votes`.vote) DESC';
+	SELECT metaborum.answers.id AS msg_id,
+	firstborumdatabase.users.id AS usr_id,
+	metaborum.answers.body AS msg_body, firstborumdatabase.users.profile_picture AS profile, firstborumdatabase.users.first_name AS fn,
+	SUM(metaborum.`answer-votes`.vote) AS votes
+	FROM metaborum.answers
+	JOIN firstborumdatabase.users
+	ON firstborumdatabase.users.id = metaborum.answers.user_id
+	LEFT OUTER JOIN metaborum.`answer-votes`
+	ON metaborum.answers.id = metaborum.`answer-votes`.question_id
+	WHERE metaborum.answers.question_id = ' . $_GET['id'] . '
+	GROUP BY answers.id ORDER BY SUM(metaborum.`answer-votes`.vote) DESC';
 	$result2 = mysqli_query($dbc, $query2);
 
-	define("QUESNOVOTES", mysqli_num_rows($resultCorr) == 0);
+	if ($resultCorr) {
+		define("QUESNOVOTES", mysqli_num_rows($resultCorr) == 0);
+	} else {
+		define('QUESNOVOTES', TRUE);
+	}
 
 	$page_title = $row['subject'];
 	include('includes/header.html');
@@ -134,8 +140,9 @@
 					</div>
 				</td>
 			</tr>
-
 			<?php
+				$n = mysqli_num_rows($result2);
+				echo "<tr style = 'border-bottom-style: solid;'><td colspan = '3'><span style = 'font-size: 1.5em'>$n answers</span></td></tr>";
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 					$ans_id = $row2['msg_id'];

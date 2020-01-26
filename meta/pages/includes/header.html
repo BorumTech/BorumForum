@@ -61,7 +61,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
 
 			// If the an account is logged in
 			if (!LOGGEDIN) {
-				giveClassActive('register.php', 'bforborum.com/Register', 'Register');
+				giveClassActive('register.php', '/Register', 'Register');
 			}
 
 			if (!LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php') {
