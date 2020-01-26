@@ -3,14 +3,20 @@
 
 	// Generate query for question's information
 	$query = '
-	SELECT questions.parent_id, users.id AS usr_id, questions.id AS msg_id, questions.subject AS subject, questions.body AS ques_body, users.profile_picture AS ques_profile_pic, users.first_name AS ques_asker, questions.topic_id, topics.name AS topic
-	FROM messages
-	JOIN users
-	ON questions.user_id = users.id
-	JOIN topics
-	ON questions.topic_id = topics.id
-	WHERE messages.id = ' . $_GET['id'];
+	SELECT firstborumdatabase.users.id AS usr_id,
+	metaborum.questions.id AS msg_id,
+	metaborum.questions.subject AS subject,
+	metaborum.questions.body AS ques_body, firstborumdatabase.users.profile_picture AS ques_profile_pic, firstborumdatabase.users.first_name AS ques_asker,
+	metaborum.questions.topic_id,
+	metaborum.topics.name AS topic
+	FROM metaborum.questions
+	JOIN firstborumdatabase.users
+	ON metaborum.questions.user_id = firstborumdatabase.users.id
+	JOIN metaborum.topics
+	ON questions.topic_id = metaborum.topics.id
+	WHERE metaborum.questions.id = ' . $_GET['id'];
 	$result = mysqli_query($dbc, $query);
+	echo $query;
 	if($result) {
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	} else {
