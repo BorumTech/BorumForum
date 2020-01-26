@@ -7,6 +7,6 @@ RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Hand
 RewriteRule    ^Settings/([A-Za-z-]+)$   pages/settings/$1.php    [NC] # Handle settings pages
 RewriteRule    ^Questions/([0-9]+)/Edit   pages/Edit.php?id=$1    [NC]    # Handle question edit
 RewriteRule    ^Questions/([0-9]+)/Delete   pages/Delete.php?id=$1    [NC]    # Handle question delete
-RewriteRule    Attributions               documents/Attributions.html   [NC] 
-RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]   
-
+RewriteRule    Attributions               documents/Attributions.html   [NC]
+RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]
+ErrorDocument 404 404.shtml
