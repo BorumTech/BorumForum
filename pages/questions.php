@@ -14,7 +14,7 @@ require('includes/pagination_functions.inc.php');
 define('DISPLAY', 10); // Number of records to show per page
 define('SHOWINGUNANSWERED', isset($_GET['sort']) && $_GET['sort'] == 'unanswered');
 define('UNANSWEREDQUERY', SHOWINGUNANSWERED ? ' HAVING COUNT(id) IS NULL' : '');
-
+$pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0' . UNANSWEREDQUERY);
 $start = getStartValue();
 
 list($sort, $order_by) = getSortValue('messages');

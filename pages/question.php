@@ -125,7 +125,7 @@
 				</td>
 			</tr>
 			<?php
-						$q = "SELECT body, date_written, usr_id FROM comments WHERE msg_id = {$_GET['id']}";
+						$q = "SELECT body, date_written, usr_id FROM comments WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
 						$r = mysqli_query($dbc, $q);
 						if($r && mysqli_num_rows($r) > 0) {
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -134,11 +134,11 @@
 						}
 			?>
 			<tr>
-				<td>
-				<td style = "display: none"> <!-- Remove until v1.1.0 -->
+				<td></td>
+				<td> <!-- Remove until v1.1.0 -->
 					<div class = "new-comment">
-						<input type = "text" size = "50">
-						<input type = "button" onclick = "addComment(<?php echo $_SESSION['id']; ?>, <?php echo $_GET['id']; ?>)" value = "Add Comment">
+						<input type = "text" size = "50" id = 'comment-body' name = 'comment-body'>
+						<input type = "button" onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
 					</div>
 				</td>
 			</tr>

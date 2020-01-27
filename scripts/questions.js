@@ -48,6 +48,42 @@ function deleteTopic(topic_id) {
 	});
 }
 
+// function addComment(body, msg_id, usr_id) {
+// 	const params = {
+// 		body: body,
+// 		msg_id: msg_id,
+// 		usr_id: usr_id
+// 	}
+// 	fetch('/pages/ajax/insertcomment.php', {
+// 		method: 'POST',
+// 		body: JSON.stringify(params),
+// 		headers: {
+// 			'Content-Type': 'application/json'
+// 		}
+// 	}).then(response => {
+// 		if (response.status >= 200 && response.status < 300) {
+// 			return response.text();
+// 		}
+// 	}).then(response => {
+// 		document.querySelector('.user-profile-container').insertAdjacentHTML('afterend', response);
+// 	});
+// }
+
+function addComment(body, msg_id, usr_id) {
+	let xhr = new XMLHttpRequest();
+	const url = '/pages/ajax/insertcomment.php';
+	const params = `body=${body}&msg_id=${msg_id}&usr_id=${usr_id}`;
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+				document.querySelector('.user-profile-container').insertAdjacentHTML('afterend', xhr.responseText);
+				document.getElementById('comment-body').value = '';
+		}
+	}
+	xhr.send(params);
+}
+
 function answerQuestion(ques_id, answer, counter) {
 	/*
 	This function

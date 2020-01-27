@@ -14,7 +14,6 @@ function getPagesValue($columnname, $tablename, $where = '') {
 
 		// Count the number of records
 		$query = "SELECT COUNT($columnname) FROM $tablename $where";
-		echo $query;
 		$result = mysqli_query($dbc, $query);
 		$row = mysqli_fetch_array($result, MYSQLI_NUM);
 		$records = $row[0];
