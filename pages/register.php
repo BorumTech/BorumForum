@@ -1,4 +1,4 @@
-<?php 
+<?php
 # Script 9.5 - register.php #2
 # This script displays the registration form and handles the results by performing an INSERT query to add a record to the users table AND escapes the problematic characters in the input field using mysqli_real_escape_string()
 # Varun Singh, 12/21/2018
@@ -7,7 +7,7 @@ $page_title = 'Register';
 include('includes/header.html');
 ?>
 <div class = "col-sm-6">
-<?php 
+<?php
 
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$errors[] = 'Your password did not match the confirmed password. ';
 		} else {
 			$p = mysqli_real_escape_string($dbc, trim($_POST['pass1']));
-		}	
+		}
 	}
 
 	// Check if it's OK to register the user
@@ -67,17 +67,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				$verifylink = "www.bforborum.com/pages/verify.php?v=" . $v;
 				$message = "
-				Thank you " . $fn . " for registering for Borum! Click the link below to activate your account<br>
+				Hi $fn, <br><br>
+				Thank you for registering for Borum! Click the link below to activate your account<br>
 				<a href = '$verifylink'>Verify your Account</a>
 				<p>If this was not you, do not click the link.</p>
 				<p>If the link does not work for you, copy and paste the following into your browser: <br> $verifylink</p>
-				"; 
+				Thanks,<br>
+				The Borum Team
+				";
 				echo '<h1>Thank you!</h1>';
-				sendEmail("Account Verification", 
+				sendEmail("Account Verification",
 					wordwrap($message
 						, 70)
 					, $e);
-				echo '<p>An email was sent to you. Click the link to verify your email in order to activate your account.</p>';				
+				echo '<p>An email was sent to you. Click the link to verify your email in order to activate your account.</p>$v';
 			} else { // if it ran not OK
 				// Public message
 				echo '<h1>System Error</h1>
@@ -88,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo '<p class = "error">You could not be registered because that email has already been used.</p>';
 		}
 
-		
+
 
 		mysqli_close($dbc); // Close the database connection
 
@@ -132,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</p>
 	<p>
 		<label>Confirm Password: </label>
-		<input type = "password" name = "pass2" size = "10" maxlength = "20"> 
+		<input type = "password" name = "pass2" size = "10" maxlength = "20">
 	</p>
 	<p>
 		<input type = "submit" name = "submit" value = "Register">
@@ -140,4 +143,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </form>
 
 <?php include('includes/footer.html'); ?>
-
