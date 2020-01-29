@@ -18,7 +18,7 @@ define('UNANSWEREDQUERY', SHOWINGUNANSWERED ? ' HAVING COUNT(id) IS NULL' : '');
 $pages = getPagesValue('id', 'questions', 'WHERE 0 = 0' . UNANSWEREDQUERY);
 $start = getStartValue();
 
-list($sort, $order_by) = getSortValue('messages');
+list($sort, $order_by) = getSortValue('questions');
 
 if ($order_by != 'unanswered') {
     $q = '
@@ -27,38 +27,35 @@ if ($order_by != 'unanswered') {
     FROM
         (
         SELECT
-            `user-message-votes`.id,
-            IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
-            messages.id AS msg_id,
-            messages.subject,
-            DATEDIFF(NOW(), messages.date_entered) AS date_posted, messages.date_entered AS de,
+            `question-votes`.id,
+            IFNULL(SUM(`question-votes`.vote), 0) AS votes,
+            questions.id AS msg_id,
+            questions.subject,
+            DATEDIFF(NOW(), questions.date_entered) AS date_posted, questions.date_entered AS de,
             topics.name
         FROM
-            messages
-        JOIN topics ON messages.forum_id = topics.id
-        LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
-        WHERE
-            messages.parent_id = 0
+            questions
+        JOIN topics ON questions.topic_id = topics.id
+        LEFT OUTER JOIN `question-votes` ON questions.id = `question-votes`.question_id
         GROUP BY
-            messages.id
+            questions.id
     ) T1
         LEFT OUTER JOIN(
             SELECT
                 id,
-                parent_id,
+                question_id,
                 COUNT(id) AS answers
             FROM
-                messages
+                answers
             WHERE
-                parent_id != 0
+                question_id != 0
             GROUP BY
-                parent_id
+                question_id
         ) T2
     ON
-        T1.msg_id = T2.parent_id
+        T1.msg_id = T2.question_id
     ORDER BY
             ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
-
 } else {
     $q = '
     SELECT
@@ -66,35 +63,35 @@ if ($order_by != 'unanswered') {
     FROM
         (
         SELECT
-            `user-message-votes`.id,
-            IFNULL(SUM(`user-message-votes`.vote), 0) AS votes,
-            messages.id AS msg_id,
-            messages.subject,
-            DATEDIFF(NOW(), messages.date_entered) AS date_posted,
+            `question-votes`.id,
+            IFNULL(SUM(`question-votes`.vote), 0) AS votes,
+            questions.id AS msg_id,
+            questions.subject,
+            DATEDIFF(NOW(), questions.date_entered) AS date_posted,
             topics.name
         FROM
             messages
         JOIN topics ON messages.forum_id = topics.id
         LEFT OUTER JOIN `user-message-votes` ON messages.id = `user-message-votes`.message_id
         WHERE
-            messages.parent_id = 0
+            messages.question_id = 0
         GROUP BY
             messages.id
     ) T1
         LEFT OUTER JOIN(
             SELECT
                 id,
-                parent_id,
+                question_id,
                 COUNT(id) AS answers
             FROM
                 messages
             WHERE
-                parent_id != 0
+                question_id != 0
             GROUP BY
-                parent_id
+                question_id
         ) T2
     ON
-        T1.msg_id = T2.parent_id
+        T1.msg_id = T2.question_id
     WHERE T2.answers IS NULL
     ORDER BY T1.votes DESC
     LIMIT ' . $start . ', ' . DISPLAY;

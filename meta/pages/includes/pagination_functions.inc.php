@@ -83,7 +83,7 @@ function getSortValue($table) {
 		}
 
 		return [$sort, $order_by, $direction, $order_in];
-	} else if ($table == 'messages') {
+	} else if ($table == 'questions' || $table == 'answers') {
 		$sort = isset($_GET['sort']) ? $_GET['sort'] : 'new';
 
 		// Determine how the results should be ordered
