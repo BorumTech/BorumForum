@@ -1,4 +1,5 @@
-<?php 
+<?php
+ob_start();
 
 $page_title = "Edit a Post";
 @require('includes/header.html');
@@ -15,6 +16,8 @@ define('ISQUESTION', $row['parent_id'] == 0);
 if (!LOGGEDIN || $row['user_id'] !== $_SESSION['id']) { // Make sure user is author of the question by redirecting everyone else
 	redirect_user();
 }
+
+ob_flush();
 
 $sub = $row['subject'];
 $body = $row['body'];
