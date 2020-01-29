@@ -127,6 +127,8 @@ if (isset($row['profile_picture'])) {
 
 echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 
+echo "<a href = 'http://www.bforborum.com/Users/{$_GET['id']}'>Main profile</a>";
+
 mysqli_free_result ($result);
 mysqli_close($dbc);
 

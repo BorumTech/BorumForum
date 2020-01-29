@@ -7,7 +7,7 @@ include('includes/header.html');
 
 <h1>All Questions</h1>
 
-<?php 
+<?php
 
 require('includes/pagination_functions.inc.php');
 
@@ -15,7 +15,7 @@ define('DISPLAY', 10); // Number of records to show per page
 define('SHOWINGUNANSWERED', isset($_GET['sort']) && $_GET['sort'] == 'unanswered');
 define('UNANSWEREDQUERY', SHOWINGUNANSWERED ? ' HAVING COUNT(id) IS NULL' : '');
 
-$pages = getPagesValue('id', 'messages', 'WHERE parent_id = 0' . UNANSWEREDQUERY);
+$pages = getPagesValue('id', 'questions', 'WHERE 0 = 0' . UNANSWEREDQUERY);
 $start = getStartValue();
 
 list($sort, $order_by) = getSortValue('messages');
@@ -57,7 +57,7 @@ if ($order_by != 'unanswered') {
     ON
         T1.msg_id = T2.parent_id
     ORDER BY
-            ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;    
+            ' . $order_by . ' LIMIT ' . $start . ', ' . DISPLAY;
 
 } else {
     $q = '
@@ -97,7 +97,7 @@ if ($order_by != 'unanswered') {
         T1.msg_id = T2.parent_id
     WHERE T2.answers IS NULL
     ORDER BY T1.votes DESC
-    LIMIT ' . $start . ', ' . DISPLAY;   
+    LIMIT ' . $start . ', ' . DISPLAY;
 }
 
 $result = mysqli_query($dbc, $q);
@@ -151,16 +151,16 @@ setPreviousAndNextLinks('Questions');
 echo "<div class = \"col-sm-3 topic-notif-container\">
     <fieldset class = \"topic-notif\">
         <legend>Tags you are Following</legend>";
-  
+
             $q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_SESSION['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
                 echo "<p><a href = \"Topics/{$row['name']}\">{$row['name']}</a></p>";
-            } 
+            }
 echo"    </fieldset>
     <fieldset class = \"topic-notif\">
         <legend>Tags you are Ignoring</legend>
-     "; 
+     ";
             $q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_SESSION['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -174,4 +174,3 @@ echo"    </fieldset>
     include('includes/footer.html');
 
 ?>
-

@@ -1,8 +1,16 @@
 .sidebar-outer {
-	position: relative;	
+	position: relative;
+}
+
+.none {
+	display: none;
 }
 
 @media (min-width: 768px) {
+    .open-menu, .navicon {
+    	display: none;
+    }
+
     .fixed-sidebar {
         position: fixed;
         z-index: 1; /* Stay on top */
@@ -52,30 +60,73 @@
 	}
 
 	.sidebar-outer + div.col-sm-8 {
-		
+
+	}
+
+	.fixed-sidebar a {
+		width: 100%;
+		box-sizing: border-box;
+		display: block;
+		color: grey;
+		padding: 15px;
+		margin: 10px 0;
+		background-color: #e6e6e6;
+		text-decoration: none;
+		color: #818181;
 	}
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .container > .row > .col-sm-2:first-of-type {padding-top: 15px; width: 150px;}
-  .fixed-sidebar a {font-size: 10px; }
-  div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
-  	margin-left: 150px;
-  	font-size: 10px;
-  }
-}
+/* Phone Interface */
+@media only screen and (max-width: 767px) {
+	.container > .row > .col-sm-2:first-of-type {padding-top: 15px; width: 150px;}
+	div.container > div.row > div.col-sm-2:first-of-type + *:not(:empty), div.container > div.row > div.col-sm-2:first-of-type + *:empty + * {
+		margin-left: 150px;
+	}
 
-.fixed-sidebar a {
-	width: 100%;
-	box-sizing: border-box;
-	display: block;
-	color: grey;
-	padding: 15px;
-	margin: 10px 0;
-	background-color: #e6e6e6;
-	text-decoration: none;
-	color: #818181;
+	.fixed-sidebar a {
+		display: none;
+	}
+
+	div.navbar-profile {
+		display: none;
+	}
+
+	div.navicon {
+		float: right;
+	}
+
+	div.open-menu {
+		background-color: #f8f8f8;
+		position: fixed;
+		right: 0;
+		top: 75px;
+	}
+
+	div.open-menu ul {
+		padding-left: 5px;
+		padding-right: 55px;
+	}
+
+	div.open-menu ul > li {
+		margin-top: 0.75em;
+	}
+
+	div.open-menu img {
+		width: 30px;
+		height: 30px;
+		margin-right: 1em;
+	}
+
+	div.navicon div {
+		width: 35px;
+		height: 5px;
+		background-color: black;
+		margin: 6px 0;
+	}
+
+	.t--dark div.navicon div {
+		background-color: white;
+	}
 }
 
 a.rectangular-box:hover {
@@ -87,7 +138,6 @@ p#ques-body, p.ans-body {
 }
 
 .question-poster, .ans-poster {
-	width: 15%;
 	height: 65px;
 	padding-left: 10px;
 }
@@ -109,6 +159,7 @@ a.question-tags {
 
 .question-poster {
 	padding: 5px 6px 7px 7px;
+	float: right;
 }
 
 .question-poster, .question-tags {
@@ -162,11 +213,6 @@ form input, form textarea {
 	line-height: 1.7em;
 }
 
-form label {
-	display: block;
-}
-
 form input:focus {
 	outline-color: blue;
 }
-

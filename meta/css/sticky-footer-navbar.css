@@ -25,7 +25,6 @@ li {
 
 .t--light .footer {
   background-color: #f5f5f5;
-
 }
 
 .t--dark .footer, .t--dark .navbar {
@@ -87,13 +86,15 @@ body > .container {
   margin-top: 60px;
 }
 
-.footer ul {
-  display: flex;
+.footer ul.footer-links {
+  display: inline-flex;
   line-height: 60px;
   margin-bottom: 0;
+  padding-left: 10px;
+  flex-wrap: wrap;
 }
 
-.footer ul li {
+.footer ul.footer-links li {
   margin-right: 15px;
 }
 
