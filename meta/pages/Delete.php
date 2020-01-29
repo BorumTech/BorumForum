@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $page_title = "Delete a Post";
 @require('includes/header.html');
@@ -12,7 +12,7 @@ $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 define('ISQUESTION', $row['parent_id'] == 0);
 
-if (!LOGGEDIN || $row['user_id'] !== $_SESSION['id']) { // Make sure user is author of the question by redirecting everyone else
+if (!LOGGEDIN || ($row['user_id'] !== $_SESSION['id'] && !ISADMIN)) { // Make sure user is author of the question by redirecting everyone else
 	redirect_user();
 }
 
@@ -20,14 +20,14 @@ function redirectTimeout() {
 	global $row;
 
 	echo "
-	<script>	
+	<script>
 		setTimeout(
 			function() {
 				console.log(\"Redirection timer on\");";
 	echo ISQUESTION ? "window.location.href = \"/Questions\"" : "window.location.href = \"/Questions/{$row['parent_id']}\"";
 	echo "	}
 		, 1000);
-	</script>";	
+	</script>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		} else {
 			echo "The deletion was not successful. A server error occured or this post never existed.";
 			redirectTimeout();
-		}		
+		}
 	}
 
 } else {
