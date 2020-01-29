@@ -42,3 +42,7 @@ function editBio(id) {
 
 }
 
+function toggleOpenMenu() {
+	document.getElementsByClassName('open-menu')[0].classList.toggle('none');
+}
+
