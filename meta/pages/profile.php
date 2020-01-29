@@ -1,10 +1,10 @@
 <?php
 
-file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+include('../../../meta_connect.inc.php');
 // Use my error handler
 set_error_handler(function() {});
 $id = $_GET['id'];
-$query = 'SELECT id, first_name, last_name, profile_picture, bio FROM users WHERE id = ' . $id . ' LIMIT 1';
+$query = 'SELECT id, first_name, last_name, profile_picture, bio FROM firstborumdatabase.users WHERE id = ' . $id . ' LIMIT 1';
 $result = mysqli_query($dbc, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $bio = $row['bio'];
@@ -14,7 +14,7 @@ $page_title = "{$row['first_name']}'s Profile";
 include('includes/header.html');
 ?>
 
-<?php 
+<?php
 
 echo "<div class = 'col-sm-6'><output name = 'bio' id = 'bio'>$bio</output>";
 if ($_SESSION['id'] == $id) {
@@ -22,7 +22,7 @@ if ($_SESSION['id'] == $id) {
 	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";
 }
 
-$query1 = "SELECT id, subject, date_entered FROM messages WHERE parent_id = 0 AND user_id = $id"; // Get questions
+$query1 = "SELECT id, subject, date_entered FROM questions WHERE user_id = $id"; // Get questions
 $result1 = mysqli_query($dbc, $query1);
 echo "<h2>Questions</h2>
 <ul>\n";
@@ -84,9 +84,9 @@ function handleImageUpload() {
 			case 8:
 				print 'File upload stopped. ';
 				break;
-			default: 
+			default:
 				print 'A system error occured. ';
-				break; 
+				break;
 		}
 		print '</strong></p>';
 	}
@@ -118,9 +118,9 @@ if ($_SESSION['id'] == $id) {
 
 // If they submitted the form
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	handleImageUpload(); // 
-}	
-// If the user already has a profile picture 
+	handleImageUpload(); //
+}
+// If the user already has a profile picture
 if (isset($row['profile_picture'])) {
 	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row['profile_picture'] . '">'; // Show it
 }
@@ -130,6 +130,5 @@ echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-include('includes/footer.html'); 
+include('includes/footer.html');
 ?>
-

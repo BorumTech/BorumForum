@@ -43,7 +43,7 @@ if (LOGGEDIN && $_SESSION['id'] == $id) {
 	include('../pages/upload_image.php');
 	echo '
 	<form id = "profile-pic" enctype = "multipart/form-data" action = "" method = "post">
-		<input type = "hidden" name = "MAX_FILE_SIZE" value = "524288">			
+		<input type = "hidden" name = "MAX_FILE_SIZE" value = "524288">
 		<p>
 			<strong>File:</strong>
 			<input type = "file" name = "upload" id = "upload">';
@@ -53,16 +53,17 @@ if (LOGGEDIN && $_SESSION['id'] == $id) {
 	</form>';
 }
 
-// If the user already has a profile picture 
+// If the user already has a profile picture
 if (isset($row['profile_picture'])) {
 	echo '<img width = "300" src = "../pages/show_image.php?image=' . $row['profile_picture'] . '">'; // Show it
 }
 
 echo "<p>{$row['first_name']} {$row['last_name']}</p>";
 
+echo "<a href = 'http://meta.bforborum.com/Users/{$_GET['id']}'>Meta Profile</a>";
+
 mysqli_free_result ($result);
 mysqli_close($dbc);
 
-include('includes/footer.html'); 
+include('includes/footer.html');
 ?>
-
