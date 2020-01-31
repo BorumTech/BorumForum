@@ -1,0 +1,79 @@
+li.search-bar#head-search-bar-li {
+    line-height: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 40vw;
+}
+
+li.search-bar#head-search-bar-li input#head-search-bar {
+	width: 90%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#head-search-bar-li input {
+    float: left;
+}
+
+li.search-bar#head-search-bar-li img {
+    z-index: 20;
+    height: 30px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1182px) {
+    li.search-bar#head-search-bar-li input#head-search-bar {
+        display: none;
+    }
+
+    li.search-bar#head-search-bar-li {
+        width: 9vw;
+    }
+}
+
+button.topic-notif {
+	margin-right: 1em; 
+}
+
+fieldset.topic-notif {
+    margin: 0;
+    width: 100%;
+}
+
+@media only screen and (max-width: 914px) and (min-width: 768px) {
+    .topic-notif-container {
+        margin-left: 250px;
+    }
+}
+
+@media only screen and (max-width: 1360px) and (min-width: 915px) {
+
+    .topic-notif-container {
+        margin-top: 130px;
+        margin-left: 50px;
+        width: 15%;
+        border: 1px solid blue;
+        border-radius: 10px;
+    }
+}
+
+a:hover, a:active {
+    text-decoration: none;
+}
+
+.search-container {
+    margin: 2em 0;
+}
+
+table#users-table {
+    margin-bottom: 3em;
+}
+
+table#users-table th {
+    text-align: center;
+}
+
+table#users-table td {
+    padding: 10px;
+    text-align: center;
+}
+

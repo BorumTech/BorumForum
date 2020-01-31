@@ -9,4 +9,3 @@ RewriteRule    ^Questions/([0-9]+)/Edit   pages/Edit.php?id=$1    [NC]    # Hand
 RewriteRule    ^Questions/([0-9]+)/Delete   pages/Delete.php?id=$1    [NC]    # Handle question delete
 RewriteRule    Attributions               documents/Attributions.html   [NC]
 RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]
-ErrorDocument 404 404.shtml
