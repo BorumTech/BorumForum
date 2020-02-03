@@ -1,5 +1,5 @@
 <?php
-	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+	require_once('../../../meta_connect.inc.php');
 	include('includes/login_functions.inc.php');
 
 	// Generate query for question's information
@@ -33,7 +33,7 @@
 
 		define('DISPLAY', 10); // Number of records to show per page
 
-		$pages = getPagesValue('id', 'messages', 'WHERE forum_id = ' . $row['id']);
+		$pages = getPagesValue('id', 'questions', 'WHERE topic_id = ' . $row['id']);
 		$start = getStartValue();
 
 		$q = 'SELECT id, subject FROM messages';
@@ -53,6 +53,6 @@
 
 		setPreviousAndNextLinks('../Topics/' . $_GET['topic']);
 
-		mysqli_close($dbc);	
+		mysqli_close($dbc);
 		include('includes/footer.html');
 	?>

@@ -1,8 +1,8 @@
-<?php 
+<?php
 $page_title = "Topics - Borum";
 include('includes/header.html');
 
-file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+require_once('../../../meta_connect.inc.php');
 ?>
 
 <div class = 'col-sm-10'>
@@ -17,7 +17,7 @@ file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect
 	document.head.appendChild(flex);
 </script>
 
-<?php 
+<?php
 /* Here is where the fun begins */
 echo "<div class = 'flex-box' id = 'topic-list'>";
 $query = "SELECT id, name FROM topics";
@@ -36,4 +36,3 @@ if (ISADMIN) {
 <?php
 include('includes/footer.html');
 ?>
-

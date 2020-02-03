@@ -1,5 +1,5 @@
 <?php
-	file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+	require_once('../../mysqli_connect.inc.php');
 	include('includes/login_functions.inc.php');
 
 	// Generate query for question's information
@@ -33,8 +33,8 @@
 			echo "<button id = 'ignore-btn' class = 'topic-notif' onclick = \"setTopic({$_SESSION['id']}, {$row['id']}, 'ignore')\">" . IGNORETEXT . "</button>";
 			if (ISADMIN) {
 				echo "
-				<button id = 'delete-topic-btn' 
-				onclick = 
+				<button id = 'delete-topic-btn'
+				onclick =
 				\"confirmDeletion()\">
 				Delete Topic
 				</button>";
@@ -67,6 +67,6 @@
 
 		setPreviousAndNextLinks('../Topics/' . $_GET['topic']);
 
-		mysqli_close($dbc);	
+		mysqli_close($dbc);
 		include('includes/footer.html');
 	?>
