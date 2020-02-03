@@ -1,10 +1,14 @@
-<?php 
+<?php
 
 	// Find url of logged in user's profile picture
+	$imgurl = "/show_image?image=";
 	$q3 = "SELECT id, profile_picture FROM users WHERE id = {$_SESSION['id']}";
 	$r3 = mysqli_query($dbc, $q3);
-	$row3 = mysqli_fetch_array($r3, MYSQLI_NUM);
-	$imgurl = '/show_image?image=' . $row3[1];
+	if (mysqli_num_rows($r3)) {
+		$row3 = mysqli_fetch_array($r3, MYSQLI_NUM);
+		$imgurl .= $row3[1];
+	}
+
 
 	// Display Help, Notification bar, and Profile
 	echo '
@@ -39,16 +43,15 @@
 						<img class = 'answerer-profile' src = \"/show_image?image={$row5['profile_picture']}\" height = '20'>
 						<span class = 'answerer-profile'>{$row5['first_name']} answered</span>
 						<span class = 'date'>{$row5['date_posted']}</span>
-					</div>	
+					</div>
 					<p>{$row5['body']}<p>
 				</a>
 			</div>
 			";
-		} 
+		}
 
-		
+
 	}
 
 	echo '</div>';
 ?>
-
