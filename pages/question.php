@@ -119,17 +119,17 @@
 							<span><?php echo $row['ques_asker'] ?></span>
 						</a>
 						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
-							<img height = '30' src = '../pages/show_image.php?image=<?php echo $row['ques_profile_pic']; ?>'>
+							<img height = '30' src = "http://www.bforborum.com/show_image?image=<?php echo isset($row['ques_profile_pic']) ? $row['ques_profile_pic'] : 'unavailable.png'; ?>">
 						</a>
 					</div>
 				</td>
 			</tr>
 			<?php
-						$q = "SELECT body, date_written, usr_id FROM comments WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
+						$q = "SELECT comments.body, comments.date_written, comments.usr_id, users.profile_picture AS pr_pi FROM comments JOIN users ON users.id = comments.usr_id WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
 						$r = mysqli_query($dbc, $q);
 						if($r && mysqli_num_rows($r) > 0) {
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								echo "<tr><td></td><td class = 'comments'>{$row['body']}</td></tr>";
+								echo "<tr><td></td><td class = 'comments'><img class = 'comment-profile' src = \"http://bforborum.com/show_image?image={$row['pr_pi']}\"><span>{$row['body']}</span></td></tr>";
 							}
 						}
 			?>

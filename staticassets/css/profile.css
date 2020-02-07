@@ -34,6 +34,11 @@
 	margin-top: 0;
 }
 
+.comment-profile {
+	height: 40px;
+	margin-right: 10px;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Livvic&display=swap');
 
 .button {

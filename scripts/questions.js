@@ -61,6 +61,7 @@ function addComment(body, msg_id, usr_id) {
 		}
 	}).then(response => {
 		document.querySelector('.user-profile-container').insertAdjacentHTML('afterend', response);
+		document.querySelector('#comment-body').textContent = "";
 	});
 }
 
