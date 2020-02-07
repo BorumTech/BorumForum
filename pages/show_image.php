@@ -25,7 +25,7 @@ if (isset($_GET['image'])) {
 }
 
 if (!$name) {
-	$image = '../images/unavailable.png';
+	$image = 'http://cdn.bforborum.com/images/unavailable.png';
 	$name = 'unavailable.png';
 }
 
@@ -36,4 +36,3 @@ header("Content-Type: {$info['mime']}\n");
 header("Content-Disposition: inline; filename=\"$name\"\n");
 header("Content-Length: $fs\n");
 readfile($image);
-
