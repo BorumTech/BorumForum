@@ -136,10 +136,12 @@
 			<tr>
 				<td></td>
 				<td> <!-- Remove until v1.1.0 -->
+					<?php ob_start(); ?>
 					<div class = "new-comment">
 						<input type = "text" size = "50" id = 'comment-body' name = 'comment-body'>
 						<input type = "button" onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
 					</div>
+					<?php if(isset($_SESSION['id'])) echo ob_get_contents(); ?>
 				</td>
 			</tr>
 			<?php
