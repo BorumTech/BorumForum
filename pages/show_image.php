@@ -25,7 +25,7 @@ if (isset($_GET['image'])) {
 }
 
 if (!$name) {
-	$image = 'http://cdn.bforborum.com/images/unavailable.png';
+	$image = '../staticassets/images/unavailable.png';
 	$name = 'unavailable.png';
 }
 
