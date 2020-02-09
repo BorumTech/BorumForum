@@ -125,26 +125,26 @@
 				</td>
 			</tr>
 			<?php
-						$q = "SELECT comments.body, comments.date_written, comments.usr_id, users.profile_picture AS pr_pi FROM comments JOIN users ON users.id = comments.usr_id WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
+						$q = "SELECT comments.body, comments.date_written, comments.usr_id, users.first_name, users.last_name, users.profile_picture AS pr_pi FROM comments JOIN users ON users.id = comments.usr_id WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
 						$r = mysqli_query($dbc, $q);
 						if($r && mysqli_num_rows($r) > 0) {
-							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								echo "<tr><td></td><td class = 'comments'><img class = 'comment-profile' src = \"http://bforborum.com/show_image?image={$row['pr_pi']}\"><span>{$row['body']}</span></td></tr>";
+							while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+								echo "<tr><td></td><td class = 'comments'><img class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\"><span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span><br><span>{$row['body']}</span></td></tr>";
 							}
 						}
-			?>
+			ob_start(); ?>
 			<tr>
 				<td></td>
 				<td> <!-- Remove until v1.1.0 -->
-					<?php ob_start(); ?>
+
 					<div class = "new-comment">
 						<input type = "text" size = "50" id = 'comment-body' name = 'comment-body'>
 						<input type = "button" onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
 					</div>
-					<?php if(isset($_SESSION['id'])) echo ob_get_contents(); ?>
 				</td>
 			</tr>
 			<?php
+				if(!LOGGEDIN) ob_clean();
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 					$ans_id = $row2['msg_id'];
