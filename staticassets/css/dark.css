@@ -9,11 +9,6 @@
 .t--dark {
   background-color: hsl(0, 0%, 15%);
   color: hsl(0, 0%, 95%);
-  
-  /* font hack for dark themes */
-  -webkit-font-smoothing: antialiased !important;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-  -webkit-text-stroke: 1px transparent;
 }
 
 .t--dark output {
@@ -80,11 +75,10 @@
 }
 
 .t--dark .search-container {
-  background-color: none;
+  background: none;
   color: white;
 }
 
 .t--dark button {
   color: black;
 }
-

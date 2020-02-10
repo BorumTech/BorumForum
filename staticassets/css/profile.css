@@ -37,6 +37,7 @@
 .comment-profile {
 	height: 40px;
 	margin-right: 10px;
+	float: left;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Livvic&display=swap');

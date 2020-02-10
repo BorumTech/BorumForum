@@ -64,15 +64,14 @@ ul.social-media > li > a > img:hover {
 
 @media only screen and (min-width: 681px) {
   ul.social-media a.twitter img:hover {
-    background: url(../images/Twitter_Social_Icon_Circle_Color.svg) no-repeat;
+    background: url(http://cdn.bforborum.com/images/Twitter_Social_Icon_Circle_Color.svg) no-repeat;
     background-size: 40px 40px;
     padding-right: 40px; /* Equal to width of new image */
   }
 
   ul.social-media a.youtube img:hover {
-    background: url(../images/youtube_social_circle_red.png) no-repeat;
+    background: url(http://cdn.bforborum.com/images/youtube_social_circle_red.png) no-repeat;
     background-size: 40px 40px;
     padding-right: 40px;
   }
 }
-

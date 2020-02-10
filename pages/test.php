@@ -1,14 +1,14 @@
-<?php 
-ob_start();
-$page_title = "TEST!";
-include('includes/header.html');
-echo "<div class = 'col-sm-6'>";
-if (!LOGGEDIN) {
-	require('includes/login_functions.inc.php');
-	redirect_user('does_not_exist.php');
-}
-
-ob_flush();
-
-include('includes/footer.html');
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href = "http://cdn.bforborum.com/css/dark.css" rel = "stylesheet" type = "text/css">
+</head>
+<body class = "t--dark">
+	<div class = "row">
+		<div class = "col-sm-4">
+			<span>Hello</span>
+			<legend>Lorum ipsum</legend>
+		</div>
+	</div>
+</body>
+</html>
