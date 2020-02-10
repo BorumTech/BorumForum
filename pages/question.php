@@ -129,7 +129,7 @@
 						$r = mysqli_query($dbc, $q);
 						if($r && mysqli_num_rows($r) > 0) {
 							while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-								echo "<tr><td></td><td class = 'comments'><img class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\"><span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span><br><span>{$row['body']}</span></td></tr>";
+								echo "<tr><td></td><td class = 'comments'><img style = 'border-radius: 50%;' class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\"><span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span><span style = 'margin-left: 10px'>{$row[1]}</span><br><span>{$row['body']}</span></td></tr>";
 							}
 						}
 			ob_start(); ?>
