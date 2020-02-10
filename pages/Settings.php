@@ -18,7 +18,7 @@ include_once("includes/header.html");
 		<!-- Rectangular switch -->
 		<div class = "dark-mode">
 			<label class="switch">
-		  		<input onclick = 'changeTheme(<?php echo $_SESSION['id']; ?>)' type="checkbox" class = "js-change-theme o-menu__item t-menu__item"
+		  		<input type="checkbox" class = "js-change-theme o-menu__item t-menu__item"
 		  		<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == '1' ? 'checked' : '' ?> >
 		  		<span class="slider"></span>
 			</label>
@@ -37,26 +37,26 @@ include_once("includes/header.html");
 		    const body = document.querySelector('body');
 			const twitterImgEl = document.querySelector('ul.social-media a.twitter img');
 
-		    if (body.classList.contains('t--light')) { // When they turn dark mode oFF
+		    if (body.classList.contains('t--light')) { // When they turn dark mode on
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
 		      twitterImgEl.src = 'http://cdn.bforborum.com/images/Twitter_Social_Icon_Circle_Black.svg';
-		      console.log(document.querySelector('ul.social-media a.twitter img'));
 		      console.log('dark');
 		      document.cookie = "dark=1; path=/";
+					changeTheme(<?php echo $_SESSION['id']; ?>);
 		    }
-		    else { // When they turn dark mode oN
+		    else { // When they turn dark mode off
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
 		      twitterImgEl.src = 'http://cdn.bforborum.com/images/Twitter_Social_Icon_Circle_White.svg';
 		      console.log('not dark');
-			  document.cookie = "dark=0; path=/";
+			  	document.cookie = "dark=0; path=/";
+					changeTheme(<?php echo $_SESSION['id']; ?>)
 		    }
 
 		  })
 		;
 
-		document.querySelector('body').className = inDarkMode() ? 't--dark' : 't--light';
 		if (inDarkMode()) {
 			document.querySelector('div.dark-mode label.switch input.js-change-theme').setAttribute('checked', 'true');
 		} else {
