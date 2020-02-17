@@ -11,21 +11,24 @@ require('header.html');
 	</div>
 </div>
 <div class = "one product" id = "audio">
-	<div class = "col-sm-6"><span>"I'd never seen a free cloud for audio files before...Borum changed that"</span></div>
-	<div class = "col-sm-6">
+	<div class = "quote col-sm-6"><span>"I'd never seen a free cloud for audio files before...Borum changed that"</span></div>
+	<div class = "name col-sm-6">
 		<a href = "http://audio.bforborum.com">
 			<img src = "http://audio.bforborum.com/images/icon.png">
-			<span>Borum Audio</span>
+			<span>Flytrap</span>
 		</a>
 	</div>
 </div>
-<div class = "two product" id = "feasts">
-	<div class = "col-sm-6"><span>"The interface for ordering food straight to my door is amazing!"</span></div>
-	<div class = "col-sm-6">
+<div class = "fadein two product" id = "feasts">
+	<div class = "quote col-sm-6"><span>"The interface for ordering food straight to my door is amazing!"</span></div>
+	<div class = "name col-sm-6">
 		<a href = "http://feasts.bforborum.com">
-
+			<img src = "http://feasts.bforborum.com/images/pizza.jpg">
+			<span>Borum Feasts</span>
+		</a>
+	</div>
 </div>
-<div class = "one product" id = "svjournal">
+<div class = "fadein one product" id = "svjournal">
 	<div class ="quote col-sm-6"><span>"Essays that stand out from the crowd"</span></div>
 	<div class ="name col-sm-6">
 		<a href = "http://svjournal.bforborum.com">
