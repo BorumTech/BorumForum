@@ -23,5 +23,7 @@ if (isset($errors) && !empty($errors)) {
 	<p><a href = "reset_password">Forgot Password?</a></p>
 	<p><input type="submit" name="submit" value="Login"></p>
 </form>
+<script>
+window.opener.postMessage("Hi");</script>
 
 <?php include('includes/footer.html'); ?>
