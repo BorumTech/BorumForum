@@ -16,14 +16,14 @@ include('includes/header.html');
 <p> <em>Empowering the world since 2019</em> </p>
 
 <p>Borum is an interactive community where users from all over the world can ask questions and get answers. </p>
-<button id="products" onclick = "window.location.href = 'http://products.bforborum.com'">Products</button>
+<button id="products" onclick = "window.open('http://products.bforborum.com', '_blank')" style = "border: 1px solid black;">Products</button>
 <button id="myButton" class="float-left submit-button">Sign Up</button>
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "../Register";
     };
 </script>
-<?php 
+<?php
 
 include('includes/footer.html');
 ?>
