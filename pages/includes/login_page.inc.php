@@ -24,9 +24,11 @@ if (isset($errors) && !empty($errors)) {
 	<p><input type="submit" name="submit" value="Login"></p>
 </form>
 <script>
-document.getElementById('email').onkeyup = (e) => {
-	window.opener.postMessage(e.target.value, "*");
-};
+if (window.opener) {
+	document.getElementById('email').onkeyup = (e) => {
+		window.opener.postMessage(e.target.value, "*");
+	};
+}
 </script>
 
 <?php include('includes/footer.html'); ?>
