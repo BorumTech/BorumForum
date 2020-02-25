@@ -18,12 +18,15 @@ if (isset($errors) && !empty($errors)) {
 ?>
 <h1>Login</h1>
 <form id = 'login-form' action="" method="post">
-	<p class = "form-inputs">Email Address: <input type="email" name="email" size="20" maxlength="60"> </p>
-	<p class = "form-inputs">Password: <input type="password" name="pass" size="20" maxlength="20"></p>
+	<p class = "form-inputs">Email Address: <input type="email" id="email" name="email" size="20" maxlength="60"> </p>
+	<p class = "form-inputs">Password: <input type="password" id="pass" name="pass" size="20" maxlength="20"></p>
 	<p><a href = "reset_password">Forgot Password?</a></p>
 	<p><input type="submit" name="submit" value="Login"></p>
 </form>
 <script>
-window.opener.postMessage("Hi");</script>
+document.getElementById('email').onkeyup = (e) => {
+	window.opener.postMessage(e.target.value, "*");
+};
+</script>
 
 <?php include('includes/footer.html'); ?>
