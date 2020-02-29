@@ -48,14 +48,24 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 if (window.opener) {
-	document.getElementById('email').onkeyup = (e) => {
-		window.opener.postMessage(e.target.value, "*");
-	};
-	document.getElementById('login-form').addEventListener('submit', function() {
-		const emailVal = document.getElementById('email').value;
-		window.opener.postMessage(emailVal, "http://www.bforborum.com");
-		window.opener.postMessage(emailVal, "http://localhost:80");
-		window.close();
+	document.getElementById('submit').addEventListener('click', function() {
+		const email = document.getElementById('email').value;
+		let pass = document.getElementById('pass').value;
+		fetch('/pages/ajax/encryptpass.php', {
+			method: 'POST',
+			body: `pass=${pass}`,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(response => {
+			if (response.status >= 200 && response.status < 300) {
+				return response.text();
+			}
+		}).then(response => {
+			window.opener.postMessage([email, response], "http://www.bforborum.com");
+			window.opener.postMessage([email, response], "http://localhost:80");
+			console.log(response);
+		});
 	});
 
 }
