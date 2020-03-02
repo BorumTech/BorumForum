@@ -62,7 +62,7 @@ if (window.opener) {
 				return response.text();
 			}
 		}).then(response => {
-			window.opener.postMessage([email, response], "http://www.bforborum.com");
+			window.opener.postMessage([email, response], "http://audio.bforborum.com");
 			window.opener.postMessage([email, response], "http://localhost:80");
 			console.log(response);
 		});

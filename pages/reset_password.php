@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page_title = "Reset your Password - Borum";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 	if (empty($errors)) {
-		
+
 		echo '<div class = "col-sm-10" id = "reset-password-body">';
-		$q = "SELECT SHA2(rand(5000), 512)";
+		$q = "SELECT SHA2(CONCAT(NOW(), RAND(), UUID()), 512)";
 		$r = mysqli_query($dbc, $q);
 		$row = mysqli_fetch_array($r, MYSQLI_NUM);
 		$q = "INSERT INTO `password-resets` (code, email) VALUES ('{$row[0]}', '$e')";

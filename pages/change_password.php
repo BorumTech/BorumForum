@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page_title = "Change your Password - Borum";
 
 ob_start();
@@ -17,9 +17,9 @@ if (isset($_GET['code']) && isset($_GET['email'])) { // If the email has been id
 		$np = $_POST['new-password'];
 		$cnp = $_POST['confirm-new-password'];
 		if ($np == $cnp) {
-			$q = "UPDATE users SET password = SHA2('$np', 512) WHERE email = \"{$_GET['email']}\"";
+			$q = "UPDATE users SET pass = SHA2('$np', 512) WHERE email = \"{$_GET['email']}\"";
 			$r = mysqli_query($dbc, $q);
-			if (mysqli_affected_rows($dbc)) {
+			if (mysqli_affected_rows($dbc) == 1) {
 				echo "<h1>Success!</h1><p>Your password was updated and you can now log in with this new password. Be sure to write down your password this time so you don't forget! Redirecting you now...";
 				$q = "DELETE FROM `password-resets` WHERE email = \"{$_GET['email']}\" AND code = \"{$_GET['code']}\"";
 				require('includes/login_functions.inc.php');
