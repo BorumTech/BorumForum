@@ -65,7 +65,7 @@ $noAccountVoteDownBtn = getNoAccountButton($downarrow);
 $voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 $votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
-echo "<tr>";
+echo "<tr class = 'post-content'>";
 echo "<td>";
 echo $voteupbtn;
 
@@ -77,7 +77,7 @@ echo "<td>";
 echo "\t\t<p id = \"{$ansrow['msg_id']}\" class = 'ans-body'>{$ansrow['msg_body']}</p>\n";
 echo "</td>";
 echo "</tr>\n";
-echo "<tr class = 'user-profile-container'>";
+echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
 	if (LOGGEDIN && $_SESSION['id'] === $ansrow['usr_id']) {
 		$what_to_echo = $ansrow['msg_id'] . '/Edit';
 

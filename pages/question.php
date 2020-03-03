@@ -98,9 +98,10 @@
 					</div>
 				</td>
 			</tr>
-			<tr class = 'user-profile-container'>
+			<tr id = 'ucp-0' class = 'user-profile-container'>
 				<?php
 				function visibilityProperty() {
+					global $row;
 					define('SHOWMODIFYLINKS', ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id']));
 					return SHOWMODIFYLINKS ? 'visibility: visible' : 'visibility: hidden';
 				}
@@ -159,7 +160,7 @@
 					$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
 					$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
-					echo "<tr>";
+					echo "<tr class = 'post-content'>";
 					echo "<td>";
 					echo $voteupbtn;
 
@@ -173,7 +174,7 @@
 					echo "\t\t<p id = \"{$row2['msg_id']}\" class = 'ans-body'>{$row2['msg_body']}</p>\n";
 					echo "</td>";
 					echo "</tr>\n";
-					echo "<tr class = 'user-profile-container'>";
+					echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
 						if (LOGGEDIN && $_SESSION['id'] === $row2['usr_id']) {
 							$what_to_echo = $row2['msg_id'] . '/Edit';
 

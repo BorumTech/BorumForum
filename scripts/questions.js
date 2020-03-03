@@ -92,6 +92,10 @@ function answerQuestion(ques_id, answer, counter) {
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('question-page-table').querySelector('tbody').innerHTML += xhr.responseText;
+			document.getElementById('your-answer-ta').value = "";
+      $([document.documentElement, document.body]).animate({
+	        scrollTop: $('#upc-' + (counter - 1)).offset().top
+      }, 1000);
 		}
 	}
 
