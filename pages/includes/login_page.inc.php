@@ -26,10 +26,10 @@ if (isset($errors) && !empty($errors)) {
 <form id = 'login-form' action="" method="post">
 	<p class = "form-inputs">Email Address: <input type="email" id="email" name="email" size="20" maxlength="60"> </p>
 	<p class = "form-inputs">Password: <input type="password" id="pass" name="pass" size="20" maxlength="20"></p>
-	<div class="g-signin2" data-onsuccess="onSignIn"><button>Sign in with Google</button></div>
+	<!-- <div class="g-signin2" data-onsuccess="onSignIn"><button>Sign in with Google</button></div> -->
 	<p><a href = "reset_password">Forgot Password?</a></p>
 	<p><input type="submit" id = "submit" name="submit" value="Login"></p>
-	<a href="#" onclick="signOut();">Sign out</a>
+	<!-- <a href="#" onclick="signOut();">Sign out</a> -->
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
