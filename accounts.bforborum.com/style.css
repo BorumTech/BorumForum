@@ -1,0 +1,14 @@
+html, body, #log-out-btn-container {
+	height: calc(100% - 8px);
+	width: calc(100% - 8px);
+}
+
+#log-out-btn-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#log-out-btn {
+	font-size: 2rem;
+}

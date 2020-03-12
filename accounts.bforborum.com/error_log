@@ -1,0 +1,48 @@
+[10-Mar-2020 21:54:03 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/logout.php on line 3
+[10-Mar-2020 21:54:43 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/logout.php on line 3
+[10-Mar-2020 22:01:03 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:03 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:08 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/logout.php on line 3
+[10-Mar-2020 22:01:08 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:08 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:11 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:11 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:15 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:15 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:51 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:51 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:54 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:01:54 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:02:22 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/logout.php on line 3
+[10-Mar-2020 22:02:22 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:02:22 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 13
+[10-Mar-2020 22:14:29 UTC] PHP Notice:  Array to string conversion in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 33
+[10-Mar-2020 22:20:27 UTC] PHP Notice:  Array to string conversion in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 31
+[10-Mar-2020 22:43:05 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:48:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:12 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:18 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:19 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:20 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:29 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:55 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:56 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:50:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:51:04 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:51:55 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:51:55 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:51:56 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:51:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:52:07 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:52:08 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:52:08 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:52:09 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:52:16 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:54:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:55:06 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:55:18 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[10-Mar-2020 22:55:19 UTC] PHP Notice:  Undefined variable: _SESSION in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 32
+[11-Mar-2020 00:35:03 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/logout.php on line 3
+[11-Mar-2020 00:56:33 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 11
+[11-Mar-2020 00:56:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 11
+[11-Mar-2020 00:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php:1) in /home/libuc6kfb0jg/public_html/accounts.bforborum.com/index.php on line 11
