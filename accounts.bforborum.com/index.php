@@ -10,7 +10,6 @@ session_start();
 		<link href = "style.css" rel = "stylesheet" type = "text/css">
 	</head>
 	<body>
-		<?php var_export($_SESSION); ?>
 		<div id = 'log-out-btn-container'>
 			<form action = "logout.php" method = "post">
 				<input value = "Log Out" type = "submit" id = 'log-out-btn'>

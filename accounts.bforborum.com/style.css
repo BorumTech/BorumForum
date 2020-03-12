@@ -12,3 +12,9 @@ html, body, #log-out-btn-container {
 #log-out-btn {
 	font-size: 2rem;
 }
+
+#successful-logout {
+	background-color: #99ff99;
+	border-radius: 80%;
+	text-align: center;
+}
