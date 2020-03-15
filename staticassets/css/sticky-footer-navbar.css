@@ -19,8 +19,6 @@ li {
   bottom: 0;
   width: 100%;
   z-index: 2;
-  /* Set the fixed height of the footer here */
-  height: 60px;
 }
 
 .t--light .footer {

@@ -28,8 +28,8 @@ function editBio(id) {
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
-		if (xhr.readyState == 4 && xhr.status == 200) {	
-			bioEl.nextElementSibling.value = isOutput ? "Save" : "Edit Bio";	
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			bioEl.nextElementSibling.value = isOutput ? "Save" : "Edit Bio";
 
 			const outputN = `<output id="bio">${xhr.responseText}</output>`;
 			const textareaN = `<textarea id="bio">${xhr.responseText}</textarea>`;
@@ -46,3 +46,9 @@ function toggleOpenMenu() {
 	document.getElementsByClassName('open-menu')[0].classList.toggle('none');
 }
 
+function handleHeightChange() {
+	document.querySelector('.row').style.marginBottom = document.querySelector('footer').offsetHeight + "px";
+}
+
+window.addEventListener('resize', handleHeightChange);
+window.addEventListener('load', handleHeightChange);

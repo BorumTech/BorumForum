@@ -133,9 +133,6 @@ td.output {
 }
 
 @media only screen and (max-width: 489px) {
-	footer.footer {
-		height: auto;
-	}
 
 	button#myButton {
 		margin-bottom: 40%;
