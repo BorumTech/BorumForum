@@ -1,9 +1,14 @@
-<?php 
+<?php
 define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
+
+if (LOGGEDIN && !isset($_SESSION['agent']) OR ($_SESSION['agent'] != md5($_SERVER['HTTP_USER_AGENT']) )) {
+  require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/login_functions.inc.php');
+  redirect_user('', TRUE);
+}
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     // last request was more than 30 minutes ago
-    session_unset();     // unset $_SESSION variable for the run-time 
+    session_unset();     // unset $_SESSION variable for the run-time
     session_destroy();   // destroy session data in storage
     setcookie("dark", '', time()-3600, '/', '', 0, 0);
     setcookie("PHPSESSID", '', time()-3600, '/', '', 0, 0);
@@ -19,7 +24,7 @@ function giveClassActive($file, $href, $show, $li = true) {
   echo $li ? '<li class = "' : '';
   echo $shouldbeactive && $li ? 'active' : '';
   echo $li ? '">' : '';
-  echo '<a class = "' . $rectangularBox; 
+  echo '<a class = "' . $rectangularBox;
   echo $shouldbeactive && !$li ? ' active' : '';
   echo '" href = "' . $href . '"';
 
@@ -63,8 +68,7 @@ function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessag
       echo $aftermessage;
   } catch (Exception $e) {
       echo "Message could not be sent. A mailing error occured. ";
-  } 
+  }
 }
 
 ?>
-

@@ -16,21 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if ($check) { // OK!
 
-		// Set the cookies:
+		// Set the session data
 		session_start();
 		$_SESSION['id'] = $data['id'];
 		$_SESSION['first_name'] = $data['first_name'];
 		$_SESSION['last_name'] = $data['last_name'];
-		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
+
+		// Store the HTTP_USER_AGENT
+		$_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
+
 		session_regenerate_id();
+		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
 
 		// Redirect:
 		redirect_user();
 
 	} else { // Unsuccessful!
 
-		// Assign $data to $errors for error reporting
-		// in the login_page.inc.php file.
+		// Assign $data to $errors for error reporting in the login_page.inc.php file.
 		$errors = $data;
 
 	}
