@@ -1,16 +1,5 @@
 <?php
 define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
-if (
-  LOGGEDIN
-  && !isset($_SESSION['agent'])
-  OR (
-    isset($_SESSION['agent']) && $_SESSION['agent'] !=
-    md5($_SERVER['HTTP_USER_AGENT'])
-  )
-) {
-  require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/login_functions.inc.php');
-  redirect_user('', TRUE);
-}
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     // last request was more than 30 minutes ago
