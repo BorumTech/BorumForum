@@ -12,15 +12,15 @@
     }
 
     .fixed-sidebar {
-        position: fixed;
-        z-index: 1; /* Stay on top */
-		top: 60px; /* Stay at the top */
-		left: 0;
-		margin-left: 15px;
-		overflow-x: hidden; /* Disable horizontal scroll */
-		padding-top: 20px;
-		padding-right: 20px;
-		border-right: 0.5px solid lightgrey;
+      position: fixed;
+      z-index: 1; /* Stay on top */
+			top: 130px; /* Stay at the top */
+			left: 0;
+			margin-left: 15px;
+			overflow-x: hidden; /* Disable horizontal scroll */
+			padding-top: 20px;
+			padding-right: 20px;
+			border-right: 0.5px solid lightgrey;
     }
 
 	.fixed-sidebar a.active {

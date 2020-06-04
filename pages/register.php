@@ -56,7 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ceResult = @mysqli_query($dbc, $checkEmail); // Show the row that already registered that email
 		$num = mysqli_num_rows($ceResult);
 
-		if ($num == 0) {
+		$checkEmail2 = "SELECT id FROM verifying WHERE email = '$e'";
+		$ce2Result = @mysqli_query($dbc, $checkEmail2);
+		$num2 = mysqli_num_rows($ce2Result);
+
+		if ($num == 0 && $num2 == 0) {
 			$qv = "SELECT TO_BASE64(RAND())";
 			$qr = mysqli_fetch_array(mysqli_query($dbc, $qv), MYSQLI_BOTH);
 			$v = $qr[0];
