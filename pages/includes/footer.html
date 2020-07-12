@@ -2,9 +2,9 @@
 </div>
 </div>
 <footer class="footer">
-	<div class = "fixed-cookie-alert">
+	<div style="display: <?php echo isset($_COOKIE['acceptedcookie']) && $_COOKIE['acceptedcookie'] == 1 ? 'none' : 'flex'; ?>" class = "fixed-cookie-alert">
 		<span>This site uses cookies</span>
-		<button onclick = "this.parentElement.style.display = 'none';">Accept</button>
+		<button onclick = "">Accept</button>
 	</div>
 	<ul class = "footer-links">
 		<li><span class = "text-muted">Copyright &copy; 2020 Borum Inc.</span></li>

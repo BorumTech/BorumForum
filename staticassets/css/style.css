@@ -67,12 +67,11 @@
 		width: 100%;
 		box-sizing: border-box;
 		display: block;
-		color: grey;
 		padding: 15px;
 		margin: 10px 0;
 		background-color: #e6e6e6;
 		text-decoration: none;
-		color: #818181;
+		color: #1c0fd3;
 	}
 }
 
@@ -130,7 +129,7 @@
 }
 
 a.rectangular-box:hover {
-	color: #a4b7f7;
+	color: #1100ff;
 }
 
 p#ques-body, p.ans-body {

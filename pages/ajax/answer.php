@@ -15,7 +15,8 @@ $num = mysqli_num_rows($r);
 
 if ($num == 0) { // No answers that match this one (no duplicates) on the current question
 	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, {$_SESSION['id']}, '$ans', NOW())";
-	@mysqli_query($dbc, $q);
+	$r = mysqli_query($dbc, $q);
+	$num = mysqli_affected_rows($dbc);
 }
 
 
@@ -44,40 +45,41 @@ function getDownArrow() {
 	return '<svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path style = "fill:' . $fillColor . '" d="M2 10h32L18 26z"></path></svg>';
 }
 
-$ansquery = '
-SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn
-FROM messages
-JOIN users
-ON users.id = messages.user_id
-ORDER BY date_entered DESC
-LIMIT 1';
-$ansresult = mysqli_query($dbc, $ansquery);
-$ansrow = mysqli_fetch_array($ansresult, MYSQLI_ASSOC);
-$ans_id = $ansrow['msg_id'];
-$fillColor = votedOnQuestion($ansrow['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-$uparrow = getUpArrow();
-$noAccountVoteUpBtn = getNoAccountButton($uparrow);
+if ($num == 1) { // Answer was successfully added to the database
+	$ansquery = '
+	SELECT messages.id AS msg_id, users.id AS usr_id, messages.body AS msg_body, users.profile_picture AS profile, users.first_name AS fn
+	FROM messages
+	JOIN users
+	ON users.id = messages.user_id
+	ORDER BY date_entered DESC
+	LIMIT 1';
+	$ansresult = mysqli_query($dbc, $ansquery);
+	$ansrow = mysqli_fetch_array($ansresult, MYSQLI_ASSOC);
+	$ans_id = $ansrow['msg_id'];
+	$fillColor = votedOnQuestion($ansrow['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+	$uparrow = getUpArrow();
+	$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-$fillColor = votedOnQuestion($ansrow['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
-$downarrow = getDownArrow();
-$noAccountVoteDownBtn = getNoAccountButton($downarrow);
+	$fillColor = votedOnQuestion($ansrow['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+	$downarrow = getDownArrow();
+	$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+	$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+	$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
-echo "<tr class = 'post-content'>";
-echo "<td>";
-echo $voteupbtn;
+	echo "<tr class = 'post-content'>";
+	echo "<td>";
+	echo $voteupbtn;
 
-echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>0</div>";
-echo $votedownbtn;
-echo "</td>";
-// Generate query for answers' information
-echo "<td>";
-echo "\t\t<p id = \"{$ansrow['msg_id']}\" class = 'ans-body'>{$ansrow['msg_body']}</p>\n";
-echo "</td>";
-echo "</tr>\n";
-echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
+	echo "\t\t<br><div class = 'vote-counter' id = 'ans-$counter-vote-count'>0</div>";
+	echo $votedownbtn;
+	echo "</td>";
+	// Generate query for answers' information
+	echo "<td>";
+	echo "\t\t<p id = \"{$ansrow['msg_id']}\" class = 'ans-body'>{$ansrow['msg_body']}</p>\n";
+	echo "</td>";
+	echo "</tr>\n";
+	echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
 	if (LOGGEDIN && $_SESSION['id'] === $ansrow['usr_id']) {
 		$what_to_echo = $ansrow['msg_id'] . '/Edit';
 
@@ -100,6 +102,7 @@ echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
 			</div>
 		</td>
 	</tr>";
+}
 /*
 
 */

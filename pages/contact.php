@@ -25,8 +25,10 @@ echo "<div class = 'col-sm-7 page-with-form-body'>";
 ?>
 
 <h1>Contact Us</h1>
-<button style = "display: <?php echo !LOGGEDIN ? 'block' : 'none' ?>" type = "button" onclick = "window.location.href = '/Login';">Log In</button>
-<form style = "display: <?php echo LOGGEDIN ? 'block' : 'none' ?>" action method = "post">
+<form action="" method = "post">
+	<p>
+		<label for="name">Name: </label>
+		<input required type="text" id="subject" name="subject" size="100">
 	<p>
 		<label for = "subject">Subject: </label>
 		<input required type = "text" id = "subject" name = "subject" size = "100">

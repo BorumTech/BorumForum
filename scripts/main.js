@@ -87,3 +87,10 @@ function getAllSiblings(element) {
 	return result;
 }
 
+const cookieBtn = document.getElementsByClassName('fixed-cookie-alert')[0].getElementsByTagName('button')[0];
+
+cookieBtn.onclick = e => {
+	e.target.parentElement.style.display = 'none'; 
+	document.cookie = 'acceptedcookie=1'; 
+};
+

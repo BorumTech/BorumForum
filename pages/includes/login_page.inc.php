@@ -61,10 +61,14 @@ if (window.opener) {
 			if (response.status >= 200 && response.status < 300) {
 				return response.text();
 			}
+		}).catch(response => {
+			console.log("An error occured. (1)");
 		}).then(response => {
 			window.opener.postMessage([email, response], "http://audio.bforborum.com");
 			window.opener.postMessage([email, response], "http://localhost:80");
 			console.log(response);
+		}).catch(response => {
+			alert("An error occurred. Please contact the developer through Twitter @BorumInc");
 		});
 	});
 

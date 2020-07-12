@@ -192,7 +192,7 @@
 										<span>{$row2['fn']}</span>
 									</a>
 									<a href = '/Users/{$row2['usr_id']}'>
-										<img height = '30' src = \"../pages/show_image.php?image={$row2['profile']}\">
+										<img height = '30' src = \"http://www.bforborum.com/pages/show_image.php?image={$row2['profile']}\">
 									</a>
 								</div>
 							</td>
