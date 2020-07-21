@@ -5,7 +5,7 @@ session_start();
 require('../includes/helpers.php');
 
 // Define the POST data
-$ans = $_POST['answer'];
+$ans = mysqli_real_escape_string($dbc, trim($_POST['answer']));
 $ques_id = $_POST['ques_id'];
 $counter = $_POST['counter'];
 // Check if its okay for the user to answer the question
@@ -17,6 +17,9 @@ if ($num == 0) { // No answers that match this one (no duplicates) on the curren
 	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, {$_SESSION['id']}, '$ans', NOW())";
 	$r = mysqli_query($dbc, $q);
 	$num = mysqli_affected_rows($dbc);
+} else {
+	echo "The answer could not be added because it is a duplicate.";
+	exit();
 }
 
 
@@ -102,6 +105,8 @@ if ($num == 1) { // Answer was successfully added to the database
 			</div>
 		</td>
 	</tr>";
+} else {
+	echo "The answer could not be added due to a system error.";
 }
 /*
 
