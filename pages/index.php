@@ -23,6 +23,10 @@ include('includes/header.html');
     document.getElementById("myButton").onclick = function () {
         location.href = "../Register";
     };
+
+    if (window.opener) {
+        window.opener.postMessage(<?php echo $_SESSION['id']; ?>, "http://audio.bforborum.com");
+    }
 </script>
 <?php
 

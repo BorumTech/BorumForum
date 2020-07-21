@@ -1,31 +1,29 @@
-li.search-bar#head-search-bar-li {
+#head-search-bar-li {
+    display: inline-flex;
     line-height: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 40vw;
 }
 
-li.search-bar#head-search-bar-li input#head-search-bar {
-	width: 90%;
+#head-search-bar-li input#head-search-bar {
+    min-width: 20%;
+    width: 90%;
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
-#head-search-bar-li input {
-    float: left;
-}
-
-li.search-bar#head-search-bar-li img {
+#head-search-bar-li img {
     z-index: 20;
     height: 30px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1182px) {
-    li.search-bar#head-search-bar-li input#head-search-bar {
+    #head-search-bar-li input#head-search-bar {
         display: none;
     }
 
-    li.search-bar#head-search-bar-li {
+    #head-search-bar-li {
         width: 9vw;
     }
 }

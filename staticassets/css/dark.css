@@ -40,8 +40,8 @@
   background-color: rgba(51, 122, 183, 0.3);
 }
 
-.t--dark #topic-list li a {
-  color: #818181;
+.t--dark .rectangular-box, #topic-list li > a {
+  color: whitesmoke;
 }
 
 .t--dark #topic-list li a:hover {
@@ -82,3 +82,4 @@
 .t--dark button {
   color: black;
 }
+

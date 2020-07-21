@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		session_regenerate_id();
 		setcookie('dark', $data['dark'], time() + 3600, '/', '', 0, 0);
-
-		// Redirect:
+		
+		// Redirect user
 		redirect_user();
 
 	} else { // Unsuccessful!
