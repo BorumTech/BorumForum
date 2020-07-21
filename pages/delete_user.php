@@ -32,15 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$r = @mysqli_query($dbc, $q); // Run the query
 
 		if (mysqli_affected_rows($dbc) == 1) { // If it ran OK
-			echo '<p>The user has been deleted.</p>';
+			echo '<p>Your account has been deleted.</p>';
+			redirect_js('/logout');
 		} else {
 			echo '<p class = "error">The user could not be deleted due to a system error.</p>'; // Public message
 
 			echo '<p>' . mysqli_error($dbc) . '<br>Query: ' . $q . '</p>'; // Debugging message
 		}
-
-	} else { // No confirmation of deletion
-		echo '<p>The user has <em>not</em> been deleted.</p>';
 	}
 
 } else { // Show the form
@@ -53,8 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo "<h3>Name: $row[0]</h3>";
 		echo ISUSER ? '<p style = "color:red"><strong>Are you sure you would like to permanently delete your account? If you confirm deletion, there is no going back. All data is deleted permanently</strong></p>' : '<p>Are you sure you want to delete this user?</p>';
 		echo '<form action = "" method = "post">
-		<input type = "radio" name = "sure" value = "Yes"> Yes
-		<input type = "radio" name = "sure" value = "No" checked="checked"> No
+		<div>
+			<input required type = "checkbox" name = "sure" id="cons-und" value = "Yes">
+			<label style="font-weight: normal" for="cons-und">Yes, I understand the consequences.</label>
+		</div>
 		<div>
 			<input type = "submit" name = "submit" value = "Delete account">
 		</div>
