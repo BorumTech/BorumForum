@@ -40,7 +40,7 @@
   background-color: rgba(51, 122, 183, 0.3);
 }
 
-.t--dark .rectangular-box, #topic-list li > a {
+.t--dark .rectangular-box, .t--dark #topic-list li > a {
   color: whitesmoke;
 }
 
