@@ -42,6 +42,7 @@ nav {
   margin-top: 130px;
   margin-left: 0;
   margin-right: 0;
+  overflow: hidden;
 }
 
 .navbar-header:after {

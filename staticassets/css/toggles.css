@@ -60,16 +60,6 @@ output#bio {
 	font-size: 1.5em;
 }
 
-button#myButton {
-	margin-top: 4%;
-	font-size: 4em;
-	padding: 5% 10%;
-	border-width: 4px;
-	border-style: solid;
-	text-transform: uppercase;
-	margin-bottom: 2.5%;
-}
-
 button#products {
 	border-radius: 5px;
 	background: none;
@@ -89,6 +79,23 @@ button#products:hover {
 
 .t--dark button#products:hover {
 	color: black;
+}
+
+.expandable.expanded {
+	color: #424242; 
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+	opacity: 1;
+	transform: scale(1.15);
+	-ms-transform: scale(1.15); /* IE 9 */
+	-webkit-transform: scale(1.15); /* Safari and Chrome */  
+}
+
+#pcdemo:hover {
+	cursor: pointer;
 }
 
 td.output {
@@ -134,7 +141,4 @@ td.output {
 
 @media only screen and (max-width: 489px) {
 
-	button#myButton {
-		margin-bottom: 40%;
-	}
 }

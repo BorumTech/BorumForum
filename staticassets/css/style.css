@@ -215,3 +215,14 @@ form input, form textarea {
 form input:focus {
 	outline-color: blue;
 }
+
+#pcdemo {
+	margin-bottom: 15px;
+}
+
+textarea.comment-body {
+	resize: none;
+	padding: 0.5em 1em 0 0.5em;
+	height: 75px;
+	width: 700px;
+}

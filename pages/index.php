@@ -17,15 +17,14 @@ include('includes/header.html');
 
 <p>Borum is an interactive community where users from all over the world can ask questions and get answers. </p>
 <button id="products" onclick = "window.open('http://products.bforborum.com', '_blank')" style = "border: 1px solid black;">Products</button>
-<img src = "http://cdn.bforborum.com/images/pcdemo.gif">
-<button id="myButton" class="float-left submit-button">Sign Up</button>
+<img class="expandable" id="pcdemo" src = "http://cdn.bforborum.com/images/pcdemo.gif">
 <script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "../Register";
-    };
-
+    function sendID(origin) {
+        window.opener.postMessage(<?php echo $_SESSION['id']; ?>, origin);
+    }
     if (window.opener) {
-        window.opener.postMessage(<?php echo $_SESSION['id']; ?>, "http://audio.bforborum.com");
+        sendID("http://audio.bforborum.com");
+        sendID("http://jot.bforborum.com");
     }
 </script>
 <?php

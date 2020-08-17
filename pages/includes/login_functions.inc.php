@@ -1,5 +1,6 @@
 <?php # Script 12.2 - login_functions.inc.php
 // This page defines two functions used by the login/logout process and once function for other things
+
 /* This function determines an absolute URL and redirects the user there.
  * The function takes one argument: the page to be redirected to.
  * The argument defaults to index.php.
@@ -22,6 +23,7 @@ function redirect_user($page = '../', $absolute = FALSE) {
 	header("Location: $url");
 	exit(); // Quit the script.
 } // End of redirect_user() function.
+
 /* This function validates the form data (the email address and password).
  * If both are present, the database is queried.
  * The function requires a database connection.

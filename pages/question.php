@@ -42,7 +42,12 @@
 				<td class = "vote-container">
 				<!-- PHP Functions -->
 				<?php
-					function votedOnQuestion($msg_id, $vote) {
+					/**
+					 * Returns whether or not the currently logged in user has voted on the current question
+					 * @param $msg_id The id of the ques
+					 * @param $vote b
+					 */
+					function votedOnPost($msg_id, $vote) {
 						global $dbc;
 						if (isset($_SESSION['id'])) {
 							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
@@ -70,11 +75,11 @@
 
 					$ques_id = $row['msg_id'];
 
-					$fillColor = votedOnQuestion($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$fillColor = votedOnPost($ques_id, 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$uparrow = getUpArrow();
 					$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-					$fillColor = votedOnQuestion($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$fillColor = votedOnPost($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$downarrow = getDownArrow();
 					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 					$voteupbtn = isset($_SESSION['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
@@ -126,13 +131,23 @@
 				</td>
 			</tr>
 			<?php
-						$q = "SELECT comments.body, comments.date_written, comments.usr_id, users.first_name, users.last_name, users.profile_picture AS pr_pi FROM comments JOIN users ON users.id = comments.usr_id WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
-						$r = mysqli_query($dbc, $q);
-						if($r && mysqli_num_rows($r) > 0) {
-							while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-								echo "<tr><td></td><td class = 'comments'><img style = 'border-radius: 50%;' class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\"><span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span><span style = 'margin-left: 10px'>{$row[1]}</span><br><span>{$row['body']}</span></td></tr>";
-							}
-						}
+				$q = "SELECT comments.body, comments.date_written, comments.usr_id, users.first_name, users.last_name, users.profile_picture AS pr_pi, comments.id FROM comments JOIN users ON users.id = comments.usr_id WHERE msg_id = {$_GET['id']} ORDER BY date_written ASC";
+				$r = mysqli_query($dbc, $q);
+				if($r && mysqli_num_rows($r) > 0) {
+					while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+						echo "<tr id = 'comment-{$row[6]}'><td></td>
+						<td class = 'comments'>
+						<img style = 'border-radius: 50%;' class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\">
+						<span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span>
+						<span style = 'margin-left: 10px'>{$row[1]}</span>
+						<span>
+						<input class=\"edit-button\" type='button' onclick=\"allowCommentEdit({$row[6]})\" value='Edit'>
+						<input type='button' onclick=\"deleteComment({$row[6]})\" value='Delete'>
+						</span>
+						<br><span class=\"comment-body\">{$row['body']}</span>
+						</td></tr>";
+					}
+				}
 			ob_start(); ?>
 			<tr>
 				<td></td>
@@ -140,8 +155,20 @@
 
 					<div class = "new-comment">
 						<input type = "text" size = "50" id = 'comment-body' name = 'comment-body'>
-						<input type = "button" onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
+						<input type = "button" disabled onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
 					</div>
+					<script>
+						const commentBodyEl = document.getElementById('comment-body')
+						const newCommentBtnEl = commentBodyEl.nextElementSibling;
+						
+						commentBodyEl.addEventListener('keyup', function(e) {
+							if (e.target.value == '') 
+								newCommentBtnEl.setAttribute('disabled', true);
+							else
+								newCommentBtnEl.removeAttribute('disabled');
+							
+						});
+					</script>
 				</td>
 			</tr>
 			<?php
@@ -149,11 +176,11 @@
 				$counter = 1;
 				while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 					$ans_id = $row2['msg_id'];
-					$fillColor = votedOnQuestion($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$fillColor = votedOnPost($row2['msg_id'], 1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$uparrow = getUpArrow();
 					$noAccountVoteUpBtn = getNoAccountButton($uparrow);
 
-					$fillColor = votedOnQuestion($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
+					$fillColor = votedOnPost($row2['msg_id'], -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$downarrow = getDownArrow();
 					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 

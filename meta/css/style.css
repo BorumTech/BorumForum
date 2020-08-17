@@ -59,10 +59,6 @@
 		width: calc(91.66666666% - 235px);
 	}
 
-	.sidebar-outer + div.col-sm-8 {
-
-	}
-
 	.fixed-sidebar a {
 		width: 100%;
 		box-sizing: border-box;
@@ -215,4 +211,8 @@ form input, form textarea {
 
 form input:focus {
 	outline-color: blue;
+}
+
+#pcdemo {
+	margin-bottom: 20px;
 }

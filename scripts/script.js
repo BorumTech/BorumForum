@@ -52,3 +52,8 @@ function handleHeightChange() {
 
 window.addEventListener('resize', handleHeightChange);
 window.addEventListener('load', handleHeightChange);
+Array.prototype.forEach.call(document.getElementsByClassName('expandable'), function(elem) {
+	elem.addEventListener('click', function(e) {
+		e.target.classList.toggle('expanded');
+	})
+});

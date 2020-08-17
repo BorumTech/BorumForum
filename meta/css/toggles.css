@@ -60,16 +60,6 @@ output#bio {
 	font-size: 1.5em;
 }
 
-button#myButton {
-	margin-top: 4%;
-	font-size: 4em;
-	padding: 5% 10%;
-	border-width: 4px;
-	border-style: solid;
-	text-transform: uppercase;
-	margin-bottom: 2.5%;
-}
-
 button#products {
 	border-radius: 5px;
 	background: none;
@@ -135,9 +125,5 @@ td.output {
 @media only screen and (max-width: 489px) {
 	footer.footer {
 		height: auto;
-	}
-
-	button#myButton {
-		margin-bottom: 40%;
 	}
 }
