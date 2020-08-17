@@ -135,12 +135,13 @@
 				$r = mysqli_query($dbc, $q);
 				if($r && mysqli_num_rows($r) > 0) {
 					while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+						$display = LOGGEDIN && $_SESSION['id'] == $row[2] ? 'inline' : 'none';
 						echo "<tr id = 'comment-{$row[6]}'><td></td>
 						<td class = 'comments'>
 						<img style = 'border-radius: 50%;' class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\">
 						<span style = 'font-weight: bold;'>{$row[3]} {$row[4]}</span>
 						<span style = 'margin-left: 10px'>{$row[1]}</span>
-						<span>
+						<span style = 'display: $display'>
 						<input class=\"edit-button\" type='button' onclick=\"allowCommentEdit({$row[6]})\" value='Edit'>
 						<input type='button' onclick=\"deleteComment({$row[6]})\" value='Delete'>
 						</span>
