@@ -57,3 +57,6 @@ Array.prototype.forEach.call(document.getElementsByClassName('expandable'), func
 		e.target.classList.toggle('expanded');
 	})
 });
+
+$('#your-answer-ta').markdownEditor();
+

@@ -1,3 +1,4 @@
 bower_components/
 .vercel
 node_modules
+vendor
