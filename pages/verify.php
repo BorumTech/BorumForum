@@ -5,14 +5,11 @@
 </head>
 <body>
 <?php 
-// Import PHPMailer classes into the global namespace
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 $query = "SELECT * FROM verifying WHERE code = \"{$_GET['v']}\" LIMIT 1";
 $result = mysqli_query($dbc, $query);
+
 if (mysqli_num_rows($result) == 0) {
 	echo "<p>This email has already been verified or has not been registered.</p>";
 } else {

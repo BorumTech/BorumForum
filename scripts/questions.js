@@ -60,8 +60,11 @@ function addComment(body, msg_id, usr_id) {
 			return response.text();
 		}
 	}).then(response => {
-		document.querySelector('.user-profile-container').insertAdjacentHTML('afterend', response);
-		document.querySelector('#comment-body').value = "";
+		response = JSON.parse(response);
+		if (response.ok) {
+			document.querySelector('.user-profile-container').insertAdjacentHTML('afterend', response.data);
+			document.querySelector('#comment-body').value = "";
+		}
 	});
 }
 

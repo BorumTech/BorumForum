@@ -84,7 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					wordwrap($message
 						, 70)
 					, $e);
-				echo '<p>An email was sent to you. Click the link to verify your email in order to activate your account.</p>';
+				echo '<p>An email was sent to you. Click the link to verify your email in order to activate your account.</p>
+				<p>For help, contact <a href="/Contact">customer support</a></p>';
 			} else { // if it ran not OK
 				// Public message
 				echo '<h1>System Error</h1>
