@@ -88,7 +88,7 @@ function getSortValue($table) {
 		// Determine how the results should be ordered
 		switch ($sort) {
 			case 'top':
-				$order_by = 'T1.votes DESC';
+				$order_by = 'T1.votes DESC, T2.answers DESC';
 				break;
 			case 'new':
 				$order_by = 'de DESC';

@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// Print a message
 				mysqli_query($dbc, "INSERT INTO verifying (code, password, first_name, last_name, email) VALUES('$v', SHA2('$p', 512), '$fn', '$ln', '$e')");
 
-				$verifylink = "www.bforborum.com/pages/verify.php?v=" . $v;
+				$verifylink = "http://www.bforborum.com/pages/verify.php?v=" . $v;
 				$message = "
 				Hi $fn, <br><br>
 				Thank you for registering for Borum! Click the link below to activate your account<br>
