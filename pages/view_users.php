@@ -6,8 +6,12 @@ include('includes/header.html');
 <div class = "col-sm-10">
 
 <h1>Registered Users</h1>
+<p>To protect user privacy, we no longer display user information</p>
 
 <?php
+
+include('includes/footer.html');
+exit();
 
 require('includes/pagination_functions.inc.php'); // Get pagination functions
 

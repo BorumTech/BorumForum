@@ -13,7 +13,7 @@
 	// Display Help, Notification bar, and Profile
 	echo '
 		<a id = "notification-bell" href = "#">
-			<img src = "http://cdn.bforborum.com/images/notification-bell-pngrepo-com.png">
+			<img src = "https://cdn.bforborum.com/images/notification-bell-pngrepo-com.png">
 		</a>
 		<a href = "/users/' . $_SESSION['id'] . '">
 			<img src = "' . $imgurl . '">

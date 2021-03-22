@@ -4,6 +4,13 @@
 	@include_once('../../mysqli_connect.inc.php');
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/helpers.php');
+
+	<!-- if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+		$location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		header('HTTP/1.1 301 Moved Permanently');
+		header('Location: ' . $location);
+		exit;
+	} -->
 ?>
 <!-- Script 12.7 - header.html -->
 <!DOCTYPE html>
@@ -20,27 +27,24 @@
 <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
 <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css" rel="stylesheet">
-<link href = "http://cdn.bforborum.com/css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/style.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/toggles.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/search.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/profile.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/sort.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/dark.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/settings.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/css/flex.css" rel = "stylesheet" type = "text/css">
-<link href = "http://cdn.bforborum.com/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
+<link href = "https://cdn.bforborum.com/css/sticky-footer-navbar.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/style.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/toggles.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/search.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/profile.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/sort.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/dark.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/settings.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/css/flex.css" rel = "stylesheet" type = "text/css">
+<link href = "https://cdn.bforborum.com/images/icon.ico" rel = "shortcut icon" type = "image/x-icon">
 </head>
 <body class = "<?php echo isset($_COOKIE['dark']) && $_COOKIE['dark'] == 1 ? 't--dark' : 't--light'; ?>">
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	
-	<p style="text-align: center">
-		Your <a href="https://votevotevote.us/">vote</a> matters in the 2020 presidential election.
-	</p>
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/">
-			<img src = "http://cdn.bforborum.com/images/icon.png" height = "50">
+			<img src = "https://cdn.bforborum.com/images/icon.png" height = "50">
 			<span>Borum&trade;</span>
 		</a>
 	</div>
@@ -52,24 +56,24 @@
 	<div class = "none open-menu">
 		<ul>
 			<?php echo LOGGEDIN ? "<li><img src = '/pages/show_image.php?image=icon.png'><a href = \"/users/{$_SESSION['id']}\">My Profile</a></li>" : ''; ?>
-			<?php echo LOGGEDIN ? '<li><img src = "http://cdn.bforborum.com/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
-			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "http://cdn.bforborum.com/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "http://cdn.bforborum.com/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
-			<?php echo LOGGEDIN ? '<li><img src = "http://cdn.bforborum.com/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>
-			<?php echo !LOGGEDIN ? '<li><img src = "http://cdn.bforborum.com/images/register.png"><a href = "/Register">Register</a></li>' : ''; ?>
-			<li><img src = "http://cdn.bforborum.com/images/question.png"><a href = "/Questions">Questions</a></li>
-			<li><img src = "http://cdn.bforborum.com/images/tag.png"><a href = "/Topics">Topics</a></li>
-			<li><img src = "http://cdn.bforborum.com/images/users.png"><a href = "/view_users">Users</a></li>
-			<li><img src = "http://cdn.bforborum.com/images/extrainfo.png"><a href = "/pages/Help/index.html">Help</a></li>
+			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.bforborum.com/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
+			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "https://cdn.bforborum.com/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "https://cdn.bforborum.com/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
+			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.bforborum.com/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>
+			<?php echo !LOGGEDIN ? '<li><img src = "https://cdn.bforborum.com/images/register.png"><a href = "/Register">Register</a></li>' : ''; ?>
+			<li><img src = "https://cdn.bforborum.com/images/question.png"><a href = "/Questions">Questions</a></li>
+			<li><img src = "https://cdn.bforborum.com/images/tag.png"><a href = "/Topics">Topics</a></li>
+			<li><img src = "https://cdn.bforborum.com/images/users.png"><a href = "/view_users">Users</a></li>
+			<li><img src = "https://cdn.bforborum.com/images/extrainfo.png"><a href = "/pages/Help/index.html">Help</a></li>
 		</ul>
 	</div>
 	<?php
 		echo '<div class = "navbar-profile">';
 		echo '<a href = "/pages/Help/index.html">
-					<img src = "http://cdn.bforborum.com/images/extrainfo.png">
+					<img src = "https://cdn.bforborum.com/images/extrainfo.png">
 				</a>';
 		echo LOGGEDIN ?
 			'
-			<a href = "/Settings"><img src = "http://cdn.bforborum.com/images/settings-icon.png"></a>
+			<a href = "/Settings"><img src = "https://cdn.bforborum.com/images/settings-icon.png"></a>
 			' : '';
 		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
 			require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/personalize.php');
@@ -82,7 +86,7 @@
 
 			<li class = "search-bar" id = "head-search-bar-li">
 				<button>
-					<img src = "http://cdn.bforborum.com/images/search-bar-icon.png">
+					<img src = "https://cdn.bforborum.com/images/search-bar-icon.png">
 				</button>
 				<input id = "head-search-bar" onkeydown = "loadSearchMessages(this.value)" 	type = "text" placeholder = "Search...">
 			</li>
