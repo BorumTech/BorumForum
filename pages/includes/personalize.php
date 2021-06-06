@@ -1,7 +1,7 @@
 <?php
 
 	// Find url of logged in user's profile picture
-	$imgurl = "http://bforborum.com/show_image?image=";
+	$imgurl = "http://borumtech.com/show_image?image=";
 	$q3 = "SELECT id, profile_picture FROM users WHERE id = {$_SESSION['id']}";
 	$r3 = mysqli_query($dbc, $q3);
 	if (mysqli_num_rows($r3)) {
@@ -13,7 +13,7 @@
 	// Display Help, Notification bar, and Profile
 	echo '
 		<a id = "notification-bell" href = "#">
-			<img src = "https://cdn.bforborum.com/images/notification-bell-pngrepo-com.png">
+			<img src = "https://cdn.borumtech.com/images/notification-bell-pngrepo-com.png">
 		</a>
 		<a href = "/users/' . $_SESSION['id'] . '">
 			<img src = "' . $imgurl . '">

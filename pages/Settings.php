@@ -40,7 +40,7 @@ include_once("includes/header.html");
 		    if (body.classList.contains('t--light')) { // When they turn dark mode on
 		      body.classList.remove('t--light');
 		      body.classList.add('t--dark');
-		      twitterImgEl.src = 'https://cdn.bforborum.com/images/Twitter_Social_Icon_Circle_Black.svg';
+		      twitterImgEl.src = 'https://cdn.borumtech.com/images/Twitter_Social_Icon_Circle_Black.svg';
 		      console.log('dark');
 		      document.cookie = "dark=1; path=/";
 					changeTheme(<?php echo $_SESSION['id']; ?>);
@@ -48,7 +48,7 @@ include_once("includes/header.html");
 		    else { // When they turn dark mode off
 		      body.classList.remove('t--dark');
 		      body.classList.add('t--light');
-		      twitterImgEl.src = 'https://cdn.bforborum.com/images/Twitter_Social_Icon_Circle_White.svg';
+		      twitterImgEl.src = 'https://cdn.borumtech.com/images/Twitter_Social_Icon_Circle_White.svg';
 		      console.log('not dark');
 			  	document.cookie = "dark=0; path=/";
 					changeTheme(<?php echo $_SESSION['id']; ?>)

@@ -16,15 +16,15 @@ include('includes/header.html');
 <p> <em>Empowering the world since 2019</em> </p>
 
 <p>Borum is an interactive community where users from all over the world can ask questions and get answers. </p>
-<button id="products" onclick = "window.open('https://store.bforborum.com', '_blank')" style = "border: 1px solid black;">Products</button>
-<img class="expandable" id="pcdemo" src = "https://cdn.bforborum.com/images/pcdemo.gif">
+<button id="products" onclick = "window.open('https://store.borumtech.com', '_blank')" style = "border: 1px solid black;">Products</button>
+<img class="expandable" id="pcdemo" src = "https://cdn.borumtech.com/images/pcdemo.gif">
 <script type="text/javascript">
     function sendID(origin) {
         window.opener.postMessage(<?php echo $_SESSION['id']; ?>, origin);
     }
     
     if (window.opener) {
-        sendID("https://audio.bforborum.com");
+        sendID("https://audio.borumtech.com");
     }
 </script>
 <?php

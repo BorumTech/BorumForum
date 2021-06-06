@@ -21,7 +21,7 @@ if (mysqli_num_rows($result) == 0) {
 		$result = mysqli_query($dbc, $query);
 		echo "Thanks for verifying!";
 		require_once('includes/helpers.php');
-		sendEmail("Welcome to Borum!", "Hi " . $row['first_name'] . ", <p>My name is Varun Singh, the founder of Borum. I am pleased to welcome you to our Q&A site. On Borum Q&A, you will be able to learn and share information like no other site before us has ever done. Happy Boruming!</p><p><a href = 'http://www.bforborum.com'>Start here</a></p><p>Sincerely, <br>Varun Singh</p>", $row['email'], "<script>console.log('Email sent!')</script>");
+		sendEmail("Welcome to Borum!", "Hi " . $row['first_name'] . ", <p>My name is Varun Singh, the founder of Borum. I am pleased to welcome you to our Q&A site. On Borum Q&A, you will be able to learn and share information like no other site before us has ever done. Happy Boruming!</p><p><a href = 'http://www.borumtech.com'>Start here</a></p><p>Sincerely, <br>Varun Singh</p>", $row['email'], "<script>console.log('Email sent!')</script>");
 	} else {
 		echo "A system error occured: " . $query;
 	}

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$row = mysqli_fetch_array($r, MYSQLI_NUM);
 		$q = "INSERT INTO `password-resets` (code, email) VALUES ('{$row[0]}', '$e')";
 		$r = mysqli_query($dbc, $q);
-		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. <br><a href = "http://www.bforborum.com/pages/change_password.php?code=' . $row[0] . '&email=' . $e . '">Click here</a>', $e, 'An email was sent to you. Click the link in the email to reset your password.');
+		sendEmail('Reset your Password', 'Click the link below to reset your Borum password. <br><a href = "http://www.borumtech.com/pages/change_password.php?code=' . $row[0] . '&email=' . $e . '">Click here</a>', $e, 'An email was sent to you. Click the link in the email to reset your password.');
 		include('includes/footer.html');
 		exit();
 	} else {

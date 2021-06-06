@@ -125,7 +125,7 @@
 							<span><?php echo $row['ques_asker'] ?></span>
 						</a>
 						<a href = '<?php echo "/Users/{$row['usr_id']}"; ?>'>
-							<img height = '30' src = "http://www.bforborum.com/show_image?image=<?php echo isset($row['ques_profile_pic']) ? $row['ques_profile_pic'] : 'unavailable.png'; ?>">
+							<img height = '30' src = "http://www.borumtech.com/show_image?image=<?php echo isset($row['ques_profile_pic']) ? $row['ques_profile_pic'] : 'unavailable.png'; ?>">
 						</a>
 					</div>
 				</td>
@@ -220,7 +220,7 @@
 										<span>{$row2['fn']}</span>
 									</a>
 									<a href = '/Users/{$row2['usr_id']}'>
-										<img height = '30' src = \"http://www.bforborum.com/pages/show_image.php?image={$row2['profile']}\">
+										<img height = '30' src = \"http://www.borumtech.com/pages/show_image.php?image={$row2['profile']}\">
 									</a>
 								</div>
 							</td>

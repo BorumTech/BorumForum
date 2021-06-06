@@ -35,7 +35,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessage = '') {
+function sendEmail($subject, $body, $email = 'admin@borumtech.com', $aftermessage = '') {
 
 
   // Load Composer's autoloader
@@ -51,7 +51,7 @@ function sendEmail($subject, $body, $email = 'admin@bforborum.com', $aftermessag
       $mail->Port       = 25;                                    // TCP port to connect to
 
       //Recipients
-      $mail->setFrom('admin@bforborum.com', 'The Borum Team');
+      $mail->setFrom('admin@borumtech.com', 'The Borum Team');
       $mail->addAddress($email);     // Add a recipient
 
       // Content

@@ -1,0 +1,6 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/libuc6kfb0jg/BorumForum/BorumForum-Web
+        - /bin/cp -r /home/libuc6kfb0jg/repositories/BorumForum/BorumForum-Web $DEPLOYPATH  # Copy all recursively to $DEPLOYPATH
+        
