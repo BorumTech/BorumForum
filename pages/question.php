@@ -49,8 +49,8 @@
 					 */
 					function votedOnPost($msg_id, $vote) {
 						global $dbc;
-						if (isset($_SESSION['id'])) {
-							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
+						if (isset($_COOKIE['id'])) {
+							$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 							$result = mysqli_query($dbc, $query);
 							return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;
 						}
@@ -82,8 +82,8 @@
 					$fillColor = votedOnPost($ques_id, -1) ? 'lightgreen' : 'rgb(221, 221, 221)';
 					$downarrow = getDownArrow();
 					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
-					$voteupbtn = isset($_SESSION['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-					$votedownbtn = isset($_SESSION['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+					$voteupbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-up-btn' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+					$votedownbtn = isset($_COOKIE['id']) ? "<button type = 'button' id = 'ques-vote-down-btn' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, $ques_id, 'ques-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 					$rowCorr = !QUESNOVOTES ? @mysqli_fetch_array($resultCorr, MYSQLI_NUM) : array(NULL, 0);
 					echo $voteupbtn;
@@ -107,7 +107,7 @@
 				<?php
 				function visibilityProperty() {
 					global $row;
-					define('SHOWMODIFYLINKS', ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id']));
+					define('SHOWMODIFYLINKS', ISADMIN || (LOGGEDIN && $_COOKIE['id'] === $row['usr_id']));
 					return SHOWMODIFYLINKS ? 'visibility: visible' : 'visibility: hidden';
 				}
 				?>
@@ -116,7 +116,7 @@
 					<a href = "<?php echo $ques_id . '/Delete'; ?>">Delete</a>
 				</td>
 				<?php
-					if (ISADMIN || (LOGGEDIN && $_SESSION['id'] === $row['usr_id'])) {
+					if (ISADMIN || (LOGGEDIN && $_COOKIE['id'] === $row['usr_id'])) {
 					}
 				?>
 				<td colspan = "2" class = "question-poster">
@@ -135,7 +135,7 @@
 				$r = mysqli_query($dbc, $q);
 				if($r && mysqli_num_rows($r) > 0) {
 					while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-						$display = LOGGEDIN && $_SESSION['id'] == $row[2] ? 'inline' : 'none';
+						$display = LOGGEDIN && $_COOKIE['id'] == $row[2] ? 'inline' : 'none';
 						echo "<tr id = 'comment-{$row[6]}'><td></td>
 						<td class = 'comments'>
 						<img style = 'border-radius: 50%;' class = 'comment-profile' src = \"/show_image?image={$row['pr_pi']}\">
@@ -156,7 +156,7 @@
 
 					<div class = "new-comment">
 						<input type = "text" size = "50" id = 'comment-body' name = 'comment-body'>
-						<input type = "button" disabled onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_SESSION['id']; ?>)" value = "Add Comment">
+						<input type = "button" disabled onclick = "addComment(document.getElementById('comment-body').value, <?php echo $_GET['id']; ?>, <?php echo $_COOKIE['id']; ?>)" value = "Add Comment">
 					</div>
 					<script>
 						const commentBodyEl = document.getElementById('comment-body')
@@ -185,8 +185,8 @@
 					$downarrow = getDownArrow();
 					$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-					$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-					$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+					$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+					$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$row2['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 					echo "<tr class = 'post-content'>";
 					echo "<td>";
@@ -203,7 +203,7 @@
 					echo "</td>";
 					echo "</tr>\n";
 					echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
-						if (LOGGEDIN && $_SESSION['id'] === $row2['usr_id']) {
+						if (LOGGEDIN && $_COOKIE['id'] === $row2['usr_id']) {
 							$what_to_echo = $row2['msg_id'] . '/Edit';
 
 							echo '<td class = "modify-links">';

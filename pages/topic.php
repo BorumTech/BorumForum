@@ -18,19 +18,19 @@
 	<h1><?php echo $row['name']; ?></h1>
 	<?php
 
-		if (isset($_SESSION['id'])) {
-			$followq = 'SELECT topic_id, user_id FROM `followed-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_SESSION['id'];
+		if (isset($_COOKIE['id'])) {
+			$followq = 'SELECT topic_id, user_id FROM `followed-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
 			$followr = mysqli_query($dbc, $followq);
 			$following = mysqli_num_rows($followr) == 1;
 
-			$ignoreq = 'SELECT topic_id, user_id FROM `ignored-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_SESSION['id'];
+			$ignoreq = 'SELECT topic_id, user_id FROM `ignored-topics` WHERE topic_id = ' . $row['id'] . ' AND user_id = ' . $_COOKIE['id'];
 			$ignorer = mysqli_query($dbc, $ignoreq);
 			$ignoring = mysqli_num_rows($ignorer) == 1;
 			define('FOLLOWTEXT', $following ? "Unfollow" : "Follow Topic");
 			define('IGNORETEXT', $ignoring ? "Unignore" : "Ignore Topic");
 
-			echo "<button id = 'follow-btn' class = 'topic-notif' onclick = \"setTopic({$_SESSION['id']}, {$row['id']}, 'follow')\">" . FOLLOWTEXT . "</button>";
-			echo "<button id = 'ignore-btn' class = 'topic-notif' onclick = \"setTopic({$_SESSION['id']}, {$row['id']}, 'ignore')\">" . IGNORETEXT . "</button>";
+			echo "<button id = 'follow-btn' class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'follow')\">" . FOLLOWTEXT . "</button>";
+			echo "<button id = 'ignore-btn' class = 'topic-notif' onclick = \"setTopic({$_COOKIE['id']}, {$row['id']}, 'ignore')\">" . IGNORETEXT . "</button>";
 			if (ISADMIN) {
 				echo "
 				<button id = 'delete-topic-btn'

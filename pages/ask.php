@@ -6,7 +6,7 @@ session_start();
 
 require('includes/login_functions.inc.php');
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_COOKIE['id'])) {
 
 	redirect_user('../Login');
 }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$sub = mysqli_real_escape_string($dbc, trim($_POST['subject']));
 	$bod = mysqli_real_escape_string($dbc, trim($_POST['body']));
 	$tag = mysqli_real_escape_string($dbc, trim($_POST['tag']));
-	$id = $_SESSION['id'];
+	$id = $_COOKIE['id'];
 
 	// Check if its okay for the user to ask the question
 	$q = "SELECT id FROM messages WHERE subject = '$sub' OR body = '$bod' AND body != ''";

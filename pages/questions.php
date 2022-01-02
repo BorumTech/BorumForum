@@ -145,13 +145,13 @@ setPreviousAndNextLinks('Questions');
 
 ?>
 </div>
-<?php if (isset($_SESSION['id'])) {
+<?php if (isset($_COOKIE['id'])) {
 
 echo "<div class = \"col-sm-3 topic-notif-container\">
     <fieldset class = \"topic-notif\">
         <legend>Tags you are Following</legend>";
 
-            $q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_SESSION['id']}";
+            $q = "SELECT `followed-topics`.id, topics.name FROM `followed-topics` JOIN topics ON topics.id = `followed-topics`.topic_id WHERE `followed-topics`.user_id = {$_COOKIE['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
                 echo "<p><a href = \"Topics/{$row['name']}\">{$row['name']}</a></p>";
@@ -160,7 +160,7 @@ echo"    </fieldset>
     <fieldset class = \"topic-notif\">
         <legend>Tags you are Ignoring</legend>
      ";
-            $q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_SESSION['id']}";
+            $q = "SELECT `ignored-topics`.id, topics.name FROM `ignored-topics` JOIN topics ON topics.id = `ignored-topics`.topic_id WHERE `ignored-topics`.user_id = {$_COOKIE['id']}";
             $r = mysqli_query($dbc, $q);
             while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
                 echo "<p><a href = \"Topics/{$row['name']}\">{$row['name']}</a></p>";

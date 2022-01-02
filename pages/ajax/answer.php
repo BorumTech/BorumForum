@@ -14,7 +14,7 @@ $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 
 if ($num == 0) { // No answers that match this one (no duplicates) on the current question
-	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, {$_SESSION['id']}, '$ans', NOW())";
+	$q = "INSERT INTO messages (parent_id, user_id, body, date_entered) VALUES ($ques_id, {$_COOKIE['id']}, '$ans', NOW())";
 	$r = mysqli_query($dbc, $q);
 	$num = mysqli_affected_rows($dbc);
 } else {
@@ -29,8 +29,8 @@ function getNoAccountButton($way) {
 
 function votedOnQuestion($msg_id, $vote) {
 	global $dbc;
-	if (isset($_SESSION['id'])) {
-		$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_SESSION['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
+	if (isset($_COOKIE['id'])) {
+		$query = "SELECT vote FROM `user-message-votes` WHERE user_id = {$_COOKIE['id']} AND message_id = $msg_id ORDER BY id DESC LIMIT 1"; // Select latest vote for the user for the question
 		$result = mysqli_query($dbc, $query);
 		return @mysqli_fetch_array($result, MYSQLI_NUM)[0] == $vote;
 	}
@@ -67,8 +67,8 @@ if ($num == 1) { // Answer was successfully added to the database
 	$downarrow = getDownArrow();
 	$noAccountVoteDownBtn = getNoAccountButton($downarrow);
 
-	$voteupbtn = isset($_SESSION['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
-	$votedownbtn = isset($_SESSION['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_SESSION['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
+	$voteupbtn = isset($_COOKIE['id']) ? "\t<button type = 'button' onclick = \"loadXMLDoc('up', {$_COOKIE['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$uparrow</button>\n" : $noAccountVoteUpBtn;
+	$votedownbtn = isset($_COOKIE['id']) ? "\t\t<button type = 'button' onclick = \"loadXMLDoc('down', {$_COOKIE['id']}, {$ansrow['msg_id']}, 'ans-$counter-vote-count')\">$downarrow</button>\n" : $noAccountVoteDownBtn;
 
 	echo "<tr class = 'post-content'>";
 	echo "<td>";
@@ -83,7 +83,7 @@ if ($num == 1) { // Answer was successfully added to the database
 	echo "</td>";
 	echo "</tr>\n";
 	echo "<tr id = 'upc-$counter' class = 'user-profile-container'>";
-	if (LOGGEDIN && $_SESSION['id'] === $ansrow['usr_id']) {
+	if (LOGGEDIN && $_COOKIE['id'] === $ansrow['usr_id']) {
 		$what_to_echo = $ansrow['msg_id'] . '/Edit';
 
 		echo '<td class = "modify-links">';

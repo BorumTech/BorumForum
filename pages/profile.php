@@ -14,7 +14,7 @@ include('includes/header.html');
 
 
 echo "<div class = 'col-sm-6'><output name = 'bio' id = 'bio'>$bio</output>";
-if (LOGGEDIN && $_SESSION['id'] == $id) {
+if (LOGGEDIN && $_COOKIE['id'] == $id) {
 	$onclickFunc = "editBio($id)";
 	echo "<input type = 'button' id = 'edit-bio-btn' onclick = \"$onclickFunc\" value = 'Edit Bio'>";
 }
@@ -39,7 +39,7 @@ echo '</ul>
 </div>
 <div class = "col-sm-2">';
 // If the user is viewing his or her own profile
-if (LOGGEDIN && $_SESSION['id'] == $id) {
+if (LOGGEDIN && $_COOKIE['id'] == $id) {
 	include('../pages/upload_image.php');
 	echo '
 	<form id = "profile-pic" enctype = "multipart/form-data" action = "" method = "post">

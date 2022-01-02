@@ -20,7 +20,7 @@ include('includes/header.html');
 <img class="expandable" id="pcdemo" src = "https://cdn.borumtech.com/images/pcdemo.gif">
 <script type="text/javascript">
     function sendID(origin) {
-        window.opener.postMessage(<?php echo $_SESSION['id']; ?>, origin);
+        window.opener.postMessage(<?php echo $_COOKIE['id']; ?>, origin);
     }
     
     if (window.opener) {

@@ -1,6 +1,5 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule    ^$ pages/index.php [L]
 RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Handle pages
 RewriteRule    ^Users/([0-9]+)$    pages/profile.php?id=$1        [NC]    # Handle users
 RewriteRule    ^Questions/([0-9]+)$    pages/question.php?id=$1   [NC]    # Handle questions
@@ -11,4 +10,5 @@ RewriteRule    ^Questions/([0-9]+)/Edit   pages/Edit.php?id=$1    [NC]    # Hand
 RewriteRule    ^Questions/([0-9]+)/Delete   pages/Delete.php?id=$1    [NC]    # Handle question delete
 RewriteRule    Attributions               documents/Attributions.html   [NC]
 RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]
+RewriteRule    ^$ pages/index.php [NC]
 php_value output_buffering Off

@@ -7,7 +7,7 @@ $page_title = 'Delete a User';
 include('includes/header.html');
 echo "<div class = 'col-sm-6'>";
 require('includes/login_functions.inc.php');
-if (!ISADMIN && !(isset($_SESSION['id']) && isset($_GET['id']) && $_SESSION['id'] == $_GET['id'])) {
+if (!ISADMIN && !(isset($_COOKIE['id']) && isset($_GET['id']) && $_COOKIE['id'] == $_GET['id'])) {
 	redirect_user('../index');
 }
 
@@ -22,7 +22,7 @@ if (isset ($_GET['id']) && is_numeric($_GET['id'])) { // From view_users.php
 	exit();
 }
 
-define('ISUSER', $_SESSION['id'] == $_GET['id']);
+define('ISUSER', $_COOKIE['id'] == $_GET['id']);
 echo ISUSER ? '<h1 style = "color: red">Delete Your Account</h1>' : '<h1>Delete a User</h1>';
 
 // Check if the form has been submitted

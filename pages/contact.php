@@ -20,7 +20,7 @@ function useUserEmail() {
 	global $dbc;
 
 	// Fetch email from database
-	$q = "SELECT id, email FROM users WHERE id = {$_SESSION['id']}";
+	$q = "SELECT id, email FROM users WHERE id = {$_COOKIE['id']}";
 	$r = mysqli_query($dbc, $q);
 	$row = mysqli_fetch_array($r, MYSQLI_NUM);
 	$email = $row[1];

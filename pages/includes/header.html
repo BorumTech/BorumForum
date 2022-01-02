@@ -55,7 +55,7 @@
 	</div>
 	<div class = "none open-menu">
 		<ul>
-			<?php echo LOGGEDIN ? "<li><img src = '/pages/show_image.php?image=icon.png'><a href = \"/users/{$_SESSION['id']}\">My Profile</a></li>" : ''; ?>
+			<?php echo LOGGEDIN ? "<li><img src = '/pages/show_image.php?image=icon.png'><a href = \"/users/{$_COOKIE['id']}\">My Profile</a></li>" : ''; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
 			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "https://cdn.borumtech.com/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "https://cdn.borumtech.com/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>

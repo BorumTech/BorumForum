@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!(isset($_SESSION['id']))) {
+if (!(isset($_COOKIE['id']))) {
 	require('includes/login_functions.inc.php');
 	redirect_user();
 }
@@ -14,7 +14,7 @@ include_once("includes/header.html");
 	<h1>Settings</h1>
 	<div class = "flex-box">
 		<a href = "password">Change password</a>
-		<a href = "edit_user?id=<?php echo $_SESSION['id']; ?>">Edit Information</a>
+		<a href = "edit_user?id=<?php echo $_COOKIE['id']; ?>">Edit Information</a>
 		<!-- Rectangular switch -->
 		<div class = "dark-mode">
 			<label class="switch">
@@ -26,7 +26,7 @@ include_once("includes/header.html");
 		</div>
 		<a href = "/Settings/tag-notifications">Tag Watching and Ignoring</a>
 		<a href = "/Settings/Sign-In-Credentials">Sign In Credentials</a>
-		<a style = "color: red" href = "delete_user?id=<?php echo $_SESSION['id']; ?>">Delete Account</a>
+		<a style = "color: red" href = "delete_user?id=<?php echo $_COOKIE['id']; ?>">Delete Account</a>
 	</div>
 
 	<script src = "../scripts/settings.js"></script>
@@ -43,7 +43,7 @@ include_once("includes/header.html");
 		      twitterImgEl.src = 'https://cdn.borumtech.com/images/Twitter_Social_Icon_Circle_Black.svg';
 		      console.log('dark');
 		      document.cookie = "dark=1; path=/";
-					changeTheme(<?php echo $_SESSION['id']; ?>);
+					changeTheme(<?php echo $_COOKIE['id']; ?>);
 		    }
 		    else { // When they turn dark mode off
 		      body.classList.remove('t--dark');
@@ -51,7 +51,7 @@ include_once("includes/header.html");
 		      twitterImgEl.src = 'https://cdn.borumtech.com/images/Twitter_Social_Icon_Circle_White.svg';
 		      console.log('not dark');
 			  	document.cookie = "dark=0; path=/";
-					changeTheme(<?php echo $_SESSION['id']; ?>)
+					changeTheme(<?php echo $_COOKIE['id']; ?>)
 		    }
 
 		  })

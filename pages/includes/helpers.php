@@ -1,5 +1,5 @@
 <?php
-define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_SESSION['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
+define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_COOKIE['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     // last request was more than 30 minutes ago
@@ -28,7 +28,7 @@ function giveClassActive($file, $href, $show, $li = true) {
 }
 
 $mods = array(6);
-define('ISADMIN', isset($_SESSION['id']) && in_array($_SESSION['id'], $mods));
+define('ISADMIN', isset($_COOKIE['id']) && in_array($_COOKIE['id'], $mods));
 
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
