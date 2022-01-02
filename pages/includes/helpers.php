@@ -1,5 +1,5 @@
 <?php
-define('LOGGEDIN', isset($_COOKIE['PHPSESSID']) && isset($_COOKIE['id']) && isset($_SESSION['first_name']) && isset($_SESSION['last_name']));
+define('LOGGEDIN', isset($_COOKIE['id']) && is_numeric($_COOKIE['id']));
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     // last request was more than 30 minutes ago
