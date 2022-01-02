@@ -11,4 +11,3 @@ RewriteRule    ^Questions/([0-9]+)/Delete   pages/Delete.php?id=$1    [NC]    # 
 RewriteRule    Attributions               documents/Attributions.html   [NC]
 RewriteRule    Questions/Interesting       pages/Interesting.php      [NC]
 RewriteRule    ^$ pages/index.php [NC]
-php_value output_buffering Off
