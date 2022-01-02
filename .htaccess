@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule ^$ pages/index.php [L]
+RewriteRule ^$ /pages/index.php [L]
 RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Handle pages
 RewriteRule    ^Users/([0-9]+)$    pages/profile.php?id=$1        [NC]    # Handle users
 RewriteRule    ^Questions/([0-9]+)$    pages/question.php?id=$1   [NC]    # Handle questions
