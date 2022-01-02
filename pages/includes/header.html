@@ -57,7 +57,7 @@
 		<ul>
 			<?php echo LOGGEDIN ? "<li><img src = '/pages/show_image.php?image=icon.png'><a href = \"/users/{$_COOKIE['id']}\">My Profile</a></li>" : ''; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/settings-icon.png"><a href = "/Settings">Settings</a></li>' : ''; ?>
-			<?php echo !LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php' ? '<li><img src = "https://cdn.borumtech.com/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : '<li><img src = "https://cdn.borumtech.com/images/PICOL_icon_Login.svg.png"><a href = "/Logout">Log out</a></li>'; ?>
+			<?php echo !LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/PICOL_icon_Login.svg.png"><a href = "/Login">Login</a></li>' : ''; ?>
 			<?php echo LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/thought-bubble.png"><a href = "/Ask">Ask a Question</a></li>' : ''; ?>
 			<?php echo !LOGGEDIN ? '<li><img src = "https://cdn.borumtech.com/images/register.png"><a href = "/Register">Register</a></li>' : ''; ?>
 			<li><img src = "https://cdn.borumtech.com/images/question.png"><a href = "/Questions">Questions</a></li>
@@ -74,7 +74,7 @@
 			'
 			<a href = "/Settings"><img src = "https://cdn.borumtech.com/images/settings-icon.png"></a>
 			' : '';
-		if (basename($_SERVER['PHP_SELF']) != 'logout.php' && LOGGEDIN) {
+		if (LOGGEDIN) {
 			require($_SERVER['DOCUMENT_ROOT'] . '/pages/includes/personalize.php');
 		}
 
@@ -94,15 +94,10 @@
 
 			giveClassActive('ask.php', '/Ask', 'Ask a Question');
 
-			// If the an account is logged in
+			// If a user is not logged in
 			if (!LOGGEDIN) {
 				giveClassActive('register.php', '/Register', 'Register');
-			}
-
-			if (!LOGGEDIN || basename($_SERVER['PHP_SELF']) == 'logout.php') {
 				giveClassActive("login.php", "/Login", "Log In");
-			} else {
-				giveClassActive("logout.php", "/Logout", "Log Out");
 			}
 
 			?>

@@ -2,7 +2,7 @@
 # This script lets a logged in user ask a question on the site
 # Varun Singh, 3/30/2019
 
-session_start();
+file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 
 require('includes/login_functions.inc.php');
 

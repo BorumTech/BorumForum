@@ -1,13 +1,14 @@
 <?php
-
+/* 
 	// Find url of logged in user's profile picture
 	$imgurl = "http://borumtech.com/show_image?image=";
 	$q3 = "SELECT id, profile_picture FROM users WHERE id = {$_COOKIE['id']}";
 	$r3 = mysqli_query($dbc, $q3);
 	if (mysqli_num_rows($r3)) {
 		$row3 = mysqli_fetch_array($r3, MYSQLI_NUM);
+
 		$imgurl .= $row3[1];
-	}
+	} */
 
 
 	// Display Help, Notification bar, and Profile
@@ -16,7 +17,7 @@
 			<img src = "https://cdn.borumtech.com/images/notification-bell-pngrepo-com.png">
 		</a>
 		<a href = "/users/' . $_COOKIE['id'] . '">
-			<img src = "' . $imgurl . '">
+			<img src = "https://cdn.borumtech.com/images/unavailable.png">
 		</a>
 		<div id = "notifications" style = "display:none">';
 

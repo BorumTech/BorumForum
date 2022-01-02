@@ -3,7 +3,10 @@
 # 12/17/2018
 # This script is the template for the pages in Chapter 12
 
-$page_title = 'Borum';
+
+file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
+
+$page_title = 'Borum Forum';
 include('includes/header.html');
 
 ?>

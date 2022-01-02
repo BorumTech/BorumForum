@@ -1,11 +1,12 @@
 <?php
 
-session_start();
 
 if (!isset($_COOKIE['id'])) {
     include('includes/login_functions.inc.php');
     redirect_user();
 }
+
+file_exists('../../mysqli_connect.inc.php') ? require_once('../../mysqli_connect.inc.php') : require_once('../../../mysqli_connect.inc.php');
 
 $page_title = "Interesting Questions";
 @require_once('includes/header.html');
